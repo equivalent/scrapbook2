@@ -1,8 +1,8 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider               => 'AWS',
-    :aws_access_key_id      => LOCAL_CONFIG.send(:[], 'private_key'),
-    :aws_secret_access_key  => LOCAL_CONFIG.send(:[], 'secret'),
+    :aws_access_key_id      => LOCAL_APP_CONFIG.send(:[], 'private_key'),
+    :aws_secret_access_key  => LOCAL_APP_CONFIG.send(:[], 'secret'),
     :region                 => 'eu-west-1'
   }
   config.fog_directory  = "my-application-bucket-#{Rails.env}"
