@@ -38,11 +38,14 @@ describe User do
 end
 ```
 
-relevant links: http://stackoverflow.com/questions/4511586/rails-functional-test-case-and-uploading-files-to-actiondispatchhttpuploadfi
+relevant links:
 
-published: 16.09.2013
+* http://stackoverflow.com/questions/4511586/rails-functional-test-case-and-uploading-files-to-actiondispatchhttpuploadfi
+
+
 rails: 3.2.14
 
+published: 16.09.2013
 
 
 ### Tell my specs/tests to use different root path
@@ -66,5 +69,6 @@ end
 
 all other settings (like `store_dir`) will stay unchanged 
 
-published: 16.09.2013
 rails: 3.2.14
+
+published: 16.09.2013
