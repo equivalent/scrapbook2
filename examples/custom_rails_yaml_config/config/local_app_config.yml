@@ -1,0 +1,17 @@
+development:
+  s3:
+    private_key: 'xxxxxxxxxx'
+    secret:      'YYYYYYYYYYY'
+
+production:
+  s3:
+    private_key: 'xxxxxxxxxx'
+    secret:      'YYYYYYYYYYY'
+
+test:
+  s3:
+    private_key: 'xxxxxxxxxx'
+    secret:      'YYYYYYYYYYY'
+
+
+
