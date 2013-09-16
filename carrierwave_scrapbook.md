@@ -21,6 +21,8 @@ rather `~/projects/my_project/tmp/uploads` folder
 ```ruby
 # app/uploaders/avatara_uploader.rb
 class AvatarUploader < CarrierWave::Uploader::Base
+  storage :file
+  
   # ...
   def root
     Rails.env.test? ? "#{Rails.root.to_s}/tmp/" : super
@@ -28,3 +30,5 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # ...
 end
 ```
+
+all other settings (like `store_dir`) will stay unchanged 
