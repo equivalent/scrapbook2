@@ -1,8 +1,9 @@
-
-### edit multiple lines on certain position
+### Edit multiple lines on certain position
 
 There is command `Ctrl+q` that works similar as  as `v` (visual select bolck mode). By pressing it you can navigate
 through out of the text (`jj`, `kk`, `hh`, `ll`) selecting multiple lines several cels of text.
+
+![Select multiple lines in position with Vim][1]
 
 **Add text on multiple lines**
 
@@ -92,3 +93,6 @@ _static_document_form
 
 I'm to lazy to figure out the leading underscore :)
 
+
+
+[1]: https://raw.github.com/equivalent/scrapbook2/master/assets/images/2013/vim_scrap_replace-multiple-lines-on-position.png
