@@ -1,4 +1,27 @@
 
+### edit multiple lines on certain position
+
+There is command `Ctrl+q` that works similar as  as `v` (visual select bolck mode). By pressing it you can navigate
+through out of the text (`jj`, `kk`, `hh`, `ll`) selecting multiple lines several cels of text.
+
+**Add text on multiple lines**
+
+* After selecting text this way you can pres `I`
+* insert text
+* press `escape`
+
+**Remove text on multiple lines**
+
+* After selecting text this way you can pres `d`
+
+
+
+sources:
+
+* http://vim.wikia.com/wiki/Inserting_text_in_multiple_lines
+
+published 18.09.2013
+
 
 ### sort words in vim
 
@@ -16,7 +39,7 @@ sources:
 
 *http://stackoverflow.com/questions/1327978/sorting-words-not-lines-in-vim
 
-published: 19.09.2013
+published: 18.09.2013
 
 
 
@@ -48,7 +71,7 @@ sources:
 
 * http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
 
-published: 19.09.2013
+published: 18.09.2013
 
 
 ## Substitude usefull examples
