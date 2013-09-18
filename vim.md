@@ -1,3 +1,48 @@
+# Basic usage 
+
+## Normal mode
+
+movement
+
+```
+B b h <>l w W									# word movement
+0 ^ gE ge <> e E $						        # home 
+g0 g^ <gm> g$									# whole line home
+42gg alebo 42G								    # go to line 42
+
+{   }										    # start and end of paragraf
+(   )											# start and end of sentence
+```
+
+scroll
+
+```
+zt zz zb    									#scroll top midle bottom
+H  M  L
+ctrl+e   ctrl+y                                 #clasik scrolling
+```
+
+Replace
+
+```
+R                                               #replace mode. Replace everything you type
+                                                # Backspace will rollback changes 
+```
+
+## Visual mode
+
+By visual mode some people refers to "highlite" or visual block mode (visually highlight 
+text). The key part is that you can call commands while text is selected this way.
+
+```
+u                                               # Lovercase
+U                                               # Upcase text
+r                                               # replace selected with...; also check for `R`
+```
+
+
+# Advanced examples
+
 ### Edit multiple lines on certain position
 
 There is command `Ctrl+q` that works similar as  as `v` (visual select bolck mode). By pressing it you can navigate
@@ -24,7 +69,9 @@ sources:
 published 18.09.2013
 
 
-### sort words in vim
+
+
+### Sort words in vim
 
 visual select block of lines and trigger 
 
@@ -75,7 +122,8 @@ sources:
 published: 18.09.2013
 
 
-## Substitude usefull examples
+
+
 
 ### Rename ruby class name to method name
 
@@ -92,6 +140,41 @@ _static_document_form
 ```
 
 I'm to lazy to figure out the leading underscore :)
+
+
+### Get rid of ^M in code
+
+    :%s/^M//g
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
