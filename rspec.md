@@ -29,6 +29,8 @@ FactoryGirl.define do
     existing: true
 
     sequence(:description) { |n| "Country description no #{n}." }
+    
+    other_description  Faker::Lorem.paragraph  # With Faker gem
 
     trait :used_in_address do
       address_ids { [FactoryGirl.create(:address).id] }
@@ -41,8 +43,9 @@ FactoryGirl.define do
     end
   end
     
-  factory :vanished_countries, class: 'Country' do
+  factory :vanished_country, class: 'Country' do
     existing: false
+    
     after :build do |country|
       country.do_something_meaningful
     end
