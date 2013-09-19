@@ -64,6 +64,15 @@ rails 3.2.12
 
 
 
+### [Shoulda matchers](https://github.com/thoughtbot/shoulda-matchers)
+
+    it{ subject.should have(1).error_on(:last_name) }
+    
+* [Shoulda Matchers callbacks](https://github.com/equivalent/shoulda-matchers-callbacks)
+* [Shoulda Matchers assign_to](https://github.com/tinfoil/shoulda-kept-assign-to)
+* [Deprication of certain shoulda matchers ](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/shoulda_matchers_deprecated_what_now.md)
+
+
 ### require support folder
     
     # spec/spec_helper.rb
