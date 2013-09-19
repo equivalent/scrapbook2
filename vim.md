@@ -127,6 +127,8 @@ published: 18.09.2013
 
 ### Rename ruby class name to method name
 
+...or how to change capitalized constant strings to underscore strings
+
 ```vim
 :s/[A-Z]/_\l\0/g
 ```
