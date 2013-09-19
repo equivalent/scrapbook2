@@ -1,5 +1,67 @@
 # RSpec scrapbook
 
+### Install
+
+    group :test, :development do
+      gem "rspec-rails", "~> 2.13"
+    end
+
+### Setup & generator 
+
+    rails g rspec:install
+    rails g rspec:model platform
+
+### Fixture
+
+    # spec/something_spec.rb
+    require 'spec_helper'
+    describe Something do
+      fixtures :platforms
+    # ...
+    
+
+### Factories with [FactoryGirl](https://github.com/thoughtbot/factory_girl)
+
+```ruby
+FactoryGirl.define do
+  factory :country do
+    name "Tomi-land"
+    existing: true
+
+    sequence(:description) { |n| "Country description no #{n}." }
+
+    trait :used_in_address do
+      address_ids { [FactoryGirl.create(:address).id] }
+    end
+    
+    trait :cached_in_past do
+      after :create do |country|
+        country.update_column :cached_at, 2.days.ago
+      end
+    end
+  end
+    
+  factory :vanished_countries, class: 'Country' do
+    existing: false
+    after :build do |country|
+      country.do_something_meaningful
+    end
+  end
+  
+end
+
+# call with traits
+FactoryGirl.create :country, :cached_in_past, cities: [city1, city2]
+```
+
+sources
+
+* https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md
+
+rails 3.2.12
+
+
+
 ### require support folder
     
     # spec/spec_helper.rb
