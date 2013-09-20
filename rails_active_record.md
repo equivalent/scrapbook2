@@ -1,6 +1,5 @@
 
-
-# Eager Loading
+# Joins, Includes and Eager Loading
 
 Eager loading is responsible for prefetching data in one sql query 
 
@@ -12,18 +11,18 @@ Eager loading is responsible for prefetching data in one sql query
 
 fetching one column name from association
 
-    ```ruby
-    # app/models/user.rb
-    def client_name
-      read_attribute("client_name") || client.name
-    end
-    ```
-    
-    ```
-    u = User.order("clients.name").joins(:client).select('users.*, clients.name as client_name')
-    # => SELECT users.*, clients.name FROM `users` INNER JOIN `clients` ON `clients`.`id` = `users`.`client_id` WHERE (`users`.`deleted_at` IS NULL)
-    u.client_name
-    ```
+```ruby
+# app/models/user.rb
+def client_name
+  read_attribute("client_name") || client.name
+end
+```
+
+```
+u = User.order("clients.name").joins(:client).select('users.*, clients.name as client_name')
+# => SELECT users.*, clients.name FROM `users` INNER JOIN `clients` ON `clients`.`id` = `users`.`client_id` WHERE (`users`.`deleted_at` IS NULL)
+u.client_name
+```
 
 sources
 
