@@ -8,7 +8,9 @@ Eager loading is responsible for prefetching data in one sql query
     Product.joins(:category, :reviews => :user)
     Product.joins("left outer join categories on category_id = categories.id")
 
-###Fetching one column name from association
+
+
+**Fetching one column name from association**
 
 ```ruby
 # app/models/user.rb
@@ -27,3 +29,5 @@ sources
 
 * http://railscasts.com/episodes/22-eager-loading-revised
 * http://guides.rubyonrails.org/active_record_querying.html
+
+Rails: 3.2.13
