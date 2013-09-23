@@ -1,4 +1,7 @@
-# Joins, Includes and Eager Loading
+# Rails Active Record Scrapbook
+
+
+## Joins, Includes and Eager Loading
 
 Eager loading is responsible for prefetching data in one sql query 
 
@@ -31,3 +34,26 @@ sources
 * http://guides.rubyonrails.org/active_record_querying.html
 
 Rails: 3.2.13
+
+
+## Scopes
+
+```ruby
+scope :visible, where("hidden != ?", true)
+scope :published, lambda { where("published_at <= ?", Time.zone.now) }
+scope :recent, visible.published.order("published_at desc")
+```
+
+**complex scope example**
+
+```ruby
+class Document
+  scope :with_latest_super_owner, lambda{ |o|
+    raise "must be client or user instance" unless [User, Client].include?(o.class)
+    joins(:document_versions, document_creator: :document_creator_ownerships).
+    where(document_creator_ownerships: {owner_type: o.class.model_name, owner_id: o.id}).
+    where(document_versions: {latest: true}).group('documents.id')
+  }
+end
+# it can get kinda complex :)
+```
