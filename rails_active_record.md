@@ -99,10 +99,57 @@ Candy.for_user_or_global(User.last)
 #=> SELECT `candies`.* FROM `candies` INNER JOIN `candy_ownerships` ON `candy_ownerships`.`candy_id` = `candies`.`id` WHERE (`candies`.`deleted_at` IS NULL) AND (((`candies`.`type` = 'WorldwideCandies' OR (`candies`.`type` = 'ClientCandies' AND `candy_ownerships`.`owner_id` = 19 AND `candy_ownerships`.`owner_type` = 'Client')) OR (`candies`.`type` = 'UserCandies' AND `candy_ownerships`.`owner_id` = 121 AND `candy_ownerships`.`owner_type` = 'User')))
 ```
 
+**Arel lower than**
+
+```irb
+Event.arel_table[:start_at].lt(Time.now).to_sql
+=> "`events`.`start_at` < '2013-03-05 10:38:22'" 
+```
+
+**Arel not equal where statement**
+
+```ruby
+DocumentVersion.where( DocumentVersion.arel_table[:id].not_eq(11) )
+```
+
+**Select Clients that have more that have existing documents**
+
+```ruby
+class Client < ActiveRecord::Base
+  has_many :documents
+  scope :with_existing_documents, ->{ Client.joins(:documents).where(Document.arel_table[:client_id].eq( Client.arel_table[:id]) ).uniq }
+end
+```
+
+```ruby
+class Document < ActiveRecord::Base
+  belongs_to :client
+end
+```
+
+however when you think about it `Client.joins(:documents).uniq` already do that job by it's own
+
+```ruby
+ # ...
+ scope :with_existing_documents, ->{ Client.joins(:documents).uniq }
+ #...
+```
+
+so 
+
+```ruby
+doc = Document.create
+client_without  = Client.create
+client_with_doc = Client.create( documents: [doc]
+Client.with_existing_documents
+# => [client_with_doc]
+```
+
 
 Sources:
 
 * http://stackoverflow.com/a/16014142/473040
 * https://github.com/rails/arel/tree/master/lib/arel/nodes
+* https://github.com/rails/arel
 
 Rails 3.2.13
