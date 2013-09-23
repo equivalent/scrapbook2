@@ -36,13 +36,25 @@ sources
 Rails: 3.2.13
 
 
-## Scopes
+## Scopes and Arel tricks
 
 ```ruby
 scope :visible, where("hidden != ?", true)
 scope :published, lambda { where("published_at <= ?", Time.zone.now) }
 scope :recent, visible.published.order("published_at desc")
 ```
+
+
+** Multiple or Arel scope **
+
+```ruby
+scope :with_owner_ids_or_global, lambda{ |owner_class, *ids|
+  with_ids = where(owner_id: ids.flatten).where_values.reduce(:and)
+  with_glob = where(owner_id: nil).where_values.reduce(:and)
+  where(owner_type: owner_class.model_name).where(with_ids.or( with_glob ))
+}
+```
+
 
 **complex scope example**
 
