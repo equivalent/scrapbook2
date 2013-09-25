@@ -50,9 +50,9 @@ end
 ```
 
 
-### How to mock/stub file in model that is using  CarrierWave uploader
+### Set and compare existance of file with Carrierwave uploader record specs
 
-
+...or: How to mock/stub file in model that is using  CarrierWave uploader
 
 ```ruby
 require 'spec_helper'
@@ -66,6 +66,7 @@ describe User do
   end
 end
 ```
+
 
 relevant links:
 
