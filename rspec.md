@@ -81,8 +81,18 @@ rails 3.2.12
 
 ### Matchers
 
+**Compare in delta**
+
     2.1.should_not be_within(delta).of(2.0)  # e.g.: delta = 0.2 
     user.updated_at.should_not be_within(10.seconds).of(Time.now)
+
+**Check existenc of error on record**
+
+    publication.valid?
+    publication.should have(1).error_on(:owner_type)
+
+    
+    
 
 ## Mocking and Stubbing 
 
