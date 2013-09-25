@@ -16,24 +16,53 @@ end
 
 ```
 
+and in our specs we have included this helpfull macro file
+
+```ruby
+# spec/support/upload_file_macros.rb
+
+require 'carrierwave/test/matchers'
+module UploadedFileMacros
+  def self.included(base)
+    base.send :include, CarrierWave::Test::Matchers
+  end
+
+  def uploaded_file
+    ActionDispatch::Http::UploadedFile.new({
+      :filename => 'blank_pdf.pdf',
+      :content_type => 'pdf',
+      :tempfile => file_for_upload
+    })
+  end
+
+  # For comparing the upladed file match
+  #
+  #    document.file.file.file.should be_identical_to file_for_upload
+  # 
+  # or you can directly set record file:
+  # 
+  #    document.file = file_for_upload
+  #
+  def file_for_upload
+    File.new("#{Rails.root}/spec/fixtures/uploads/blank_pdf.pdf")
+  end
+end
+```
+
 
 ### How to mock/stub file in model that is using  CarrierWave uploader
+
+
 
 ```ruby
 require 'spec_helper'
 describe User do
- 
-  let(:upload) do
-    ActionDispatch::Http::UploadedFile.new({
-      :filename => 'blank_pdf.pdf',
-      :content_type => 'pdf',
-      :tempfile => File.new("#{Rails.root}/spec/factories/uploads/blank_pdf.pdf")
-    })
-  end
+  include UploadedFileMacros
   
   it do
-    user = User.new(avatar: upload)
+    user = User.new(avatar: file_for_upload)
     user.avatar.file.exists?  #=>true
+    user.avatar.file.file.should be_identical_to file_for_upload
   end
 end
 ```
