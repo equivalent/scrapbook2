@@ -1,5 +1,4 @@
 
-
 ### select elements within of element
 
 ```html
@@ -10,7 +9,7 @@
 <span>foo</span>
 ```
 
-```javascript
+```js
 $('span')               # all spans
 
 $('.div span')          # span inside `.foo` div 
