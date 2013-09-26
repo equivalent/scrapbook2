@@ -9,10 +9,10 @@
 ```
 
 ```js
-$('span')               # all spans
+$('span')               // all spans
 
-$('.div span')          # span inside `.foo` div 
+$('.div span')          // span inside `.foo` div 
 
 var my_div = $('.foo')
-$('span', my_div)       # span inside `.foo` div
+$('span', my_div)       // span inside `.foo` div
 ```
