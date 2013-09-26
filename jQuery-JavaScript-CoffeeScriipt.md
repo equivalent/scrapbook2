@@ -8,7 +8,7 @@
 <span>foo</span>
 ```
 
-```
+```js
 $('span')               # all spans
 
 $('.div span')          # span inside `.foo` div 
