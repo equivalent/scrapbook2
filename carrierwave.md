@@ -102,3 +102,21 @@ all other settings (like `store_dir`) will stay unchanged
 rails: 3.2.14
 
 published: 16.09.2013
+
+
+
+# Issues 
+
+## RMagick complaining about libMagickCore.5.dylib not found in OSX
+
+1/ search for this lib in the system 
+
+    sudo find / -name "libMagickCore.5.dylib" -print
+
+I found mine in `usr/local/Cellar/imagemagick/6.7.7-6/lib/libMagickCore.5.dylib`
+
+2/ link this library to required path 
+
+    ln /usr/local/Cellar/imagemagick/6.7.7-6/lib/libMagickCore.5.dylib /usr/local/lib/libMagickCore.5.dylib
+    
+http://stackoverflow.com/questions/19040932/rmagick-complaining-about-libmagickcore-5-dylib-not-found-in-osx/19040933#19040933
