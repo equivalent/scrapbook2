@@ -107,7 +107,7 @@ published: 16.09.2013
 
 # Issues 
 
-## RMagick complaining about libMagickCore.5.dylib not found in OSX
+### RMagick complaining about libMagickCore.5.dylib not found in OSX
 
 1/ search for this lib in the system 
 
