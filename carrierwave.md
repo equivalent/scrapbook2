@@ -68,6 +68,43 @@ end
 ```
 
 
+### Seting a record file in factory
+
+Factory:
+
+```ruby
+# spec/factories/documents.rb
+FactoryGirl.define do
+
+  factory :document, class: Document do
+    description "document"
+    
+    trait :with_file do
+      after :create do |d|
+        d.file.store!(File.open("#{Rails.root.to_s}/spec/factories/uploads/blank_pdf.pdf"))
+      end
+    end
+    
+  end
+end
+```
+
+in spec file:
+
+```ruby
+# spec/models/document_spec.rb
+require 'spec_helper'
+desc Document do
+  include UploadedFileMacros
+
+  let(:document){ create :document, :with_file }
+  it 'document should have file' do
+    document.file.file.file.should be_identical_to file_for_upload
+  end
+end
+```
+
+
 relevant links:
 
 * http://stackoverflow.com/questions/4511586/rails-functional-test-case-and-uploading-files-to-actiondispatchhttpuploadfi
