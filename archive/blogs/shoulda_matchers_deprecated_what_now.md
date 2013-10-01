@@ -33,29 +33,32 @@ simplest way is to just replace any occurrence of `respond_with_content_type` wi
 
 if you want a proper matcher than:
 
-    # spec/support/matchers/respond_with_content_type_matchers.rb
-    RSpec::Matchers.define :respond_with_content_type do |ability|
-      match do |controller|
-        expected.each do |format|  # for some reason formats are in array
-          controller.response.content_type.to_s.should eq Mime::Type.lookup_by_extension(format.to_sym).to_s
-        end
-      end
-    
-      failure_message_for_should do |actual|
-        "expected response with content type #{actual.to_sym}"
-      end
-    
-      failure_message_for_should_not do |actual|
-        "expected response not to be with content type #{actual.to_sym}"
-      end
+```ruby
+# spec/support/matchers/respond_with_content_type_matchers.rb
+RSpec::Matchers.define :respond_with_content_type do |ability|
+  match do |controller|
+    expected.each do |format|  # for some reason formats are in array
+      controller.response.content_type.to_s.should eq Mime::Type.lookup_by_extension(format.to_sym).to_s
     end
+  end
 
-    # spec/spec_helper.rb
-    ...
-    #ensure support dir is loaded
-    Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}  
-    ...
+  failure_message_for_should do |actual|
+    "expected response with content type #{actual.to_sym}"
+  end
 
+  failure_message_for_should_not do |actual|
+    "expected response not to be with content type #{actual.to_sym}"
+  end
+end
+```
+
+```ruby
+# spec/spec_helper.rb
+#...
+#ensure support dir is loaded
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}  
+#...
+```
 
 I agree with Thoughtbot on one thing: I don't see that much value in this matcher. That's why I don't see point extracting it into gem...maybe in future.
 
