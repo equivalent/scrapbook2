@@ -49,6 +49,10 @@ module UploadedFileMacros
 end
 ```
 
+### Copy file from one resource to other 
+
+check https://github.com/equivalent/copy_carrierwave_file
+
 
 ### Set and compare existance of file with Carrierwave uploader record specs
 
