@@ -1,0 +1,3 @@
+### Silence caching log 
+
+    Rails.cache.silence!
