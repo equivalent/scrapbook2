@@ -185,5 +185,8 @@ describe ErrorsController
     it{ assigns(:status).should eq '404' }
   end
   
+  context 'unknown status' do
+    it{ expect{get :show, status: 123}.to raise_error }
+  end  
 end
 ```
