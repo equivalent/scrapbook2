@@ -11,3 +11,21 @@ task :default => :spec
 ```
 
 https://www.relishapp.com/rspec/rspec-core/docs/command-line/rake-task
+
+
+### Use rails url/path helpers in rake task
+
+```ruby
+# lib/tasks/generate_page.rake
+include Rails.application.routes.url_helpers
+default_url_options[:host] = "myroutes.check"
+
+namespace :page do
+  task :generate => :environment do
+    puts root_url
+  end
+end
+```
+
+for `rails 2.x` you have to include `include ActionController::UrlWriter`
+http://stackoverflow.com/questions/341143/can-rails-routing-helpers-i-e-mymodel-pathmodel-be-used-in-models
