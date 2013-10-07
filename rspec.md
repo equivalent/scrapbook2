@@ -166,3 +166,24 @@ export RUBY_FREE_MIN=600000
 ```
 
 published: 2013-09-13
+
+
+## Code Examples
+
+### Controller RSpec example on ErrorsController 
+
+```ruby
+describe ErrorsController
+
+  context '404 page' do
+    before{ get :show, status: 404, format: 'html' }
+
+    it{ should respond_with(:success)}
+    it{ should render_template('errors/404')}
+    it{ should render_template('layouts/error_page')}
+    it{ assigns(:title).should  eq "Page not found" }
+    it{ assigns(:status).should eq '404' }
+  end
+  
+end
+```
