@@ -28,4 +28,12 @@ end
 ```
 
 for `rails 2.x` you have to include `include ActionController::UrlWriter`
+
+alternativly you can use:
+
+```ruby
+p Rails.application.routes.url_helpers.posts_path
+p Rails.application.routes.url_helpers.posts_url(:host => "example.com")
+```
+
 http://stackoverflow.com/questions/341143/can-rails-routing-helpers-i-e-mymodel-pathmodel-be-used-in-models
