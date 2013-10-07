@@ -10,8 +10,8 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 ```
 
-https://www.relishapp.com/rspec/rspec-core/docs/command-line/rake-task
-
+sources: https://www.relishapp.com/rspec/rspec-core/docs/command-line/rake-task
+published: october 2013
 
 ### Use rails url/path helpers in rake task
 
@@ -38,3 +38,5 @@ p Rails.application.routes.url_helpers.posts_url(:host => "example.com")
 
 source:  http://stackoverflow.com/questions/341143/can-rails-routing-helpers-i-e-mymodel-pathmodel-be-used-in-models
 Rails 3.2
+published: october 2013
+
