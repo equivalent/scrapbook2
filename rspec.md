@@ -170,7 +170,29 @@ published: 2013-09-13
 
 ## Code Examples
 
-### Controller RSpec example on ErrorsController 
+```ruby 
+class User < ActiveRecord::Base
+  
+  def healthy_teeth
+    32
+  end
+    
+  def eligeble_to_volte?
+    age > 18
+  end
+end
+
+
+describe User
+
+  it{ should have(32).healthy_teeth} 
+  it{ should be_eligeble_to_volte }
+  it{ 3.should == 3 }
+  it{ 'three'.should =~ /hre/ }
+  it{ 3.should be >= 2 }
+  it{ 3.should be <= 4 }
+end
+```
 
 ```ruby
 describe ErrorsController
