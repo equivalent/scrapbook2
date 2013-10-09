@@ -26,8 +26,11 @@ FileUtils.rm_rf(Dir.glob("./tmp/uploads/*"))
 ### Create dir 
 
 ~~~ruby
-require 'fileutils'
-FileUtils.mkdir 'foldername'
+require 'fileutils' 
+FileUtils.mkdir '/media/foldername'
+
+Dir.mkdir "/media/myfolder", 0700
+`sudo mkdir /media/myfolder`
 ~~~
 
 ### Directory exist ?
@@ -35,6 +38,12 @@ FileUtils.mkdir 'foldername'
 ~~~ruby
 File.directory?('path/to/something')
 ~~~
+
+### Directory empty ?
+
+```ruby
+Dir["/media/myfolder/*"].empty?
+```
     
 ### Rename files in path
 
