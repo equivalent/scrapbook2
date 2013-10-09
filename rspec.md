@@ -191,6 +191,12 @@ describe User
   it{ 'three'.should =~ /hre/ }
   it{ 3.should be >= 2 }
   it{ 3.should be <= 4 }
+  
+  it{ ->{ something }.should raise_error }
+  it{ expect{ service }.to raise_error }
+  it{ expect{ service }.to raise_error SomeStrangeError }
+  it{ expect{ service }.to raise_error /error message/ }
+  it{ expect{ service }.to raise_error SomeStrangeError, /error message/ }
 end
 ```
 
