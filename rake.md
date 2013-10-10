@@ -1,3 +1,9 @@
+### Show all rake tasks
+
+    rake -T
+    
+* however this will print only tasks that have descrition(`desc`)
+
 ### Rake run rspec by default
 
 ```ruby
