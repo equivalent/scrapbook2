@@ -7,10 +7,19 @@
     end
     
     raise Exception::InvalidUsername
+    
+if you want default message
+
+    class WrongDocumentStatus < StandardError
+      def initialize(msg='Unknown status for Document')
+        super
+      end
+    end
 
 sources: 
 
 * http://stackoverflow.com/questions/5200842/where-to-define-custom-error-types-in-ruby-and-or-rails
+* http://stackoverflow.com/questions/3382866/rubys-exception-error-classes
 
 Rails: 3.2.13
 
