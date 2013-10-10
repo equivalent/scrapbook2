@@ -1,6 +1,6 @@
 # validation & custom validators
 
-* simple one function solution
+*simple one function solution*
 
 ```ruby
 class User < ActiveRecord::Base
