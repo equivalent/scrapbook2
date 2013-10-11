@@ -123,8 +123,7 @@ it{ calculator.should_receive(:add).with(greater_than_three)
 
 ``` 
 
-**Call original**
-# stub and call original
+#### Stub and call original
 
 ```ruby
 class Pokemon < ActiveRecord::Base
