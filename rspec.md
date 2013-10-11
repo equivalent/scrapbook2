@@ -150,12 +150,12 @@ describe Pokemon
 end
 ```
 
-rails 3.2.12
-date: 2013-05-02
-rspec 1.8.25
-ruby 2.0.0
-sources: https://www.relishapp.com/rspec/rspec-mocks/v/2-12/docs/message-expectations/calling-the-original-method
-keywords: stub and call original rspec mock double object and call original
+* rails 3.2.12
+* date: 2013-05-02
+* rspec 1.8.25
+* ruby 2.0.0
+* sources: https://www.relishapp.com/rspec/rspec-mocks/v/2-12/docs/message-expectations/calling-the-original-method
+* keywords: stub and call original rspec mock double object and call original
 
 ## Mocking and Stubbing 
 
