@@ -243,7 +243,7 @@ describe User
     #
     #    Article.recent.published.authored_by(params[:id]
     #
-    Article.should_receive(:recent, :published, :authored_by).and_return(author)
+    Article.stub_chain(:recent, :published, :authored_by).and_return(author)
   end
     
   
