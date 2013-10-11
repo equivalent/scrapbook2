@@ -195,6 +195,29 @@ sources: https://www.relishapp.com/rspec/rspec-mocks/v/2-6/docs/method-stubs/as-
 
 published: 2013-09-12
 
+## Configuring RSpec
+
+### configure rspec and spork
+
+Gemfile
+
+```
+# Gemfile
+group :development, :test do
+  gem 'rspec-rails'
+end
+```
+
+tell RSpect to use drb server (spork) by default
+
+```
+# .rspec
+--colour --drb
+```
+
+...todo
+
+
 ### tweek you Garbage Collector so that tests run faster
 
 ```bash
