@@ -162,3 +162,33 @@ Sources:
 * https://github.com/rails/arel
 
 Rails 3.2.13
+
+## Updating attributes, columns, and touching stuff
+
+* `update_attribute` skips validations, but will touch updated_at and execute callbacks.
+
+* `update_column` skips validations, does not touch updated_at, and does not execute callbacks.
+
+so  if you want to update column without triggering  anything do use `update_column`, good 
+example is writing your own touch method
+
+```ruby
+def my_touch   
+  update_column :cache_changed_at, send(:current_time_from_proper_timezone)
+end
+```
+
+if you need to touch field with time
+
+    # out of the box touch will run with validations
+    touch(:cache_changed_at)  #watch out this will update `updated_at` as well
+
+    UPDATE `documents` SET `updated_at` = '2013-08-20 11:46:28', `cache_canged_at` = '2013-08-20 11:46:28' WHERE `documents`.`id` = 10
+    
+
+with no args touch will touch `updated_at`
+
+source : http://stackoverflow.com/a/10824249/473040, http://apidock.com/rails/ActiveRecord/Timestamp/touch
+
+
+
