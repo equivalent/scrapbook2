@@ -112,6 +112,15 @@ Event.arel_table[:start_at].lt(Time.now).to_sql
 DocumentVersion.where( DocumentVersion.arel_table[:id].not_eq(11) )
 ```
 
+**Arel IS NOT NULL**
+
+```ruby
+Foo.includes(:bar).where(Bar.arel_table[:id].not_eq(nil))
+
+# non-arel example:
+Foo.where('publication_id IS NOT NULL')
+```
+
 **Select Clients that have more that have existing documents**
 
 ```ruby
