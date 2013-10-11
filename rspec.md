@@ -92,7 +92,38 @@ rails 3.2.12
     publication.should have(1).error_on(:owner_type)
 
     
-    
+
+**Argument matchers**
+
+```ruby
+atm.should_receive(:withdraw).with(50, saving_account)
+atm.should_receive(:withdraw).with(instance_of(Fixnum), saving_account)
+atm.should_receive(:withdraw).with(anything(), saving_account)
+atm.should_receive(:withdraw).with(any_args())
+atm.should_receive(:withdraw).with(no_args())
+bank.should_receive(:transaction).with(hash_including(name: 'Jhon'))
+bank.should_receive(:transaction).with(hash_not_including(wife: 'Teresa'))
+
+# argument match regular expression
+resource.should_receive(:check_type).with(/*User/)
+
+# custom argument matcher
+
+class GreaterThanThreeMatcher
+  def ==(actual)
+    actual > 3
+  end
+end
+
+def greater_than_three
+  GreaterThanThreeMatcher.new
+end
+
+it{ calculator.should_receive(:add).with(greater_than_three)
+
+``` 
+
+
 
 ## Mocking and Stubbing 
 
@@ -197,6 +228,26 @@ describe User
   it{ expect{ service }.to raise_error SomeStrangeError }
   it{ expect{ service }.to raise_error /error message/ }
   it{ expect{ service }.to raise_error SomeStrangeError, /error message/ }
+  
+  it do
+    network_double.should_receive(:open_connection).never
+    network_double.should_receive(:open_connection).exactly(0).times
+    network_double.should_receive(:open_connection).at_least(1).times
+    network_double.should_receive(:open_connection).at_most(5).times
+    network_double.should_receive(:open_connection).once
+    network_double.should_receive(:open_connection).twice
+  end
+
+  it do
+    # stub chain
+    #
+    #    Article.recent.published.authored_by(params[:id]
+    #
+    Article.should_receive(:recent, :published, :authored_by).and_return(author)
+  end
+    
+  
+
 end
 ```
 
