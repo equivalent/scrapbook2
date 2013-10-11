@@ -123,7 +123,40 @@ it{ calculator.should_receive(:add).with(greater_than_three)
 
 ``` 
 
+**Call original**
+# stub and call original
 
+```ruby
+class Pokemon < ActiveRecord::Base
+  def do_pokemon_shit
+    a = cool_power || build_cool_power
+    a.do_stuff_with_cool_power
+  end
+
+  def do_stuff_with_cool_power
+    #do something meaningfull related to cool_power
+    'something'
+  end
+end
+
+describe Pokemon
+  let(:pokemon){ Pokemon.new }
+
+  describe do_pokemon_shit do
+    it 'try it out' do 
+      pokemon.should_recive(:build_cool_power).and_call_original
+      pokemon.do_stuff_with_cool_power.should eq  'something'
+    end
+  end
+end
+```
+
+rails 3.2.12
+date: 2013-05-02
+rspec 1.8.25
+ruby 2.0.0
+sources: https://www.relishapp.com/rspec/rspec-mocks/v/2-12/docs/message-expectations/calling-the-original-method
+keywords: stub and call original rspec mock double object and call original
 
 ## Mocking and Stubbing 
 
