@@ -1,9 +1,22 @@
 # MySQL
 
-### Index
+### general mysql commands 
+
+~~~sql
+show databases;
+show tables;
+drop database database_name;
+create database database_name;
+use database_name;
+desc table;
+
+select count(*) from categories;
+~~~
+
+### MySQL Index
 
 ```sql
-show index in my_table;
+show index in my_table;                   #show index on table
 drop index dn_ownerships_ix on my_table;
 
 ```
@@ -18,18 +31,13 @@ drop index dn_ownerships_ix on my_table;
 
    mysqldump gtld_dashboard_development -uroot -p > foo.db
 
-### general mysql commands 
 
-~~~sql
-show databases;
-show tables;
-drop database database_name;
-create database database_name;
-use database_name;
-desc table;
 
-select count(*) from categories;
-~~~
+###change password on mysql user
+
+    use mysql;
+    update user set password=PASSWORD("NEW-PASSWORD-HERE") where User='tom';
+
 
 # PostgreSQL
 
