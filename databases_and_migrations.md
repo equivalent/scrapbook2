@@ -70,3 +70,9 @@ Thing.order("RANDOM()").first
 Thing.offset(rand(Thing.count)).first
 Recommendation.offset(rand(Recommendation.count)).where('person_id != 1').first
 ~~~
+
+### Trigger direct mysql command from rails
+
+~~~ruby
+ActiveRecord::Base.connection.execute("TRUNCATE #{ApplicationBuildCommand.table_name}")  
+~~~
