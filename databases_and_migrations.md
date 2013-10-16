@@ -1,4 +1,3 @@
-
 # MySQL
 
 ```sql
