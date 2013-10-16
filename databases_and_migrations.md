@@ -59,4 +59,14 @@ Note: multiple inxexes are read from left to right
 
 
 
-###
+# Other Rails db tricks
+
+### Random record in mysql
+
+~~~ruby
+Person.find(:first, :order => 'rand()')
+Model.first(:order => "RANDOM()") 
+Thing.order("RANDOM()").first
+Thing.offset(rand(Thing.count)).first
+Recommendation.offset(rand(Recommendation.count)).where('person_id != 1').first
+~~~
