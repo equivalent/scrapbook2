@@ -1,10 +1,35 @@
 # MySQL
 
+### Index
+
 ```sql
 show index in my_table;
 drop index dn_ownerships_ix on my_table;
 
 ```
+
+### Import & export in MySQL
+
+**importing sql file**
+
+    mysql -u root -p rails_development < rails.db 
+
+**exporting sql file**
+
+   mysqldump gtld_dashboard_development -uroot -p > foo.db
+
+### general mysql commands 
+
+~~~sql
+show databases;
+show tables;
+drop database database_name;
+create database database_name;
+use database_name;
+desc table;
+
+select count(*) from categories;
+~~~
 
 # PostgreSQL
 
