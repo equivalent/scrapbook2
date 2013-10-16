@@ -25,3 +25,12 @@ class AddDocumentNameOwnershipIndex < ActiveRecord::Migration
   end
 end
 ```
+
+Note: multiple inxexes are read from left to right
+
+* http://dev.mysql.com/doc/refman/5.0/en/multiple-column-indexes.html
+* http://stackoverflow.com/questions/13298545/how-to-specify-a-multiple-column-index-correctly-in-rails
+
+
+
+###
