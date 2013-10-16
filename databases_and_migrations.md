@@ -1,5 +1,12 @@
 # MySQL
 
+
+**startup  mysql in database**
+```
+mysql my_database -uroot -p
+
+```
+
 ### general mysql commands 
 
 ~~~sql
