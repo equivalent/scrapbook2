@@ -28,6 +28,15 @@ drop index dn_ownerships_ix on my_table;
 
 ```
 
+### MySQL DISTINCT 
+
+
+    SELECT DISTINCT City FROM Customers; 
+    
+    
+keywords: mysql select uniq (distinct, non-duplicate) items with SELECT DISTINCT
+
+
 ### Import & export in MySQL
 
 **importing sql file**
