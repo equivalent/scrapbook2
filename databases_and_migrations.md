@@ -17,7 +17,8 @@ class AddDocumentNameOwnershipIndex < ActiveRecord::Migration
   def up
     add_index :document_name_ownerships, 
       [:owner_type, :owner_id],
-      name: :dn_ownerships_ix
+      name: :dn_ownerships_ix, 
+      uniq: true
   end
 
   def down
