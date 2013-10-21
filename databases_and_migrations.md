@@ -28,11 +28,24 @@ select count(*) from categories;
 ### MySQL Index
 
 ```sql
-show index in my_table;                   #show index on table
-drop index dn_ownerships_ix on my_table;
+ANALYZE TABLE my_table
+SHOW INDEX IN my_table;                   #show index on table
 ```
 
-to test performance use 
+to get inmmiditae cardinality you can do:
+
+```
+SELECT COUNT(DISTINCT age) AS cardinality FROM user;
+```
+
+to drop an index you can do:
+
+```
+DROP INDEX dn_ownerships_ix on my_table;
+```
+
+
+to test performance use:
   
     EXPLAIN SELECT * FROM whatever_table;
 
@@ -43,6 +56,10 @@ however you'll probably need to disable caching
     SHOW VARIABLES LIKE 'have_query_cache';
     
 and restart mysql server
+
+sources 
+
+*  http://webmonkeyuk.wordpress.com/2010/09/27/what-makes-a-good-mysql-index-part-2-cardinality/
 
 ### MySQL DISTINCT 
 
