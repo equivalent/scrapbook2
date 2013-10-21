@@ -1,7 +1,12 @@
 # MySQL
 
+**restart mysql in Ubuntu like system**
 
-**startup  mysql in database**
+    /etc/init.d/mysql restart
+    # or ..
+    /etc/init.d/mysqld restart
+
+**startup  mysql databese client **
 ```
 mysql my_database -uroot -p
 
@@ -25,8 +30,19 @@ select count(*) from categories;
 ```sql
 show index in my_table;                   #show index on table
 drop index dn_ownerships_ix on my_table;
-
 ```
+
+to test performance use 
+  
+    EXPLAIN SELECT * FROM whatever_table;
+
+however you'll probably need to disable caching 
+
+    SHOW VARIABLES LIKE 'query_cache_size';
+    SET GLOBAL query_cache_size =   0;
+
+
+SHOW VARIABLES LIKE 'have_query_cache';
 
 ### MySQL DISTINCT 
 
