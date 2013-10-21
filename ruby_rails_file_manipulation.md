@@ -99,7 +99,7 @@ Rails.root.to_s
 ### print all models
 
 ~~~ruby
-Dir[File.dirname( ::Rails.root.to_s) + '/app/models'].each {|file| print file }
+Dir["#{Rails.root}/app/models/**/*.rb"].each {|file| print file }
 ~~~
 
 ### load/reload all models and decorators
