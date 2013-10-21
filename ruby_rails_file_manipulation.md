@@ -101,6 +101,13 @@ Rails.root.to_s
 ~~~ruby
 Dir[File.dirname( ::Rails.root.to_s) + '/app/models'].each {|file| print file }
 ~~~
+
+### load/reload all models and decorators
+
+```ruby
+Dir["#{Rails.root}/app/models/**/*.rb", "#{Rails.root}/app/decorators/**/*.rb"].each { |file| load file }
+```
+     
      
 ### require all files in folder
 
