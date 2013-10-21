@@ -106,6 +106,8 @@ Dir["#{Rails.root}/app/models/**/*.rb"].each {|file| print file }
 
 ```ruby
 Dir["#{Rails.root}/app/models/**/*.rb", "#{Rails.root}/app/decorators/**/*.rb"].each { |file| load file }
+Dir["#{Rails.root}/app/models/**/*.rb"].each { |file| load file }
+
 ```
      
      
