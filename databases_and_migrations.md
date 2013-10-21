@@ -133,3 +133,10 @@ Recommendation.offset(rand(Recommendation.count)).where('person_id != 1').first
 ~~~ruby
 ActiveRecord::Base.connection.execute("TRUNCATE #{ApplicationBuildCommand.table_name}")  
 ~~~
+
+### Explain queries for Arel in Rails console
+
+```ruby
+Document.where(id: 1).explain
+# => EXPLAIN SELECT `documents`.* FROM `documents` WHERE `documents`.`id` = 1 AND (`documents`.`deleted_at` IS NULL)
+```
