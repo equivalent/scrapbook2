@@ -57,6 +57,14 @@ however you'll probably need to disable caching
     
 and restart mysql server
 
+**hash index**
+
+from: http://stackoverflow.com/questions/3567981/how-do-mysql-indexes-work/3568214#3568214
+
+to index big string (like url) create column e.g.: `url_hash` and store there CRC version of string 
+
+     SELECT url FROM url_table WHERE url_hash=CRC32("http://gnu.org") AND url="http://gnu.org";
+
 sources 
 
 *  http://webmonkeyuk.wordpress.com/2010/09/27/what-makes-a-good-mysql-index-part-2-cardinality/
