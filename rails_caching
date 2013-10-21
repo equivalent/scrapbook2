@@ -1,4 +1,4 @@
 ### Silence caching log 
 
-    # confing/application.rb
+    # confing/enviroment.rb
     Rails.cache.silence!
