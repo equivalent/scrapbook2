@@ -1,4 +1,3 @@
-
 ### polymorphic routes
 
 http://api.rubyonrails.org/classes/ActionDispatch/Routing/PolymorphicRoutes.html
@@ -10,3 +9,8 @@ http://api.rubyonrails.org/classes/ActionDispatch/Routing/PolymorphicRoutes.html
 also can be achived with 
 
     = link_to 'edit', [:edit, @contentable, @content]
+
+
+### url_for
+
+    url_for(controller: :documents, action: :index)
