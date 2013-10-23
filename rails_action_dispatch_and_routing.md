@@ -1,0 +1,12 @@
+
+### polymorphic routes
+
+http://api.rubyonrails.org/classes/ActionDispatch/Routing/PolymorphicRoutes.html
+
+
+    = link_to 'Edit', edit_polymorphic_path([@contentable, @content])
+    = link_to 'Back', polymorphic_path([@contentable, @content])
+
+also can be achived with 
+
+    = link_to 'edit', [:edit, @contentable, @content]
