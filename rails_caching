@@ -1,3 +1,5 @@
+http://guides.rubyonrails.org/caching_with_rails.html
+
 ### Silence caching log 
 
     # confing/enviroment.rb
