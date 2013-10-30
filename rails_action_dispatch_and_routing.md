@@ -16,3 +16,29 @@ also can be achived with
 ### url_for
 
     url_for(controller: :documents, action: :index)
+
+
+
+# Routes config
+
+### sharing nested resource
+
+```ruby
+MyCoolApp::Application.routes.draw do
+
+  def contentable
+    resources :contents do
+      get :publish, on: :member
+    end
+  end
+  
+  resource :candies
+    contentable
+  end
+  
+  resource :factories
+    contentable 
+  end
+
+end
+```
