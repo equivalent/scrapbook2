@@ -31,7 +31,10 @@ http://stackoverflow.com/questions/8205710/remove-a-value-from-an-array-in-coffe
 ### 
 
 ```coffee
-data  # loaded through ajax [Object { draft=true, id=49}, Object { draft=false, id=44}]
+# data loaded through ajax [Object { draft=true, id=49}, Object { draft=false, id=44}]
+
+hasAnyDrafts = (data) ->
+  (x for x in data when x['draft']).length > 0
 
 
 ```
