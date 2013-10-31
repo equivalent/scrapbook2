@@ -28,6 +28,13 @@ $('span', my_div)       // span inside `.foo` div
 
 http://stackoverflow.com/questions/8205710/remove-a-value-from-an-array-in-coffeescript
 
+### 
+
+```coffee
+data  # loaded through ajax [Object { draft=true, id=49}, Object { draft=false, id=44}]
+
+
+```
 
 
 ### jQuery example how  to properly watch if chekbox was chceked and if so check other checkboxes
