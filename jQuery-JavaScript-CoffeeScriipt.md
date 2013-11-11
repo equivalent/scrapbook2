@@ -17,6 +17,14 @@ var my_div = $('.foo')
 $('span', my_div)       // span inside `.foo` div
 ```
 
+### convert value to boolean in JavaScript
+
+```js
+!!4       // true
+!!null    // false
+!!false   // false
+!!'aaa'   // true
+```
 
 ### Remove a value from an array
 
