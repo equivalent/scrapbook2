@@ -47,6 +47,22 @@ hasAnyDrafts = (data) ->
 
 ```
 
+### jQuery Ajax example + load Handlebars template
+
+```coffee
+$.ajax '/documents/latest',
+  type: 'get'
+  dataType: 'json'
+  data:
+    document_name_id: 11
+    owner_type: 'Client'
+    owner_ids:  22
+  success: (data) ->
+    $('#existing_documents').html(HandlebarsTemplates['documents/latest_docs'](data))
+  error: ->
+    $('#existing_document_versions').html('Loading...')
+    
+```
 
 ### jQuery example how  to properly watch if chekbox was chceked and if so check other checkboxes
 
