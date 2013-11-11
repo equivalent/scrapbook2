@@ -1,3 +1,22 @@
+### Make class accessable from Firebug Console
+
+```coffee
+# app/assets/javascripts/my_script.coffee
+
+class FooBar
+  car: ->
+    alert 'aaa'
+    
+window.FooBar = FooBar
+```
+
+and in firebug console you can now do:
+
+```
+foo = new FooBar
+foo.car()
+```
+
 ### Select elements within of element
 
 ```html
