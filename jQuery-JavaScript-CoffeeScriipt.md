@@ -28,7 +28,7 @@ $('span', my_div)       // span inside `.foo` div
 
 http://stackoverflow.com/questions/8205710/remove-a-value-from-an-array-in-coffeescript
 
-### 
+### Check if JSON has a element in CoffeeScript
 
 ```coffee
 # data loaded through ajax [Object { draft=true, id=49}, Object { draft=false, id=44}]
@@ -69,6 +69,25 @@ credits: Delwynd, with my small changes
     $('input#global').is(':checkbox')
     $('input#global').is(':checked')
     $('input#global').is(':disabled')
+
+
+### jQuery fetching data attribute values
+
+let say you have
+
+```html
+<form action="/foo" data-draft-id="34"></form>
+```
+
+you can fetch data with:
+
+```coffee
+$('form').data('draft-id')
+
+$('form').data('draftId')   //more valid js syntax
+````
+
+
 
 
 # Handlebars helper isSelected()
