@@ -28,3 +28,29 @@ def delete_button
     end
 end
 ```
+
+### Block partial render 
+
+in short this is not possible, partials are not designed to pass blocks what you want to use is render layout 
+([from](http://stackoverflow.com/questions/2951105/rails-render-partial-with-block))
+
+```erb
+<% render :layout => '/shared/panel', :locals => {:title => 'some title'} do %>
+  <p>Here is some content</p>
+<% end %>
+```
+
+or create a helper that will accept block and pass it as a variable to partial 
+
+```ruby
+module ContentHelper
+  def content_column_fields(options, &block)
+    options.merge!(:block_body => capture(&block))
+    render(:partial => 'column_fields', :locals => options)
+  end
+end
+```
+
+source 
+
+* http://www.igvita.com/2007/03/15/block-helpers-and-dry-views-in-rails/
