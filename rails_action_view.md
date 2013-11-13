@@ -51,6 +51,18 @@ module ContentHelper
 end
 ```
 
+```haml
+-# app/view/contents/_column_fields
+%h3 Example #{name}
+= block_body
+
+-# app/view/contents/_form.html.haml
+
+[:foo, :bar].each do |column|
+  = content_column_fields name: "some kind of name" do
+    - radio_button_tag 'foo'
+```
+
 source 
 
 * http://www.igvita.com/2007/03/15/block-helpers-and-dry-views-in-rails/
