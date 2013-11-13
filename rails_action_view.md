@@ -52,7 +52,7 @@ end
 ```
 
 ```haml
--# app/view/contents/_column_fields
+-# app/view/contents/_column_fields.html.haml
 %h3 Example #{name}
 = block_body
 
