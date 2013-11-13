@@ -60,7 +60,7 @@ end
 
 [:foo, :bar].each do |column|
   = content_column_fields name: "some kind of name" do
-    - radio_button_tag 'foo'
+    - radio_button_tag column
 ```
 
 source 
