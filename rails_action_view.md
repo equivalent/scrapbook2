@@ -59,8 +59,17 @@ end
 -# app/view/contents/_form.html.haml
 
 [:foo, :bar].each do |column|
-  = content_column_fields name: "some kind of name" do
-    - radio_button_tag column
+  = content_column_fields name: column do
+    - radio_button_tag column, true
+```
+
+
+```html
+<h3>Example foo</h3>
+<input name="foo" type="radio" value="true">
+
+<h3>Example bar</h3>
+<input name="bar" type="radio" value="true">
 ```
 
 source 
