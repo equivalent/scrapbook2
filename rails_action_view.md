@@ -32,7 +32,6 @@ end
 ### Block partial render 
 
 in short this is not possible, partials are not designed to pass blocks what you want to use is render layout 
-([from](http://stackoverflow.com/questions/2951105/rails-render-partial-with-block))
 
 ```erb
 <% render :layout => '/shared/panel', :locals => {:title => 'some title'} do %>
@@ -75,3 +74,4 @@ end
 source 
 
 * http://www.igvita.com/2007/03/15/block-helpers-and-dry-views-in-rails/
+* http://stackoverflow.com/questions/2951105/rails-render-partial-with-block
