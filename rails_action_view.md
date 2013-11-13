@@ -56,7 +56,6 @@ end
 = block_body
 
 -# app/view/contents/_form.html.haml
-
 [:foo, :bar].each do |column|
   = content_column_fields name: column do
     - radio_button_tag column, true
