@@ -1,10 +1,9 @@
 
-
 # parent/root context
 
-there is no possibilty to access root context of template once you change the context
+there is no possibillty to access root context of template once you change the context
 with looping (e.g. each) [more info](https://github.com/wycats/handlebars.js/issues/392) .
-However there is a posibility to access previous context with '../' 
+However there is a posibillity to access previous context with '../' 
 
 
 
