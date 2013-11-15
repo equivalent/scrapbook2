@@ -1,3 +1,38 @@
+### jQuery $.when().then() and gladual delayed recursion
+
+...or how to load multiple ajax request gradually (one after one)
+
+```coffee
+
+class LoadStuff
+
+  loadAll: ->
+    names = ['one', 'two', 'three']
+    this.recursionLoad(names.pop(), names)
+  
+  recursionLoad: (one, many) ->
+    self = this
+    if one
+      $.when(self.loadOne(one)).then ->
+        self.recursion(many.pop(), many)
+        
+  loadOne: (registryName) ->
+    $.ajax '/foo/bar',
+      type: 'get'
+      dataType: 'json'
+      data:
+        name: registryName
+      error:
+        #...
+      success: (data) ->
+        #...
+        
+        
+l = new LoadStuff
+l.loadAll()   # will trigger ajax calls one after one 
+```
+
+
 ### Make class accessable from Firebug Console
 
 ```coffee
