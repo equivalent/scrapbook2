@@ -167,6 +167,50 @@ obj.stub(:message).with(an_instance_of(Money)) { ... }
 obj.stub(:message).with(hash_including(:a => 'b')) { ... }
 ```
 
+### Doubles
+
+####Mock model
+
+```ruby
+client = mock_model Clent, method1: 'foo', coumn1: 'xxx'
+client.method1: 'foo'
+
+```
+
+#### Factory Girl build vs build_stubbed
+
+```ruby
+FactoryGirl.define do
+  factory :client do
+    sequence(:name) { |n| "Client #{ n }"}
+  end
+end
+
+describe Client do
+  it do 
+    build :client
+    create :client
+    build_stubed :client
+    
+  end
+end
+
+```
+
+read more: http://robots.thoughtbot.com/use-factory-girls-build-stubbed-for-a-faster-test
+
+
+#### Factory Girl attributes_for
+
+let say you want to post valid attributes, if you use FactoryGirl you can get them with `attributes_for` method
+
+```ruby
+let(:attributes) { attributes_for(:content).stringify_keys }
+it do
+  post :create, content: attributes
+end
+```
+
 source: https://www.relishapp.com/rspec/rspec-mocks/v/2-14/docs/method-stubs
 
 
