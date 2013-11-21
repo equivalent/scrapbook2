@@ -18,6 +18,25 @@ also can be achived with
     url_for(controller: :documents, action: :index)
 
 
+# Console
+
+### how to access url helpers from cosole / specs / tests
+
+```ruby
+include Rails.application.routes.url_helpers
+     
+# set host in default_url_options:
+default_url_options[:host] = "localhost"
+     
+# can then use:
+url_for()
+     
+# can check existing routes:
+edit_user_url(User.first)
+=> "http://localhost/user/1/edit"
+```
+
+source: http://snipplr.com/view/37063/
 
 # Routes config
 
