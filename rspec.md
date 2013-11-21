@@ -214,6 +214,11 @@ end
 source: https://www.relishapp.com/rspec/rspec-mocks/v/2-14/docs/method-stubs
 
 
+### url_for and rails controller helpers for Helper specs
+
+check https://github.com/equivalent/scrapbook2/blob/master/rails_action_dispatch_and_routing.md#how-to-access-url-helpers-from-cosole--specs--tests
+
+
 ### null objects mocks
 
 > Use the as_null_object method to ignore any messages that aren't explicitly
