@@ -29,6 +29,9 @@ FactoryGirl.define do
     existing true
     short_description  Faker::Lorem.paragraph  # With Faker gem
 
+    association: :client                # 1:M relation, will use factory :client
+    association: :contentable, factory: [:content, published: true]
+    
     sequence(:long_description) { |n| "Country description no #{n}." }
     
     trait :used_in_address do
