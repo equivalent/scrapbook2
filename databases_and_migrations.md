@@ -133,13 +133,25 @@ keywords: mysql select uniq (distinct, non-duplicate) items with SELECT DISTINCT
     1255
 
 
+
+
+### create database & user & change root password
+    
+      CREATE USER tom WITH PASSWORD 'myPassword';
+      CREATE DATABASE jerry;
+      GRANT ALL PRIVILEGES ON DATABASE jerry to tom;
+      
+      ALTER USER postgres WITH PASSWORD 'happyface';
+
+
 ### fedora start postgress
 
       psql --username=postgres
 
 ### mint & ubuntu postgres 
     
-    sudo -u postgres psql
+    sudo -u postgres psql 
+    
     # be sure to include host=localhost in config/database.yml with ubuntu
 
     # How to start / stop the server?
@@ -151,14 +163,6 @@ source: https://zxmax.wordpress.com/2012/05/26/install-postgers-9-3-on-ubuntu-12
  
 ### mint ubuntu start login to postgress   
      psql -d postgres -U postgres --password --host=localhost
-
-
-### create database
-    
-      CREATE USER tom WITH PASSWORD 'myPassword';
-      CREATE DATABASE jerry;
-      GRANT ALL PRIVILEGES ON DATABASE jerry to tom;
-
 
 
 # Rails migrations
