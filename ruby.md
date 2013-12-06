@@ -33,6 +33,18 @@ Foo.define_breakable_cache_method(:bar)
 Foo.bar
 ```
 
+#### currently executed method name
+
+    __method__
+    
+#### argument names 
+
+    def cool(dude, foo)
+      p method(__method__).parameters.map { |arg| arg[1] }
+    end
+      
+    cool   #=> [:dude, :foo]
+
 
 # Rails Ruby object and core extensions
 
