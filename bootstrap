@@ -1,0 +1,19 @@
+
+
+# bootstrap center
+
+bootstrap 3 actually provide several classes to centralize
+
+* [.conter-block](http://getbootstrap.com/css/#helper-classes-floats)  centers with margin left/right auto
+
+`<div class="center-block">...</div>` 
+
+* .text-center  centers with `text-align`
+
+`<div class="text-center">...</div>` 
+
+
+example: http://jsfiddle.net/mynameiswilson/eYNMu/
+
+
+keywords: how to center bootstrap pagination
