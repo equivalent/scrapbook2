@@ -1,6 +1,6 @@
 # Dummy model for creating views
 
-This is an example of ghost model used when you crating interface before creating your data structure.
+`field.rb` is an example of ghost model used when you crating interface before creating your data structure.
 
 
 with this model views/paths/forms similar to these will work : 
