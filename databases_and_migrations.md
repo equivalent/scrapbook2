@@ -165,6 +165,25 @@ source: https://zxmax.wordpress.com/2012/05/26/install-postgers-9-3-on-ubuntu-12
      psql -d postgres -U postgres --password --host=localhost
 
 
+### add hstore to database
+
+
+    sudo -u postgres psql my_app_development
+    
+    create extension hstore;
+
+if you get `PG::Error: ERROR:  could not open extension control file "/usr/share/postgresql/9.1/extension/hstore.control": No such file or directory
+: CREATE EXTENSION IF NOT EXISTS hstore` run:
+
+    sudo apt-get install postgresql-contrib
+
+source http://stackoverflow.com/questions/19467481/postgres-hstore-exists-and-doesnt-exist-at-same-time
+
+
+
+
+
+
 # Rails migrations
 
 ### Add and remove index
