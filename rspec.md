@@ -70,6 +70,8 @@ rails 3.2.12
 ### [Shoulda matchers](https://github.com/thoughtbot/shoulda-matchers)
 
     it{ subject.should have(1).error_on(:last_name) }
+    it{ described_class.new(role: 'Admin').tap(&:valid?).should have(:no).errors_on(:role) }
+
     
 * [Shoulda Matchers callbacks](https://github.com/equivalent/shoulda-matchers-callbacks)
 * [Shoulda Matchers assign_to](https://github.com/tinfoil/shoulda-kept-assign-to)
