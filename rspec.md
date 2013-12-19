@@ -43,6 +43,12 @@ FactoryGirl.define do
         country.update_column :cached_at, 2.days.ago
       end
     end
+    
+    trait :bombarded do
+      after :create do |country|
+        user.bombings << FactoryGirl.create(:bombing, country: country)
+      end
+    end
   end
     
   factory :vanished_country, class: 'Country' do
