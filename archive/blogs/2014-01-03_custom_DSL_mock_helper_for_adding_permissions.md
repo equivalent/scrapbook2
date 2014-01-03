@@ -45,6 +45,29 @@ module PolicyPermissionsMockHelper
 end
 ```
 
+```ruby
+# spec/policy/tld_policy_spec.rb
+require 'spec_helper'
+describe TldPolicy do
+  let(:current_tld){ build_stubbed :tld }
+  
+  let(:role){ Role.new(current_page)}
+
+  before do
+    policy.role.stub(:permissions) do
+       add :admin_permission, current_tld.id
+       add :manager_permission, 123
+       # ...
+    end
+  end
+  
+  it do 
+    policy.should permit :create
+  end
+end
+
+```
+
 Source of information: 
 
 * http://www.dan-manges.com/blog/ruby-dsls-instance-eval-with-delegation
