@@ -51,7 +51,7 @@ require 'spec_helper'
 describe TldPolicy do
   let(:current_tld){ build_stubbed :tld }
   
-  let(:role){ Role.new(current_page)}
+  let(:policy){ described_class.new(current_page)}
 
   before do
     policy.role.stub(:permissions) do
@@ -67,6 +67,8 @@ describe TldPolicy do
 end
 
 ```
+
+
 
 Source of information: 
 
