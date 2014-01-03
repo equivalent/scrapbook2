@@ -49,3 +49,4 @@ Source of information:
 
 * http://www.dan-manges.com/blog/ruby-dsls-instance-eval-with-delegation
 * http://blog.joecorcoran.co.uk/2013/09/04/simple-pattern-ruby-dsl/?utm_source=rubyweekly&utm_medium=email
+* http://www.ruby-doc.org/stdlib-1.9.3/libdoc/delegate/rdoc/SimpleDelegator.html
