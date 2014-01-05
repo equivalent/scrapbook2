@@ -1,5 +1,11 @@
 # Linux and *nix like console scrapbook
 
+
+
+## lock screen on lxde
+
+    xscreensaver-command -lock
+      
 ## Motion (web-cam motion surveillance software)
 
     sudo apt-get install motion
