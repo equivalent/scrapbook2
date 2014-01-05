@@ -1,6 +1,15 @@
 # Linux and *nix like console scrapbook
 
+old stuff can be found on 
 
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/fedora_lxde
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/linux-unix
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
+
+## ls permissions 
+
+    ls -ld
 
 ## lock screen on lxde
 
