@@ -1,5 +1,19 @@
 # Linux and *nix like console scrapbook
 
+## Motion (web-cam motion surveillance software)
+
+    sudo apt-get install motion
+    sudo chmod 755 /etc/motion/motion.conf
+    vim /etc/motion/motion.conf
+       #  change the target_dir  to /home/user/Dropbox/motion
+    
+    # to start run    
+    motion
+
+
+source: http://www.chriswpage.com/2009/05/setup-an-advanced-webcam-security-system-with-ubuntu-8-04-and-motion/
+    
+
 ## ubuntu, lubuntu, mint set US as default layout
 
     setxkbmap -layout us
