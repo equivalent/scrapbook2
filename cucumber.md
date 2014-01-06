@@ -1,5 +1,4 @@
 
-
 # show me current page
 
     # feature/my_failing.feature
@@ -13,3 +12,13 @@
     end
 
   
+# run steps inside within step definitions
+
+```ruby
+When(/^I try to add a text field$/) do
+  step 'I should see New Field button'
+  click_link 'New Field'
+  click_button 'Submit'
+end
+```
+
