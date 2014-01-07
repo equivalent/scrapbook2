@@ -157,6 +157,10 @@ keywords: mysql select uniq (distinct, non-duplicate) items with SELECT DISTINCT
     # How to start / stop the server?
     sudo service postgresql start / stop
     sudo /etc/init.d/postgresql start / stop
+    
+### mac OSx postgres console 
+
+    sudo -u tomi psql postgres    # tomi represent system user
  
 source: https://zxmax.wordpress.com/2012/05/26/install-postgers-9-3-on-ubuntu-12-04/
 
