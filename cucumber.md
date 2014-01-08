@@ -28,6 +28,8 @@ Then(/^some step examlpes/) do
   expect(@user.role).to be_admin_for(@tld.id)
   expect(page.all('table#permissions tbody tr').count).to be == 1
   expect(page).to have_content 'Foo Admin'
+  expect(page.first('table#applications tbody tr')).to have_content 'fooo'
+
   
   click_link 'New Permission'
   click_button 'Add permission'
