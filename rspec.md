@@ -71,6 +71,9 @@ sources
 
 rails 3.2.12
 
+#### Creating multiple factories (factory_list)
+
+    FactoryGirl.create_list(:full_application, 3)  # will create 3 applications
 
 
 ### [Shoulda matchers](https://github.com/thoughtbot/shoulda-matchers)
