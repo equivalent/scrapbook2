@@ -27,4 +27,10 @@ Then(/^some step examlpes/) do
   expect(@user.role).to be_admin_for(@tld.id)
   expect(page.all('table#permissions tbody tr').count).to be == 1
   expect(page).to have_content 'Foo Admin'
+  
+  click_link 'New Permission'
+  click_button 'Add permission'
+
+  select 'Admin', :from => 'permission_role'
+  select @tld.extension, :from => 'permission_tld_id'
 end
