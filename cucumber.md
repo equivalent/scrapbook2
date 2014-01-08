@@ -1,4 +1,3 @@
-
 # show me current page
 
     # feature/my_failing.feature
@@ -22,3 +21,10 @@ When(/^I try to add a text field$/) do
 end
 ```
 
+# Examples 
+
+Then(/^some step examlpes/) do
+  expect(@user.role).to be_admin_for(@tld.id)
+  expect(page.all('table#permissions tbody tr').count).to be == 1
+  expect(page).to have_content 'Foo Admin'
+end
