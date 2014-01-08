@@ -1,5 +1,4 @@
 
-
 ## Upgrade rvm 
 
      rvm get stable
