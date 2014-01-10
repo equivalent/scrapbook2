@@ -1,6 +1,30 @@
 # Ruby scrapbook
 
 
+### make duplicate for hash tree
+
+if you got `{foo: :bar}` then `{}.duplicate` is good enough
+
+onece it comes to complicated hash
+
+```ruby
+hash_tree = {foo: {bar: :car}}
+```
+
+you have to do 
+
+```
+def deep_copy(o)
+  Marshal.load(Marshal.dump(o))
+end
+
+new_hash = deep_copy(hash_tree)[:foo][:bar] = "taxi"
+
+hash_tree[:foo][:bar] # => :car
+new_hash[:foo][:bar]  # => "taxi"
+
+``
+
 
 
 ### Meta programing
