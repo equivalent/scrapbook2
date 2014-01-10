@@ -38,3 +38,18 @@ Then(/^some step examlpes/) do
   select @tld.extension, :from => 'permission_tld_id'
 end
 ```
+
+# set chcome as seleniom web-driver
+
+step 1 Download the (Chrome driver executable)[http://chromedriver.storage.googleapis.com/index.html] and copy it in you path, e.g. /usr/bin/ and make it executable
+
+``` 
+#features/support/env.rb
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.default_driver = :selenium
+```
+
+source: http://stackoverflow.com/questions/6821659/cucumber-selenium-webdriver-how-to-use-google-chrome-as-the-testing-browser-i
