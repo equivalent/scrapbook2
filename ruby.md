@@ -23,7 +23,7 @@ new_hash = deep_copy(hash_tree)[:foo][:bar] = "taxi"
 hash_tree[:foo][:bar] # => :car
 new_hash[:foo][:bar]  # => "taxi"
 
-``
+```
 
 
 
