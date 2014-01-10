@@ -41,7 +41,7 @@ end
 
 # set chcome as seleniom web-driver
 
-step 1 Download the (Chrome driver executable)[http://chromedriver.storage.googleapis.com/index.html] and copy it in you path, e.g. /usr/bin/ and make it executable
+step 1 Download the [Chrome driver executable](http://chromedriver.storage.googleapis.com/index.html) and copy it in you path, e.g. /usr/bin/ and make it executable
 
 ``` 
 #features/support/env.rb
