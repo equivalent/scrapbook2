@@ -104,6 +104,9 @@ rails 3.2.12
 
     publication.valid?
     publication.should have(1).error_on(:owner_type)
+    
+    should have_at_least(4).items 
+    should have_at_most(2).items
 
     
 
