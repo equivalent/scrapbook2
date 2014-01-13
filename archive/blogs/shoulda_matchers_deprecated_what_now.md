@@ -78,6 +78,10 @@ end
 
 ...and business as usual
 
+
+related links:
+
+* http://stackoverflow.com/questions/18760257/how-to-test-respond-with-content-type-when-its-depricated-in-shoulda-matches-2/18760258#18760258
+
 published: 2013-09-12
-related links: http://stackoverflow.com/questions/18760257/how-to-test-respond-with-content-type-when-its-depricated-in-shoulda-matches-2/18760258#18760258
 
