@@ -23,6 +23,7 @@ I was personally using `assign_to` and `respond_with_content_type` in project I 
 
 simplest way is to just replace any occurrence of `respond_with_content_type` with : 
     
+    ```ruby
     # spec/controllers/users_controller_spec.rb
     describe UsersController do
       before{ get :index, :format => :xlsx }
@@ -30,6 +31,7 @@ simplest way is to just replace any occurrence of `respond_with_content_type` wi
         response.content_type.to_s.should eq Mime::Type.lookup_by_extension(:xlsx).to_s
       end
     end
+    ```
 
 if you want a proper matcher than:
 
