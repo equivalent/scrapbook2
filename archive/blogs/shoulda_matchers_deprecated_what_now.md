@@ -68,9 +68,11 @@ There is already a gem [shoulda-kept-assign-to](https://github.com/tinfoil/shoul
 
 So just:
 
-    group :test do
-      gem "shoulda-kept-assign-to"
-    end
+```ruby
+group :test do
+  gem "shoulda-kept-assign-to"
+end
+```
 
 ...and business as usual
 
