@@ -80,6 +80,8 @@ rails 3.2.12
 
     it{ subject.should have(1).error_on(:last_name) }
     it{ described_class.new(role: 'Admin').tap(&:valid?).should have(:no).errors_on(:role) }
+    it { should allow_value('http://foo.com', 'http://bar.com/baz').for(:website_url) }
+    it { should_not allow_value('asdfjkl').for(:website_url) }
 
     
 * [Shoulda Matchers callbacks](https://github.com/equivalent/shoulda-matchers-callbacks)
