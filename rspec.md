@@ -351,6 +351,8 @@ describe User
   it{ expect{ service }.to raise_error SomeStrangeError }
   it{ expect{ service }.to raise_error /error message/ }
   it{ expect{ service }.to raise_error SomeStrangeError, /error message/ }
+  it{ expect{ subject }.to change{User.count} }
+
   
   it do
     network_double.should_receive(:open_connection).never
