@@ -1,4 +1,4 @@
-# Shoulda mathers depricated. Now what ?
+# Shoulda matchers depricated. Now what ?
 
 Referring to:
 
