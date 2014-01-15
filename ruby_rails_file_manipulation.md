@@ -109,6 +109,13 @@ Dir["#{Rails.root}/app/models/**/*.rb", "#{Rails.root}/app/decorators/**/*.rb"].
 Dir["#{Rails.root}/app/models/**/*.rb"].each { |file| load file }
 
 ```
+
+
+### require specific file
+
+```ruby
+require Rails.root.join('lib', 'tld_constraint')
+```
      
      
 ### require all files in folder
