@@ -115,6 +115,7 @@ Dir["#{Rails.root}/app/models/**/*.rb"].each { |file| load file }
 
 ```ruby
 require Rails.root.join('lib', 'tld_constraint')
+# equivalent of : require '/home/usr/my_rails_app/lib/tld_constraint'
 ```
      
      
