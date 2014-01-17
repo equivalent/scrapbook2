@@ -1,6 +1,7 @@
 # Heroku & naked domains
 
-Nomather what you should be aming for 301 (Permanent) redirect, which is SEO friendly.
+Nomather what option you chose, you should be aming for 301 (Permanent) redirect, which is SEO friendly.
+Let say you have link `http://eq8.eu/blogs` on some other website (e.g.: on StackOwerfflow). When google visit it, 301 redirect will tell seach enging that the website been permanently moved to new location `http://www.eq8.eu/blogs`. Therefore google will keep page rank.
 
 ### wwwizer
 
