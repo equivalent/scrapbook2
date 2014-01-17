@@ -1,9 +1,12 @@
 
-
 # Heroku & naked domains
 
 simplest easiest solution is tu use Dmitry Ulupovs [wwwizer](http://wwwizer.com/naked-domain-redirect). 
-It's a free simple redirect of your naked domain `foo.eu` to  `www.foo.eu`. 
+It's a free redirect of your naked domain `foo.eu` to  `www.foo.eu`.
+
+All you have to do is point your A record for naked domain to `174.129.25.170`
+
+
 
 sources
 
