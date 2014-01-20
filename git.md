@@ -1,5 +1,22 @@
 # Git scrapbook
 
+
+### How to update forked repository
+
+e.g.: you forked repo on github and now you want to update it with latest changes from original
+
+```bash
+git remote add upstream https://github.com/whoever/whatever.git
+git fetch upstream
+git checkout master
+git rebase upstream/maste
+
+git push -f origin master
+```
+
+
+http://stackoverflow.com/questions/7244321/how-to-update-github-forked-repository
+
 ### Cherry-picking 
 
 ...or how to copy commit from one branch to another
