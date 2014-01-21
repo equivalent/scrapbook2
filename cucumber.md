@@ -1,3 +1,29 @@
+# Cucumber check if mails were sent
+
+```ruby
+# helpers
+def mails_sent_to(email)
+  ActionMailer::Base.deliveries.find_all { |mail| mail.to.any? { |to| to =~ /#{email}/ } }
+end
+
+def select_mail(to, string, delete_mail=true)
+  mails_sent_to(to).select { |mail| mail.body =~ /#{string}/ or mail.subject =~ /#{string}/ }
+end
+
+# step definitions
+Then(/^I should receive reset password instructions$/) do 
+  reset_password_emails = select_mail(@user.email, 'Reset password instructions')
+  expect(reset_password_emails).not_to be_empty
+end
+
+```
+
+```cucumber
+  When I restet password
+  Then I should receive reset password instructions
+```
+
+
 # use RSpec double in Cucumber
 
 requiring `cucumber/rspec/doubles` from you cucumber `env.rb` will allow you to use
