@@ -3,12 +3,14 @@
 requiring `cucumber/rspec/doubles` from you cucumber `env.rb` will allow you to use
 
 ```ruby
-Klass.any_instance
-Klass.should_receive :something
+expect(Klass.any_instance).to receive(:something)
+expect(Klass)to receive(:something)
 
 ```
 
-... in our step definitions
+... in your step definitions
+
+However remmeber that `should_receive` expectation must be before they trigger
 
 
 
