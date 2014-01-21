@@ -3,7 +3,7 @@
 requiring `cucumber/rspec/doubles` from you cucumber `env.rb` will allow you to use
 
 ```ruby
-Klass.any_instance.should_receive :something
+Klass.any_instance
 Klass.should_receive :something
 
 ```
