@@ -8,7 +8,14 @@ Klass.should_receive :something
 
 ```
 
+... in our step definitions
+
+
+
 keywords: using any_instance should_receive rspec doubles in cucumber
+
+* https://github.com/cucumber/cucumber/wiki/Mocking-and-Stubbing-with-Cucumber
+* http://randomsoftwareinklings.blogspot.co.uk/2011/05/cucumber-with-using-rspec-shouldreceive.html?showComment=1390316376606#c354852640787410273
 
 
 # show me current page
