@@ -1,3 +1,16 @@
+# use RSpec double in Cucumber
+
+requiring `cucumber/rspec/doubles` from you cucumber `env.rb` will allow you to use
+
+```ruby
+Klass.any_instance.should_receive :something
+Klass.should_receive :something
+
+```
+
+keywords: using any_instance should_receive rspec doubles in cucumber
+
+
 # show me current page
 
     # feature/my_failing.feature
