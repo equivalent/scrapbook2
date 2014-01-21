@@ -19,6 +19,7 @@ end
 ```
 
 ```cucumber
+Scenario: 
   When I restet password
   Then I should receive reset password instructions
 ```
