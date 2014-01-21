@@ -20,7 +20,7 @@ end
 
 ```cucumber
 Scenario: 
-  When I restet password
+  When I reset password
   Then I should receive reset password instructions
 ```
 
