@@ -7,6 +7,10 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## Replace string/text in multiple files in folder
+
+    grep -rl 'I am a car' ./ | xargs sed -i 's/I am a car/I am a Plane/g'
+
 ## ls permissions 
 
     ls -ld
