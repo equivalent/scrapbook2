@@ -1,5 +1,7 @@
 ### on Bindings
 
+good article [difference between .bind() .live() .delegate()](http://www.alfajango.com/blog/the-difference-between-jquerys-bind-live-and-delegate/)
+
 overal bindings when page is loaded
 
 ```coffee
