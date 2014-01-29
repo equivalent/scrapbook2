@@ -1,3 +1,39 @@
+### on Bindings
+
+overal bindings when page is loaded
+
+```coffee
+$(document).ready -> 
+  #...
+
+#is equivalent of 
+
+$(document).on 'ready', ->  
+
+# so for when document is ready or when turbolinks.js loads the page
+
+$(document).on 'ready page:load', ->
+  $('#fetch_custom_form').change ->
+    $(this).submit()
+```
+
+own bindings
+
+```coffee
+class Foo
+  load: ->
+    thisI = this
+    $.ajax "/application",
+      success: (data) ->
+        $('#foo').html(data)
+        $(document).trigger('fooLoaded')
+
+$(document).on 'ready fooLoaded', ->
+  foo = new Foo
+  foo.load()
+```
+
+
 ### jQuery $.when().then() and gladual delayed recursion
 
 ...or how to load multiple ajax request gradually (one after one)
