@@ -1,6 +1,6 @@
     
 
-### Factories with [FactoryGirl](https://github.com/thoughtbot/factory_girl)
+# Factories with [FactoryGirl](https://github.com/thoughtbot/factory_girl)
 
 
 
@@ -49,7 +49,43 @@ FactoryGirl.create :country, :cached_in_past, cities: [city1, city2], short_desc
 ```
 
 
-#### Creating multiple factories (factory_list)
+
+### Ignored
+
+```ruby
+FactoryGirl.define do
+  factory :validation_type do
+    sequence(:name) {|n| "Type #{n}"}
+    association :tld
+  end
+
+  trait :with_fields do
+    ignore do
+      number_of_fields 1
+    end
+
+    after(:create) do |validation_type, evaluator|
+      create_list(:field, evaluator.number_of_fields, validation_type: validation_type, input_type: 'text')
+    end
+  end
+
+  trait :with_validations do
+    ignore do
+      number_of_validations 1
+    end
+
+    after(:create) do |validation_type, evaluator|
+      create_list(:validation, evaluator.number_of_validations, validation_type: validation_type)
+    end
+  end
+
+end
+
+FactoryGirl.create :validation_type, :with_fields, :number_of_fields => 4
+```
+
+
+### Creating multiple factories (factory_list)
 
     FactoryGirl.create_list(:full_application, 3)  # will create 3 applications
 
