@@ -87,12 +87,18 @@ Then(/^some step examlpes/) do
   select @tld.extension, :from => 'permission_tld_id'
 end
 
+# When I select the validation type
+# When I dont't select the validation type
+# When I select the 2nd validation type
+When(/^I (|don't )?select the (.+ )?validation type$/) do |negation, item_num|
+  item_number = item_num.present? ? item_num.to_i : nil
+  validation_type = instance_variable_get("@validation_type#{item_number}")
 
-When(/^I (|don't )?select the validation type$/) do |negation|
   if negation != "don't "
-    select @validation_type.name, from: 'custom_form_validation_type_id'
+    select validation_type.name, from: 'custom_form_validation_type_id'
   end
 end
+
 ```
 
 # set chcome as seleniom web-driver
