@@ -86,6 +86,13 @@ Then(/^some step examlpes/) do
   select 'Admin', :from => 'permission_role'
   select @tld.extension, :from => 'permission_tld_id'
 end
+
+
+When(/^I (|don't )?select the validation type$/) do |negation|
+  if negation != "don't "
+    select @validation_type.name, from: 'custom_form_validation_type_id'
+  end
+end
 ```
 
 # set chcome as seleniom web-driver
