@@ -1,6 +1,23 @@
 # Ruby scrapbook
 
 
+### reduce & inject
+
+```ruby
+[{aa: :foo}, {bar: :eee}].reduce(:merge)
+# => {:aa=>:foo, :bar=>:eee} 
+ 
+ # Sum some numbers
+(5..10).reduce(:+)                             #=> 45
+# Same using a block and inject
+(5..10).inject { |sum, n| sum + n }            #=> 45
+# Multiply some numbers
+(5..10).reduce(1, :*)                          #=> 151200
+# Same using a block
+(5..10).inject(1) { |product, n| product * n } #=> 151200
+```
+
+
 ### make duplicate for hash tree
 
 if you got `{foo: :bar}` then `{}.duplicate` is good enough
