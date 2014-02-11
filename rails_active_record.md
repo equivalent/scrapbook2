@@ -1,6 +1,18 @@
 # Rails Active Record Scrapbook
 
 
+## Rails empty scope 
+
+```
+Validation.none
+=> #<ActiveRecord::Relation []> 
+
+oposite to 
+Validation.all
+=> #<ActiveRecord::Relation [#<Validation id: 1,.....
+```
+
+
 ## Joins, Includes and Eager Loading
 
 Eager loading is responsible for prefetching data in one sql query 
