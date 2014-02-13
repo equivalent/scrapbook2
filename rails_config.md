@@ -1,3 +1,17 @@
+# How to override gem template in rails 
+
+let say you have gem like [Draper](https://github.com/drapergem/draper) or [Pundit](https://github.com/elabs/pundit) and you want to override their generator templates in your Rails appplication
+
+you have to create template files in: `lib/templates/gem_name/generator_name/generator_template_file_name`
+
+`lib/templates/pundit/policy/policy.rb` for https://github.com/elabs/pundit/blob/master/lib/generators/pundit/policy/templates/policy.rb
+
+`lib/templates/rails/decorator/decorator.rb` for https://github.com/drapergem/draper/blob/master/lib/generators/rails/templates/decorator.rb
+
+
+http://stackoverflow.com/questions/21732373/how-to-override-gem-generator-template-in-rails-app/21732673?noredirect=1#comment32876897_21732673
+
+
 # Silence rails cache log
 
     # config/enviroment.rb
