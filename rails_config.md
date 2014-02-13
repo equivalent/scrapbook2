@@ -1,4 +1,4 @@
-# How to override gem template in rails 
+# How to override gem template in Rails 
 
 let say you have gem like [Draper](https://github.com/drapergem/draper) or [Pundit](https://github.com/elabs/pundit) and you want to override their generator templates in your Rails appplication
 
