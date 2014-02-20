@@ -30,4 +30,6 @@ timeout 30
 
 super kill
 
-    kill -s USR2 `cat /home/deploy/apps/my_project/current/tmp/pids/unicorn.pid`
+    sudo kill `cat /home/deploy/apps/my_project/current/tmp/pids/unicorn.pid`
+    
+    ps aux | grep unicorn
