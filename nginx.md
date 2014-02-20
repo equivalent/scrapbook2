@@ -88,6 +88,25 @@ server {
 ```
 
 
+# simple static index.html file configuration
+
+```
+# /etc/nginx/sites-enabled/default
+server {
+  # if you running Varden you may need option below 
+  # listen   80;
+
+  server_name  my_app_name;
+
+  access_log  /var/log/nginx/localhost.access.log;
+
+  location / {
+    root /home/deploy/apps/my_app_name/;
+    index  index.html index.htm;
+  }
+}
+```
+
 #x forwarded for
 
 !!!!!unfinished
