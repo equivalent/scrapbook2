@@ -15,7 +15,7 @@ RAILS_ENV=staging rbenv exec unicorn -c config/unicorn.rb -D
 # config/unicorn.rb
 
 working_directory "/home/deploy/apps/your_rails_app"
-pid "/home/deploy/apps/your_rails_app/current_hack/tmp/pids/unicorn.pid
+pid "/home/deploy/apps/your_rails_app/current_hack/tmp/pids/unicorn.pid"
 stderr_path "/home/deploy/apps/your_rails_app/log/unicorn.log"
 stdout_path "/home/deploy/apps/your_rails_app/log/unicorn.log"
 
