@@ -8,6 +8,18 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## solve VM out of space even after deleting large file
+
+on Ubuntu server VM I had a problem tat log was over 2GB and the system throw
+`No space left on device`error (and application 405 error). When I deleted the 
+log file the system was still complaining that it's out of space. I had to restart
+the VM and for future to prevent this do this: 
+
+whatever your log directory is, empty it and then use a `ramisk` for that folder: eg
+
+    mount -t tmpfs -o size=1024M tmpfs /var/log  
+    # or  /home/deploy/apps/my_app/log/
+
 ## generate ssh public & private key
 
     ssh-keygen -t rsa -C "your_email@example.com"
