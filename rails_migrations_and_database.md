@@ -1,7 +1,29 @@
 * MySQL notes https://github.com/equivalent/scrapbook2/blob/master/mysql.md
 * PostgreSQL notes https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
 
+# database configuration
 
+```ruby
+# config/database.yml
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: root
+  password: imot
+  #socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: my_app_development
+
+test:
+  <<: *default
+  database: my_app_test
+  
+```
 
 # Rails migrations
 
