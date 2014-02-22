@@ -1,5 +1,5 @@
-MySQL notes https://github.com/equivalent/scrapbook2/blob/master/mysql.md
-PostgreSQL notes https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
+* MySQL notes https://github.com/equivalent/scrapbook2/blob/master/mysql.md
+* PostgreSQL notes https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
 
 
 
