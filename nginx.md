@@ -33,8 +33,8 @@ you can have several sites hosted managed by Nginx
     server {
         listen 80;
         listen 81;          # localshost:81 will trigger this
-        server_name foo1
-        root /home/tomi/projects/foo1;
+        server_name foo2
+        root /home/tomi/projects/foo2;
         index  index.html index.htm;
     }
 ```
