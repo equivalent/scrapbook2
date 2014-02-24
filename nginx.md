@@ -18,6 +18,101 @@ sudo service nginx restart
 ~~~
 
 
+# nginx with multiple Self signed certificates for same IP 
+
+stolen from: https://www.digitalocean.com/community/articles/how-to-set-up-multiple-ssl-certificates-on-one-ip-with-nginx-on-ubuntu-12-04
+
+first you need to check if your nginx supports SNI (single name identifier)
+
+```bash
+nginx -V 
+
+# or   /opt/nginx/sbin/nginx -V
+
+# and it should say  TLS SNI support enabled
+
+```
+
+than you can generate certificates on separate domains
+
+
+```bash
+# location depending if you have repo nginx(/etc/nginx) or you built it yourself(/opt/nginx)
+
+mkdir -p /etc/nginx/ssl/my_appication_name.com/
+mkdir -p /etc/nginx/ssl/my_appication_name.london/
+
+
+cd /etc/nginx/ssl/my_appication_name.com/
+sudo openssl genrsa -des3 -out server.key 1024          # generate private server key with password
+sudo openssl req -new -key server.key -out server.csr   # generate signing request form key
+                                                        # this will promt you to fill in some inforation
+                                                        # about "sign" company
+                                                        # most import is the Common Name !!! 
+# Common Name []:my_application_name.com                # enter here the official name, domain or IP 
+
+sudo cp server.key server.key.org
+sudo openssl rsa -in server.key.org -out server.key     # remove password from key
+
+sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt  # sign the certificate (365 days)
+
+
+# same for the other tld
+cd /etc/nginx/ssl/my_appication_name.london/
+sudo openssl genrsa -des3 -out server.key 1024 
+sudo openssl req -new -key server.key -out server.csr
+# Common Name []:my_application_name.london
+sudo cp server.key server.key.org
+sudo openssl rsa -in server.key.org -out server.key 
+sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+```
+
+now in your virtual host 
+
+```bash
+sudo vim /etc/nginx/sites-available/my_appication_name.com
+
+
+server {
+        listen   443;                       #this will tell to listen to ssl
+        server_name my_appication_name.com;
+
+        root /usr/share/nginx/www;
+        index index.html index.htm;
+
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/my_appication_name.com/server.crt;   # use the .crt not the .csr
+        ssl_certificate_key /etc/nginx/ssl/example.org/server.key;          # the one without the password
+}
+
+sudo vim /etc/nginx/sites-available/my_appication_name.london
+
+
+server {
+        listen   443;                 
+        server_name my_appication_name.london;
+
+        root /usr/share/nginx/www;
+        index index.html index.htm;
+
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/my_appication_name.com/server.crt;
+        ssl_certificate_key /etc/nginx/ssl/example.org/server.key;
+}
+```
+
+you have to have loading of those virtual host fileas activated in your main nginx config `/etc/nginx/conf/nginx.conf` !!
+
+or 
+
+```bash
+sudo ln -s /etc/nginx/sites-available/my_appication_name.com /etc/nginx/sites-enabled/my_appication_name.com
+sudo ln -s /etc/nginx/sites-available/my_appication_name.london /etc/nginx/sites-enabled/my_appication_name.london
+```
+
+finally restartyour nginx
+
 #restrict access
 
 restrict access: http://wiki.nginx.org/NginxHttpAuthBasicModule#auth_basic_user_file
