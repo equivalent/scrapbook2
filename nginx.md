@@ -18,6 +18,28 @@ sudo service nginx restart
 ~~~
 
 
+# several servers NginX
+
+you can have several sites hosted managed by Nginx
+
+```
+   server {
+        listen 80 default;  # he will have the port 80 by default
+        server_name foo1
+        root /home/tomi/projects/foo1;
+        index  index.html index.htm;
+    }
+    
+    server {
+        listen 80;
+        listen 81;          # localshost:81 will trigger this
+        server_name foo1
+        root /home/tomi/projects/foo1;
+        index  index.html index.htm;
+    }
+```
+
+
 # nginx with multiple Self signed certificates for same IP 
 
 stolen from: https://www.digitalocean.com/community/articles/how-to-set-up-multiple-ssl-certificates-on-one-ip-with-nginx-on-ubuntu-12-04
