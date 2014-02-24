@@ -43,6 +43,7 @@ you can have several sites hosted managed by Nginx
 # nginx with multiple Self signed certificates for same IP 
 
 stolen from: https://www.digitalocean.com/community/articles/how-to-set-up-multiple-ssl-certificates-on-one-ip-with-nginx-on-ubuntu-12-04
+http://nginx.org/en/docs/http/configuring_https_servers.html#sni
 
 first you need to check if your nginx supports SNI (single name identifier)
 
