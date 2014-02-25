@@ -1,6 +1,32 @@
 # Git scrapbook
 
 
+### Git squash commits
+
+```bash
+git rebase -i HEAD~3    # HEAD-number_of_how_many_last_commits
+```
+
+then in text editor pick and squash your commits (don't change order)
+
+```
+pick f392171 Added new feature X
+squash ba9dd9a Added new elements to page design
+squash df71a27 Updated something
+```
+
+then another edittor will trigger wher you will be prompted to define one commit message the whole squash
+
+If you want to push on branch that already contains your commits, you have to force it by doinf 
+
+```bash
+git push origin +name_of_the_branch
+```
+
+* http://ariejan.net/2011/07/05/git-squash-your-latests-commits-into-one/
+* http://stackoverflow.com/questions/5667884/how-to-squash-commits-in-git-after-they-have-been-pushed
+
+
 ### How to update forked repository
 
 e.g.: you forked repo on github and now you want to update it with latest changes from original
