@@ -1,6 +1,43 @@
 # Ruby scrapbook
 
 
+### executing sh in Ruby
+
+...or Ways how to execute a shell script
+
+http://stackoverflow.com/questions/2232/calling-bash-commands-from-ruby
+
+
+Returns the result of the shell command to `value`
+
+```ruby
+value = `echo 'hi'`
+value = `#{cmd}`
+value = %x( cmd )
+```
+
+Return: true if the command was found and ran successfully, false otherwise
+
+```ruby
+wasGood = system( "echo 'hi'" )
+wasGood = system( cmd )
+```
+
+Exits after execution
+
+```ruby
+exec( "echo 'hi'" )
+exec( cmd ) # Note: this will never be reached beacuse of the line above
+```
+
+Note:
+
+`$?`, which is the same as $CHILD_STATUS, accesses the status of the last system executed command if you use the backticks, `system()` or `%{}`. You can then access the exitstatus and pid properties
+
+```ruby
+$?.exitstatus
+```
+
 ### reduce & inject
 
 ```ruby
