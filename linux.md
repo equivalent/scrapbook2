@@ -11,7 +11,9 @@ old stuff can be found on
 
 ```bash
 whereis nginx   
-# /opt/nginx ....
+# nginx: /usr/sbin/nginx /etc/nginx /usr/share/nginx /usr/share/man/man1/nginx.1.gz
+which nginx
+# /usr/sbin/nginx
 ```
 
 
