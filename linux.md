@@ -22,7 +22,8 @@ which nginx
 tar -zxvf backup.tar.gz
 
 #extract to folder
-tar -zcvf  /tmp/nginx-1.4.4.tar.gz /tmp
+tar -zxvf /tmp/nginx-1.4.4.tar.gz.1 -C /tmp
+
 ```
 
 ## solve VM out of space even after deleting large file
