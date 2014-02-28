@@ -7,6 +7,13 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## Where is application instaled
+
+```bash
+whereis nginx   
+# /opt/nginx ....
+```
+
 
 ## solve VM out of space even after deleting large file
 
