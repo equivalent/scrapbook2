@@ -1,4 +1,3 @@
-
 # PostgreSQL
 
 ### general notes
@@ -50,6 +49,20 @@
 ### fedora start postgress
 
       psql --username=postgres
+
+### Install postgresql 9.1 on Ubuntu 12.04
+    
+http://railskey.wordpress.com/2012/05/19/postgresql-installation-in-ubuntu-12-04/
+    
+    sudo apt-get install python-software-properties
+    sudo add-apt-repository ppa:pitti/postgresql
+    sudo apt-get update
+    sudo apt-get install postgresql-9.1 libpq-dev
+    
+    #check instalation
+    locate postgresql
+    psql -V
+    
 
 ### mint & ubuntu postgres 
     
