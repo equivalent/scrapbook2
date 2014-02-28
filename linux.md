@@ -16,6 +16,9 @@ which nginx
 # /usr/sbin/nginx
 ```
 
+## Extract tar.gz compresed file
+
+`tar -zxvf backup.tar.gz`
 
 ## solve VM out of space even after deleting large file
 
