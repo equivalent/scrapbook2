@@ -18,7 +18,12 @@ which nginx
 
 ## Extract tar.gz compresed file
 
-`tar -zxvf backup.tar.gz`
+```bash
+tar -zxvf backup.tar.gz
+
+#extract to folder
+tar -zcvf  /tmp/nginx-1.4.4.tar.gz /tmp
+```
 
 ## solve VM out of space even after deleting large file
 
