@@ -72,6 +72,19 @@ Set your newly installed ruby as global (default)
 rbenv global 2.1.1
 ```
 
+To check what is the current global ruby version
+
+```bash
+rbenv version
+# => 2.1.1
+```
+
+to list all rbenv versions:
+
+```bash
+rbenv versions
+```
+
 Install bundler
 
 ```bash
@@ -82,6 +95,12 @@ rbenv exec gem install bundler  --no-ri --no-rdoc
 
 ```bash
 rbenv rehash
+```
+
+if you have any other questions just run 
+
+```bash
+rbenv help
 ```
 
 source
