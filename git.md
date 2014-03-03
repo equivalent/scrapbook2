@@ -1,5 +1,39 @@
 # Git scrapbook
 
+### gitigtore
+
+```
+*.swp                   # ignore all files with .swp extension in all folders
+tmp                     # ignore all "tmp" files/folders 
+/config.yml             # ignore config.yml only in root of an application ( ./app/config.yml wont be ignored)
+/foo/bar/car            # this will ignore file "car" in folder ./foo/bar
+                        # so file "car" in folder ./foo/  wont be ignored
+```
+
+if your file is allready cached (you done `git add somefolder/myfile`) you can remove it with:
+
+```sh
+git rm --cached somefolder/myfile
+# or git rm -r --cached somefolder   # to remove whole folder from cache
+```
+
+this will remove it from cache, now git will read your `.gitignore` file and if that file is ignored when you do:
+
+```sh
+git add .
+git commit -m "without myfile "
+```
+
+...you wont commit that file
+
+If you want to ignore file that was already commited you must remove that file first 
+
+```sh
+git rm somefolder/my_file
+# or git rm -r somefolder   #deletes whole folder
+```
+
+
 
 ### Git squash commits
 
