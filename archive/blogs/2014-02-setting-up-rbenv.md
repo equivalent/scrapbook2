@@ -69,7 +69,7 @@ This is either located in `~/.rbenv` or `/opt/rbenv`
 Set your newly installed ruby as global (default)
 
 ```bash
-rbenv global 2.1.0
+rbenv global 2.1.1
 ```
 
 Install bundler
