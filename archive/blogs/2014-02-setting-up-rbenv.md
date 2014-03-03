@@ -91,7 +91,7 @@ Install bundler
 rbenv exec gem install bundler  --no-ri --no-rdoc
 ```
 
-& run rehash
+and run rehash, so that the change is pickend up
 
 ```bash
 rbenv rehash
