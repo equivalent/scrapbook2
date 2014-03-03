@@ -1,20 +1,21 @@
 # Installing Nginx 1.4.4 on Ubuntu 12.04 (Precise)
 
-First some dependencies:
+First some system dependencies:
 
 ```bash
 sudo apt-get install make    # doh !
 ```
 
-We want to have the "rewrite" option in our Nginx (allows us to do redirect)
+We want to have the "rewrite" option in our Nginx (allows us to do redirect), so add dependancies for that.
 
 ```bash
 sudo apt-get install libpcre3-dev libpcre++-dev
 ```
 
-Btw if anyone is getting `error: pcre-config not found, install the pcre-devel package or build with --without-pcre`
+Btw if anyone was getting `error: pcre-config not found, install the pcre-devel package or build with --without-pcre`
 during running `./configure`, installing dependencies above will solve this.
 
+(of course OpenSSl is also dependancy but for Ubuntu 12.04 that's automatic)
 
 Now lets get the source files
 
@@ -60,17 +61,21 @@ Now you should be able to do check the version and if SNI is on
 ```bash
 nginx -V
 # nginx version: nginx/1.4.4
-# TLS SNI support enabled   #if you dont see this line, something went wrong
+# TLS SNI support enabled   # if you dont see this line, something went wrong, 
+                            # and SNI will not work, check your OpenSSL 
 ```
 
 
 ### Recompiling
 
-check article http://extralogical.net/articles/howto-compile-nginx-passenger.html there are some useful information
+check article http://extralogical.net/articles/howto-compile-nginx-passenger.html there are some useful information.
+
+Author is mentioning that when you do `nginx -V` you'll get virsion and list of all the options you passed
+during `.configure`. So you don't have to write down options, just copy them from the output and pass to `.configure` again
 
 ### Init d
 
-To be able to do:
+To be able to call NginX as service:
 
 ```bash
 sudo service nginx start
@@ -187,3 +192,4 @@ sources:
 * http://stackoverflow.com/questions/2263404/what-package-i-should-install-for-pcre-devel
 * https://www.digitalocean.com/community/articles/how-to-compile-nginx-from-source-on-an-centos-6-4-x64-vps
 * http://extralogical.net/articles/howto-compile-nginx-passenger.html
+* http://railscasts.com/episodes/335-deploying-to-a-vps 
