@@ -197,7 +197,7 @@ sources:
 
 one more recommendation: 
 
-# Instaling NginX from Ubuntu packages
+## Install NginX from Ubuntu packages !
 
 One thing to consider is to actually install NginX direcly from Ubuntu ppa
 
@@ -210,3 +210,8 @@ sudo apt-get -y install nginx
 The reason for this is that the nginx ppa keeps NginX up to date. During the time I was writing tutorial on how to install NginX 1.4.4 from source, Nginx 1.4.5 was released and was automatically upgraded (yes with SNI) on one other server I'm managing. 
 
 So there is no real point (unless you want to do some ninja stuff with NginX) to compile it on Ubuntu.
+
+
+## related scrapbook links
+
+* https://github.com/equivalent/scrapbook2/blob/master/nginx.md
