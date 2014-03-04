@@ -1,6 +1,6 @@
 # nginx example !!!
 
-https://gist.github.com/equivalent/9352734
+https://gist.github.com/equivalent/9352734  (stolen from https://gist.github.com/Austio/6399964)
 
 
 # nginx test configurantion
