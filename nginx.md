@@ -1,7 +1,9 @@
 # nginx variables
 
+
 ```
 $host             #  mysite.com?foo=bar&car=car
+$html_host
 $request_uri      #  ?foo=bar&car=car
 ```
 
@@ -9,7 +11,7 @@ Examlpe
 
 ```
     if ($server_port = 80) {
-        rewrite ^ https://$host permanent;
+        rewrite ^ https://$host$request_uri permanent;
     }
 ```
 
