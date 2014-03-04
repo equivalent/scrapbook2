@@ -1,7 +1,7 @@
 # nginx test configurantion
 
 ```
-/usr/sbin/nginx  -t
+sudo /usr/sbin/nginx  -t
 
 ```
 
