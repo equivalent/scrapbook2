@@ -1,3 +1,13 @@
+# nginx test configurantion
+
+```
+/usr/sbin/nginx  -t
+
+```
+
+(depend where your nginx executabl is located)
+
+
 # nginx variables
 
 
