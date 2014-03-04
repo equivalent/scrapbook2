@@ -1,3 +1,19 @@
+# nginx variables
+
+```
+$host             #  mysite.com?foo=bar&car=car
+$request_uri      #  ?foo=bar&car=car
+```
+
+Examlpe
+
+```
+    if ($server_port = 80) {
+        rewrite ^ https://$host permanent;
+    }
+```
+
+
 # restart, stop, start
 
 ~~~bash
