@@ -1,4 +1,4 @@
-# nginx example !!!
+# nginx example with ssh
 
 https://gist.github.com/equivalent/9352734  (stolen from https://gist.github.com/Austio/6399964)
 
