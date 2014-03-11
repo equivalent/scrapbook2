@@ -1,3 +1,18 @@
+
+# dont show NginX version in header 
+
+you can see this information in firefox request 
+
+```
+Server	nginx/1.4.5  #without option bellow  
+Server	nginx        #with    option bellow  
+```
+
+```
+# /etc/nginx/ngnix.conf
+server_tokens off;
+```
+
 # nginx example with ssh
 
 https://gist.github.com/equivalent/9352734  (stolen from https://gist.github.com/Austio/6399964)
