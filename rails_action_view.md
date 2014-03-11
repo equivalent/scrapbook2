@@ -2,6 +2,17 @@
 
 http://guides.rubyonrails.org/action_view_overview.html
 
+## Assets
+
+
+
+```ruby
+<YourAppName>::Application.assets.find_asset('Rails.png').pathname
+```
+
+
+
+
 
 ## Helpers
 
