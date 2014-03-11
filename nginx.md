@@ -1,4 +1,3 @@
-
 # dont show NginX version in header 
 
 you can see this information in firefox request 
@@ -11,6 +10,15 @@ Server	nginx        #with    option bellow
 ```
 # /etc/nginx/ngnix.conf
 server_tokens off;
+```
+
+To remove the additional banners added by other modules, you
+will need to install the 3rd party module HttpHeadersMoreModule
+and add the following lines in the "http" block of the nginx.conf
+
+```
+# set and clear output headers
+more_clear_headers 'X-Powered-by' 'X-Runtime';
 ```
 
 # nginx example with ssh
