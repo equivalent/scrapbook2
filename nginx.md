@@ -1,4 +1,4 @@
-# dont show NginX version in header 
+# Dont show NginX version in header 
 
 you can see this information in firefox request 
 
@@ -12,6 +12,9 @@ Server	nginx        #with    option bellow
 server_tokens off;
 ```
 
+# Remove X-Runtime from header
+
+
 To remove the additional banners added by other modules, you
 will need to install the 3rd party module HttpHeadersMoreModule
 and add the following lines in the "http" block of the nginx.conf
@@ -20,6 +23,17 @@ and add the following lines in the "http" block of the nginx.conf
 # set and clear output headers
 more_clear_headers 'X-Powered-by' 'X-Runtime';
 ```
+
+or directly in Rails app
+
+
+```ruby
+# config/application.rb  ...or 
+# config/enviroments/production.rb  
+
+  config.middleware.delete(Rack::Runtime) # removes X-Runtime header
+```
+
 
 # nginx example with ssh
 
