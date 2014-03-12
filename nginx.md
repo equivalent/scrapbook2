@@ -34,6 +34,28 @@ or directly in Rails app
   config.middleware.delete(Rack::Runtime) # removes X-Runtime header
 ```
 
+...but better solution is:
+
+```ruby
+# lib/stealth_middleware.rb
+class StealthMiddlware
+  def initialize(app)
+    @app = app
+  end
+  def call(env)
+    status, headers, body = @app.call(env)
+    headers.delete('X-Runtime')
+    [status, headers, body]
+  end
+end
+
+# config/application.rb or config/enviroments/production.rb
+require './lib/stealth_middlware'
+config.middleware.insert_before 'Rack::Runtime', 'StealthMiddlware'
+```
+
+https://github.com/rails/rails/issues/1043
+
 
 # nginx example with ssh
 
