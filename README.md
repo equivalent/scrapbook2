@@ -3,11 +3,11 @@ scrapbook2
 
 pure git/gitub version for my scrapbook around web-development
 
-    ##############################################################################
-    ##                                                                          ##
-    ##   Checke individual .md files above for more information around topic    ##
-    ##                                                                          ##
-    ##############################################################################
+    ##########################################################################
+    ##                                                                      ##
+    ##   Checke individual .md files above for more information on topics   ##
+    ##                                                                      ##
+    ##########################################################################
 
 # Other
 
