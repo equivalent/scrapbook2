@@ -26,7 +26,17 @@ timeout 30
 
 # unicorn start/stop
 
+    # demon
     /etc/init.d/unicorn_myapp restart 
+    
+    # restart pid process
+    kill -USR2 unicorn_master_pid;
+    
+    # reexecute unicorn master process, takes more time but reload most of the stuff
+    kill -USR2 unicorn_master_pid; kill -QUIT unicorn_master_pid 
+    
+http://stackoverflow.com/questions/19896800/starting-or-restarting-unicorn-with-capistrano-3-x
+
 
 super kill
 
