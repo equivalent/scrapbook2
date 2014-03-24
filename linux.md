@@ -16,6 +16,8 @@ iptables -I INPUT -p tcp --dport 666 --syn -j ACCEPT
 iptables -F  # flush, this will reload the rules so that new changes are applyied 
 ```
 
+... of course this wont work if you are not using iptables or external firewal
+
 http://www.tixati.com/optimize/open-ports-linux.html
 
 ## Check what ports are opened on linux machine
