@@ -10,7 +10,10 @@ old stuff can be found on
 
 ## open port 
 
-`iptables -I INPUT -p tcp --dport 666 --syn -j ACCEPT`
+```bash
+su
+iptables -I INPUT -p tcp --dport 666 --syn -j ACCEPT
+```
 
 http://www.tixati.com/optimize/open-ports-linux.html
 
