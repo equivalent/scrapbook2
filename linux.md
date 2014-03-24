@@ -8,9 +8,15 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## open port 
+
+`iptables -I INPUT -p tcp --dport 666 --syn -j ACCEPT`
+
+http://www.tixati.com/optimize/open-ports-linux.html
+
 ## Check what ports are opened on linux machine
 
-nmap -sS -O 127.0.0.1
+`nmap -sS -O 127.0.0.1`
 
 ## Where is application instaled
 
