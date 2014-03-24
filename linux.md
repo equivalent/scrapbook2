@@ -29,7 +29,10 @@ netstat -lntu
 #    -u = udp ports
 #    -p = name of the program
 
+netstat -vatn
 ```
+
+http://www.cyberciti.biz/faq/how-do-i-find-out-what-ports-are-listeningopen-on-my-linuxfreebsd-server/
 
 ## Where is application instaled
 
