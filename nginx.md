@@ -1,3 +1,8 @@
+# examples 
+http://unicorn.bogomips.org/examples/nginx.conf
+
+
+
 # Dont show NginX version in header 
 
 you can see this information in firefox request 
