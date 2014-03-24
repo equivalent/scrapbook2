@@ -19,7 +19,17 @@ http://www.tixati.com/optimize/open-ports-linux.html
 
 ## Check what ports are opened on linux machine
 
-`nmap -sS -O 127.0.0.1`
+```bash
+nmap -sS -O 127.0.0.1
+
+netstat -lntu
+#    -l = only services which are listening on some port
+#    -n = show port number, don't try to resolve the service name
+#    -t = tcp ports
+#    -u = udp ports
+#    -p = name of the program
+
+```
 
 ## Where is application instaled
 
