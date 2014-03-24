@@ -13,6 +13,7 @@ old stuff can be found on
 ```bash
 su
 iptables -I INPUT -p tcp --dport 666 --syn -j ACCEPT
+iptables -F  # flush, this will reload the rules so that new changes are applyied 
 ```
 
 http://www.tixati.com/optimize/open-ports-linux.html
