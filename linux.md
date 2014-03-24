@@ -7,6 +7,11 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+
+## Check what ports are opened on linux machine
+
+nmap -sS -O 127.0.0.1
+
 ## Where is application instaled
 
 ```bash
