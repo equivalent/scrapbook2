@@ -1,6 +1,7 @@
 # rspec like matchers
 
 | Assertion              | Examples                                              |   
+| ---------------------- | ----------------------------------------------------- | 
 | must_be                | list.size.must_be :==, 0                              |   
 | must_be_close_to       | subject.size.must_be_close_to 1,1                     |   
 | must_be_empty          | list.must_be_empty                                    |   
