@@ -1,3 +1,16 @@
+# Check order of items 
+
+```ruby
+page.body.should =~ /Bank.*Private/
+```
+
+```ruby
+expect(page.body.index('Bank') < page.body.index('Private')).to be_true
+expect(page.body.index('Private') < page.body.index('Bank')).to be_false
+```
+
+http://stackoverflow.com/questions/8423576/is-it-possible-to-test-the-order-of-elements-via-rspec-capybara
+
 # Cucumber check if mails were sent
 
 ```ruby
