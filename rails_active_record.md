@@ -1,5 +1,11 @@
 # Rails Active Record Scrapbook
 
+## skip rails callbacks
+
+```ruby
+Document.skip_callback(:save, :after, :generate_guid)
+Document.set_callback(:save, :after, :generate_guid)
+```
 
 ## Rails empty scope 
 
