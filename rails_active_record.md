@@ -56,10 +56,25 @@ Rails: 3.2.13
 
 ## Scopes and Arel tricks
 
+
 ```ruby
 scope :visible, where("hidden != ?", true)
 scope :published, lambda { where("published_at <= ?", Time.zone.now) }
 scope :recent, visible.published.order("published_at desc")
+```
+
+** merging diferent model scopes **
+
+```ruby
+class DocumentVersion
+  scope :order_by_latest, ->{ order("document_versions.id DESC") } 
+end
+
+class Document
+  scope :order_by_latest, ->{ joins(:document_versions).merge(DocumentVersion.order_by_latest) }
+end
+
+Document.order_by_latest 
 ```
 
 
