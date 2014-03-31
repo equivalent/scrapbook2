@@ -1,6 +1,60 @@
-# Ruby only
+# pure Ruby
 
-###current folder
+### filename
+
+```ruby
+pathname = Pathname.new('foo/somefile.rb') 
+# => #<Pathname:...>
+
+pathname.to_s
+# => 'foo/somefile.rb
+
+pathname.basename.to_s
+# => 'somefile.rb'
+
+# get filename without extension
+pathname.basename(".*").to_s
+# => 'somefile'
+```
+
+this can be used to load child classes in same dir:
+
+```ruby
+
+# lib/application_strategy/foo.rb
+module ApplicationStrategy
+  class Foo
+  end
+end
+
+# lib/application_strategy/bar_car.rb
+module ApplicationStrategy
+  class BarCar
+  end
+end
+
+# lib/application_strategy/base.rb
+module ApplicationStrategy
+  class Base
+  
+    def self.strategies
+      @strategies ||= begin
+        Dir.glob("#{File.dirname(__FILE__)}/*")
+          .collect { |file_path| Pathname.new(file_path).basename(".*").to_s }
+          .select { |name| name != 'base' }
+          .collect{ |name| "ApplicationStrategy::#{name.classify}".constantize } # classify & constantize are Rails methods
+      end
+    end 
+    
+  end
+end
+
+ApplicationStrategy::Base.strategies 
+# => [ApplicationStrategy::Foo, ApplicationStrategy::BarCar]
+```
+
+
+### current folder
 
 ```ruby
 File.dirname(__FILE__)
