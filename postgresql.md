@@ -52,6 +52,16 @@
       ALTER DATABASE name OWNER TO new_owner;
 
 
+higher changes with user in Postgress
+
+      
+      ALTER USER myuser WITH SUPERUSER; # will be superuser
+      ALTER USER myuser WITH CREATEDB;  # can create db
+
+http://www.postgresql.org/docs/current/static/sql-alterdatabase.html
+
+
+
 ### fedora start postgress
 
       psql --username=postgres
