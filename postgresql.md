@@ -44,6 +44,12 @@
       GRANT ALL PRIVILEGES ON DATABASE jerry to tom;
       
       ALTER USER postgres WITH PASSWORD 'happyface';
+      
+      \du  # list all users
+      DROP USER username;  #you need to change owner of databases first
+      
+      # change owner of database
+      ALTER DATABASE name OWNER TO new_owner;
 
 
 ### fedora start postgress
