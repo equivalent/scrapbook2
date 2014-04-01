@@ -1,0 +1,31 @@
+
+http://rails-jenkins.danmcclain.net/#1
+
+
+### build command 
+
+```
+source ~/.bashrc                                         # Loads RVM
+cd .                                                     # Loads the RVM environment set in the .rvmrc file
+
+rm -rf jenkins && mkdir jenkins
+cp /var/lib/jenkins/my_database.yml config/database.yml 
+ 
+bundle install           # Installs gems
+
+# RAILS_ENV=test bundle exec rake db:create
+# RAILS_ENV=test bundle exec rake db:hstoreize
+RAILS_ENV=test bundle exec rake db:migrate
+
+#rspec spec
+#  SPEC_OPTS="--format html" rspec spec > jenkins/rspec.htm  # if you want html output
+
+export DISPLAY=:0;                                      # eneble jenkins to run firefox
+
+
+cucumber
+
+spinach
+
+
+```
