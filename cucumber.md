@@ -1,3 +1,40 @@
+
+# Cucumber + Selenium drag & drop
+
+```ruby
+# feature/step/cusom_step.rb
+step 'something' do
+    element = page.
+      find("#field_#{@post_code_field.id}").
+      find('.fa-arrows')
+
+    target = page.
+      find("#field_#{@favorite_tv_series_field.id}")
+
+    drag_element(element, target)
+end
+
+def drag_element(element, target)
+  selenium_webdriver = page.driver.browser
+  sleep 0.2
+  selenium_webdriver.mouse.down(element.native)
+  sleep 0.2
+  selenium_webdriver.mouse.move_to(target.native)
+  sleep 0.2
+  selenium_webdriver.mouse.up
+end
+```
+
+# cucumber + selenium maximalize firefox window
+
+```ruby
+# feature/step/cusom_step.rb
+step 'something' do
+  page.driver.browser.manage.window.maximize
+end
+```
+
+
 # Check order of items 
 
 ```ruby
