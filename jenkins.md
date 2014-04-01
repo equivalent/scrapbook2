@@ -7,13 +7,17 @@ http://rails-jenkins.danmcclain.net/#1
 source ~/.bashrc                                         # Loads RVM
 cd .                                                     # Loads the RVM environment set in the .rvmrc file
 
+rvm current
+
 cp /var/lib/jenkins/my_database.yml config/database.yml 
  
 bundle install           # Installs gems
 
 # RAILS_ENV=test bundle exec rake db:create
 # RAILS_ENV=test bundle exec rake db:hstoreize
-RAILS_ENV=test bundle exec rake db:migrate
+# RAILS_ENV=test bundle exec rake db:migrate
+
+RAILS_ENV=test bundle exec rake db:schema:load
 
 rspec spec
 
