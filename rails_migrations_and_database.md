@@ -21,7 +21,8 @@ development:
 
 test:
   <<: *default
-  database: my_app_test
+  database: my_app_test<%= ENV['TEST_ENV_NUMBER'] %>
+
   
 ```
 
