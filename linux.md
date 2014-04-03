@@ -7,6 +7,13 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## limit throttle  bandwith 
+
+```
+sudo wondershaper eth1 500 100
+```
+
+http://jwalanta.blogspot.co.uk/2009/04/easy-bandwidth-shaping-in-linux.html
 
 ## open port 
 
