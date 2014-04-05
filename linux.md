@@ -33,6 +33,16 @@ lunch `safari` and `vnc://192.168.1.123`  (your IP )
 
 ## limit throttle  bandwith 
 
+### limit one program
+
+```
+trickle -u (upload limit in KB/s) -d (download limit in KB/s) application
+trickle -u 15 -d 2000 /usr/bin/google-chrome-stable --incognito %U
+
+```
+
+### limit entire bandwith
+
 ```
 sudo wondershaper eth1 500 100
 ```
