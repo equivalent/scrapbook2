@@ -7,6 +7,30 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+
+## remote desktop control
+
+### LUbuntu
+
+```sh
+sudo apt-get install x11vnc vnc-java # install
+x11vnc -storepasswd  # this will set up password
+ x11vnc -forever -usepw -httpdir /usr/share/vnc-java/ -httpport 5800  # open server 
+```
+
+```
+# add   x11vnc -forever -usepw -httpdir /usr/share/vnc-java/ -httpport 5800
+sudo vim  /etc/xdg/lxsession/Lubuntu/autostart
+```
+
+http://linuxlubuntu.blogspot.co.uk/2011/02/setup-vnc-server-for-lubuntu.html
+
+###  to connect  from OSx
+
+lunch `safari` and `vnc://192.168.1.123`  (your IP )
+
+
+
 ## limit throttle  bandwith 
 
 ```
