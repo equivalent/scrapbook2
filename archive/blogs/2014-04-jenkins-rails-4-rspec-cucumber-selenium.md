@@ -1,37 +1,34 @@
 # Jenkins CI for Rails 4, RSpec, Cucumber, Selenium
 
-In this article we will setup CI system on fresh Ubuntu 12.04. Now there are several articles on configuring Jenkins
-and I will be using here a lot of stuff mentioned in [Dan Maclains presentation on configuring Jenkins](http://rails-jenkins.danmcclain.net/#1). The reason I'm writing (or rewriting) my own manual is that I needed
-some extra steps not mentioned in Dans presentation & that I find it much easier to fallow blog article than presentation
-for my personal use.
+In this article we will setup CI system on fresh Ubuntu 12.04. I'm basing my manual a lot on 
+Dan Maclains blog on configuring Jenkins:
 
+* http://rails-jenkins.danmcclain.net/#1
+* http://danmcclain.net/blog/2011/11/22/using-jenkins-with-rails/
 
 ## Instalation
 
-We will begin by adding Jenkins to trusted keys + source list and installing it: 
+First install some general stuff:
+
+```sh
+sudo apt-get install git curl vim
+```
+
+We will begin by adding Jenkins to trusted keys + source list and installing it:
 
 ```sh
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt-get update
 sudo apt-get install jenkins
-
 ```
 
-Some dependancies for plugins
-
-```sh
-sudo apt-get install git curl vim
-```
-
-this will create Jenkins user, init.d script, and starts jenkins on port `8080`
+This will create Jenkins user, init.d script, and starts jenkins on port `8080`
+So you should be able to access Jenkins from `http://localhost:8080/`.
 
 
-## Configure Jenkins
 
-After instalation you should be able to access Jenkins from `http://localhost:8080/`. 
-
-### Jenkins Plugins
+## Jenkins Plugins
 
 We need to add several plugins to Jenkins. Open your web-browser and visit `http://localhost:8080/pluginManager`.
 Click on `Available` tab and search for `Git`, `Github` plugin and install. 
@@ -43,7 +40,7 @@ In **Git plugin** section set the Global Config `user.name` Value and Global Con
 In the Shell section set `Shell executable` to `/bin/bash` 
 
 
-### Jenkins system user configuration
+## Jenkins system user configuration
 
 We will add `rvm` to Jenkins user, generate ssh-keys and add them to github
 
@@ -62,7 +59,7 @@ vim ~/.ssh/id_rsa.pub
 exit                  # leave jenkins user
 ```
 
-### Configuration for Jenkins run
+## Configuration for Jenkins run
 
 
 ```sh
@@ -76,6 +73,7 @@ echo "[ -s "/var/lib/jenkins/.rvm/scripts/rvm" ] && source "/var/lib/jenkins/.rv
 sudo mv /tmp/.bashrc /var/lib/jenkins/
 chmod 755 /var/lib/jenkins/.bashrc
 ```
+
 
 
 
