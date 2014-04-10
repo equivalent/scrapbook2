@@ -43,16 +43,26 @@ In **Git plugin** section set the Global Config `user.name` Value and Global Con
 In the Shell section set `Shell executable` to `/bin/bash` 
 
 
-### Jenkins user configuration
+### Jenkins system user configuration
 
-add `rvm` to Jenkins user
+We will add `rvm` to Jenkins user, generate ssh-keys and add them to github
 
 ```sh
-sudo su - jenkins
+sudo su - jenkins     # login as Jenkins user
+
+# add rvm to Jenkins
 bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-exit  # leave jenkins user
+
+# generate ssh-keys for jenkins
+ssh-keygen
+
+# copy your public key and add it to desired Github profile
+vim ~/.ssh/id_rsa.pub
+
+exit                  # leave jenkins user
 ```
 
+### Configuration for Jenkins run
 
 
 ```sh
