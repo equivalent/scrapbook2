@@ -18,3 +18,12 @@ sudo apt-get install jenkins
 
 ```
 
+this will create Jenkins user, init.d script, and starts jenkins on port `8080`
+
+
+## Configure Jenkins
+
+After instalation you should be able to access Jenkins from `http://localhost:8080/`. 
+
+We need to add several plugins to Jenkins `http://localhost:8080/pluginManager`
+To configure Jenkins one must go to `http://localhost:8080/configure`
