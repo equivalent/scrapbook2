@@ -21,7 +21,7 @@ sudo apt-get install jenkins
 Some dependancies for plugins
 
 ```sh
-sudo apt-get install git
+sudo apt-get install git curl vim
 ```
 
 this will create Jenkins user, init.d script, and starts jenkins on port `8080`
@@ -31,6 +31,8 @@ this will create Jenkins user, init.d script, and starts jenkins on port `8080`
 
 After instalation you should be able to access Jenkins from `http://localhost:8080/`. 
 
+### Jenkins Plugins
+
 We need to add several plugins to Jenkins. Open your web-browser and visit `http://localhost:8080/pluginManager`.
 Click on `Available` tab and search for `Git`, `Github` plugin and install. 
 
@@ -39,6 +41,37 @@ Next go to `http://localhost:8080/configure`
 In **Git plugin** section set the Global Config `user.name` Value and Global Config `user.email` Value
 
 In the Shell section set `Shell executable` to `/bin/bash` 
+
+
+### Jenkins user configuration
+
+add `rvm` to Jenkins user
+
+```sh
+sudo su - jenkins
+bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+exit  # leave jenkins user
+```
+
+
+
+```sh
+echo "export rvm_trust_rvmrcs_flag=1" >> /tmp/.rvmrc
+sudo mv /tmp/.rvmrc  /var/lib/jenkins/
+chmod 755 /var/lib/jenkins/.rvmrc
+```
+
+```sh
+echo "[ -s "/var/lib/jenkins/.rvm/scripts/rvm" ] && source "/var/lib/jenkins/.rvm/scripts/rvm" >> /tmp/.bashrc
+sudo mv /tmp/.bashrc /var/lib/jenkins/
+chmod 755 /var/lib/jenkins/.bashrc
+```
+
+
+
+
+
+
 
 
 
