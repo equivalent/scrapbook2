@@ -18,6 +18,12 @@ sudo apt-get install jenkins
 
 ```
 
+Some dependancies for plugins
+
+```sh
+sudo apt-get install git
+```
+
 this will create Jenkins user, init.d script, and starts jenkins on port `8080`
 
 
@@ -25,5 +31,19 @@ this will create Jenkins user, init.d script, and starts jenkins on port `8080`
 
 After instalation you should be able to access Jenkins from `http://localhost:8080/`. 
 
-We need to add several plugins to Jenkins `http://localhost:8080/pluginManager`
-To configure Jenkins one must go to `http://localhost:8080/configure`
+We need to add several plugins to Jenkins. Open your web-browser and visit `http://localhost:8080/pluginManager`.
+Click on `Available` tab and search for `Git`, `Github` plugin and install. 
+
+Next go to `http://localhost:8080/configure`
+
+In **Git plugin** section set the Global Config `user.name` Value and Global Config `user.email` Value
+
+In the Shell section set `Shell executable` to `/bin/bash` 
+
+
+
+
+
+
+
+
