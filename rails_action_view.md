@@ -2,6 +2,18 @@
 
 http://guides.rubyonrails.org/action_view_overview.html
 
+## Time format
+
+```ruby
+
+  def creation_date
+    created_at.to_formatted_s(:long_ordinal)
+  end
+
+
+```
+
+
 ## Assets
 
 
