@@ -1,5 +1,4 @@
 
-
 # bootstrap center
 
 bootstrap 3 actually provide several classes to centralize
