@@ -1,4 +1,22 @@
-# Installing Nginx 1.4.4 on Ubuntu 12.04 (Precise)
+# Installing Nginx 1.4.4 from source on Ubuntu 12.04 (Precise)
+
+first one good recommendation: 
+
+### Install NginX from Ubuntu packages !
+
+One thing to consider is to actually install NginX direcly from Ubuntu ppa
+
+```bash
+sudo add-apt-repository ppa:nginx/stable --yes
+sudo apt-get -y update
+sudo apt-get -y install nginx
+```
+
+The reason for this is that the nginx ppa keeps NginX up to date. During the time I was writing tutorial on how to install NginX 1.4.4 from source, Nginx 1.4.5 was released and was automatically upgraded (yes with SNI) on one other server I'm managing. 
+
+So there is no real point (unless you want to do some ninja stuff with NginX) to compile it on Ubuntu.
+
+## Installing from source 
 
 First some system dependencies:
 
@@ -194,22 +212,6 @@ sources:
 * http://extralogical.net/articles/howto-compile-nginx-passenger.html
 * http://railscasts.com/episodes/335-deploying-to-a-vps 
 
-
-one more recommendation: 
-
-## Install NginX from Ubuntu packages !
-
-One thing to consider is to actually install NginX direcly from Ubuntu ppa
-
-```bash
-sudo add-apt-repository ppa:nginx/stable --yes
-sudo apt-get -y update
-sudo apt-get -y install nginx
-```
-
-The reason for this is that the nginx ppa keeps NginX up to date. During the time I was writing tutorial on how to install NginX 1.4.4 from source, Nginx 1.4.5 was released and was automatically upgraded (yes with SNI) on one other server I'm managing. 
-
-So there is no real point (unless you want to do some ninja stuff with NginX) to compile it on Ubuntu.
 
 
 ## Related scrapbook links
