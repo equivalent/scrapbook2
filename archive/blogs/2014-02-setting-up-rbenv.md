@@ -37,6 +37,7 @@ next you need to load bashrc changes
 ```bash
 . ~/.bashrc 
 bash
+```
 
 If you are on Ubuntu 10.04 or 12.10, before you install ruby
 you need to run:
