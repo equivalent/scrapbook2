@@ -39,7 +39,7 @@ next you need to load bashrc changes
 bash
 ```
 
-If you are on Ubuntu 10.04 or 12.10, before you install ruby
+If you are on Ubuntu 10.04, 12.04 or 12.10, before you install ruby
 you need to run:
 
 ```bash
