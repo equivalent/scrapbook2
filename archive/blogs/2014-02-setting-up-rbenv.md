@@ -54,7 +54,7 @@ https://github.com/fesplugas/rbenv-bootstrap/tree/master/bin
 
 ...and you can install those dependencies for not listed Ubuntu versions (e.g.: 13.10)
 
-Install ruby of your choice
+(next) Install ruby of your choice
 
 ```bash
 rbenv install 2.1.1
