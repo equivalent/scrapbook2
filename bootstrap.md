@@ -1,3 +1,32 @@
+# bootstrap sticky footer
+
+```haml
+%html
+  %body
+     Some  body stuff
+    
+    %footer
+      footer content
+```
+
+```sass
+$footer-height: 110px
+
+html
+  position: relative
+  min-height: 100%
+
+body
+  margin-bottom: $footer-height
+
+body > footer
+  position: absolute
+  bottom: 0
+  width: 100%
+  height: $footer-height
+```
+
+http://getbootstrap.com/examples/sticky-footer-navbar/
 
 # bootstrap center
 
