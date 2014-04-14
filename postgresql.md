@@ -98,6 +98,9 @@ source: https://zxmax.wordpress.com/2012/05/26/install-postgers-9-3-on-ubuntu-12
 
  
 ### mint ubuntu start login to postgress   
+     
+     sudo -u postgres psql  # login from root
+     
      psql -d postgres -U postgres --password --host=localhost
 
 
