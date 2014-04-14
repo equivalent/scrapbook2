@@ -8,13 +8,15 @@ Applications I'm using for this tutorial
 sudo apt-get install git curl vim
 ```
 
-instal dependencies:
+### instal dependencies:
 
 ```bash
 sudo apt-get -y install build-essential zlib1g-dev libssl-dev libreadline-gplv2-dev
 ```
 
-Download and install rbenv by running this in shell
+### Download and install rbenv 
+
+run this in terminal
 
 ```bash
 cd ~
@@ -54,7 +56,7 @@ https://github.com/fesplugas/rbenv-bootstrap/tree/master/bin
 
 ...and you can install those dependencies for not listed Ubuntu versions (e.g.: 13.10)
 
-(next) Install ruby of your choice
+### Install ruby of your choice
 
 ```bash
 rbenv install 2.1.1
@@ -86,7 +88,7 @@ to list all rbenv versions:
 rbenv versions
 ```
 
-Install bundler
+### Install bundler
 
 ```bash
 rbenv exec gem install bundler  --no-ri --no-rdoc
