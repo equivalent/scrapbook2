@@ -26,7 +26,8 @@ body > footer
   height: $footer-height
 ```
 
-http://getbootstrap.com/examples/sticky-footer-navbar/
+* http://getbootstrap.com/examples/sticky-footer-navbar/
+* http://stackoverflow.com/questions/17966140/twitter-bootstrap-3-sticky-footer
 
 # bootstrap center
 
