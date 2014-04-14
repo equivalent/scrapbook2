@@ -9,6 +9,8 @@
       \d  table  #list colums
       \l    #list all databases
       
+      \du # list all users
+      
 
     mysql:  use database_name;
     postgres: \c database_name;
