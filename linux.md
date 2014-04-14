@@ -8,6 +8,16 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## send html email via linux console
+
+
+```sh
+# sudo apt-get install mailutils  # if mail comm not worknig  ...also you need postfix 
+
+mail  -a 'Content-Type: text/html' -s "some subject" myemail@test.com  < /tmp/my_mail_content.html
+```
+
+
 ## remote desktop control
 
 ### LUbuntu
