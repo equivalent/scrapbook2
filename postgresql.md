@@ -52,6 +52,9 @@
       
       # change owner of database
       ALTER DATABASE name OWNER TO new_owner;
+      
+      # rename user 
+      ALTER USER name RENAME TO newname;
 
 
 higher changes with user in Postgress
