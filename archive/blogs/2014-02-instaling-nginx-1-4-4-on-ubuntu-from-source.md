@@ -16,6 +16,9 @@ The reason for this is that the nginx ppa keeps NginX up to date. During the tim
 
 So there is no real point (unless you want to do some ninja stuff with NginX) to compile it on Ubuntu.
 
+http://wiki.nginx.org/Install#Ubuntu_PPA
+
+
 ## Installing from source 
 
 First some system dependencies:
