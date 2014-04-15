@@ -180,5 +180,11 @@ CREATE USER ci_jenkins WITH PASSWORD 'MyCoolPassword';
 ALTER USER myuser WITH SUPERUSER; 
 ```
  
+## First Jenkins Build
+
+Wisit Jenkins from browser again `http://localhost:8080/` and schedule the build
+
+![First build](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/jenkins-ci-step-3.png)
+
 
 
