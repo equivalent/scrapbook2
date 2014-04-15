@@ -101,7 +101,6 @@ bundle install                                           # Installs gems
 
 TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:drop
 TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:create
-TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:hstoreize
 TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:migrate
 
 TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:schema:load
