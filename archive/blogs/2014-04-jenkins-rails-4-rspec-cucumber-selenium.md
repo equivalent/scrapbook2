@@ -120,7 +120,11 @@ We will be passing the `TEST_ENV_NUMBER` variable to our `database.yml`, more on
 
 ## Configuring database 
 
-In our example we will be using PostgreSQL database. Log back in to your sudo user and install PostgreSQL (if you didn't do that already)
+### Install database
+
+In our example we will be using PostgreSQL database. But rest of manual is compatible with MySQL as well
+
+Log back in to your sudo user and install PostgreSQL (if you didn't do that already)
 
 ```su
 sudo apt-get update
@@ -128,6 +132,8 @@ sudo apt-get install postgresql-9.1 libpq-dev postgresql-contrib
 ```
 
 (if you have problems installing PostgreSQL have a look on my scrapbook on PostgreSQL https://github.com/equivalent/scrapbook2/blob/master/postgresql.md )
+
+### Setup database configuration file for Rails
 
 create database Yaml:
 
@@ -153,8 +159,9 @@ test:
   database: validations_test<%= ENV['TEST_ENV_NUMBER'] %>
 ```
 
-As you can see here we are using the `ENV['TEST_ENV_NUMBER']`. This way we will be able to run several different bulds at a same time (e.g.: testing custom branch & deploying staging at a same time) and even paralel tests.
+As you can see here we are using the `ENV['TEST_ENV_NUMBER']`. This way we will be able to run several different items at a same time (e.g.: testing custom branch & deploying staging at a same time) and even parallel tests.
 
+### Add database user for Jenkins
 
 So lets login to PostgreSQL:
 
