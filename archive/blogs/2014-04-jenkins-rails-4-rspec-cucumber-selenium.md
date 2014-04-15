@@ -114,11 +114,13 @@ TEST_ENV_NUMBER=995 cucumber    # if you use cucucmber
 TEST_ENV_NUMBER=995 spinach     # if you use spinach
 ```
 
-in case you are wondering what the  `TEST_ENV_NUMBER=995` means I'll explain that later. Don't run Jenkins now, it will fail due to no database connection.
+As you can see I'm droping and recreating database on each deploy. This is because sometimes branches get out of sync. 
+
+We will be passing the `TEST_ENV_NUMBER` variable to our `database.yml`, more on that in "configure database" section
 
 ## Configuring database 
 
-In our example we will be using PostgreSQL database. Log back in to your sudo user and install PostgreSQL (if you don't have already)
+In our example we will be using PostgreSQL database. Log back in to your sudo user and install PostgreSQL (if you didn't do that already)
 
 ```su
 sudo apt-get update
@@ -151,9 +153,25 @@ test:
   database: validations_test<%= ENV['TEST_ENV_NUMBER'] %>
 ```
 
-As you can see here we are using the `ENV['TEST_ENV_NUMBER']`. This way we will be able to run several different bulds at a same time (e.g.: testing custom branch & deploying staging at a same time)
+As you can see here we are using the `ENV['TEST_ENV_NUMBER']`. This way we will be able to run several different bulds at a same time (e.g.: testing custom branch & deploying staging at a same time) and even paralel tests.
 
 
+So lets login to PostgreSQL:
 
+```sh
+# from sudo user
+sudo -u postgres psql
+```
+
+...and create `ci_jenkins` database user. 
+
+
+Because this build machine wont store any business data it's ok for our user to be `SUPERUSER`, therefor we wont have to give him permissions individually for database and this way we can drop and create database as we want.
+
+```sql
+CREATE USER ci_jenkins WITH PASSWORD 'MyCoolPassword';
+ALTER USER myuser WITH SUPERUSER; 
+```
+ 
 
 
