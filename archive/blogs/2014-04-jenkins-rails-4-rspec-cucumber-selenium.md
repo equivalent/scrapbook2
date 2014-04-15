@@ -89,9 +89,33 @@ fill in `Repository URL` (Use the `git@github.com/repo.git` format) and provide 
 
 In Build section `Add bulid step`, select `execute shell` and fill in `command` textarea with: 
 
+```
+source ~/.bashrc                                         # Loads RVM
+cd .                                                     # Loads the RVM environment set in the .rvmrc file
 
+rvm current                                              # will display current rvm (debugging purpouse)
 
+cp /var/lib/jenkins/my_database.yml config/database.yml  # copy database yaml to project
 
+bundle install                                           # Installs gems
+
+TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:drop
+TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:create
+TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:hstoreize
+TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:migrate
+
+TEST_ENV_NUMBER=995 RAILS_ENV=test bundle exec rake db:schema:load
+
+TEST_ENV_NUMBER=995 rspec spec
+
+export DISPLAY=:0;                                      # eneble jenkins to run firefox selenium websteps
+                                                        # on screen
+
+TEST_ENV_NUMBER=995 cucumber    # if you use cucucmber
+TEST_ENV_NUMBER=995 spinach     # if you use spinach
+```
+
+in case you are wondering what the  `TEST_ENV_NUMBER=995` means I'll explain that later.
 
 
 
