@@ -145,7 +145,7 @@ sudo vim /var/lib/jenkins/my_database.yml
 
 and add following: 
 
-```yml
+```yaml
 default: &default
   host:    localhost
   adapter: postgresql
