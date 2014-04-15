@@ -145,7 +145,7 @@ sudo vim /var/lib/jenkins/my_database.yml
 
 and add following: 
 
-```yaml
+```ruby
 default: &default
   host:    localhost
   adapter: postgresql
@@ -165,7 +165,7 @@ As you can see here we are using the `ENV['TEST_ENV_NUMBER']`. This way we will 
 
 So lets login to PostgreSQL:
 
-```sh
+```bash
 # from sudo user
 sudo -u postgres psql
 ```
