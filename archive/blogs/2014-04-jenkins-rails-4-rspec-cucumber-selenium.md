@@ -10,13 +10,13 @@ Dan Maclains blog on configuring Jenkins:
 
 First install some general stuff:
 
-```sh
+```bash
 sudo apt-get install git curl vim
 ```
 
 We will begin by adding Jenkins to trusted keys + source list and installing it:
 
-```sh
+```bash
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt-get update
@@ -44,7 +44,7 @@ In the Shell section set `Shell executable` to `/bin/bash`
 
 We will add `rvm` to Jenkins user, generate ssh-keys and add them to github
 
-```sh
+```bash
 sudo su - jenkins     # login as Jenkins user
 
 # add rvm to Jenkins
@@ -62,13 +62,13 @@ exit                  # leave jenkins user
 ## Configuration for Jenkins run
 
 
-```sh
+```bash
 echo "export rvm_trust_rvmrcs_flag=1" >> /tmp/.rvmrc
 sudo mv /tmp/.rvmrc  /var/lib/jenkins/
 chmod 755 /var/lib/jenkins/.rvmrc
 ```
 
-```sh
+```bash
 echo "[ -s "/var/lib/jenkins/.rvm/scripts/rvm" ] && source "/var/lib/jenkins/.rvm/scripts/rvm" >> /tmp/.bashrc
 sudo mv /tmp/.bashrc /var/lib/jenkins/
 chmod 755 /var/lib/jenkins/.bashrc
@@ -89,7 +89,7 @@ fill in `Repository URL` (Use the `git@github.com/repo.git` format) and provide 
 
 In Build section `Add bulid step`, select `execute shell` and fill in `command` textarea with: 
 
-```
+```bash
 source ~/.bashrc                                         # Loads RVM
 cd .                                                     # Loads the RVM environment set in the .rvmrc file
 
@@ -126,7 +126,7 @@ In our example we will be using PostgreSQL database. But rest of manual is compa
 
 Log back in to your sudo user and install PostgreSQL (if you didn't do that already)
 
-```su
+```bash
 sudo apt-get update
 sudo apt-get install postgresql-9.1 libpq-dev postgresql-contrib
 ```
@@ -137,7 +137,7 @@ sudo apt-get install postgresql-9.1 libpq-dev postgresql-contrib
 
 create database Yaml:
 
-```sh
+```bash
 sudo touch /var/lib/jenkins/my_database.yml
 sudo chmod 755 /var/lib/jenkins/my_database.yml
 sudo vim /var/lib/jenkins/my_database.yml
