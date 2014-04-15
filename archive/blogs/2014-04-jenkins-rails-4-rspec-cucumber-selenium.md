@@ -74,6 +74,21 @@ sudo mv /tmp/.bashrc /var/lib/jenkins/
 chmod 755 /var/lib/jenkins/.bashrc
 ```
 
+## Jenkins item
+
+![First step](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/jenkins-ci-step-1.png)
+
+Visit Jenkins website `http://localhost:8080/` and choose to `New item`, name the item (e.g.: run test on master), 
+select `Build a free-style software project` option and submit the form.
+
+![Second step](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/jenkins-ci-step-2.png)
+
+
+At this point we will skip the Github project item (green arrow), select `git` as your `Source Code Management`, 
+fill in `Repository URL` (Use the `git@github.com/repo.git` format) and provide branch (e.g.: `*/master`). You can choose whatewer branch you want, if you want to apply thit to all branches you can use `**`, but I rather recommend to crate defferent items for different branches.
+
+In Build section `Add bulid step`, select `execute shell` and fill in `command` textarea with: 
+
 
 
 
