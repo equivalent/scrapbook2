@@ -74,7 +74,7 @@ sudo mv /tmp/.bashrc /var/lib/jenkins/
 chmod 755 /var/lib/jenkins/.bashrc
 ```
 
-## Jenkins item
+## Add Jenkins item
 
 ![First step](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/jenkins-ci-step-1.png)
 
@@ -114,15 +114,44 @@ TEST_ENV_NUMBER=995 cucumber    # if you use cucucmber
 TEST_ENV_NUMBER=995 spinach     # if you use spinach
 ```
 
-in case you are wondering what the  `TEST_ENV_NUMBER=995` means I'll explain that later.
+in case you are wondering what the  `TEST_ENV_NUMBER=995` means I'll explain that later. Don't run Jenkins now, it will fail due to no database connection.
 
+## Configuring database 
 
+In our example we will be using PostgreSQL database. Log back in to your sudo user and install PostgreSQL (if you don't have already)
 
+```su
+sudo apt-get update
+sudo apt-get install postgresql-9.1 libpq-dev postgresql-contrib
+```
 
+(if you have problems installing PostgreSQL have a look on my scrapbook on PostgreSQL https://github.com/equivalent/scrapbook2/blob/master/postgresql.md )
 
+create database Yaml:
 
+```sh
+sudo touch /var/lib/jenkins/my_database.yml
+sudo chmod 755 /var/lib/jenkins/my_database.yml
+sudo vim /var/lib/jenkins/my_database.yml
+```
 
+and add following: 
 
+```yml
+default: &default
+  host:    localhost
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: ci_jenkins
+  password: MyCoolPassword        # change 
+
+test:
+  <<: *default
+  database: validations_test<%= ENV['TEST_ENV_NUMBER'] %>
+```
+
+As you can see here we are using the `ENV['TEST_ENV_NUMBER']`. This way we will be able to run several different bulds at a same time (e.g.: testing custom branch & deploying staging at a same time)
 
 
 
