@@ -9,6 +9,19 @@ pure git/gitub version for my scrapbook around web-development
     ##                                                                      ##
     ##########################################################################
 
+# Ruby on Rails unsorted
+
+### checkbox, radio input value to boolean
+
+```ruby
+ActiveRecord::ConnectionAdapters::Column.value_to_boolean 'f'  # => false
+ActiveRecord::ConnectionAdapters::Column.value_to_boolean 't'  # => true
+ActiveRecord::ConnectionAdapters::Column.value_to_boolean '0'  # => false
+ActiveRecord::ConnectionAdapters::Column.value_to_boolean '1'  # => true
+ActiveRecord::ConnectionAdapters::Column.value_to_boolean nil  # => false
+
+```
+
 # Other
 
 ### Robots.txt examlpe
