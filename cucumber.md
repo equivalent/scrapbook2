@@ -1,5 +1,7 @@
 # Capybara cheet sheet
 
+stolen from https://gist.github.com/zhengjia/428105
+
 #### Navigating
 
     visit('/projects')
