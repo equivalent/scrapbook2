@@ -1,5 +1,6 @@
 # PostgreSQL
 
+
 ### general notes
 
     postgress -D /var/local/var/pg_db -! /tmp/pglog # -D specify  vher db is saved, -l where log is  saved
@@ -37,7 +38,21 @@
     1255
 
 
+### Dump
 
+#### Load dump
+
+```bash
+ sudo -u postgres psql db_name < dump.db 
+```
+
+#### create dump
+
+```bash
+pg_dump db_name > dump.db
+```
+
+http://www.postgresql.org/docs/9.1/static/backup-dump.html
 
 ### create database & user & change root password
     
