@@ -1,5 +1,16 @@
 # pure Ruby
 
+### Gem root dir
+
+```ruby
+# lib/my_gem.rb
+module MyGem
+  def self.root
+    Pathname.new(File.expand_path '../..', __FILE__)
+  end
+end
+```
+
 ### filename
 
 ```ruby
