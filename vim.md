@@ -2,6 +2,15 @@
 
 ## Normal mode
 
+Copy Paste
+
+```
+y         # copy
+P         # paste in fron of word
+p         # paste on position wher you are
+
+```
+
 movement
 
 ```
