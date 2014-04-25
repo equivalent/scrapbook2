@@ -1,5 +1,14 @@
 # RSpec scrapbook
 
+### unstub
+
+```ruby
+before { Lpgrid::Configuration.any_instance.stub(:file_path).and_return('foo') }
+
+before { Lpgrid::Configuration.any_instance.unstub(:file_path) }
+```
+
+
 ### Install
 
     group :test, :development do
