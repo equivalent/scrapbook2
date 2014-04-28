@@ -3,7 +3,22 @@
 ### duplicate 
 
 ```sql
+# what domains are duplicated
 SELECT domain FROM applications GROUP BY domain HAVING COUNT(domain) > 1;
+
+   domain   
+------------
+ joe.com    
+ zoe.com    
+
+
+# select every column of fields that are duplicated
+SELECT * FROM (select * ROW_NUMBER() OVER(PARTITION BY domain) AS domain_count FROM applications) dups WHERE dups.domain_count > 1;
+   domain   | domain_count  |
+------------+-------------- |
+ joe.com    |            3  |
+ zoe.com    |            2  |
+
 
 ```
 
