@@ -1,4 +1,11 @@
+# Capybara count
+
+```ruby
+    page.all("table#applications tbody tr").count.should eql(3)
+```
+
 # Capybara cheet sheet
+
 
 stolen from https://gist.github.com/zhengjia/428105
 
