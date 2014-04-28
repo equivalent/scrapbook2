@@ -1,6 +1,14 @@
 # Rails Active Record Scrapbook
 
 
+## PostgreSQL select duplicates only
+
+```ruby
+class Application < ActiveRecord::Base
+  scope :have_duplicates, -> { where 'domain in (SELECT domain FROM applications GROUP BY domain HAVING COUNT(domain) > 1)' }
+end
+```
+
 ## Directly execute sql
 
 ```ruby
