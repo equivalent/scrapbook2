@@ -12,13 +12,18 @@ SELECT domain FROM applications GROUP BY domain HAVING COUNT(domain) > 1;
  zoe.com    
 
 
-# select every column of fields that are duplicated
+# therefore 
+select * from applications where domain in (SELECT domain FROM applications GROUP BY domain HAVING COUNT(domain) > 1);
+
+
+# select every column of fields that are duplicated BUT ONLY ONE OF EACH
+# solution look nice but you may face several issues
+#
 SELECT * FROM (select * ROW_NUMBER() OVER(PARTITION BY domain) AS domain_count FROM applications) dups WHERE dups.domain_count > 1;
    domain   | domain_count  |
 ------------+-------------- |
  joe.com    |            3  |
  zoe.com    |            2  |
-
 
 ```
 
