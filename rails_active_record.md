@@ -8,7 +8,7 @@ ActiveRecord::Base.establish_connection
 ActiveRecord::Base.connection.execute('select * from ...')
 ```
 
-this wil
+directly on model
 
 ```ruby
 MyModel.find_by_sql('select * from') 
