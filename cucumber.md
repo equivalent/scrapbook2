@@ -1,4 +1,4 @@
-# Capybara count
+# Capybara count elements
 
 ```ruby
     page.all("table#applications tbody tr").count.should eql(3)
