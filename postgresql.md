@@ -1,5 +1,11 @@
 # PostgreSQL
 
+### duplicate 
+
+```sql
+SELECT domain FROM applications GROUP BY domain HAVING COUNT(domain) > 1;
+
+```
 
 ### general notes
 
