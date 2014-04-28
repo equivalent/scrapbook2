@@ -1,5 +1,20 @@
 # Rails Active Record Scrapbook
 
+
+## Directly execute sql
+
+```ruby
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.execute('select * from ...')
+```
+
+this wil
+
+```ruby
+MyModel.find_by_sql('select * from') 
+```
+
+
 ## skip rails callbacks
 
 ```ruby
