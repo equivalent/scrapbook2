@@ -1,3 +1,28 @@
+# setup gem
+
+### Rakefile
+
+`vim ./Rakefile`
+
+```ruby
+require "bundler/gem_tasks"
+require 'rake/testtask'
+
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  t.libs << 'test'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
+end
+
+task default: :test
+```
+
+### test folder
+
+`mkdir ./test`
+
+
 # rspec like matchers
 
 | Assertion              | Examples                                                |   
