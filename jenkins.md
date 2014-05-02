@@ -1,5 +1,6 @@
 http://rails-jenkins.danmcclain.net/#1
 
+https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy
 
 ### build command 
 
