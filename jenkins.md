@@ -1,5 +1,10 @@
 http://rails-jenkins.danmcclain.net/#1
 
+### restart jenkins
+
+visit `http://Jenkins_url/restart`
+
+or `sudo service jenkins restart`
 
 ### build command 
 
