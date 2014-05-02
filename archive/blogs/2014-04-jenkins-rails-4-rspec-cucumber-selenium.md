@@ -188,3 +188,22 @@ Wisit Jenkins from browser again `http://localhost:8080/` and schedule the build
 
 
 
+## Advanced configuration
+
+### Changing Jenkins port
+
+```
+vim /etc/default/jenkin
+```
+
+change `HTTP_PORT=8080` to whatever you want. I'll need port 8080
+for another application, so I'll use unasign port 9700: `HTTP_PORT=9700`
+
+
+###
+
+
+sources:
+
+* https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy
+
