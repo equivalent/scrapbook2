@@ -58,6 +58,13 @@ moved to own file https://github.com/equivalent/scrapbook2/blob/master/factory_g
 
     2.1.should_not be_within(delta).of(2.0)  # e.g.: delta = 0.2 
     user.updated_at.should_not be_within(10.seconds).of(Time.now)
+    
+         
+    expect { service_reject }
+      .to change { application.status_changed_at }
+      .from(nil)
+      .to(be_within(3.seconds).of(Time.now))
+    
 
 **Check existenc of error on record**
 

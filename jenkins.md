@@ -1,10 +1,18 @@
 http://rails-jenkins.danmcclain.net/#1
 
+### cannot login 
+
+if you manage to lock all of your users on Jenkins security (Been
+there), just change `<useSecurity>true</useSecurity>` to
+`<useSecurity>false</useSecurity>` in  `/var/lib/jenkins/config.xml` 
+
 ### restart jenkins
 
 visit `http://Jenkins_url/restart`
 
 or `sudo service jenkins restart`
+
+https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy
 
 ### build command 
 
