@@ -49,13 +49,28 @@ sudo su - jenkins     # login as Jenkins user
 
 # add rvm to Jenkins
 bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+```
 
+next (still inside Jenkins user) generate ssh-keys for Jenkins user
+
+```bash
 # generate ssh-keys for jenkins
 ssh-keygen
+```
 
-# copy your public key and add it to desired Github profile
-vim ~/.ssh/id_rsa.pub
+...and add your public key and  to desired Github profile
 
+```bash
+cat ~/.ssh/id_rsa.pub
+```
+
+What I would recommend is to create new Github user (somehing like `my_application-bot` or `build-bot`) and 
+add him to a Github group that can pull repository. This way we will separate Build user on another layer ...source code
+management layer (just to make thing more secure).
+
+Logout from Jenkins user for now.
+
+```
 exit                  # leave jenkins user
 ```
 
