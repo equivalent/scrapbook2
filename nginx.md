@@ -233,7 +233,21 @@ sudo ln -s /etc/nginx/sites-available/my_appication_name.london /etc/nginx/sites
 
 finally restartyour nginx
 
-#restrict access
+#restrict access / basic auth
+
+
+    location / {
+
+      auth_basic "You shall not pass !!!";
+      auth_basic_user_file /etc/nginx/security/htpasswd;
+
+      # if you are proxy passing to web-server than don't forgot
+      # ...
+      proxy_set_header   Authorization "";
+      # ...
+    }
+
+
 
 restrict access: http://wiki.nginx.org/NginxHttpAuthBasicModule#auth_basic_user_file
 

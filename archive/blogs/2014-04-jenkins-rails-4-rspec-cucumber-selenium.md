@@ -213,9 +213,46 @@ you forgot passwords to all of your Jenkins webinterface users, just change
 `<useSecurity>true</useSecurity>` to `<useSecurity>false</useSecurity>` in
  `/var/lib/jenkins/config.xml`
 
+### User as Administrator
+
+in `/var/lib/jenkins/config.xml` make sure that your user has a line
+
+    <permission>hudson.model.Hudson.Administer:username</permission>
+
+### Basic auth NginX - Jenkins triggering Jetty basic auth
+
+If you manage to set up NginX in front of Jenkins with basic auth
+(.htpasswd) and on Jenkins you created Web user own database
+credentials. It may happen that now when you try to access the page you
+will get NginX basic auth popup and after successful login you will get
+another basic auth pop up (w.t.f ?)
+
+When you fail the second popup and you get: 
+
+    HTTP ERROR 401
+
+    Problem accessing /. Reason:
+
+        Bad credentials
+
+    Powered by Jetty://
+
+Reason for this is tat you forgot to tell NginX to proxy pass your
+Authorivation header. Webserver (Jetty) that Jenkins is running on will
+susspect you failed basic auth unless you pass this header:
+
+
+    # /etc/nginx/sites-availible/jenkins
+    # ....
+    proxy_set_header   Authorization "";
+    # ....
+
+This should fix it.
+
 
 sources:
 
 * https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy
+* https://wiki.jenkins-ci.org/display/JENKINS/Disable+security
 * http://jenkins-ci.361315.n4.nabble.com/Cannot-Log-Into-Jenkins-td4096436.html
 
