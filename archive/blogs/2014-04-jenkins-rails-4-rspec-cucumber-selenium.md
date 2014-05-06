@@ -188,7 +188,13 @@ Wisit Jenkins from browser again `http://localhost:8080/` and schedule the build
 
 
 
-## Advanced configuration
+## F.A.Q.
+
+### How to restart Jenkins 
+
+From webinterface: `http://Jenkins_url/restart`
+
+Console restart `sudo service jenkins restart`
 
 ### Changing Jenkins port
 
@@ -197,13 +203,19 @@ vim /etc/default/jenkin
 ```
 
 change `HTTP_PORT=8080` to whatever you want. I'll need port 8080
-for another application, so I'll use unasign port 9700: `HTTP_PORT=9700`
+for another application, so I'll use unassigned port 9700: `HTTP_PORT=9700`
 
 
-###
+### Enabled security and no user can access
+
+If you mange to enable Jenkins security but forgot to create users, or
+you forgot passwords to all of your Jenkins webinterface users, just change
+`<useSecurity>true</useSecurity>` to `<useSecurity>false</useSecurity>` in
+ `/var/lib/jenkins/config.xml`
 
 
 sources:
 
 * https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy
+* http://jenkins-ci.361315.n4.nabble.com/Cannot-Log-Into-Jenkins-td4096436.html
 
