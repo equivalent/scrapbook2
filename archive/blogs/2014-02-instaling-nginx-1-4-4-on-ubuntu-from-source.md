@@ -214,6 +214,7 @@ sources:
 * https://www.digitalocean.com/community/articles/how-to-compile-nginx-from-source-on-an-centos-6-4-x64-vps
 * http://extralogical.net/articles/howto-compile-nginx-passenger.html
 * http://railscasts.com/episodes/335-deploying-to-a-vps 
+* https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy
 
 
 
