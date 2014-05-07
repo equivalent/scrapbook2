@@ -1,4 +1,6 @@
 # examples 
+[jenkins nginx
+configurations](https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)
 http://unicorn.bogomips.org/examples/nginx.conf
 
 
