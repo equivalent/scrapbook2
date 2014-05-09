@@ -11,12 +11,12 @@ class Foo
 end
 ```
 
-```irb
-> Foo.new.my_method
-# NoMethodError: private method `my_method' called for #<Foo:0x00000003ddb8e8>
+```ruby
+Foo.new.my_method
+# => NoMethodError: private method `my_method' called for #<Foo:0x00000003ddb8e8>
 
->Foo.send :public, :my_method
-> Foo.new.my_method
+Foo.send :public, :my_method
+Foo.new.my_method
 # => "it work !" 
 
 ```
@@ -27,11 +27,11 @@ class Bar < Foo
 end
 ```
 
-```irb
-> Foo.new.my_method
-# NoMethodError: private method `my_method' called for #<Foo:0x00000003ddb8e8>
+```ruby
+Foo.new.my_method
+# => NoMethodError: private method `my_method' called for #<Foo:0x00000003ddb8e8>
 
-> Bar.new.my_method
+Bar.new.my_method
 # => "it work !" 
 ```
 
