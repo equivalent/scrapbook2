@@ -44,8 +44,12 @@ namespace :deploy do
        #execute "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
      #end
    #end
-
 end
+
+after 'deploy:finished', 'unicorn:restart'
+after 'deploy:finished', 'delayed_job:restart'
+
+
 ```
 
 
