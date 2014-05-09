@@ -1,5 +1,19 @@
 # Ruby scrapbook
 
+### undefine ruby constasnt / class
+
+```
+>> class Foo; end
+=> nil
+>> Object.constants.include?(:Foo)
+=> true
+>> Object.send(:remove_const, :Foo)
+=> Foo
+>> Object.constants.include?(:Foo)
+=> false
+>> Foo
+NameError: uninitialized constant Foo
+```
 
 ### executing sh in Ruby
 
