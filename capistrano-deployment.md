@@ -38,6 +38,13 @@ namespace :deploy do
       # end
     end
   end
+  
+   #after "deploy:finishing", :link_database_yml do
+     #on roles(:app) do
+       #execute "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+     #end
+   #end
+
 end
 ```
 
