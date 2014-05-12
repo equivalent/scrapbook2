@@ -1,7 +1,10 @@
-scrapbook2
-==========
+Scrapbook2
+==============
 
-pure git/gitub version for my scrapbook around web-development
+Pure git/github version of my scrapbook on Ruby on Rails, web-development, linux system configuration.
+
+
+
 
     ##########################################################################
     ##                                                                      ##
