@@ -1,5 +1,12 @@
 # Capybara curent driver 
 
+```ruby
+if Capybara.current_driver == :selenium
+  click 'something'
+else
+  fill_in 'something', with: "<h1>test</h1>
+else
+
 some sources recomend :
 
 ```ruby
