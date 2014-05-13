@@ -6,6 +6,7 @@ if Capybara.current_driver == :selenium
 else
   fill_in 'something', with: "<h1>test</h1>"
 else
+```
 
 some sources recomend :
 
