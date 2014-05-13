@@ -1,3 +1,13 @@
+# Capybara curent driver 
+
+some sources recomend :
+
+```ruby
+      if Capybara.current_driver == Capybara.javascript_driver 
+```
+
+...but it didn't work for me
+
 # Capybara count elements
 
 ```ruby
