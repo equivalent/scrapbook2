@@ -1,3 +1,9 @@
+### run execute other task from task
+
+`    Rake::Task['db:schema:load'].invoke `
+
+keywonds: invoke
+
 ### Show all rake tasks
 
     rake -T
