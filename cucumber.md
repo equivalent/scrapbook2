@@ -39,6 +39,7 @@ stolen from https://gist.github.com/zhengjia/428105
     click_button('Save')
     click('Link Text') # Click either a link or a button
     click('Button Value')
+    find(selector).click
     
     # when you have multiple links or Capybara::Ambiguous: error
     first(:link, 'Applications').click
