@@ -235,6 +235,10 @@ sudo ln -s /etc/nginx/sites-available/my_appication_name.london /etc/nginx/sites
 
 finally restartyour nginx
 
+Note that `my_application.com` and `www.my_application.com` are two different things ! 
+
+to test this in Curl trigger `curl -kvI https://my_application.com`
+
 #restrict access / basic auth
 
 
