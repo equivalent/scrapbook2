@@ -10,6 +10,8 @@
     form.submit!
 ```
 
+https://github.com/jnicklas/capybara/pull/529
+
 # Capybara curent driver 
 
 ```ruby
