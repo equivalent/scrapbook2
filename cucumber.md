@@ -1,3 +1,15 @@
+# capybara submit form without button
+
+```ruby
+    form = find('form#application_search')
+    class << form
+      def submit!
+        Capybara::RackTest::Form.new(driver, native).submit({})
+      end
+    end
+    form.submit!
+```
+
 # Capybara curent driver 
 
 ```ruby
