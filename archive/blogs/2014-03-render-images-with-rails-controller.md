@@ -31,7 +31,7 @@ get 'logo', to: "branding#logo"
 
 ```haml
 # app/views/layouts/application_layout.html.haml
-= image_tag 'logo.png`
+= image_tag 'logo.png'
 ```
 
 for **Local stored files**
