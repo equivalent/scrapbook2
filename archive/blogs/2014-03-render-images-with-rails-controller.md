@@ -81,8 +81,6 @@ send_data generate_tgz('dir'), filename: 'dir.tgz'
 
 ## CarrierWave gem
 
-## word on ContentType requirement
-
 One may ask if specifying MimeType is important. Modern browsers will
 automatically determine what MimeType they are dealing with from the
 first few bytes of file. Well if you you want really easy functionality
