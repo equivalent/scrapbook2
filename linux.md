@@ -8,6 +8,12 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+##  discover all IP adresses in local network
+
+```sh
+nmap -sP 192.168.1.*
+```
+
 ## send html email via linux console
 
 
