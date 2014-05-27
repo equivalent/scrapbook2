@@ -8,6 +8,14 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## tail remoote server log file
+
+```sh
+ssh -t user@212.95.123.123 'tail -f ~/apps/my_app/current/log/trial.log'
+```
+
+
+
 ##  discover all IP adresses in local network
 
 ```sh
