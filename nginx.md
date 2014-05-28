@@ -239,6 +239,8 @@ Note that `my_application.com` and `www.my_application.com` are two different th
 
 to test this in Curl trigger `curl -kvI https://my_application.com`
 
+**note** linux standart is to put certificates to `/etc/ssl/certs` and private keys to `/etc/ssl/private`
+
 #restrict access / basic auth
 
 
