@@ -204,4 +204,6 @@ This way we will trigger 3 SQL calls in the beginning of spec and
 each `it` statement will work with those resources without more Database
 calls.
 
+One thing to remmember is that you may need to wipe your database after this particular spec description/context finish so that next spec context wont have database records created in this instance ( look at the `after(:all)` block ).
+
 Keywords: Rails 4, Ruby 2, RSpec, before all, after all, test-suite, TDD
