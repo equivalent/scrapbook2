@@ -52,9 +52,9 @@ en:
               invalid: 'Must include uppercase & number'
 ```
 
-for `validates_presence_of` keyword you can use `blank`
-for `validates_length_of` keyword you can use `too_short` or `too_long`
-for `validates_uniqueness_of` keyword you can use `taken`
+* for `validates_presence_of` keyword you can use `blank`
+* for `validates_length_of` keyword you can use `too_short` or `too_long`
+* for `validates_uniqueness_of` keyword you can use `taken`
 
 You can find other keys in this [Rails error message interpolation table](http://guides.rubyonrails.org/i18n.html#error-message-scopes)
 
