@@ -12,11 +12,22 @@ $(document).ready ->
 
 $(document).on 'ready', ->  
 
+
 # so for when document is ready or when turbolinks.js loads the page
 
 $(document).on 'ready page:load', ->
   $('#fetch_custom_form').change ->
     $(this).submit()
+    
+
+# or even cleaner
+
+ready = ->
+  alert('aa')
+$(document).ready(ready)
+$(document).on('page:load', ready)
+
+
 ```
 
 own bindings
