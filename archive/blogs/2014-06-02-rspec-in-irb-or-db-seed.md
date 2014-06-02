@@ -22,7 +22,7 @@ that something went wrong we are destroying old database values. But in my
 case (where I keep really good track of database dumps) it works for
 me.
 
-```
+```ruby
 # Gemfile
 
 # ...
