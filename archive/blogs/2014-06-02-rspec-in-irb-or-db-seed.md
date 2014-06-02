@@ -64,8 +64,8 @@ Plus are just running them once or twice a week.
 
 Like I said this works for my requirement but I would recommend to have a look on 
 [this SO question](http://stackoverflow.com/questions/6004057/w-rspec-how-to-seed-the-database-on-load)
-for more suggestions. Especially if you need to seed database before runing specs
-one interesting ide is this:
+for more suggestions. Especially if you need to seed database before
+running specs one interesting ide is this:
 
 ```ruby
 # spec/spec_helper.rb
