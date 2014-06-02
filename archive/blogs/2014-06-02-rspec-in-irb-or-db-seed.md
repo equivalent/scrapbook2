@@ -60,7 +60,6 @@ something. I would rather let my `rake db:seed` task to take 2 seconds
 more than I would spend 20 minutes fixing db:seeds over weekend.
 Plus are just running them once or twice a week.
 
-`rake db:seed`
 
 Like I said this works for my requirement but I would recommend to have a look on 
 [this SO question](http://stackoverflow.com/questions/6004057/w-rspec-how-to-seed-the-database-on-load)
@@ -82,7 +81,7 @@ end
 
 If you look for a way how to load RSpec in irb:
 
-```irb
+```ruby
 require 'rspec/expectations'
 include RSpec::Matchers
 1.should eq 1
