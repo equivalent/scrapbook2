@@ -58,8 +58,9 @@ specs/tests we run them once as a part of the reseed process therefore
 there is a wider window for not spotting some cached instance variable or
 something. I would rather let my `rake db:seed` task to take 2 seconds
 more than I would spend 20 minutes fixing db:seeds over weekend.
+Plus are just running them once or twice a week.
 
-And like I said we are just running them once or twice a week `rake db:seed`
+`rake db:seed`
 
 Like I said this works for my requirement but I would recommend to have a look on 
 [this SO question](http://stackoverflow.com/questions/6004057/w-rspec-how-to-seed-the-database-on-load)
@@ -79,7 +80,7 @@ end
 
 ## RSpec in IRB console
 
-This works for irb as well
+If you look for a way how to load RSpec in irb:
 
 ```irb
 require 'rspec/expectations'
