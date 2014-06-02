@@ -60,7 +60,6 @@ something. I would rather let my `rake db:seed` task to take 2 seconds
 more than I would spend 20 minutes fixing db:seeds over weekend.
 Plus are just running them once or twice a week.
 
-
 Like I said this works for my requirement but I would recommend to have a look on 
 [this SO question](http://stackoverflow.com/questions/6004057/w-rspec-how-to-seed-the-database-on-load)
 for more suggestions. Especially if you need to seed database before
@@ -76,6 +75,34 @@ Spec.configure do |config|
   end
 end
 ```
+
+## Word on Gemfile
+
+I agree that it's stupid to have `RSpec` exposed for every enviroment 
+(production or staging env may not need them). Solution for this is easy: 
+
+```ruby
+# Gemfile
+
+group :development, :test, :staging, :demo do
+  gem 'rspec-rails', require: false
+end
+```
+
+...or if we want to be more hardcore
+
+```ruby
+# Gemfile
+
+group :demo do
+  gem 'rspec-expectations', require: false
+end
+
+group :development, :test do
+  gem 'rspec-rails', require: false
+end
+```
+
 
 ## RSpec in IRB console
 
