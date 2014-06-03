@@ -3,7 +3,21 @@
 Collection on 
 
 
-## Kanban
+## Scrum
+
+User stories prioritized by product owner to release backlog.
+Team than estimates user storis in backlog and prioritize them to sprints.
+
+* Estimates in story points or  developer hours
+* larger items to estimates can be brokend down and estimated as summary of chunks
+
+Burndown chart @todo
+
+sources 
+
+* https://www.youtube.com/watch?v=XU0llRltyFM
+
+## Kanban 
 
 it's lean agile metodology (in our context) to improve development flow 
 
