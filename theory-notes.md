@@ -5,7 +5,7 @@ Collection on
 
 ## Kanban
 
-it's lean agile metodology for development practices 
+it's lean agile metodology (in our context) to improve development flow 
 
 * kan ban (visual card) - visual representation of que that helps (not only) development 
 team to visualize the workflow so that software delivery is in sync
