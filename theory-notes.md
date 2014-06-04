@@ -57,6 +57,7 @@ sources:
 
 * https://github.com/blog/517-unicorn
 * http://vladigleba.com/blog/2014/03/21/deploying-rails-apps-part-3-configuring-unicorn/
+* http://www.justinappears.com/blog/2-no-downtime-deploys-with-unicorn/
 
 ## Puma 
 
