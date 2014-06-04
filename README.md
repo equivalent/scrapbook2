@@ -15,7 +15,7 @@ Archive:
 * Micro Blogs ar published on [http://ruby-on-rails-eq8.blogspot.com/](http://ruby-on-rails-eq8.blogspot.com/)
 
 
-# Ruby on Rails unsorted
+# Web-development notes unsorted
 
 ### checkbox, radio input value to boolean
 
@@ -28,15 +28,11 @@ ActiveRecord::ConnectionAdapters::Column.value_to_boolean nil  # => false
 
 ```
 
-# Other
-
 ### Robots.txt examlpe
 
 * http://tindeck.com/robots.txt
 * http://www.ben-norman.co.uk/blog/seo/ten-examples-of-creative-robots-txt-files/
 
-
-# Security
 
 ### Dont chache content that is restricted 
 
