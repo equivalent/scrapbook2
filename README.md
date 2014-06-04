@@ -4,13 +4,16 @@ Scrapbook2
 Pure git/github version of my scrapbook on Ruby on Rails, web-development, linux system configuration.
 
 
-
-
     ##########################################################################
     ##                                                                      ##
     ##   Checke individual .md files above for more information on topics   ##
     ##                                                                      ##
     ##########################################################################
+    
+Archive: 
+* Blogs are published on [http://www.eq8.eu/blogs](http://www.eq8.eu/blogs)
+* Micro Blogs ar published on [http://ruby-on-rails-eq8.blogspot.com/](http://ruby-on-rails-eq8.blogspot.com/)
+
 
 # Ruby on Rails unsorted
 
