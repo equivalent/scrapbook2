@@ -2,6 +2,28 @@
 
 Collection on 
 
+
+URI - uniform resource identifier- generic referenc to resource.
+
+URN -uniform resource name
+
+URL uniform resource locator - is URI with network protocol (.html, ..json...)
+
+
+
+CDN content delivery network...@todo google
+
+## REST
+
+**HATEOAS** hypermedia as the engine of application state - basicaly user shoul work with active links not hatdcoded ones that may change. ... User chould discover links by using app
+
+REST representative štáte transfer....HTTP for inter-computer comunication via resources based on uniq uri mapped by HTTP verbs GET, POST, PUT, DELETE to CRUD
+
+
+API meditaiton layer  @todo page 027
+
+
+
 ## Deployment
 
 * Generally, web apps are stored inside `/var/www` on Unix since the `/var` directory is designated for files that increase in size over time, which is the case with most web apps
