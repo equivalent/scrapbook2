@@ -39,3 +39,5 @@ sources:
 
 ### [PeepCode 055 - F. Hwang](http://pluralsight.com/training/courses/TableOfContents?courseName=play-by-play-francis-hwang&highlight=geoffrey-grosenbach_play-by-play-francis-hwang-m01!francis-hwang_play-by-play-francis-hwang-m02!francis-hwang_play-by-play-francis-hwang-m03#play-by-play-francis-hwang-m01)
 
+* Purpose of refactoring is not to reduce code but to comunicate more clearly
+* there is no good reason why to use MySQL for rails project. If you concern about speed rather use mongo
