@@ -40,6 +40,7 @@ sources:
 
 ## Unicorn
 
+* proces based server
 * Master proces is monitoring workers
 * if one of workers take too much memory it will fork the process and kill the original one
 * when deployed, Unicorn gracefully fork  & shut down workers for new code
@@ -64,7 +65,15 @@ sources:
 * multi thread server (running multiple threads in a single process)
 * rails  app must be thread safe
 
+multi-thred server(puma) vs process-based server (unicorn)
 
+* proces based - each instance take lives in own process => own cluster of memmory => can easily drain resources
+* Thred based - won't use the same amount of memory to THEORETICALLY attain the same amount of concurrency.
+* 
+
+source:
+
+* http://stackoverflow.com/questions/18575235/what-do-multi-processes-vs-multi-threaded-servers-most-benefit-from
 
 ## PosgreSQL
 
