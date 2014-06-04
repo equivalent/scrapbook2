@@ -15,7 +15,7 @@ Archive:
 * Micro Blogs ar published on [http://ruby-on-rails-eq8.blogspot.com/](http://ruby-on-rails-eq8.blogspot.com/)
 
 
-# Web-development notes unsorted
+## Web-development notes unsorted
 
 ### checkbox, radio input value to boolean
 
