@@ -2,6 +2,9 @@
 
 Collection on 
 
+## Deployment
+
+* Generally, web apps are stored inside `/var/www` on Unix since the `/var` directory is designated for files that increase in size over time, which is the case with most web apps
 
 ## Scrum
 
