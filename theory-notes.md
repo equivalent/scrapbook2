@@ -35,6 +35,32 @@ sources:
 * https://www.youtube.com/watch?v=0EIMxyFw9T8
 
 
+## Unicorn
+
+* Master proces is monitoring workers
+* if one of workers take too much memory it will fork the process and kill the original one
+* when deployed, Unicorn gracefully fork  & shut down workers for new code
+* master wont kill process untill successfuly forked (this may cause issues as old proces 
+may be still alive meaning old code is displayed)
+* When all workers finish serving their current requests, the old master then dies, 
+and our app is fully reloaded with new code
+
+comperisant to Passanger
+  *  only Passeanger enterprise (paid) suport restarting like this however 
+  Passanger solution restart one by one therfore take les memory (Unicor tries to do that at once)
+
+sources:
+
+* https://github.com/blog/517-unicorn
+* http://vladigleba.com/blog/2014/03/21/deploying-rails-apps-part-3-configuring-unicorn/
+
+## Puma 
+
+* multi thread server (running multiple threads in a single process)
+* rails  app must be thread safe
+
+
+
 ## PosgreSQL
 
 postgresql advantages over mysql:
