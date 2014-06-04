@@ -14,15 +14,23 @@ RAILS_ENV=staging rbenv exec unicorn -c config/unicorn.rb -D
 ```ruby
 # config/unicorn.rb
 
-working_directory "/home/deploy/apps/your_rails_app"
-pid "/home/deploy/apps/your_rails_app/current_hack/tmp/pids/unicorn.pid"
-stderr_path "/home/deploy/apps/your_rails_app/log/unicorn.log"
-stdout_path "/home/deploy/apps/your_rails_app/log/unicorn.log"
+working_directory "/var/www/your_rails_app"
+pid "/var/www/your_rails_app/current_hack/tmp/pids/unicorn.pid"
+stderr_path "/var/www/your_rails_app/log/unicorn.log"
+stdout_path "/var/www/your_rails_app/log/unicorn.log"
 
 listen '/tmp/unicorn.your_rails_app.sock' # this is the socket that will be picked up by NgineX
 worker_processes 2
 timeout 30
 ```
+
+Note: I know lot of developers prefer to use `/home/deploy/apps/your_rails_app` directory but generally,
+web apps are stored inside `/var/www` on Unix since the `/var` directory is designated for files that 
+increase in size over time, which is the case with most web apps.
+ 
+* https://github.com/blog/517-unicorn
+* http://vladigleba.com/blog/2014/03/21/deploying-rails-apps-part-3-configuring-unicor/
+* http://railscasts.com/episodes/293-nginx-unicorn
 
 # unicorn start/stop
 
