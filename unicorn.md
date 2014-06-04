@@ -20,7 +20,9 @@ stderr_path "/var/www/your_rails_app/log/unicorn.log"
 stdout_path "/var/www/your_rails_app/log/unicorn.log"
 
 listen '/tmp/unicorn.your_rails_app.sock' # this is the socket that will be picked up by NgineX
-worker_processes 2
+worker_processes 2 # specifies the maximum number of seconds
+                   # a worker can take to respond to a request before the
+                   # master kills it and forks a new one
 timeout 30
 ```
 
