@@ -35,9 +35,17 @@ sources:
 * https://www.youtube.com/watch?v=0EIMxyFw9T8
 
 
+## PosgreSQL
+
+postgresql advantages over mysql:
+
+* tables are created over transaction (if  creatin migration fail you can run it again) transactional schema changes 
+* type protection will not execute query (e.g if you set incorect date format) 
+* if you create record where you set wrong string as date format, record is saved and date is populated with bullshit
+
 # Notes from screencasts
 
 ### [PeepCode 055 - F. Hwang](http://pluralsight.com/training/courses/TableOfContents?courseName=play-by-play-francis-hwang&highlight=geoffrey-grosenbach_play-by-play-francis-hwang-m01!francis-hwang_play-by-play-francis-hwang-m02!francis-hwang_play-by-play-francis-hwang-m03#play-by-play-francis-hwang-m01)
 
 * Purpose of refactoring is not to reduce code but to comunicate more clearly
-* there is no good reason why to use MySQL for rails project. If you concern about speed rather use mongo
+* there is no good reason why to use MySQL for Rails project. If you concern about speed rather use Mongo
