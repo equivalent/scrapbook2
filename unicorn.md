@@ -34,6 +34,11 @@ increase in size over time, which is the case with most web apps.
 * http://vladigleba.com/blog/2014/03/21/deploying-rails-apps-part-3-configuring-unicor/
 * http://railscasts.com/episodes/293-nginx-unicorn
 
+
+# unicorn init.d 
+
+https://github.com/railscasts/335-deploying-to-a-vps/blob/master/blog-nginx/config/unicorn_init.sh
+
 # unicorn start/stop
 
     # demon
