@@ -1,5 +1,56 @@
 # Ruby scrapbook
 
+### differenc between `alias` and `alias_method`
+
+`alias` is a keyword and it is lexically scoped. It means it treats self as the value of self at the time the source code was read . In contrast `alias_method` treats self as the value determined at the run time.
+
+```ruby
+class User
+  def full_name
+    puts "Johnnie Walker"
+  end
+
+  def self.add_rename
+    alias_method :name, :full_name
+  end
+end
+
+class Developer < User
+  def full_name
+    puts "Geeky geek"
+  end
+  add_rename
+end
+
+Developer.new.name #=> 'Gekky geek'
+
+class User
+  def full_name
+    puts "Johnnie Walker"
+  end
+
+  def self.add_rename
+    alias :name :full_name
+  end
+end
+
+class Developer < User
+  def full_name
+    puts "Geeky geek"
+  end
+  add_rename
+end
+
+Developer.new.name #=> 'Johnnie Walker'
+
+```
+
+
+
+source:
+
+http://blog.bigbinary.com/2012/01/08/alias-vs-alias-method.html
+
 ### undefine ruby constasnt / class
 
 ```
