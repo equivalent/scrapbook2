@@ -50,7 +50,8 @@ and our app is fully reloaded with new code
 
 comperisant to Passanger
   *  only Passeanger enterprise (paid) suport restarting like this however 
-  Passanger solution restart one by one therfore take les memory (Unicor tries to do that at once)
+  Passanger solution restart one by one therfore take les memory (Unicor tries to do that at once unless you
+  set up init.d script to do that )
 
 sources:
 
