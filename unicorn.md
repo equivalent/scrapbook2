@@ -1,4 +1,6 @@
- unicorn server for Rails notes
+# unicorn server for Rails notes
+ 
+@todo http://www.justinappears.com/blog/2-no-downtime-deploys-with-unicorn/ (no downtime deployment & rolling ) 
  
  
 run demonized with configuration file under rbenv 
