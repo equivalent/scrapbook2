@@ -7,6 +7,12 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## curl
+
+curl server headers (As seen in [NginX scrapbook](https://github.com/equivalent/scrapbook2/blob/master/nginx.md) )
+`curl -kvI https://my_application.com`
+
+
 
 ## tail remoote server log file
 
