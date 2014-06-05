@@ -10,8 +10,17 @@ old stuff can be found on
 ## curl
 
 curl server headers (As seen in [NginX scrapbook](https://github.com/equivalent/scrapbook2/blob/master/nginx.md) )
-`curl -kvI https://my_application.com`
 
+```
+curl -kvI https://my_application.com
+```
+
+curl Json POST on https:// (-k no igrore self signerd warning)
+
+
+```
+curl -i -k -H "Content-type: application/json" -H "Accept: application/json" -X POST  http://0.0.0.0:3000
+```
 
 
 ## tail remoote server log file
