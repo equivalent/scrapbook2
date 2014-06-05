@@ -2,6 +2,8 @@
 
 ### ruby prompt
 
+...or console input
+
 ```ruby
 require "highline/import"
 input = ask "Input text: "
