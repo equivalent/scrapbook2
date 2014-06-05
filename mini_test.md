@@ -1,5 +1,9 @@
 # setup gem
+ 
+### run just one test file
 
+`ruby -Itest spec/**/*_spec.rb`
+ 
 ### Rakefile
 
 `vim ./Rakefile`
