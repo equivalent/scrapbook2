@@ -22,6 +22,17 @@ curl Json POST on https:// (-k no igrore self signerd warning)
 curl -i -k -H "Content-type: application/json" -H "Accept: application/json" -X POST  http://0.0.0.0:3000
 ```
 
+token
+
+```
+CURL: `curl localhost:3000/api/v1/status -H 'Authorization: Token token="key"'`
+```
+
+post json from a file
+
+```
+CURL: curl -X POST -H 'Content-Type: application/json' -d @spec/fixtures/application.json localhost:3000/api/v1/applications
+```
 
 ## tail remoote server log file
 
