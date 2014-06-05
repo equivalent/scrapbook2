@@ -1,3 +1,18 @@
+### rake prompt
+
+... or console input 
+
+```ruby
+
+task :say_hi do
+  puts "What's your name?"
+  name = $stdin.gets.chomp
+  puts "Hi #{name}!"
+end
+```
+
+from https://gist.github.com/pixelmatrix/486467
+
 ### run execute other task from task
 
 `    Rake::Task['db:schema:load'].invoke `
