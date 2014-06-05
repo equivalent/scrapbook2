@@ -25,13 +25,13 @@ curl -i -k -H "Content-type: application/json" -H "Accept: application/json" -X 
 token
 
 ```
-CURL: `curl localhost:3000/api/v1/status -H 'Authorization: Token token="key"'`
+curl localhost:3000/api/v1/status -H 'Authorization: Token token="key"'
 ```
 
 post json from a file
 
 ```
-CURL: curl -X POST -H 'Content-Type: application/json' -d @spec/fixtures/application.json localhost:3000/api/v1/applications
+curl -X POST -H 'Content-Type: application/json' -d @spec/fixtures/application.json localhost:3000/api/v1/applications
 ```
 
 ## tail remoote server log file
