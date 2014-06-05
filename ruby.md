@@ -1,5 +1,12 @@
 # Ruby scrapbook
 
+### ruby prompt
+
+```ruby
+require "highline/import"
+input = ask "Input text: "
+```
+
 ### difference between `alias` and `alias_method`
 
 `alias` is a keyword and it is lexically scoped. It means it treats self as the value of self at the time the source code was read . In contrast `alias_method` treats self as the value determined at the run time.
