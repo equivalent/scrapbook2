@@ -1,5 +1,101 @@
 # Ruby scrapbook
 
+### ruby literals
+
+hexadecimal octal
+
+```ruby
+3.14          # this is literal as well
+41            # ...even this 
+1_000_000_000 # ...and this
+
+a = 0b111101101  # this is binary literal
+a.to_s(8)
+#=> "755" 
+a.to_s(16)
+ => "1ed"
+
+0755          # oct literal
+0755.to_s(8) 
+ => "755" 
+0755.to_s(2)
+ => "111101101" 
+
+0x7fff     # hex literal
+
+?c    #  this is literal as well
+# => "c"
+
+%w() # even this is literal
+
+:foo             # => :foo
+:"foo-#{123}"    # => :"foo-123"
+```
+
+source: ruby tapas 001 002 003 005
+
+### ruby forwardable 
+
+...or native ruby delagate / delegator
+
+
+**delegate multiple attributes* 
+
+```ruby
+require 'forwardable'
+
+class User
+
+  attr_reader :account
+
+  extend Forwardable
+
+  def_delegators :account, :first_name, :last_name, :email_address
+  # B.T.W.: this will work too 
+  # def_delegators :@account, :first_name, :last_name, :email_address
+
+  def initialize(account)
+    @account = account
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+end
+
+GithubAccount = Struct.new(:uid, :email_address, :first_name, :last_name)
+avdi = User.new(GithubAccount.new("avdi", "avdi@avdi.org", "Avdi", "Grimm")) 
+avdi.full_name # => "Avdi Grimm"
+```
+
+**delegate one attribute* 
+
+* this has an advantage that you can specify alias name (`:owner_email`)
+* can use any object that evaluates as string for delegation
+source even chain (`'@owner.account'`)
+
+```ruby
+require 'forwardable'
+
+class Store
+  extend Forwardable
+
+  def_delegator '@owner.account', :email_address, :owner_email
+
+  def initialize(owner)
+    @owner = owner
+  end
+end
+
+Account = Struct.new(:email_address)
+Owner = Struct.new(:account)
+owner = Owner.new(Account.new('foo@bar.com'))
+store = Store.new(owner)
+store.owner_email        # => "foo@bar.com" 
+```
+
+source: ruby tapas 006
+
 ### ruby prompt
 
 ...or console input
@@ -111,6 +207,23 @@ Note:
 ```ruby
 $?.exitstatus
 ```
+
+If you execute multiple arguments it's recommend to do it this way:
+
+```ruby
+source = '~/foo'
+destination = '/tmp'
+system *%W(cp -R #{source} #{destination}})
+```
+
+because when you run string (`system 'ls -a' `) ruby will pass the
+command to shell (shell injection attacks, default shell may work
+diferently), 
+
+when you run list of args (`system 'ls', '-a'`) it forces execute of command directly
+
+
+source: ruby tapas 005
 
 ### reduce & inject
 

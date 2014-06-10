@@ -1,5 +1,6 @@
 # Theory notes
 
+
 Collection on 
 
 
@@ -10,6 +11,11 @@ URN -uniform resource name
 URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 
+## Dictionary
+
+* interpolatation  -  in ruby the `"#{}"`
+* composition - OOP concept, enables object behavior be implemented in
+terms of other collaborator objects.
 
 CDN content delivery network...@todo google
 
@@ -111,3 +117,22 @@ postgresql advantages over mysql:
 
 * Purpose of refactoring is not to reduce code but to comunicate more clearly
 * there is no good reason why to use MySQL for Rails project. If you concern about speed rather use Mongo
+* 
+
+## clean coders
+
+
+#
+
+Difference between Subroutine and Framework: 
+
+* Applications call Subrutines, Framewors call Applications
+
+```
+             flow of control                flow of control
+ Framework    ------------->   Application  ------------->    Subroutine 
+              <-------------                ------------->
+             code dependency                code dependency
+```
+
+
