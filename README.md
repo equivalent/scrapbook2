@@ -17,6 +17,33 @@ Archive:
 
 ## Web-development notes unsorted
 
+### include Rails helpers in cusom class
+
+```ruby
+class Foo
+  include Rails.application.routes.url_helpers
+  # ... or you can Delegate methods it
+  
+  
+  def home_macro
+    h.link_to 'Home', root_path
+  end
+  
+  private
+  
+  def h
+    ActionController::Base.helpers
+  end
+
+end
+
+```
+
+
+**note** you can do  `include UrlHelper` which includes `link_to` but this will work only for String based urls as this module was changed in Rails 4 ( [check source code](https://github.com/rails/rails/blob/3d9bd2ac9482eabf4ee0ed286952ccd19207e851/actionview/lib/action_view/helpers/url_helper.rb) ) 
+
+if you keep getting error `arguments passed to url_for can't be handled ...` your only chance is to use my former code
+
 ### checkbox, radio input value to boolean
 
 ```ruby
