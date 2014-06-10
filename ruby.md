@@ -1,5 +1,32 @@
 # Ruby scrapbook
 
+### replace string on multiple places
+
+obviosuly this is easiest
+```ruby
+a = 'foo is so bar'
+a.gsub(/foo/, 'bar')
+a  # => 'bar is so bar'
+```
+
+```ruby
+a ="foo is so foo"
+# => "foo is so foo" 
+
+a['foo'] = 'bar'
+a  # => "bar is so foo" 
+
+a['foo'] = 'bar'
+a  # => "bar is so bar" 
+```
+
+however even better is to replace keys with sprintf hash value syntax 
+
+```ruby
+'%{foo} is so %{bar}' % {foo: 'moo', bar: 'car'}
+# => "moo is so car"
+```
+
 ### ruby literals
 
 hexadecimal octal
