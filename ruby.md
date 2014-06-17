@@ -1,5 +1,49 @@
 # Ruby scrapbook
 
+### Ruby dynamic instance plugins from constants
+
+```ruby
+module Tea
+  class Prepare
+    def initialize(name)
+      @name = name
+      init_plugins
+    end
+
+    def init_plugins
+      @plugins = []
+      Plugins.constants.each do |name|
+        @plugins << Plugins.const_get(name).new(self)
+      end
+    end
+
+    def start
+    end
+  end
+
+  module Plugins
+    class AddMilk
+      def initialize(tea_prepare)
+        tea_prepare.extend(AddMilkToCup)
+      end
+
+      module AddMilkToCup
+        def start(*)
+          puts "Milk.."
+          super
+        end
+      end
+    end   
+  end
+end
+
+Tea::Prepare.new('English breakfast tea').start
+# "Milk"..
+# => nil
+```
+
+source: ruby tapas 011
+
 ### replace string on multiple places
 
 obviosuly this is easiest
