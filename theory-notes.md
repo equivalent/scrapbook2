@@ -19,6 +19,60 @@ terms of other collaborator objects.
 
 CDN content delivery network...@todo google
 
+## Ruby
+
+ruby methods are **not first class objects** == defining method won't give you
+value inmidietly when you define  it
+
+```ruby
+a = def x
+      'x'
+    end
+a # => nil
+x # => 'x'
+```
+
+To get the method object we need to call `#method` on an instance
+
+```ruby
+class Foo
+  def x
+    123
+  end
+end
+foo = Foo.new
+foo.x                  # => 123
+x1 = foo.method(:x)    # => #<Method: Foo#x> 
+x1.call                # => 123
+```
+
+...however this method object holds direct reference of current state of a method on the time
+it was initialized
+
+```ruby
+Foo.class_eval do
+  def x 
+   'xyz'
+  end
+end
+
+foo.send(:x)            # => 'xyz'        # you send a message !!!
+foo.x                   # => 'xyz'        # you send a message too !!!
+x1.call                 # => "123"        # calling a method  !!!
+```
+
+**message** is a name for a responsibility which object may have
+**method** is named concrete piece of code that encodes one way that
+responsibility may be fulfilled
+
+when an object receive message it decide how to respond to that message
+in givent time 
+
+when an object receive call of method it
+
+source: ruby tapas 011
+
+
 ## REST
 
 **HATEOAS** hypermedia as the engine of application state - basicaly user shoul work with active links not hatdcoded ones that may change. ... User chould discover links by using app

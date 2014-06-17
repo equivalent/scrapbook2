@@ -1,5 +1,27 @@
 # pure Ruby
 
+### Home dir ruby 
+
+```ruby
+File.join(Dir.home, '.bashrc')
+# => "/home/tomi/.bashrc"  
+
+# ...this rely on home ENV.fetch('HOME') 
+ENV.fetch('HOME')
+# => "/home/tomi"
+
+# You can explicitly specify user:
+File.join(Dir.home('tomi'), '.bashrc')
+
+# Or you can ask for current user
+require 'etc'
+user = Etc.getlogin             # => "tomi"
+config_file = File.join(Dir.home(user), ".bashrc")
+# => "/home/tomi/.bashrc"
+```
+
+source: ruby tapas 010
+
 ### Gem root dir
 
 ```ruby
