@@ -3,6 +3,8 @@
 
 # Table joins
 
+A SQL query goes into a bar, walks up to two tables and asks, "Can I join you?"
+
 ![Sql join diagrams](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/sql-joins.png)
 
 source :
