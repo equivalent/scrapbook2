@@ -5,6 +5,11 @@
 
 ![Sql join diagrams](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/sql-joins.png)
 
+source :
+
+* http://stackoverflow.com/questions/38549/difference-between-inner-and-outer-joins
+* http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins
+
 # database configuration
 
 ```ruby
