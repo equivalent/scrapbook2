@@ -54,6 +54,54 @@ after 'deploy:finished', 'delayed_job:restart'
 
 
 ```ruby
+namespace :backup do
+  def cmd
+    [:backup, 'perform',  '-t validations_backup',
+     "-c #{Pathname.new('/home/deploy/apps/my_project/current').join('lib', 'backup', 'config.rb')}"]
+  end
+
+  namespace :database do
+    task :with_notification do
+      on roles(:web) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute(*cmd)
+          end
+        end
+      end
+    end
+
+    desc "backup database without mail notification"
+    task :without_notification do
+      on roles(:web) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            with dont_notify: true do
+              execute(*cmd)
+            end
+          end
+        end
+      end
+    end
+
+    desc "backup database with mail notification"
+    task :default => :with_notification
+  end
+end
+
+
+cap production backup:database:without_notification
+# => cd /home/deploy/apps/my_project/current && ( RBENV_ROOT=~/.rbenv RBENV_VERSION=2.1.1 RAILS_ENV=production DONT_NOTIFY=true /usr/bin/env backup perform -t validations_backup -c /home/deploy/apps/my_project/current/lib/backup/config.rb )
+
+cap production backup:database
+# => cd /home/deploy/apps/my_project/current && ( RBENV_ROOT=~/.rbenv RBENV_VERSION=2.1.1 RAILS_ENV=production 
+/usr/bin/env backup perform -t validations_backup -c /home/deploy/apps/my_project/current/lib/backup/config.rb )
+
+```
+
+
+
+```ruby
 # config/deploy/staging.rb
 
 set :rails_env, "staging"
