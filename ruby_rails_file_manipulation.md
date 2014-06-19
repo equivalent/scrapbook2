@@ -1,5 +1,20 @@
 # pure Ruby
 
+
+### load modules
+
+simply `load 'filename`
+
+one interesting solution from backup gem is this :
+
+```ruby
+Dir[File.join(File.dirname(Config.config_file), "models", "*.rb")].each
+do |model|
+  instance_eval(File.read(model))
+end
+```
+source: backup gem
+
 ### Home dir ruby 
 
 ```ruby
