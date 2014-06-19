@@ -1,6 +1,10 @@
 * MySQL notes https://github.com/equivalent/scrapbook2/blob/master/mysql.md
 * PostgreSQL notes https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
 
+# Table joins
+
+![Sql join diagrams](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2014/sql-joins.png)
+
 # database configuration
 
 ```ruby
