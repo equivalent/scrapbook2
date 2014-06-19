@@ -75,9 +75,11 @@ Thing.offset(rand(Thing.count)).first
 Recommendation.offset(rand(Recommendation.count)).where('person_id != 1').first
 ~~~
 
-### Trigger direct mysql command from rails
+### Trigger direct mysql / postgresql / sql command from rails app / console
 
 ~~~ruby
+ActiveRecord::Base.establish_connection
+ActiveRecord::Base.connection.execute('create extension hstore;')
 ActiveRecord::Base.connection.execute("TRUNCATE #{ApplicationBuildCommand.table_name}")  
 ~~~
 
