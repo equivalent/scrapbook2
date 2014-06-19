@@ -21,6 +21,34 @@ CDN content delivery network...@todo google
 
 ## Ruby
 
+### Classes 
+
+* hold common behavior
+* initialize new objects
+
+### Modules
+
+* hold common behavior
+* used as namespaces
+
+### Singleton objects
+
+* hold common behavior
+* When we have an object which does not need to share behavior with any   others objects, and which requires no initialization
+* `true` is singleton object of `TrueClass`
+
+```ruby
+class << (DEAD_CELL = Object.new)
+  def to_s
+    'x'
+  end
+end
+
+DEAD_CELL.to_s   # =>  'x'
+```
+
+### Methods & Messages
+
 ruby methods are **not first class objects** == defining method won't give you
 value inmidietly when you define  it
 

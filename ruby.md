@@ -1,5 +1,118 @@
 # Ruby scrapbook
 
+### #bind
+
+```ruby
+class Foo
+  def send(*args)
+    raise "mu-he-he"
+  end
+end
+
+class Bar < Foo
+  def send(*args)
+    puts 'I\'m sending'
+    super
+  end
+end
+
+Bar.new.send(:inspect)
+# I'm sending
+# RuntimeError: mu-he-he
+
+class Car < Foo
+  def send(*args, &block)
+    puts 'I\'m sending correctly :)'
+    original_send = Object.instance_method(:send)  # unbound method object
+    bound_send = original_send.bind(self)          # bound it to object
+    bound_send.call(*args, &block)                 # call method obj
+  end
+end
+
+Car.new.send :inspect
+# puts 'I\'m sending correctly :)'
+# => "#<Car:0x00000002fcefc0>" 
+```
+
+source: ruby tapas 016
+
+### #super
+
+disable block
+
+```ruby
+class Child < Parent
+  def hello(subject=:default)
+    if subject == :default
+      super(&nil).
+      puts "How are you today?"
+    else
+      super(subject, &nil)
+      puts "How are you today?"
+    end
+  end
+end
+```
+
+if super is defined
+
+```ruby
+module YeOlde
+  def hello(subject="World")
+    if defined?(super)
+      super
+    else
+      puts "Good morrow, #{subject}!" 
+    end
+    puts "Well met indeed!"
+  end
+end
+```
+source: ruby tapas 014 016
+
+### #fetch
+
+```ruby
+example = {b: 'bb'}
+
+example.fetch(:a)
+# => KeyError: key not found:
+
+example.fetch(:a) { |key| raise "Woooot ? key #{key} was not found" }
+# RuntimeError: Woooot ? key a was not found
+
+def foo
+  sleep 2
+  10
+end
+
+example.fetch(:a) { foo }
+# sleep 2 seconds
+# => 10 
+
+example.fetch(:b) { foo }
+# => 'bb' # without sleep 
+
+
+# difference between `[:key]` and fetch(:key)
+
+{}[:foo] || :default             # => :default
+{foo: nil}[:foo] || :default     # => :default
+{foo: false}[:foo] || :default   # => :default  
+
+{}.fetch(:foo){:default}             # => :default                              
+{foo: nil}.fetch(:foo){:default}     # => nil
+{foo: false}.fetch(:foo){:default}   # => false
+
+```
+
+you can do same magic for Array
+
+```ruby
+[:a, :b].fetch(1) { something }
+```
+
+
 ### Ruby dynamic instance plugins from constants
 
 ```ruby
