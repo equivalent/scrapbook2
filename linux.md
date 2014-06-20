@@ -147,6 +147,15 @@ tar -zxvf /tmp/nginx-1.4.4.tar.gz.1 -C /tmp
 
 ```
 
+## disk usage and what's the size of directory
+
+```bash
+du -sh ./my_folder  # overal directory size
+df -h               # whole system size & space left
+```
+
+keywords: space left on linux machine
+
 ## free disk space on server (vm)
 
 To delete downloaded packages (.deb) already installed (and no longer needed)
