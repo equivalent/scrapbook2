@@ -13,6 +13,20 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
+* pluggable selector - you provide object & what message to send on
+object(selector)
+  ```ruby 
+    def foo(notifier, message)
+      notifier.public_send message
+    end
+
+    foo($stdout, :puts)
+  ```
+* command query separation
+  *  command method is mesage to do something
+  *  query method is message to receive something
+  *  when sent a message you can pay it back or pay it forward but not both
+  * ruby tapas 017
 * interpolatation  -  in ruby the `"#{}"`
 * composition - OOP concept, enables object behavior be implemented in
 terms of other collaborator objects.
@@ -20,6 +34,21 @@ terms of other collaborator objects.
 CDN content delivery network...@todo google
 
 ## Ruby
+
+### ruby constants
+
+ruby associate class or module to constant only once
+
+```ruby
+x = Struct.new(:x, :y)
+x.new.class                     # => Class
+
+Point = Struct.new(:x, :y)
+Point.new.class                 # => Point
+
+Foo = Point
+Foo.new.class                   # => Point
+```
 
 ### Classes 
 

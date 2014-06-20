@@ -1,5 +1,16 @@
 # Ruby scrapbook
 
+### Struct
+
+```ruby
+Point = Struct.new(:x, :y)
+Point.new                       # => #<struct Point x=nil, y=nil>
+Point.new(23)                   # => #<struct Point x=23, y=nil>
+Point.new(5,7)    
+```
+
+source: ruby tapas 020
+
 ### #bind
 
 ```ruby
