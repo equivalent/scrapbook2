@@ -147,6 +147,32 @@ tar -zxvf /tmp/nginx-1.4.4.tar.gz.1 -C /tmp
 
 ```
 
+## disk usage and what's the size of directory
+
+```bash
+du -sh ./my_folder  # overal directory size
+df -h               # whole system size & space left
+```
+
+keywords: space left on linux machine
+
+## free disk space on server (vm)
+
+To delete downloaded packages (.deb) already installed (and no longer needed)
+
+`sudo apt-get clean`
+
+To remove all stored archives in your cache for packages that can not be downloaded anymore (thus packages that are no longer in the repository or that have a newer version in the repository).
+
+`sudo apt-get autoclean`
+
+To remove unnecessary packages (After uninstalling an app there could be packages you don't need anymore)
+
+`sudo apt-get autoremove`
+
+
+source: http://askubuntu.com/questions/5980/how-do-i-free-up-disk-space
+
 ## solve VM out of space even after deleting large file
 
 on Ubuntu server VM I had a problem tat log was over 2GB and the system throw
