@@ -40,6 +40,22 @@ task :default => :spec
 * sources: https://www.relishapp.com/rspec/rspec-core/docs/command-line/rake-task
 * published: october 2013
 
+
+### rake defaults
+
+```ruby
+namespace :foo do
+  namespace :bar do
+    task :car do
+    end
+  end
+  task bar: "bar:car"
+end
+
+task default: "foo:bar"
+
+```
+
 ### Use rails url/path helpers in rake task
 
 ```ruby
