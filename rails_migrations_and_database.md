@@ -1,6 +1,26 @@
 * MySQL notes https://github.com/equivalent/scrapbook2/blob/master/mysql.md
 * PostgreSQL notes https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
 
+# get database configuration
+
+```ruby
+config   = Rails.configuration.database_configuration
+host     = config[Rails.env]["host"]
+database = config[Rails.env]["database"]
+username = config[Rails.env]["username"]
+password = config[Rails.env]["password"]
+```
+
+```ruby
+require 'YAML'
+info = YAML::load(IO.read("config/database.yml"))
+print info["production"]["host"]
+print info["production"]["database"]
+```
+
+http://stackoverflow.com/questions/399396/can-you-get-db-username-pw-database-name-in-rails
+
+
 # Table joins
 
 A SQL query goes into a bar, walks up to two tables and asks, "Can I join you?"
