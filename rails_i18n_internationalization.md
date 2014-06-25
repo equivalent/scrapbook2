@@ -27,6 +27,8 @@ en:
 
 ```haml
 = t(Validation::STATUSES, scope: 'something_something:validation:statuses'
+
+will render ['yes', 'NOOO!']
 ```
   
 source: http://stackoverflow.com/questions/12341231/rails-how-to-i18n-an-array-of-strings
