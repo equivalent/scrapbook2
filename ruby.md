@@ -1,5 +1,47 @@
 # Ruby scrapbook
 
+### ERB 
+
+```ruby
+require 'erb'
+
+title = 123
+description = 'foo bar'
+
+template = ERB.new(<<EOF)
+  <dc:title><%= title %></dc:title>
+  <dc:description><%= description %></dc:description>
+EOF
+
+template.result(binding)
+```
+
+
+
+### list of all  required paths
+
+apply for both Rails & pure Ruby
+
+```ruby
+$:     # => ["/home/user/.rvm/rubies/ruby-2.1.1/lib/ruby/gems/2.1.0/gems/json-1.8.1/lib", ...]
+
+# you can add
+$: << 'test'
+```
+
+source: peepcode pwhang
+
+### convert exception to return value
+
+ruby stores reference of currently raised exception to `$!` variable
+```ruby
+value_or_error = {}.fetch(:mo) rescue $!
+value_or_error       # => <#KeyError: key not found :mo>
+value_or_error.class #=> KeyError
+```
+
+source: ruby tapas 022
+
 ### Struct
 
 ```ruby
