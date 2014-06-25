@@ -1,5 +1,33 @@
 # RSpec scrapbook
 
+### shared examples
+
+```ruby
+include_examples "name"      # include the examples in the current context
+it_behaves_like "name"       # include the examples in a nested context
+it_should_behave_like "name" # include the examples in a nested context
+matching metadata            # include the examples in the current context
+```
+
+```ruby
+RSpec.shared_examples "a collection" do
+  let(:collection) { described_class.new([7, 2, 4]) }
+
+  context "initialized with 3 items" do
+    it "says it has three items" do
+      expect(collection.size).to eq(3)
+    end
+  end
+end
+
+RSpec.describe Array do
+  it_behaves_like "a collection"
+end
+```
+
+
+source: https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples
+
 ### unstub
 
 ```ruby
