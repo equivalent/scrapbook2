@@ -5,7 +5,35 @@
 I18n.locale
 ```
 
+### translate array
+
+
+```ruby
+# app/model/validation.rb
+class Validation
+  STATUSES = %w(Pass Fail)
+end  
+```
+
+```yaml
+# config/locales/en.yml
+en:
+  something_something:
+    validation
+      statuses: 
+        Pass: 'yes'
+        Fail: 'NOOO!'
+```
+
+```haml
+= t(Validation::STATUSES, scope: 'something_something:validation:statuses'
+```
+  
+source: http://stackoverflow.com/questions/12341231/rails-how-to-i18n-an-array-of-strings
+  
 ### Variables
+
+... or sprintf syntax
 
 ```haml
 -# app/views/home/index.html.erb
