@@ -1,3 +1,4 @@
+http://edgeguides.rubyonrails.org/i18n.html
 
 ## Get current locale (language)
 
