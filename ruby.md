@@ -34,7 +34,9 @@ thepost = post
 puts thepost
 ```
 
-source:  https://www.socialtext.net/open/very_simple_rest_in_ruby_part_3_post_to_create_a_new_workspace
+source: 
+* https://www.socialtext.net/open/very_simple_rest_in_ruby_part_3_post_to_create_a_new_workspace
+* http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
 
 ### ERB 
 
