@@ -13,6 +13,10 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
+* class oriented development - uml diagrams and thinking about classes
+  as the main compontent in code design (not a Ruby way to do things)
+* object oriented develompment - design code thinking about objects not
+classes
 * pluggable selector - you provide object & what message to send on
 object(selector)
   ```ruby 
@@ -33,7 +37,28 @@ terms of other collaborator objects.
 
 CDN content delivery network...@todo google
 
+
+## UML
+
+* when you designing your cod you SHOULDN'T design Static UML
+  representation of classes before you start code
+  because you should really think about objects. Classes
+  are there to help create objects. UML is just visual tool 
+  not a guidline
+
 ## Ruby
+
+* `self` 
+  * default receiver (when you do message call)
+  * where instance variables are found
+* each time ruby call `object.do_something` it will:
+  * switch self to receiver (object)
+  * look up method in self's class (in this case now object)
+  * invoke method
+* ruby desn't have `Macros` as defined &  used in Lisp or C,
+  but when we refer to macros in Ruby we are talking about
+  Clases level methods that generate other 
+  methods, classes or moduels.
 
 ### ruby constants
 
@@ -213,6 +238,19 @@ multi-thred server(puma) vs process-based server (unicorn)
 source:
 
 * http://stackoverflow.com/questions/18575235/what-do-multi-processes-vs-multi-threaded-servers-most-benefit-from
+
+
+## Email
+
+### Headers
+
+* From: email address from who is the email actually from (reply-to
+respond to this)
+* Sender: usually same email as `from`, but let say you have 3rd party smtp
+server, it may include that it was sent from `mailagent@3rd-party-smtp.com`
+* Return-Path email address where should undelivered emails end up
+ 
+source: http://stackoverflow.com/questions/4367358/whats-the-difference-between-sender-from-and-return-path
 
 ## PosgreSQL
 

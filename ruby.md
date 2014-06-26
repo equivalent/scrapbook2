@@ -1,5 +1,54 @@
 # Ruby scrapbook
 
+Topics not included/moved:
+
+* Ruby Macros - look at `examples/macros_presented_in_rubytapas/README.md`
+* StringIO
+  * ruby tapas 29 (RubyTapas029-Redirecting-Output)
+    * redirecting `puts` to do other stuff, or even system pipe puts
+    * tags: `$stdout`, `$stderr`, `STDOUT`, `StringIO`, `IO.pipe`
+* 
+
+
+Topics:
+
+
+## raise rescue ensure
+
+```ruby
+begin
+  p 'aaa'
+  raise 'x'
+resuce Bar
+ensure 
+  p 'bbb'
+end
+
+"aaa"
+"bbb"
+RuntimeError "x"
+```
+
+## Ruby C lib
+
+check `FFI` gem
+ruby tapas 026
+
+## Tempfile
+
+```ruby
+require 'tempfile'
+
+Tempfile.open('foobar' ) do |foo|
+  # file location /tmp/fooo20140625-7872-c4e4pv>
+  foo.write 'abc'
+  foo.close
+  foo.read # => 'abc'
+end
+```
+
+source: ruby tapas 023
+
 ### ERB 
 
 ```ruby
@@ -16,7 +65,7 @@ EOF
 template.result(binding)
 ```
 
-
+source: ruby tapas 023
 
 ### list of all  required paths
 
@@ -42,16 +91,28 @@ value_or_error.class #=> KeyError
 
 source: ruby tapas 022
 
-### Struct
+### Struct & OpenStruct
 
 ```ruby
 Point = Struct.new(:x, :y)
 Point.new                       # => #<struct Point x=nil, y=nil>
 Point.new(23)                   # => #<struct Point x=23, y=nil>
-Point.new(5,7)    
+
+a = Point.new(5,7) 
+a.members                       # => [5,7]
+a.map { |x| x * 2 }             # => [10, 14]
 ```
 
-source: ruby tapas 020
+```ruby
+require 'ostruct'
+a = OpenStruct.new(a: 1, b: 2)
+a.a # => 1
+a.c = 3
+a.c # => 3
+
+```
+
+source: ruby tapas 020 025
 
 ### #bind
 

@@ -17,6 +17,23 @@ Archive:
 
 ## Web-development notes unsorted
 
+
+### cowsay
+
+```ruby
+require 'net/http'
+require 'cgi'
+
+class Cowsays
+  def say(message)
+    message = CGI.escape(message)
+    Net::HTTP.get_print(URI.parse(http://www.cowsays.com/cowsay?message=#{message}))
+  end
+end
+```
+
+source: ruby tapas 30
+
 ### include Rails helpers in cusom class
 
 ```ruby
