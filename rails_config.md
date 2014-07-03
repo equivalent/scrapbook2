@@ -1,3 +1,15 @@
+# ruby configuration hash
+
+```ruby
+config = Hash.new do |h,k|
+  h[k] = Hash.new(&h.default_proc)
+end
+
+config[:production][:database][:adapter] = 'mysql'
+config[:production][:database][:adapter] # => "mysql"
+```
+source: ruby tapas 032
+
 # How to override gem template in Rails 
 
 let say you have gem like [Draper](https://github.com/drapergem/draper) or [Pundit](https://github.com/elabs/pundit) and you want to override their generator templates in your Rails appplication

@@ -1,6 +1,5 @@
 # Ruby scrapbook
 
-<<<<<<< HEAD
 Topics not included/moved:
 
 * Ruby Macros - look at `examples/macros_presented_in_rubytapas/README.md`
@@ -49,7 +48,7 @@ end
 ```
 
 source: ruby tapas 023
-=======
+
 ### simple JSON request example
 
 ```ruby
@@ -87,7 +86,6 @@ puts thepost
 source: 
 * https://www.socialtext.net/open/very_simple_rest_in_ruby_part_3_post_to_create_a_new_workspace
 * http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
->>>>>>> 0531c049a4e35c7b4a57317f1893ba24e64b0dfc
 
 ### ERB 
 
@@ -224,7 +222,9 @@ end
 ```
 source: ruby tapas 014 016
 
-### #fetch
+### hash 
+
+#### #fetch 
 
 ```ruby
 example = {b: 'bb'}
@@ -265,6 +265,33 @@ you can do same magic for Array
 ```ruby
 [:a, :b].fetch(1) { something }
 ```
+
+#### hash default values
+
+```ruby
+stock_count = Hash.new do |hash, missing_key|
+  # this hash is run only when key is missing from hash
+  hash[missing_key] = 0
+end
+
+stock_count.fetch('vodka') # => KeyError missing key
+
+stock_count['vodka'] =+ 1  
+stock_count['vodka'] # => 1
+
+
+
+config = Hash.new do |h,k|
+  h[k] = Hash.new(&h.default_proc)
+end
+
+config[:production][:database][:adapter] = 'mysql'
+config[:production][:database][:adapter] # => "mysql"
+
+```
+
+source = ruby tapas 032
+
 
 
 ### Ruby dynamic instance plugins from constants
