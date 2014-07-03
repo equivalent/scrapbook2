@@ -1,3 +1,13 @@
+# restart audio in Ubuntu
+
+...or restart soundcard
+
+```bash
+pulseaudio -k && sudo alsa force-reload
+```
+
+http://askubuntu.com/questions/230888/is-there-another-way-to-restart-the-sound-system-if-pulseaudio-alsa-dont-work
+
 # Linux and *nix like console scrapbook
 
 old stuff can be found on 

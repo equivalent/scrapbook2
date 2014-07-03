@@ -1,5 +1,14 @@
 # PostgreSQL
 
+### export query to csv 
+
+```sql
+
+Copy (Select * From foo) To '/tmp/test.csv' With CSV;
+```
+
+source: http://stackoverflow.com/questions/1517635/save-postgres-sql-output-to-csv-file
+
 ### duplicate 
 
 ```sql
