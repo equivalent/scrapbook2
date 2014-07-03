@@ -1,5 +1,6 @@
 # Ruby scrapbook
 
+<<<<<<< HEAD
 Topics not included/moved:
 
 * Ruby Macros - look at `examples/macros_presented_in_rubytapas/README.md`
@@ -48,6 +49,45 @@ end
 ```
 
 source: ruby tapas 023
+=======
+### simple JSON request example
+
+```ruby
+require 'net/http'
+
+require 'rubygems'
+require 'json'
+
+@user = 'user@socialtext.com'
+@pass = 'password'
+@host = 'pitchblende.socialtext.net'
+@port = '22222'
+
+@post_ws = "/data/workspaces"
+
+@payload ={
+    "name" => "api-workspace",
+    "title" => "API Workspace",
+    "account_id" => "1"
+  }.to_json
+  
+def post
+     req = Net::HTTP::Post.new(@post_ws, initheader = {'Content-Type' =>'application/json'})
+          req.basic_auth @user, @pass
+          req.body = @payload
+          response = Net::HTTP.new(@host, @port).start {|http| http.request(req) }
+           puts "Response #{response.code} #{response.message}:
+          #{response.body}"
+        end
+
+thepost = post
+puts thepost
+```
+
+source: 
+* https://www.socialtext.net/open/very_simple_rest_in_ruby_part_3_post_to_create_a_new_workspace
+* http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
+>>>>>>> 0531c049a4e35c7b4a57317f1893ba24e64b0dfc
 
 ### ERB 
 
