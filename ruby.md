@@ -12,6 +12,42 @@ Topics not included/moved:
 
 Topics:
 
+## different ways to call
+@ todo 
+
+this is a base of examples
+
+```ruby
+@notifier.call  @ todo 
+```
+
+*lambda*
+```ruby
+->(receiver, message) {
+  
+}
+  .call(Struct.new(:foo).new(2))   # => 2
+
+```
+
+*symbol coverted to  a proc*
+
+```ruby
+:foo.to_proc 
+
+# ...will translate to somehing like this:
+
+->(receiver, *args) do
+  receiver.send(:foo, *args)
+end
+
+# ...usage:
+
+:foo.to_proc
+  .call(Struct.new(:foo).new(2))   # => 2
+```
+
+source: ruby tapas 35
 
 ## raise rescue ensure
 
@@ -137,7 +173,7 @@ Point.new                       # => #<struct Point x=nil, y=nil>
 Point.new(23)                   # => #<struct Point x=23, y=nil>
 
 a = Point.new(5,7) 
-a.members                       # => [5,7]
+a.members                       # => [5,7]   # list all attributes
 a.map { |x| x * 2 }             # => [10, 14]
 ```
 
