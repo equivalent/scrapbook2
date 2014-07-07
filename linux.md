@@ -157,6 +157,12 @@ tar -zxvf /tmp/nginx-1.4.4.tar.gz.1 -C /tmp
 
 ```
 
+## compress folder to tar.gz 
+
+```bash
+tar -zcvf prog-1-jan-2005.tar.gz /home/jerry/prog
+```
+
 ## disk usage and what's the size of directory
 
 ```bash
