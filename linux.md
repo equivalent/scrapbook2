@@ -16,7 +16,7 @@ old stuff can be found on
 ... or how to name file with date
 
 ```bash
-echo "foo_$(date +%Y-%m-%d_%s)_bar
+echo "foo_$(date +%Y-%m-%d_%s)_bar"
 # foo_2014-07-07_1404729340_bar
 
 
