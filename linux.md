@@ -1,4 +1,30 @@
-# restart audio in Ubuntu
+# Linux and *nix like console scrapbook
+
+old stuff can be found on 
+
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/fedora_lxde
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/linux-unix
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
+* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
+
+
+
+## timestamp linux
+
+... or how to output time in bash
+... or how to output date in bash
+... or how to name file with date
+
+```bash
+echo "foo_$(date +%Y-%m-%d_%s)_bar
+# foo_2014-07-07_1404729340_bar
+
+
+mkdir "foo_$(date +%Y-%m-%d_%s)"
+
+```
+
+## restart audio in Ubuntu
 
 ...or restart soundcard
 
@@ -8,14 +34,6 @@ pulseaudio -k && sudo alsa force-reload
 
 http://askubuntu.com/questions/230888/is-there-another-way-to-restart-the-sound-system-if-pulseaudio-alsa-dont-work
 
-# Linux and *nix like console scrapbook
-
-old stuff can be found on 
-
-* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/fedora_lxde
-* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/linux-unix
-* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
-* https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 ## curl
 
