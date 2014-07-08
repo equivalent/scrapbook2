@@ -12,25 +12,44 @@ Topics not included/moved:
 
 Topics:
 
-## different ways to call
-@ todo 
+## case when (switch)
 
-this is a base of examples
+switch is evaluating as threequal operator
 
 ```ruby
-@notifier.call  @ todo 
+/\A\d+\z/ === '123'
+(1..10) === 2
+
+case obj
+when /\A\d+\z/
+  puts 'numeric string'
+when 0..10
+  puts 'positive integer'
+when 123
+  puts 'exactly 123'
 ```
 
-*lambda*
+procs/lambdas evaluates  threequals `===` as `#call` 
+therefore when you pass lambda to switch:
+
 ```ruby
-->(receiver, message) {
-  
-}
-  .call(Struct.new(:foo).new(2))   # => 2
+require 'net/http'
+SUCCESS = -> (response) { (200..299) === response.code.to_i }
+CLIENT_ERROR = -> (response) { (400..499) === response.code.to_i }
 
+response = Net::HTTP.get_response(URI.parse('http://google.com'))
+
+
+case response
+when SUCCESS then puts 'Success!'
+when CLIENT_ERROR then puts 'Client error.'
+else puts 'Other'
+end
 ```
 
-*symbol coverted to  a proc*
+source: ruby tapas 37
+
+## symbol coverted to  a proc
 
 ```ruby
 :foo.to_proc 
@@ -52,17 +71,34 @@ source: ruby tapas 35
 ## raise rescue ensure
 
 ```ruby
-begin
-  p 'aaa'
-  raise 'x'
-resuce Bar
-ensure 
-  p 'bbb'
+DEFAULT_FALLBACK = ->(error) { raise }
+
+def testing(&fallback)
+  fallback ||= DEFAULT_FALLBACK
+
+  begin
+    p 'aaa'
+    raise 'some error'
+  resuce Bar
+    puts 'when bar error'
+  rescue => error
+    fallback.call(error)
+  ensure 
+    p 'bbb'
+  end
 end
 
-"aaa"
-"bbb"
-RuntimeError "x"
+testing
+# "aaa"
+# "bbb"
+# RuntimeError "some error"
+
+testing do |error|
+  puts "Error was triggered: #{error}"
+end
+# "aaa"
+# Error was triggered: some error
+# "bbb"
 ```
 
 ## Ruby C lib
