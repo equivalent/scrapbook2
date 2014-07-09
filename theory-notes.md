@@ -13,6 +13,8 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
+* gradual stiffening - make tiny changes to a code towards graduality
+better cleaner code) without making large overwrites (RT 40)
 * class oriented development - uml diagrams and thinking about classes
   as the main compontent in code design (not a Ruby way to do things)
 * object oriented develompment - design code thinking about objects not

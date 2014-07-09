@@ -12,6 +12,40 @@ Topics not included/moved:
 
 Topics:
 
+## ruby singleton objects
+
+```ruby
+class << (DEAD = Object.new)
+  def to_s
+    'X'
+  end
+end
+
+DEAD.to_s # => 'X'
+```
+
+this is like `true` and `false`
+
+difference to singleton Pattern that may be unsafe( Thred contation,
+polifiration of dependancies) is that pattern restricts class so that
+only one instnce object is ever created while singleton object are
+statles.
+
+```ruby
+require 'singleton'
+class Dead
+  include Singleton
+end
+
+Dead.new # =>  # NoMethodError private method 
+Dead.instance
+ => #<Dead:0x000000024e5690> 
+Dead.instance
+ => #<Dead:0x000000024e5690>
+```
+ruby tapas 13, 07
+  
+
 ## case when (switch)
 
 switch is evaluating as threequal operator
