@@ -1,5 +1,12 @@
 # Rails Active Record Scrapbook
 
+## ways to set attributes
+
+```ruby
+
+user.assign_attributes( { foo: 'bar' } )
+
+```
 
 ## has one examples
 
