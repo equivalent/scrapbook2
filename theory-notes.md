@@ -13,6 +13,10 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
+* Rigidity - a rigit system is a system in which a single change force you to
+  do dozen changes in other places in the system (source CleanCode01)
+  code is tangled so that one change trigers chain reaction ofanother channge
+  that needs a nother change ...
 * gradual stiffening - make tiny changes to a code towards graduality
 better cleaner code) without making large overwrites (RT 40)
 * class oriented development - uml diagrams and thinking about classes
