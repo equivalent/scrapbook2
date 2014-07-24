@@ -84,3 +84,12 @@ Tell browser not to cache content that hold harmfull data (e.g.: user settings, 
 
     <meta http-equiv="Cache-control" content="no-cache no-store">
 
+### Memory stats simple method
+
+```ruby
+def memstats
+  `ps -o size= #{$$}`.strip.to_i
+end
+```
+
+source: ruby tapas 42
