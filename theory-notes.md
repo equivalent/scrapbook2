@@ -13,6 +13,11 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
+
+* Opacity - code is hard to read, hard to understand, hard to change.
+* Inseperability - modules cannot be reused/separeted
+* Fragility - change in a system will cause system to break in lot of places;
+  Developer make change in one place and break code in other 
 * Rigidity - a rigit system is a system in which a single change force you to
   do dozen changes in other places in the system (source CleanCode01)
   code is tangled so that one change trigers chain reaction ofanother channge
