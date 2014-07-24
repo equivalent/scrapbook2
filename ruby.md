@@ -12,6 +12,39 @@ Topics not included/moved:
 
 Topics:
 
+## ruby scan 
+
+... or better string match
+
+```
+# instead of : 
+EMAIL_PATTERN = /\S+@\S+/i
+addresses = []
+while(match = EMAIL_PATTERN.match(text))
+  addresses << match[0]
+  text = match.post_match
+end
+addresses
+
+# ..we can use
+addresses = text.scan(EMAIL_PATTERN)
+
+# ... or
+text.scan(EMAIL_PATTERN) do |email|
+  puts email
+end
+
+# ...or
+EMAIL_PATTERN = /(\S+)@(\S+)/i
+text.scan(EMAIL_PATTERN) do |name, domain|
+  puts name
+  puts domain
+end
+```
+
+
+source: ruby tapas 41
+
 ## ruby singleton objects
 
 ```ruby
