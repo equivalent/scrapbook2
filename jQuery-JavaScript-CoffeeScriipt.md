@@ -1,3 +1,12 @@
+### rails UJS change js to json
+
+all you have to do is to use `data-type json` in link
+
+```haml
+= link_to 'foo', root_path, data: {type:json, prompt: ...}
+```
+
+
 ### on Bindings
 
 good article [difference between .bind() .live() .delegate()](http://www.alfajango.com/blog/the-difference-between-jquerys-bind-live-and-delegate/)
