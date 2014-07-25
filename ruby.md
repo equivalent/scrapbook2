@@ -12,6 +12,32 @@ Topics not included/moved:
 
 Topics:
 
+## explicit or and one?
+
+
+```ruby 
+def replace_var(text, var_name, value=nil)
+  unless block_given? ^ value  # one or other but not both
+    raise ArgumentError,.
+          "Either value or block must be given, but not both"
+  end
+  text.gsub!(/\{#{var_name}\}/) { value || yield }
+end
+
+# not all Classes suport ^ so you may need to convert them to boolean
+# `!!44` 
+```
+
+if you need to compare  set of more than two use `one?` 
+
+```ruby
+[true, false, true].one?      # => false
+[nil, false, 44].one?         # => true
+[22, 44, 33].one?{|i| i.odd?} # => true
+```
+
+source: ruby tapas 043 044
+
 ## ruby scan 
 
 ... or better string match
