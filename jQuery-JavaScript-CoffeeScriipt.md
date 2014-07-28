@@ -1,3 +1,13 @@
+### passing additional data params in UJS
+
+it seems that Rails UJS lib is using `data-params` for passing additional params when doing ajax request
+
+```haml
+= link_to '/applications/123', method: 'patch', remote: true, data: { params: { :'application[name]' => 'bar' }, confirm: 'true' } do 
+  something
+
+```
+
 ### rails UJS change js to json
 
 all you have to do is to use `data-type json` in link
