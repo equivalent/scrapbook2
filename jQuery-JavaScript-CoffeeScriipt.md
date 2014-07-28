@@ -1,3 +1,12 @@
+### Rails UJS callbacks
+
+https://github.com/rails/jquery-ujs/wiki/ajax
+
+```coffee
+  $("a[data-prompt]").on "ajax:error", (handler, data, status, xhr) ->
+    alert 'Error occurred while sending your message !!!'
+```
+
 ### passing additional data params in UJS
 
 it seems that Rails UJS lib is using `data-params` for passing additional params when doing ajax request
