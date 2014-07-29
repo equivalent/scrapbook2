@@ -1,3 +1,31 @@
+### Rails UJS callbacks
+
+https://github.com/rails/jquery-ujs/wiki/ajax
+
+```coffee
+  $("a[data-prompt]").on "ajax:error", (handler, data, status, xhr) ->
+    alert 'Error occurred while sending your message !!!'
+```
+
+### passing additional data params in UJS
+
+it seems that Rails UJS lib is using `data-params` for passing additional params when doing ajax request
+
+```haml
+= link_to '/applications/123', method: 'patch', remote: true, data: { params: { :'application[name]' => 'bar' }, confirm: 'true' } do 
+  something
+
+```
+
+### rails UJS change js to json
+
+all you have to do is to use `data-type json` in link
+
+```haml
+= link_to 'foo', root_path, data: {type:json, prompt: ...}
+```
+
+
 ### on Bindings
 
 good article [difference between .bind() .live() .delegate()](http://www.alfajango.com/blog/the-difference-between-jquerys-bind-live-and-delegate/)

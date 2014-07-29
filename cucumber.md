@@ -1,3 +1,21 @@
+# stub JS prompt 
+
+selenium webdrive & capybara
+
+```ruby
+def stub_js_prompt
+  message = ''
+  message = yield if block_given?
+  page.evaluate_script('window.prompt = function() { return "' + message + '"; }')
+end
+
+
+stub_js_prompt do
+  "my suspicious paranoia"
+end
+```
+
+
 # capybara submit form without button
 
 ```ruby
