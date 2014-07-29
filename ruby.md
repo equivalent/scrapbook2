@@ -12,6 +12,87 @@ Topics not included/moved:
 
 Topics:
 
+
+## memoize macro
+
+```ruby
+module Memoizable
+  def memoize(method_name)
+    original_method = instance_method(method_name)
+    cache_ivar      = "@memoized_#{method_name}"
+    define_method(method_name) do |*args, &block|
+      cache = if instance_variable_defined?(cache_ivar)
+                instance_variable_get(cache_ivar)
+              else
+                instance_variable_set(cache_ivar, {})
+              end
+      if cache.key?(args)
+        return cache[args]
+      else
+        result = original_method.bind(self).call(*args, &block)
+        cache[args] = result
+        result
+      end
+    end
+  end
+end
+
+class Foo
+  extend Memoize
+
+  def abc
+    sleep 2
+    123
+  end
+
+  memoize :abc
+end
+
+foo = Foo.new
+foo.abc
+foo.abc
+```
+
+
+
+## benchmark 
+
+...or ruby speed
+
+```ruby
+require 'benchmark'
+Benchmark.measure do
+  'some-expensive-query'
+end
+
+Benchmark.bm do |bm|
+  bm.report('1st call') { 'do something' }
+  bm.report('2nd call') { 'do something else' }
+end
+
+#          user     system      total        real
+#1st call  0.000000   0.000000   0.000000 (  0.000009)
+#2nd call  0.000000   0.000000   0.000000 (  0.000010)
+
+```
+
+## execute external ruby script from ruby script
+
+basically execute ruby file from another ruby file, e.g.: for smoke test
+
+```ruby
+require 'shellwords' # for shellsplit
+require 'rake'   # it contains FileUtils::RUBY constant
+                 # which is current ruby version (e.g. rvm)
+
+FileUtils::RUBY
+# => "/home/tomi/.rvm/rubies/ruby-2.1.1/bin/ruby" 
+
+system "#{FileUtils::RUBY} ./tmp/test.rb".shellsplit
+```
+
+source: ruby tapas 047
+
 ## explicit or and one?
 
 
