@@ -1,3 +1,33 @@
+
+# click Devise invitation link from mail 
+
+```ruby
+    def extract_invite_links_from_email(email_delivery)
+      unless email_delivery.is_a?(Mail::Message)
+        raise 'argument must be Mail::Message e.g: ' +
+              'ActionMailer::Base.deliveries.first'
+      end
+
+      body = email_delivery.body.parts
+        .find { |p| p.content_type.match(/html/) }
+        .body.raw_source
+
+      Nokogiri::HTML
+        .parse(body)
+        .css('a')
+        .map { |link| link['href'] }
+        .select { |href| href.match(/token/) }
+    end
+    
+    step 'click invitation link' do
+      # after user was invited
+      link = extract_invite_links_from_email(ActionMailer::Base.deliveries.last)
+        .last  # as they may be multiple
+      visit(link)
+    end
+```
+
+
 # stub JS prompt 
 
 selenium webdrive & capybara
