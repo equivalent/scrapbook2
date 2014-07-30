@@ -16,3 +16,5 @@ HTML_END
 
 l = doc.css('div.heat a').map { |link| link['href'] }
 ```
+
+source: http://stackoverflow.com/questions/856706/extract-links-urls-with-nokogiri-in-ruby-from-a-href-html-tags
