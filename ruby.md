@@ -12,6 +12,36 @@ Topics not included/moved:
 
 Topics:
 
+## make Module method class method
+
+```ruby
+module Foo
+  module_function # will make all methods availible
+  # module_function :bar  # will just explicitly make bar
+  
+  def bar
+    'bar'
+  end
+end
+
+Bar.send :include, Foo
+
+Foo.bar #=> 'bar'
+Bar.new.send :bar  # => 'bar'
+```
+
+## to_s binary hex oct
+
+```ruby
+2.to_s(2)
+# => "10" 
+
+:foo.hash.to_s(16)
+# => "4becf99b08344b"
+
+:foo.hash.to_s(8)
+#"1137317463302032113"
+```
 
 ## memoize macro
 

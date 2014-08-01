@@ -1,5 +1,13 @@
 # pure Ruby
 
+### Load path
+
+```ruby
+ $LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+```
+
+source: ruby tapas 051
+
 
 ### load modules
 
