@@ -241,6 +241,33 @@ to test this in Curl trigger `curl -kvI https://my_application.com`
 
 **note** linux standart is to put certificates to `/etc/ssl/certs` and private keys to `/etc/ssl/private`
 
+
+# signing real certificate
+
+When you have the real certificate you need to "chain" the certificate file with  *Intermediate Certificates* and with *Root Certificate*
+
+create file `mydomain.crt` :
+
+```
+-----BEGIN CERTIFICATE-----
+The generated cert file
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+Intermediate Certificate
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+Root Certificate
+-----END CERTIFICATE-----
+```
+
+example
+
+[Globalsign Intermediate certificate](https://support.globalsign.com/customer/portal/articles/1219303-organizationssl-intermediate-certificates), [Globalsign root certificate](https://support.globalsign.com/customer/portal/articles/1426602-globalsign-root-certificates)
+
+and you can test it on https://sslcheck.globalsign.com/en_US/sslcheck
+
+
+
 #restrict access / basic auth
 
 
