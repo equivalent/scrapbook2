@@ -28,7 +28,7 @@ mysql -u root  # now you can connect without passwor
    SET PASSWORD FOR root@'localhost' = PASSWORD('password');    
    UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';   
    FLUSH PRIVILEGES;
-   
+   SELECT User FROM mysql.user;  # all mysql users
 ```
 
 ```bash
