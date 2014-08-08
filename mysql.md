@@ -13,6 +13,28 @@ mysql my_database -uroot -p
 
 ```
 
+### reset root mysql password
+
+https://help.ubuntu.com/community/MysqlPasswordReset
+
+```bash
+sudo /etc/init.d/mysql stop
+sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+mysql -u root  # now you can connect without passwor
+```
+
+```sql
+   FLUSH PRIVILEGES;
+   SET PASSWORD FOR root@'localhost' = PASSWORD('password');    
+   UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';   
+   FLUSH PRIVILEGES;
+   
+```
+
+```bash
+sudo /etc/init.d/mysql stop
+sudo /etc/init.d/mysql start
+```
 
 ### rename mysql database
 
