@@ -9,3 +9,10 @@ https://github.com/javan/whenever/wiki/Output-redirection-aka-logging-your-cron-
   RAILS_ENV=staging bundle exec whenever -s 'environment=staging' -w  # write
   
 ```
+
+
+to check cron seting 
+
+```bash
+crontab -l
+```
