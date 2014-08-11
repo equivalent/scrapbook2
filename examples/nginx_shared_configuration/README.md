@@ -6,8 +6,8 @@ Source code is in `etc` folder (represents `/etc/`)
 
 ## about
 
-* configuration for unicorn server application (like Ruby on Rails).
-* this app is forced to `https://` if wisited from private domain and let's `http://` if from public domain
+* configuration for Unicorn server application (like Ruby on Rails).
+* this app forces `https://` if visited from private domain and let's `http://` if from public domain
 
 # source
 
