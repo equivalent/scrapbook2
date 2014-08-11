@@ -7,7 +7,25 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+##  Free Inode Usage
 
+if you run out of space on Linux (Ubuntu) server machine, you may still have enough space with
+`df -h` but your inodes are taken
+
+```
+# show inode usage overal in system
+df -i 
+
+# show what folders are consuming most inod in current folder
+sudo find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n
+```
+
+delete stuff in those folders (simple `rm -rf`) ...just be carefull what you delete
+
+source: 
+
+* http://stackoverflow.com/questions/653096/howto-free-inode-usage
+* collegue Sean (thx dude)
 
 ## timestamp linux
 
