@@ -4,9 +4,10 @@ NginX example of sharing (including) configuration
 
 Source code is in `etc` folder (represents `/etc/`)
 
-## about
+## about applicattion
 
-* configuration for Unicorn server application (like Ruby on Rails).
+* NginX configuration for application under Unicorn server (like Ruby on Rails), but 
+  example of sharing configuration shown here will work on any.
 * this app forces `https://` if visited from private domain and let's `http://` if from public domain
 
 # source
