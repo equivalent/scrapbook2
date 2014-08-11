@@ -3,7 +3,27 @@
 configurations](https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)
 http://unicorn.bogomips.org/examples/nginx.conf
 
+# NginX running out of server name size
 
+if you ever get error:
+
+```
+could not build the server_names_hash,
+you should increase server_names_hash_bucket_size: 32
+```
+
+it just means that you defined too long or noo many server names for default nginx setup.
+
+all you have to do is in your `/etc/nginx/nginx.conf` tell 
+
+```
+http {
+    server_names_hash_bucket_size  64;
+```
+
+... 32 is nginx default
+
+source: http://nginx.org/en/docs/http/server_names.html
 
 # Dont show NginX version in header 
 
