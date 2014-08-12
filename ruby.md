@@ -12,6 +12,45 @@ Topics not included/moved:
 
 Topics:
 
+
+## passing arguments to ruby console program
+
+```ruby
+ARGF.lines do |line|
+ print  "#{ARGF.path}: #{line}"
+end
+```
+
+now you can call
+
+```bash
+ruby my_scritp.rb document1.txt documet2.txt
+ruby my_scritp.rb < document1.txt
+```
+
+@todo lines is depricated
+
+source: ruby tapas 058
+
+##  __FILE__ and $PROGRAM_NAME 
+
+```ruby
+__FILE__   # file that is really executed (current file)
+$PROGRAM_NAME  # file through which we executing (if one file cals
+               # another, then the first one file name)
+$0 # same as $PROGRAM_NAME
+
+# ...so you can do
+
+if __FILE__ == $PROGRAM_NAME
+  puts 'file is run as a script'
+else 
+  puts 'file runs as a part of higher hierarchy'
+end
+```
+
+source: ruby tapas 055
+
 ## make Module method class method
 
 ```ruby

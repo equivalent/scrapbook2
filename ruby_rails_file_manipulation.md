@@ -1,5 +1,26 @@
 # pure Ruby
 
+
+###  detect if file exist in directory try 
+
+```ruby
+require 'pathname'
+p = Pathname.new("app/views/")
+
+p.ascend do |path|
+  puts path
+end
+
+# app/view
+# app
+
+ascender = p.to_enum(:ascend)
+ascender.detect { |path| (path + 'Rakefile').exist?}
+
+```
+
+good enum example
+
 ### Load path
 
 ```ruby
