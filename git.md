@@ -1,5 +1,10 @@
 # Git scrapbook
 
+```
+git log --decorate --graph
+git reflog
+```
+
 ### gitigtore
 
 ```

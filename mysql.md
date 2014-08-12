@@ -1,5 +1,6 @@
 # MySQL
 
+
 **restart mysql in Ubuntu like system**
 
     /etc/init.d/mysql restart
@@ -12,6 +13,44 @@ mysql my_database -uroot -p
 
 ```
 
+### reset root mysql password
+
+https://help.ubuntu.com/community/MysqlPasswordReset
+
+```bash
+sudo /etc/init.d/mysql stop
+sudo /usr/sbin/mysqld --skip-grant-tables --skip-networking &
+mysql -u root  # now you can connect without passwor
+```
+
+```sql
+   FLUSH PRIVILEGES;
+   SET PASSWORD FOR root@'localhost' = PASSWORD('password');    
+   UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';   
+   FLUSH PRIVILEGES;
+   SELECT User FROM mysql.user;  # all mysql users
+```
+
+```bash
+sudo /etc/init.d/mysql stop
+sudo /etc/init.d/mysql start
+```
+
+### rename mysql database
+
+aparently there is no such thing you have to 
+
+```
+
+    mysqldump -u root -p originl_database > original_database.sql
+    mysql -u root -p -e "create database my_new_database"
+    mysql -u root -p my_new_database < original_database.sql
+    myqsl -u root -p -e "GRANT ALL ON db1.* TO 'jeffrey'"
+    mysql -u root -p -e drop database originl_database
+```
+
+http://stackoverflow.com/questions/12190000/rename-mysql-database
+   
 ### general mysql commands 
 
 ~~~sql
