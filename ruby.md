@@ -13,6 +13,62 @@ Topics not included/moved:
 Topics:
 
 
+## enumerator
+
+```ruby
+@foo = %w(test 1 2 3 end)
+
+def foo
+  @foo.size.times do
+    p 'aaaaaaaaa'
+    yield @foo.shift.to_sym
+  end
+end
+
+my_enum = to_enum(:foo)
+puts 'first call'
+p my_enum.first(2)
+p @foo
+
+puts 'second call'
+p my_enum.first(2)
+p @foo
+
+# first call
+# "aaaaaaaaa"
+# "aaaaaaaaa"
+# [:test, :"1"]
+# ["2", "3", "end"]
+#
+# second call
+# "aaaaaaaaa"
+# "aaaaaaaaa"
+# [:"2", :"3"]
+# ["end"]
+```
+
+* if you want to add more elements to `@foo` you should `my_enum.rewind` 
+  but in ruby 2.x it seem it's not neccessary (not sure)
+
+other useful tricks 
+
+```ruby 
+my_enum.detect{|n| n =~ /^B/}
+
+my_enum.with_index do |name, index|
+  puts "#{index}: #{name}"
+end
+
+my_enum.to_a  # => array of yielded values 
+              # [:test, :"1", ...... :end]
+
+```
+
+ 
+
+source: ruby tapas 059
+
+
 ## passing arguments to ruby console program
 
 ```ruby
