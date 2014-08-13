@@ -204,6 +204,8 @@ tar -zcvf prog-1-jan-2005.tar.gz /home/jerry/prog
 ```bash
 du -sh ./my_folder  # overal directory size
 df -h               # whole system size & space left
+
+du -h --max-depth=1 # what is dir is taking most spoce
 ```
 
 keywords: space left on linux machine
