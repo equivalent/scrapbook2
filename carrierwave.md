@@ -145,6 +145,92 @@ rails: 3.2.14
 published: 16.09.2013
 
 
+# how to have different storage in test enviroment for carrierwave
+
+using initializer
+
+```ruby
+# config/initializers/carrierwave.rb
+if Rails.env.test?
+  CarrierWave.configure do |config|
+    config.storage = :file
+    config.enable_processing = false
+  end
+else
+  CarrierWave.configure do |config|
+    config.storage = :fog
+  end
+end
+```
+
+or directly in uploader
+
+```ruby
+  class MyUploader
+    storage(Rails.configuration.carrierwave_storage_type)
+  end
+```
+
+# factory girl of model using carrierwave
+
+```ruby
+FactoryGirl.define do
+  factory :archive_file do
+    association :archive
+    title "MyString"
+    description "MyText"
+
+    trait :with_file do
+      after(:build) do |af|
+        af[:file] = 'dummy.txt'
+      end
+    end
+  end
+end
+
+FactoryGirl.build :archive_file, with_file
+```
+
+or better 
+
+```ruby
+# Read about factories at https://github.com/thoughtbot/factory_girl
+include ActionDispatch::TestProcess
+FactoryGirl.define do
+  factory :photo do
+    association :event
+    association :entry
+    photo { fixture_file_upload(Rails.root.join(*%w[spec fixtures
+files example.jpg]), 'image/jpg') }
+    description "MyString"
+  end
+end
+```
+
+# wattermarks
+
+Process files as they are uploaded:
+
+```ruby
+    process :resize_to_fill => [850, 315]
+    process :convert => 'png'
+    process :watermark
+
+    def watermark
+      manipulate! do |img|
+        logo =
+Magick::Image.read("#{Rails.root}/app/assets/images/watermark.png").first
+        img = img.composite(logo, Magick::NorthWestGravity, 15, 0,
+Magick::OverCompositeOp)
+      end
+    end
+```
+
+source: 
+
+* https://gist.github.com/yortz/718055 carrierwave wattermarks and lot of
+more options
+* https://github.com/rheaton/carrierwave-video
 
 # Issues 
 
@@ -161,3 +247,4 @@ I found mine in `usr/local/Cellar/imagemagick/6.7.7-6/lib/libMagickCore.5.dylib`
     ln /usr/local/Cellar/imagemagick/6.7.7-6/lib/libMagickCore.5.dylib /usr/local/lib/libMagickCore.5.dylib
     
 http://stackoverflow.com/questions/19040932/rmagick-complaining-about-libmagickcore-5-dylib-not-found-in-osx/19040933#19040933
+
