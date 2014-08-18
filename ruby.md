@@ -12,6 +12,31 @@ Topics not included/moved:
 
 Topics:
 
+## regular expresion literal
+
+```ruby
+%r(http://)  # => /http:\/\// # Regexp class
+
+```
+
+## current method name
+
+```ruby
+def foo
+  __callee__
+end
+
+10.times do |i|
+  define_method "a#{i}" do
+    __callee__
+  end
+end
+
+foo  # => :foo
+a1   # => :a1
+```
+
+source: ruby tapas 064
 
 ## enumerator
 
@@ -64,9 +89,22 @@ my_enum.to_a  # => array of yielded values
 
 ```
 
+to make enumerator return enum when no block given
+
+```ruby
+def names
+  return to_enum(__callee__) unless block_given?
+  yield 'foo'
+  yield 'bar'
+  yield 'car'
+end
+
+names.to_a #=> ['foo', 'bar', 'car']
+names      # <Enumerator: main:names>
+```
  
 
-source: ruby tapas 059
+source: ruby tapas 059 064
 
 
 ## passing arguments to ruby console program
