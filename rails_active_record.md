@@ -274,3 +274,30 @@ source : http://stackoverflow.com/a/10824249/473040, http://apidock.com/rails/Ac
 
 
 
+## how to detect if column exist in Rails ActiveRecord
+
+Columns are automaticly transformed into methods for instances of thot
+Model.
+That mean you can do 
+
+    event = Event.last
+    event.respond_to?(:updated_at)
+    # true
+
+There may be an issues if you writing Rails engine because if model have
+method
+with same name, it will return true even if column doesn't exist
+
+So more acurate way is to ask like this:
+
+     event = Event.last
+     event['updated_at'].present?  # => true 
+
+This is directly asking instance "what is the value of a column". 
+
+If you don't want to trigger sql query to fetch the value of a column
+but you rather 
+ask model class directly if the column exist you can do this:
+
+     Event.column_names.include?('updated_at') 
+

@@ -1098,3 +1098,14 @@ a = {'a'=> 'aaa'}
 a['a']            # 'aaa'
 a.try(:[], 'a')   # 'aaa'
 ```
+
+# is stuff defined in ruby  and rails
+
+##how to detect if constant or module class is defined in app
+
+    Object.const_defined?(:CachedAt)
+
+##how to detect if method is defined
+
+    object.defined?(:method)
+
