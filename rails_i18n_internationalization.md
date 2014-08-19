@@ -1,5 +1,16 @@
 http://edgeguides.rubyonrails.org/i18n.html
 
+
+## pick / Change format type
+
+```ruby
+ helper.l Time.now.to_date
+ => "2014-08-19"
+ 
+ helper.l Time.now.to_date, format: :long
+ # => "August 19, 2014" 
+ ```
+
 ## Get current locale (language)
 
 ```
