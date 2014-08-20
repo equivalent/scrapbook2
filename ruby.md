@@ -12,6 +12,17 @@ Topics not included/moved:
 
 Topics:
 
+
+## csv to STDOUT (in console)
+
+```ruby
+require 'csv'
+csv = CSV.new($stdout)
+
+csv << ['foo', 'bar', 3]
+# => foo,bar,3
+```
+
 ## regular expresion literal
 
 ```ruby

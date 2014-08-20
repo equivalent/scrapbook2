@@ -93,3 +93,8 @@ end
 ```
 
 source: ruby tapas 42
+
+
+### Gems
+
+* Moneta key store (good for caching) https://github.com/minad/moneta
