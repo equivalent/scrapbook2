@@ -7,6 +7,21 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## secure delete
+
+```
+sudo apt-get install secure-delete
+
+
+srm # - securely delete an existing file
+smem # - securely delete traces of a file from ram
+sfill # - wipe all the space marked as empty on your hard drive
+sswap # - wipe all the data from you swap space.
+
+```
+
+source: http://superuser.com/questions/19326/how-to-wipe-free-disk-space-in-linux
+
 ##  Free Inode Usage
 
 if you run out of space on Linux (Ubuntu) server machine, you may still have enough space with
