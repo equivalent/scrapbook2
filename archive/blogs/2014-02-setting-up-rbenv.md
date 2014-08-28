@@ -106,8 +106,51 @@ if you have any other questions just run
 rbenv help
 ```
 
+## rbenv udate ruby version
+
+let say new ruby version came up (in my case 2.1.2) and I want to upgrade it 
+
+First check if you have your desired version in your already existing ruby-build list
+
+```bash
+rbenv install --list
+```
+
+if not you need to pull most recent `rbenv` & `ruby-build` updates with git from `rbenv` github repo to
+location where is your `rbenv` installed (yes correct your `rbenv` is just collection of git repos)
+
+```bash
+cd  ~/.rbenv  # rbenv install location (...or /opt/rbenv/)
+git pull # will pull rbenv repo
+
+cd plugins/ruby-build/
+git pull # will pull recent ruby builds
+```
+
+Now you can install your desired Ruby version
+
+```bash
+rbenv install --list  # should now include new ruby version
+rbenv install 2.1.2
+```
+
+Now you can remove old ruby to save disk space
+
+```bash
+rbenv uninstall 2.1.1
+```
+
+Please don`t forget to run 
+
+```bash
+rbenv rehash
+```
+
+even if you not unistalling old Ruby.
+
 source
 
 * http://railscasts.com/episodes/335-deploying-to-a-vps?view=comments
 * https://github.com/sstephenson/ruby-build
+* http://stackoverflow.com/questions/23702954/rbenv-install-list-does-not-list-version-2-1-2
 
