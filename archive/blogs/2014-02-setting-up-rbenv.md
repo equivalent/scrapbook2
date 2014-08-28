@@ -106,7 +106,7 @@ if you have any other questions just run
 rbenv help
 ```
 
-## rbenv udate Ruby version
+## rbenv update Ruby version
 
 let say new ruby version came up (in my case 2.1.2) and I want to upgrade it 
 
