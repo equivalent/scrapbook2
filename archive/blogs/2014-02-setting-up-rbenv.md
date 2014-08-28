@@ -134,19 +134,13 @@ rbenv install --list  # should now include new ruby version
 rbenv install 2.1.2
 ```
 
+You will have to install `bundler` and `rvm rehash` again.
+
 Now you can remove old ruby to save disk space
 
 ```bash
 rbenv uninstall 2.1.1
 ```
-
-Please don`t forget to run 
-
-```bash
-rbenv rehash
-```
-
-even if you not unistalling old Ruby.
 
 source
 
