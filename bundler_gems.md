@@ -4,7 +4,20 @@ bundle update    # update all gems
 bundle update rails  #update rails gem
 ```
 
+# install without test group
 
+```ruby
+#Gemfile
+
+group :test do
+  gem 'rspec' # ignored
+end
+```
+
+
+```bash
+bundle install --without test
+```
 
 # including tests in your gem 
 
