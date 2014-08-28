@@ -22,6 +22,12 @@ sswap # - wipe all the data from you swap space.
 
 source: http://superuser.com/questions/19326/how-to-wipe-free-disk-space-in-linux
 
+## How much is memory RAM beeing used
+
+```bash
+free -m
+```
+
 ##  Free Inode Usage
 
 if you run out of space on Linux (Ubuntu) server machine, you may still have enough space with
