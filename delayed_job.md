@@ -1,3 +1,54 @@
+
+# delayed job init.d
+
+```bash
+#!/bin/sh
+# upstart-job
+#
+# Symlink target for initscripts that have been converted to Upstart.
+
+set -e
+APP_ROOT=/home/deploy/apps/validations/current
+RAILS_ENV='trial'
+
+start_job() {
+        echo "Starting delayed job"
+        sudo -iu deploy bash -c "cd $APP_ROOT && RAILS_ENV=$RAILS_ENV bundle exec ./bin/delayed_job start"
+}
+
+stop_job() {
+        echo "Stopping delayed job"
+        sudo -iu deploy bash -c "cd $APP_ROOT && RAILS_ENV=$RAILS_ENV bundle exec ./bin/delayed_job stop"
+}
+
+COMMAND="$1"
+shift
+
+case $COMMAND in
+status)
+    ;;
+start|stop|restart)
+    $ECHO
+    if [ "$COMMAND" = "stop" ]; then
+        stop_job
+    elif [ "$COMMAND" = "start" ]; then
+        start_job
+    elif  [ "$COMMAND" = "restart" ]; then
+        stop_job
+        sleep 1s
+        start_job
+        exit 0
+    fi
+    ;;
+esac
+```
+
+
+
+
+
+# old notes
+
 ```bash
 bundle exec bin/delayed_job start # stop | status
 
