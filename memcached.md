@@ -1,5 +1,5 @@
 
-Inspecting memcached keys
+# Inspecting memcached keys
 
 ```
 telnet 127.0.0.1 11211
@@ -26,3 +26,7 @@ quit
 source:
 * http://www.justhacking.com/inspecting-memcached-content
 * http://superuser.com/questions/486496/how-do-i-exit-telnet
+
+# set memory size limit
+
+http://code.google.com/p/memcached/wiki/NewConfiguringServer
