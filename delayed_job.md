@@ -8,8 +8,8 @@
 # Symlink target for initscripts that have been converted to Upstart.
 
 set -e
-APP_ROOT=/home/deploy/apps/validations/current
-RAILS_ENV='trial'
+APP_ROOT=/home/deploy/apps/my_project/current
+RAILS_ENV='production'
 
 start_job() {
         echo "Starting delayed job"
