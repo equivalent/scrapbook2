@@ -43,9 +43,13 @@ start|stop|restart)
 esac
 ```
 
+```
+    sudo chmod +x /etc/init.d/delayed_job_my_project
+    sudo update-rc.d myscript defaults 98 02          #thos number are startup prority and end proces priority
+```    
 
-
-
+https://gist.github.com/stuzart/3169625
+https://help.ubuntu.com/community/UbuntuBootupHowto
 
 # old notes
 
