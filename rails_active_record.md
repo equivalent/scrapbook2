@@ -111,8 +111,13 @@ scope :visible, where("hidden != ?", true)
 scope :published, lambda { where("published_at <= ?", Time.zone.now) }
 scope :recent, visible.published.order("published_at desc")
 
-has_one :custom_form, -> { order(created_at: :desc) }, class_name: CustomForm
+#bad
+has_one :custom_form, -> { order('created_at DESC') }, class_name: CustomForm
+# SELECT ORDER BY created_at DESC LIMIT 
 
+#good
+has_one :custom_form, -> { order(created_at: :desc) }, class_name: CustomForm
+# SELECT .... ORDER BY "custom_forms"."created_at" DESC LIMIT 1
 ```
 
 ** merging diferent model scopes **
