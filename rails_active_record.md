@@ -110,6 +110,9 @@ Rails: 3.2.13
 scope :visible, where("hidden != ?", true)
 scope :published, lambda { where("published_at <= ?", Time.zone.now) }
 scope :recent, visible.published.order("published_at desc")
+
+has_one :custom_form, -> { order(created_at: :desc) }, class_name: CustomForm
+
 ```
 
 ** merging diferent model scopes **
