@@ -7,6 +7,19 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+
+## mount smb folder 
+
+... or how to mount NAS folder as local linux folder
+
+```bash
+mkdir /mnt/my_nas_drive
+mount -t cifs //ntserver/download -o username=vivek,password=myPassword /mnt/my_nas_drive
+# you can skip -o option on public
+```
+http://www.cyberciti.biz/tips/how-to-mount-remote-windows-partition-windows-share-under-linux.html
+
+
 ## secure delete
 
 ```
@@ -111,8 +124,11 @@ ssh -t user@212.95.123.123 'tail -f ~/apps/my_app/current/log/trial.log'
 
 ##  discover all IP adresses in local network
 
+or ping ip range
+
 ```sh
 nmap -sP 192.168.1.*
+nmap -sP 192.168.1.0-255
 ```
 
 ## send html email via linux console
