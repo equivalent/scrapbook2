@@ -1,5 +1,15 @@
 # pure Ruby
 
+### read file in chunks
+
+```ruby
+book = open('./whatever.txt')
+lines = 0
+while chunk = book.read(1024) # read chunk of 1024 Bytes
+  lines += chunk.count("\n")
+end
+puts lines
+```
 
 ###  detect if file exist in directory try 
 
