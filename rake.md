@@ -1,3 +1,13 @@
+### enhancing existing rake task
+
+... or how to call native Rails rake task plus my own task
+
+```ruby
+Rake::Task['db:create'].enhance do
+  Rake::Task['db:my_task'].invoke
+end
+```
+
 ### rake prompt
 
 ... or console input 
