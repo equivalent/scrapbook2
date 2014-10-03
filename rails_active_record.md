@@ -1,5 +1,16 @@
 # Rails Active Record Scrapbook
 
+## disable readonly on scope
+
+```ruby
+class FieldValue < ActiveRecord::Base
+  default_scope { joins(:field).merge(Field.positioned).readonly(false)
+end
+```
+
+this will ensure tha when you call `Whatever.field_values.create(foo: 'bar)` the reccord
+is writable
+
 ## ways to set attributes
 
 ```ruby
