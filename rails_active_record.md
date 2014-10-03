@@ -4,7 +4,7 @@
 
 ```ruby
 class FieldValue < ActiveRecord::Base
-  default_scope { joins(:field).merge(Field.positioned).readonly(false)
+  default_scope { joins(:field).merge(Field.positioned).readonly(false) }
 end
 ```
 
