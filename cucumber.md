@@ -1,3 +1,29 @@
+# RSpec3 mock in Cucumber
+
+to load RSpec 3 mocks, doubles, stubs in cucumber you have to do:
+
+```
+# features/support/env.rb
+require 'rspec/mocks'
+World(RSpec::Mocks::ExampleMethods)
+
+Before do
+  RSpec::Mocks.setup
+end
+
+After do
+  begin
+    RSpec::Mocks.verify
+  ensure
+    RSpec::Mocks.teardown
+  end
+end
+```
+
+Sources:
+
+* https://github.com/rspec/rspec-core/issues/1480
+
 
 # click Devise invitation link from mail 
 
