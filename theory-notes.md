@@ -14,6 +14,12 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 ## Dictionary
 
 
+* coincidental duplication - intentional duplication of unrelated
+  code knowledge
+  In other words DRYing code is not just mechanical removing
+  duplications. Dry is about having single home for each discret piece 
+  of knowledge. If you have two pieces of knowledge, they should have
+  own homes even if the code is really similar
 * Opacity - code is hard to read, hard to understand, hard to change.
 * Inseperability - modules cannot be reused/separeted
 * Fragility - change in a system will cause system to break in lot of places;

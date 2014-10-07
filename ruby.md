@@ -13,6 +13,87 @@ Topics not included/moved:
 Topics:
 
 
+## Rebinding Methods
+
+...prat of DCI (Domain, context and interaction )
+
+```ruby
+module DomainObject
+  attr_accessor :role
+
+  def play_role(role)
+    self.role = role
+    yield
+  ensure
+    self.role = nil
+  end
+
+  def method_missing(method_name, *args, &block)
+    if role && role.public_method_defined?(method_name)
+      role
+        .instance_method(method_name)
+        .bind(self)
+        .call(*args, &block)
+        # since ruby 2.0 methods of module can be
+        # rebound to any object in the system
+        # ( ruby 1.9. and lower required to bound
+        # methods to same Class or ancestor) 
+    else
+      super
+    end
+  end
+
+  def respond_to_missing?(method_name, include_all = false)
+    if role && public_method_defined?(method_name)
+      true
+    else
+      super
+    end
+  end
+end
+
+class Account
+  include DomainObject
+
+  attr_reader :balance
+
+  def initialize(balance)
+    @balance = balance
+  end
+
+end
+
+module TransferDestinationAccount
+  def receive(amount)
+    @balance += amount
+  end
+end
+
+module TransferSourceAccount
+  def transfer_to(destination, amount)
+    destination.receive(amount)
+    @balance -= amount
+  end
+end
+
+savings_account = Account.new(50)
+current_account = Account.new(400)
+
+savings_account.play_role(TransferDestinationAccount) do
+  current_account.play_role(TransferSourceAccount) do
+    current_account.transfer_to(savings_account, 20)
+  end
+end
+
+p savings_account.balance  # => 70
+p current_account.balance  # => 380
+p savings_account.class    # => Account
+p current_account.class    # => Account
+```
+
+source: ruby-tapas 091
+
+
 ## csv to STDOUT (in console)
 
 ```ruby
