@@ -121,6 +121,7 @@ Rails: 3.2.13
 scope :visible, where("hidden != ?", true)
 scope :published, lambda { where("published_at <= ?", Time.zone.now) }
 scope :recent, visible.published.order("published_at desc")
+scope :desc_order, order(created_at: :desc)
 
 #bad
 has_one :custom_form, -> { order('created_at DESC') }, class_name: CustomForm
