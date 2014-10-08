@@ -1,5 +1,24 @@
 # PostgreSQL
 
+### Functions
+
+```sql
+CREATE FUNCTION add_em(integer, integer) RETURNS integer AS $$
+    SELECT $1 + $2;
+$$ LANGUAGE SQL;
+
+SELECT add_em(1, 2) AS answer;
+
+
+CREATE FUNCTION domain_count(text) RETURNS bigint AS $$
+  SELECT COUNT(*) FROM "applications" WHERE "applications"."domain" = $1;
+$$ LANGUAGE SQL;
+
+SELECT domain_count('developer-test.com') AS domain_count;
+
+```
+
+
 ### export query to csv 
 
 ```sql
