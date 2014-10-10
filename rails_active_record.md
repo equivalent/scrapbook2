@@ -2,9 +2,11 @@
 
 ## disable readonly on scope
 
+any record loaded via join loaded  will be readonly (piggy back object)
+
 ```ruby
 class FieldValue < ActiveRecord::Base
-  default_scope { joins(:field).merge(Field.positioned).readonly(false) }
+  default_scope { joins(:field).readonly(false).merge(Field.positioned) }
 end
 ```
 
