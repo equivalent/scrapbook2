@@ -18,3 +18,14 @@ l = doc.css('div.heat a').map { |link| link['href'] }
 ```
 
 source: http://stackoverflow.com/questions/856706/extract-links-urls-with-nokogiri-in-ruby-from-a-href-html-tags
+
+
+#installing nokogiri or OSX
+
+if you have problem with `libiconv` not beeing present do 
+
+```
+xcode-select --install
+```
+
+this may happen during OSX updates as well, 
