@@ -8,6 +8,14 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## what is my public IP address (global ip address dns)
+
+```
+curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//' 
+```
+
+source: http://askubuntu.com/questions/95910/command-for-determining-my-public-ip
+
 ## mount smb folder 
 
 ... or how to mount NAS folder as local linux folder
