@@ -15,7 +15,7 @@ string = 'aaaaazzzzzaaaaazaaaa'
 
 ```
 
-this both are looping from **end** off the string till they find the point to stop.
+this both are looping from **end** of the string till they find the point to stop.
 The difference is that greedy will stop at first occurence, while non-greedy is looping
 till he's sure that no other occurence exist
 
