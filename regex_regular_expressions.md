@@ -23,6 +23,7 @@ even wors is to do `(.*)?` which is like loop within a loop
 
 so imagine now 10GB log file how would that screw your computer
 
+Special thanx to [tom](https://github.com/tom-lord) for pointing this out
 
 # watch out for hyphen
 
