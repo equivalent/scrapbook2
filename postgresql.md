@@ -1,5 +1,25 @@
 # PostgreSQL
 
+### array 
+
+to create rails migration for array  (it can be text as well as postgres will make it array)
+
+http://www.postgresql.org/docs/9.1/static/arrays.html
+
+```
+  create_table "email_logs" do |t|
+    t.integer  "user_tld_id"
+    t.string   "category",       default: [], array: true
+  end
+```
+
+
+#### array search
+
+```
+SELECT  "email_logs".* FROM "email_logs" WHERE user_tld_id = 3 AND 'reminder' = ANY (category) LIMIT 1;
+```
+
 ### Functions
 
 ```sql
