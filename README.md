@@ -104,6 +104,12 @@ end
 source: ruby tapas 42
 
 
+### grep tail 
+
+```
+ tail -f log/production.log | grep "NoMethodError"
+```
+
 ### Gems
 
 * Moneta key store (good for caching) https://github.com/minad/moneta
