@@ -18,6 +18,15 @@ Archive:
 ## Web-development notes unsorted
 
 
+### generate ri documentation
+
+
+```bash
+rvm docs generate
+```
+
+to lunch `ri Array`
+
 ### cowsay
 
 ```ruby
