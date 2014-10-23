@@ -371,6 +371,18 @@ Capybara.register_driver :selenium do |app|
 end
 
 Capybara.default_driver = :selenium
+
 ```
 
-source: http://stackoverflow.com/questions/6821659/cucumber-selenium-webdriver-how-to-use-google-chrome-as-the-testing-browser-i
+This can also be extended to (globally) set the browser to fullscreen:
+
+```
+#features/support/env.rb
+Capybara.register_driver :selenium do |app|
+  driver = Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  driver.browser.manage.window.maximize
+  driver
+end
+```
+
+Source: http://stackoverflow.com/questions/6821659/cucumber-selenium-webdriver-how-to-use-google-chrome-as-the-testing-browser-i
