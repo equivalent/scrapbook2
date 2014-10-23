@@ -26,9 +26,9 @@ end
 but for some reason the value of `yield(self, view_header)` was `0`.
 Not nil, not empty string but a zero.
 
-It turns out it was caused by the way Haml outputs to template.
-Long story short, using `capture_haml` will capture hamle to sting, and 
-rendering that string with `=` will make it work properly:
+It turns out it was caused by the way how Haml outputs to template.
+Long story short, using `capture_haml` will capture haml to sting, and 
+if you then render that string with `=` that will make it work properly:
 
 ```haml
 - language_presenter = MyPresenter.new
