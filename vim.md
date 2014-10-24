@@ -1,5 +1,14 @@
 # Basic usage 
 
+## Change file type
+
+...or tell vim to use other language code syntax
+
+```
+:set filetype=markdown
+:set filetype=ruby
+```
+
 ## Normal mode
 
 Copy Paste
