@@ -1,4 +1,10 @@
+
+```
+within( all('tr').last ) { click_icon_link title: 'Validation Types' 
+```
+
 # RSpec3 mock in Cucumber
+
 
 to load RSpec 3 mocks, doubles, stubs in cucumber you have to do:
 
