@@ -91,6 +91,12 @@ Eager loading is responsible for prefetching data in one sql query
     Product.joins(:category, :reviews => :user)
     Product.joins("left outer join categories on category_id = categories.id")
 
+    products = Product
+      .order("categories.name")
+      .joins(:categories)
+      .select("products.*, categories.name AS category_name")
+    products.last.category_name
+   
 
 
 **Fetching one column name from association**

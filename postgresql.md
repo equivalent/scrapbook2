@@ -211,3 +211,40 @@ if you get `PG::Error: ERROR:  could not open extension control file "/usr/share
     sudo apt-get install postgresql-contrib
 
 source http://stackoverflow.com/questions/19467481/postgres-hstore-exists-and-doesnt-exist-at-same-time
+
+#### postgres hstore queries
+
+```ruby
+Product.create(properties: {rating: 'PG-13', runtime: '103'} )
+
+Product.where("properties -> 'rating' = 'PG-13'")
+Product.where("properties -> 'rating' LIKE '%G%'")
+Product.where("(properties -> 'rating')::int > 100")
+
+```
+
+Rails Hstore object has different Object ID  each time you call it, so you
+cannot do this:
+
+```ruby
+foo.properties['rating'] = '123' # wont save
+foo.properties # => {}
+```
+
+...you need to set the full properties hash each time
+
+```ruby
+foo.properties  { rating: 'foo'}
+```
+
+...so to do setra method you need to have 
+
+```ruby
+def author=(value)
+  self.properties = (properties || {}).merge(author: value)
+end
+```
+
+sources:
+
+* railscasts-345
