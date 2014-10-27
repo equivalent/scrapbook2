@@ -13,7 +13,12 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
-
+* SAX - Simple API for XML - example to nokogiri you can pass custom
+  parser 
+* special case pattern - pattern where multiple similar if statements
+  indicates that there is a new object to be extracted = special case
+  object. Example multiple `if current_user` `else; puts "hello guest"`
+  ruby-tapas 112
 * coincidental duplication - intentional duplication of unrelated
   code knowledge
   In other words DRYing code is not just mechanical removing

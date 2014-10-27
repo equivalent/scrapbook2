@@ -12,6 +12,35 @@ Topics not included/moved:
 
 Topics:
 
+## Ruby String subscript assignment 
+
+
+```ruby
+str = "String Subscript Assignment"
+str[0,0] = "107 " 
+str                                   # => "107 String Subscript Assignment"
+str[/^\d{3}/]                         # => "107"
+
+str[/^(\d{3}) (.*)/] 
+# => "107 String Subscript Assignment" 
+str[/^(\d{3}) (.*)/, 1] 
+# => "107" 
+str[/^(\d{3}) (.*)/, 2] 
+# => "String Subscript Assignment" 
+
+str[/^(\d{3}) (.*)/, 2] = "How cool is that?" 
+# => "How cool is that?" 
+str
+# => "107 How cool is that?" 
+
+str[/^(?<number>\d{3}) (?<name>.*)/, :name] = "test
+# test"  => "test test" 
+ str
+# => "107 test test" 
+```
+
+source: ruby-tapas 107
+
 
 ## Rebinding Methods
 
