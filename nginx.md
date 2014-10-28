@@ -361,7 +361,7 @@ server {
     
     # if you want to try this with webrick you can do 
     #   
-    #   proxy_pass http:/0.0.0.0:3000
+    #   proxy_pass http://0.0.0.0:3000
     #
   }                                                                                                                   
   
