@@ -1,6 +1,28 @@
 # CarrierWave File Uploader Scrapbook
 
 
+# save original filename size mime type 
+
+https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Store-the-uploaded-file-size-and-content-type
+
+
+```ruby
+class Asset < ActiveRecord::Base
+  mount_uploader :asset, AssetUploader
+
+  before_save :update_asset_attributes
+
+  private
+
+  def update_asset_attributes
+    if asset.present? && asset_changed?
+      self.content_type = asset.file.content_type
+      self.file_size = asset.file.size
+    end
+  end
+end
+```
+
 
 ## testing with RSpec 
 
