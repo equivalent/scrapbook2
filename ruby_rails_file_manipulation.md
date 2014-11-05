@@ -1,5 +1,9 @@
 # pure Ruby
 
+```
+File.read(Pathname.new(File.dirname(__FILE__)).join('config', 'deploy.yml'))
+```
+
 ### read file in chunks
 
 ```ruby
