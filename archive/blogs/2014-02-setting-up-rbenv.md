@@ -16,12 +16,23 @@ sudo apt-get -y install build-essential zlib1g-dev libssl-dev libreadline-gplv2-
 
 ### Download and install rbenv 
 
-run this in terminal
+NOTE: If you reinstalling `rbenv` you may need to explicitly specify `RBENV_ROOT` before running instaling curl bash
+
+```
+export RBENV_ROOT="${HOME}/.rbenv"
+# export RBENV_ROOT="/opt/rbenv/" # some developers prefare this option I highly recommend 
+                                  # to instal rbenv to home folder of deploy user as it's 
+                                  # convention 
+```
+
+To install rbenv run this in terminal:
 
 ```bash
 cd ~
 curl -L https://raw.github.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 ```
+
+
 
 Add `rbenv` to your `.bashrc
 
