@@ -156,3 +156,17 @@ source
 * https://github.com/sstephenson/ruby-build
 * http://stackoverflow.com/questions/23702954/rbenv-install-list-does-not-list-version-2-1-2
 
+## Recommendations
+
+### eval bundle problem
+
+if your deployment with Capistrano or Mina fails on `bundle: not found` there is an easy solution mentioned here
+http://stackoverflow.com/questions/15379618/capistrano-deploy-failing-error-for-rails-bundle-not-found
+
+in your `.bashrc` file place :
+
+```
+eval "$(rbenv init -)"
+```
+
+...under the rbenv `$PATH` definition
