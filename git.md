@@ -5,6 +5,12 @@ git log --decorate --graph
 git reflog
 ```
 
+### git cancle merge / reset merge
+
+```
+git reset --hard 03400a8da200607be2a7a85b33e9ab86de89fc3d
+```
+
 ### gitigtore
 
 ```
