@@ -160,19 +160,20 @@ http://www.postgresql.org/docs/current/static/sql-alterdatabase.html
 
       psql --username=postgres
 
-### Install postgresql 9.1 on Ubuntu 12.04
+
+
+### Install postgresql 9.3 on Ubuntu 14.04
     
-http://railskey.wordpress.com/2012/05/19/postgresql-installation-in-ubuntu-12-04/
-    
-    sudo apt-get install python-software-properties
-    sudo add-apt-repository ppa:pitti/postgresql
+
     sudo apt-get update
-    sudo apt-get install postgresql-9.1 libpq-dev
+    sudo apt-get install postgresql-9.3 libpq-dev
     
     #check instalation
     locate postgresql
     psql -V
     
+for Ubuntu 12.04 & postgres 9.1 check http://railskey.wordpress.com/2012/05/19/postgresql-installation-in-ubuntu-12-04/
+
 
 ### mint & ubuntu postgres 
     
