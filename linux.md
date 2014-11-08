@@ -8,6 +8,26 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## ubuntu 14 change number of workspaces
+
+current number of worspaces
+
+```
+dconf read /org/compiz/profiles/unity/plugins/core/hsize
+dconf read /org/compiz/profiles/unity/plugins/core/vsize
+```
+
+set new number 
+
+```
+dconf write /org/compiz/profiles/unity/plugins/core/hsize 2
+```
+
+source:
+
+http://askubuntu.com/questions/447673/how-to-change-number-of-workspaces-from-command-line
+http://askubuntu.com/questions/459284/how-to-use-different-workspaces-on-ubuntu-14-04
+
 ## what is my public IP address (global ip address dns)
 
 ```
