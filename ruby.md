@@ -12,6 +12,15 @@ Topics not included/moved:
 
 Topics:
 
+## is class ancestor 
+
+```ruby
+TldDecorator <= BaseDecorator # true
+TldDecorator <= Object # true
+TldDecorator <= Tld # false
+
+```
+
 ## Ruby String subscript assignment 
 
 
