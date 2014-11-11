@@ -1,9 +1,9 @@
 # Fetch Amazon s3 (aws) backup from console
 
-If you are using [backup gem] for crating your backups to s3 bucket (or any other gem, doesn't mather)
+If you are using [backup gem](https://github.com/meskyanichi/backup) for crating your backups to s3 bucket (or any other gem, doesn't mather)
 logging to your AWS console web interface each time you want to download backu is not only slow. 
 
-Much faster solution is to fetch the dump via console with [s3cmd]
+Much faster solution is to fetch the dump via console with [s3cmd](http://s3tools.org/s3cmd)
 
 ```
 sudo apt-get install s3cmd
@@ -41,7 +41,3 @@ and download it with
 s3cmd get s3://my-project-production-dbbackup/production_db_backups/my-projcet_backup/2014.11.11.10.07.14/my-project_backup.tar /tmp/
 ```
  
-sources:
- 
-[backup gem](https://github.com/meskyanichi/backup)
-[s3cmd](http://s3tools.org/s3cmd)
