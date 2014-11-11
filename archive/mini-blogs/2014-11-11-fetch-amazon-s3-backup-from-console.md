@@ -18,7 +18,7 @@ Now that you have `Access Key ID` and `Secret Access Key` you can  configure s3c
 s3cmd --configure
 ```
 
-# one thing avoid special chars as passphraze http://stackoverflow.com/questions/16512312/s3cmd-incomplete-format-error/16714176#16714176
+one thing you shoul avoid are special chars in passphraze http://stackoverflow.com/questions/16512312/s3cmd-incomplete-format-error/16714176#16714176
 
 to try if it works do:
 
