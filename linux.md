@@ -165,6 +165,7 @@ nmap -sP 192.168.1.0-255
 ```sh
 # sudo apt-get install mailutils  # if mail comm not worknig  ...also you need postfix 
 
+echo "<h1>Hi</h1><p>test hello</p>" > /tmp/my_mail_content.html
 mail  -a 'Content-Type: text/html' -s "some subject" myemail@test.com  < /tmp/my_mail_content.html
 ```
 

@@ -20,7 +20,12 @@ Pragma: no-cache
 Expires: -1
 ```
 
+in rails 
+
+* https://github.com/equivalent/no_cache_control
+
 source: 
 
 * http://www.contextis.com/
 * http://stackoverflow.com/questions/10744169/rails-set-no-cache-method-cannot-disable-browser-caching-in-safari-and-opera
+* http://apidock.com/rails/ActionController/ConditionalGet/expires_in
