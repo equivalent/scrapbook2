@@ -8,6 +8,18 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## store ssh private key in differnt dir
+
+e.g. You can have multiple ssh_keys on one comuputer, you may want to store one of you keys in separate  encrypted container (e.g. work comupter, store personal in Truecrypt while leave work one in Home dir)
+
+```
+vim ~/.ssh/config
+
+IdentityFile ~/my_mount_for_crypted_dir/personal_private key
+```
+
+http://stackoverflow.com/questions/84096/setting-the-default-ssh-key-location
+
 ## ubuntu 14 change number of workspaces
 
 current number of worspaces
