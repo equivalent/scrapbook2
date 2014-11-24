@@ -272,6 +272,8 @@ tar -zxvf /tmp/nginx-1.4.4.tar.gz.1 -C /tmp
 # tar only
 tar -xvf /tmp/backup.tar -C /tmp
 
+# gzip only 
+gzip -d /tmp/backup.gz
 ```
 
 ## compress folder to tar.gz 
