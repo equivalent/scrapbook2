@@ -3,6 +3,14 @@ bundle outdated  # list of outdated gems
 bundle update    # update all gems
 bundle update rails  #update rails gem
 ```
+# publish gems to rubygem
+
+http://guides.rubygems.org/make-your-own-gem/#your-first-gem
+
+```
+gem build copy_carrierwave_file.gemspec
+gem push copy_carrierwave_file-1.1.0.gem
+```
 
 # install without test group
 
