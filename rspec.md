@@ -1,5 +1,26 @@
 # RSpec scrapbook
 
+### skip before
+
+
+https://coderwall.com/p/_yrafw/skipping-before-hook-for-a-few-test-cases-in-rspec
+
+```
+before do
+  unless example.metadata[:skip_before]
+    # before body
+  end
+end
+
+it "does something" do
+  # before hook will run before this example
+end
+
+it "does something else", skip_before: true do
+  # before hook will be skipped
+end
+```
+
 ### shared examples
 
 ```ruby

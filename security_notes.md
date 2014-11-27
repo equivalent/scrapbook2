@@ -1,4 +1,43 @@
+# NginX disable POODLE
 
+```
+# /etc/nginx/nginx.conf
+
+# ...
+http {
+  # ...
+  # disable SSLv3 (POODLE)
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  # ...
+}
+
+```
+
+# NginX should not display version
+
+test it with:
+
+```
+http://my-site.com/%%
+```
+
+next check headers in
+
+```
+# /etc/nginx/nginx.conf
+
+# ...
+http {
+  # ...
+  server_tokens off;
+  # ...
+}
+
+```
+
+source
+
+* https://www.virendrachandak.com/techtalk/how-to-hide-nginx-version-number-in-headers-and-errors-pages/
 
 # Prevent Page Caching
 
