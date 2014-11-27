@@ -1,5 +1,7 @@
 # Keep NginX updated
 
+nginx should be updated regulary on server
+
 ```
 sudo aptitude update
 sudo aptitude safe-upgrade
@@ -38,15 +40,13 @@ http {
 
 ```
 
-# NginX should not display version
+# NginX should not display version 
 
 test it with:
 
 ```
 http://my-site.com/%%
 ```
-
-next check headers in
 
 ```
 # /etc/nginx/nginx.conf
@@ -60,9 +60,56 @@ http {
 
 ```
 
+This also disable the version number fromnext check headers in
+`server` header. You should hide this header. You can find how to 
+remove headers is in  this scapbook note file
+
 source
 
 * https://www.virendrachandak.com/techtalk/how-to-hide-nginx-version-number-in-headers-and-errors-pages/
+
+# Remove Headers
+
+If you compile your own NginX you can compile it with module
+`HttpHeadersMoreModule`
+
+and use:
+
+```
+more_clear_headers Server Date Status X-UA-Compatible Cache-Control
+X-Request-Id X-Runtime X-Rack-Cache;
+
+```
+
+...or if you mange to install `sudo apt-get nginx-extras` working that
+module should be included (never tried it )
+
+If you use Nginx from Ubuntu apt-get repo
+
+```
+server {
+
+  location @unicorn {
+
+    # ...
+    proxy_hide_header X-Powered-By;
+    proxy_hide_header X-Runtime;
+    # ...
+  }
+}
+```
+
+source:
+
+i* https://stackoverflow.com/questions/10323331/remove-unnecessary-http-headers-in-my-rails-answers/27175020#27175020
+
+
+
+
+source:
+
+http://stackoverflow.com/questions/10323331/remove-unnecessary-http-headers-in-my-rails-answers
+
 
 # Prevent Page Caching
 
