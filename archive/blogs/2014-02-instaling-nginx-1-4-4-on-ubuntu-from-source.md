@@ -222,6 +222,6 @@ sources:
 
 * https://github.com/equivalent/scrapbook2/blob/master/nginx.md
 
-## oter related links
+## other related links
 
 * [how to remove headers on NginX level](https://stackoverflow.com/questions/10323331/remove-unnecessary-http-headers-in-my-rails-answers/27175020#27175020)
