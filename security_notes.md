@@ -1,3 +1,28 @@
+# Keep NginX updated
+
+```
+sudo aptitude update
+sudo aptitude safe-upgrade
+
+# or if you prefere apt-get
+
+apt-get update
+apt-get upgrade      # equivalent of safe-upgrade in aptitude
+
+# if doing kernels
+apt-get dist-upgrade
+
+# And Unattended Upgrades for automatic security updates
+apt-get install unattended-upgrades #
+dpkg-reconfigure unattended-upgrades # enable or disable easity
+# configure in /etc/apt/apt.conf.d/50unattended-upgrades
+```
+
+source
+
+* http://leftshift.io/upgrading-nginx-to-the-latest-version-on-ubuntu-servers
+* my colegue M.H., thx Mike
+
 # NginX disable POODLE
 
 ```
