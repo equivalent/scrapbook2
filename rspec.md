@@ -2,6 +2,7 @@
 
 ### check if yield
 
+```ruby
   def my_method(value)
     yield if value
   end
@@ -36,7 +37,7 @@
         .not_to yield_control
     end
   end
-
+```
 
 
 ### skip before
