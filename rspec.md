@@ -1,5 +1,44 @@
 # RSpec scrapbook
 
+### check if yield
+
+  def my_method(value)
+    yield if value
+  end
+
+  describe '#my_method' do
+    #using plain ruby
+    it 'should make sure that yield' do
+      yielded = :not_yielded_yet
+      my_method(true) do
+        yielded = :was_yielded
+      end
+
+      expect(yielded).to eq(:was_yielded)
+    end
+
+    it 'should make sure that was not yield' do
+      yielded = :not_yielded_yet
+      my_method(false) do
+        yielded = :was_yielded
+      end
+
+      expect(yielded).to eq(:not_yielded_yet)
+    end
+
+    it 'should yield' do
+      expect { |block| my_method(true, &block) }
+        .to yield_control.once
+    end
+
+    it 'should yield' do
+      expect { |block| my_method(false, &block) }
+        .not_to yield_control
+    end
+  end
+
+
+
 ### skip before
 
 
