@@ -12,6 +12,18 @@ gem build copy_carrierwave_file.gemspec
 gem push copy_carrierwave_file-1.1.0.gem
 ```
 
+# absolute path to gem folder
+
+```ruby
+ruby-1.9.2-p290 :001 > Gem.loaded_specs['awesome_engine'].full_gem_path
+ => "/Users/younker/dev/engines/awesome_engine" 
+
+ruby-1.9.2-p290 :002 > Gem.loaded_specs['rails'].full_gem_path
+ => "/Users/younker/.rvm/gems/ruby-1.9.2-p290@foobar/gems/rails-3.1.3"
+```
+
+http://stackoverflow.com/questions/9743540/i-need-a-gems-full-path-from-inside-a-rails-app
+
 # install without test group
 
 ```ruby
