@@ -216,6 +216,13 @@ Event.arel_table[:start_at].lt(Time.now).to_sql
 => "`events`.`start_at` < '2013-03-05 10:38:22'" 
 ```
 
+**Arel give me records that have empty / no  associations**
+
+```
+# give me all users which has no permissions
+User.joins('FULL OUTER JOIN permissions on permissions.user_id = users.id').where(permissions: {user_id:nil})
+```
+
 **Arel not equal where statement**
 
 ```ruby
