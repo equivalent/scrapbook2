@@ -1,3 +1,59 @@
+# Use Secure Cookies
+
+Ensure that the secure flag is set on all cookies that are
+used to maintain user state or have any security impact, and
+that all sensitive data is transmitted over HTTPS.
+
+Also ensure that any redirects from HTTPS pages redirect to
+HTTPS and not HTTP pages.
+
+**fix** 
+
+you can do 
+
+```ruby
+# in config/environment.rb:
+config.action_controller.session = {
+    :key    => '_myapp_session',
+    :secret => 'super_very_long_key_more_than_30_chars',
+    :expire_after => 3600 # 1 hour
+  }
+```
+
+...HOVEVER the thing abount flaging cookies with secure flag is pointless
+there as the whole cookie store is bad, so better use some other type of storage(ActiveRecord db, Redis,
+Memcache) [more info here](http://dev.housetrip.com/2014/01/14/session-store-and-security/)
+
+```ruby
+# config/initialzers/session_store.rb
+
+
+## old no-no cookie way 
+# MyProject::Application.config.session_store :cookie_store, key:
+'_my_project_session'
+
+Rails
+  .application
+  .config
+  .session_store ActionDispatch::Session::CacheStore, :expire_after => 20.minutes
+```
+
+https://github.com/mperham/dalli#usage-with-rails-3x-and-4x
+
+
+Ensure that all requests use HTTPS use:
+
+```ruby
+  # confix/environmets/production.rb  && staging
+
+  config.force_ssl = true
+```
+
+* http://guides.rubyonrails.org/security.html#session-hijacking
+* http://blog.tech-angels.com/post/840662150/ruby-on-rails-secure-cookies
+* http://dev.housetrip.com/2014/01/14/session-store-and-security/
+
+
 # Keep NginX updated
 
 nginx should be updated regulary on server
