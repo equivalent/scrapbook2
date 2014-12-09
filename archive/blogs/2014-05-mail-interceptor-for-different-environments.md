@@ -41,6 +41,8 @@ class StagingMailInterceptor
     development_information << " [ BCC: #{message.bcc} ]" if message.bcc
 
     message.to = email
+    message.cc = nil
+    message.bcc = nil
     message.subject = "[Test] #{message.subject}
 #{development_information}"
   end
