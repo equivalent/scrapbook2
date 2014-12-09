@@ -35,7 +35,7 @@ ascender.detect { |path| (path + 'Rakefile').exist?}
 
 good enum example
 
-### absolute path to gem folder
+### absolute (root) path to gem folder
 
 ```ruby
 ruby-1.9.2-p290 :001 > Gem.loaded_specs['awesome_engine'].full_gem_path
