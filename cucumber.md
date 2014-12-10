@@ -3,6 +3,26 @@
 within( all('tr').last ) { click_icon_link title: 'Validation Types' 
 ```
 
+
+# Spinach hooks
+
+```ruby
+# features/support/env.rb
+Spinach.hooks.before_scenario do |scenario_data, step_definitions|
+  DatabaseCleaner.clean
+  ActionMailer::Base.deliveries = []
+end
+
+Spinach.hooks.after_feature do |feature_data|
+  set_pagination(1, 'users')
+  set_pagination(1, 'applications')
+end
+
+def set_pagination(items_per_page, model_name)
+  model_name.singularize.camelize.constantize.paginates_per items_per_page
+end
+```
+
 # RSpec3 mock in Cucumber
 
 
