@@ -6,7 +6,7 @@ Pure git/github version of my scrapbook on Ruby on Rails, web-development, linux
 
     ##########################################################################
     ##                                                                      ##
-    ##   Check individual .md files above for more information on topics   ##
+    ##   Check individual .md files above for more information on topics    ##
     ##                                                                      ##
     ##########################################################################
     
