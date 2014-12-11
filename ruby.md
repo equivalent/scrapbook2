@@ -442,8 +442,18 @@ text.scan(EMAIL_PATTERN) do |name, domain|
 end
 ```
 
-
 source: ruby tapas 41
+
+....another way how to do regexp  is 
+
+```
+$1 if "Token 123".match(/Token\s+(.*)/)
+# => '123'
+
+$1 if "BAD".match(/Token\s+(.*)/)
+# => nil
+```
+
 
 ## ruby singleton objects
 
