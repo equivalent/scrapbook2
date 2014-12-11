@@ -1,5 +1,23 @@
 # RSpec scrapbook
 
+
+### RSpec datetime Factory at midnight
+
+one way how to deal whith factory times beeing out of sync:
+
+```ruby
+it 'user updated_at should not change' do 
+  user = User.create(updated_at: Time.now.midnight) 
+  do_some_calculation
+  expect(user.updated_at).to eq(Time.now.midnight) 
+
+  # Time.now.midnight will give you 2014-12-11 00:00:00 +0000
+  # there is also .middle_of_day 2014-12-11 12:00:00 +0000
+end
+```
+
+but I'm recommending to use  `Expect(Time.now).to be_within(2.seconds).of(Time.now)`
+
 ### check if yield
 
 ```ruby
