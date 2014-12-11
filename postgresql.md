@@ -120,6 +120,14 @@ SELECT * FROM (select * ROW_NUMBER() OVER(PARTITION BY domain) AS domain_count F
  sudo -u postgres psql db_name < dump.db 
 ```
 
+in heroku
+
+```
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d mydb latest.dump
+# ..or
+ sudo -upostgres pg_restore --verbose --clean --no-acl --no-owner -d mydb latest.dump
+```
+
 #### create dump
 
 ```bash
