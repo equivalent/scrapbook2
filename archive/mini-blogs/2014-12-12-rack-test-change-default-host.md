@@ -1,3 +1,5 @@
+# change Rack Test default host
+
 If you're using [Rack Test](https://github.com/brynary/rack-test) to test requests on your Sinatra application
 you will notice that by default the host is `example.org`.
 
