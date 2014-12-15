@@ -1,3 +1,13 @@
+# CTags in rails
+
+```sh
+gem install ripper-tags
+
+ripper-tags -R --exclude=tmp # will index all .rb files
+```
+
+note janus vim has C-Tags by default
+
 # Basic usage 
 
 ## Change file type

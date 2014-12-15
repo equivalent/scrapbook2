@@ -452,6 +452,9 @@ $1 if "Token 123".match(/Token\s+(.*)/)
 
 $1 if "BAD".match(/Token\s+(.*)/)
 # => nil
+
+# but far better approch is to do 
+headers['Authorization'].match(/Token\s+(.*)/) { |m| m[1] }
 ```
 
 
