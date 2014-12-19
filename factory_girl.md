@@ -50,7 +50,7 @@ FactoryGirl.create :country, :cached_in_past, cities: [city1, city2], short_desc
 
 
 
-### Ignored
+### Ignored transient
 
 ```ruby
 FactoryGirl.define do
@@ -60,7 +60,7 @@ FactoryGirl.define do
   end
 
   trait :with_fields do
-    ignore do
+    transient do                           # ignore in older version
       number_of_fields 1
     end
 
@@ -70,7 +70,7 @@ FactoryGirl.define do
   end
 
   trait :with_validations do
-    ignore do
+    transient do                           # ignore in older version
       number_of_validations 1
     end
 
