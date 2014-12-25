@@ -8,6 +8,17 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## badblocks (check hdd disk for bad sectors / blocks)
+
+note badblocks seems to me destructive program, rather never use it on HDD of wich data you need
+
+more info https://wiki.archlinux.org/index.php/badblocks#Testing_for_Bad_Sectors
+
+```sh
+ badblocks -nsv /dev/sdb     # run read-write Test (non-destructive) ...but read more 
+                             # about destructivity in that link above (will overide and return data)
+ ```
+
 ## store ssh private key in differnt dir
 
 e.g. You can have multiple ssh_keys on one comuputer, you may want to store one of you keys in separate  encrypted container (e.g. work comupter, store personal in Truecrypt while leave work one in Home dir)
