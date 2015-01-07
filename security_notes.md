@@ -41,12 +41,42 @@ Rails
 https://github.com/mperham/dalli#usage-with-rails-3x-and-4x
 
 
-Ensure that all requests use HTTPS use:
+# Ensure that all requests use HTTPS use:
 
 ```ruby
   # confix/environmets/production.rb  && staging
 
   config.force_ssl = true
+```
+
+if you need it per controller level
+
+```ruby
+class ApplicationController < ActiveController::Base
+   force_ssl if: :should_force_ssl?
+   
+   private
+   
+   def should_force_ssl?
+     !Rails.env.in?(%w(development test))
+   end
+end
+
+class NonHttpsContoller < ApplicationController
+  def should_force_ssl?
+    false
+  end
+end
+```
+
+You may have problems with NginX accepting the `force_ssl`. To solve this use 
+
+```
+  location @unicorn {
+    # ...
+    proxy_set_header X-Forwarded-Proto https;
+    # ...
+  }
 ```
 
 * http://guides.rubyonrails.org/security.html#session-hijacking
