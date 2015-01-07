@@ -20,6 +20,14 @@ config.action_controller.session = {
   }
 ```
 
+and for devise:
+
+```
+# config/initializers/devise.rb
+config.rememberable_options = { secure: true }
+
+```
+
 ...HOVEVER the thing abount flaging cookies with secure flag is pointless
 there as the whole cookie store is bad, so better use some other type of storage(ActiveRecord db, Redis,
 Memcache) [more info here](http://dev.housetrip.com/2014/01/14/session-store-and-security/)
