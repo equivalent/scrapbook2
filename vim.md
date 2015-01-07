@@ -1,3 +1,9 @@
+```
+=          # reindent, highligted text
+J          # join highlited lines a\n b\n c\  => abc
+
+```
+
 # CTags in rails
 
 ```sh
