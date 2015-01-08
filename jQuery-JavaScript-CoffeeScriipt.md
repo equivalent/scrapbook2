@@ -1,3 +1,20 @@
+
+### Escaping XSS
+
+```js
+$('.my-item').text('<script>alert(0)</script> aaa')  // will escape 
+$('.my-item').html('<script>alert(0)</script> aaa')  // will not escape  XSS unsafe
+
+
+    info = $('.my-item')
+    info.text('')
+    info.append("<i class='fa fa-file-o'></i> ")
+    info.append(document.createTextNode($('input').val())) // createTextNode this will escape
+```
+
+http://api.jquery.com/text/
+
+
 ### Rails UJS callbacks
 
 https://github.com/rails/jquery-ujs/wiki/ajax
