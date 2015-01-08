@@ -1,3 +1,9 @@
+# secure XSS file name
+
+try to upload located in  `scrapbook2/assets/XSSfile.<a onmouseover="alert(1)">a`
+
+
+
 # Use Secure Cookies
 
 Ensure that the secure flag is set on all cookies that are
