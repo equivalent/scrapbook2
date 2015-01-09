@@ -1,3 +1,19 @@
+# HTML "AutoComplete" should not be on Password Field Enabled
+
+Many web browsers will prompt the user to remember
+the username and password fields and offer to
+automatically populate them in future.
+
+Internet Explorer > 11, Mozilla Firefox > 30, Google Chrome > 34) no longer support HTML 'AutoComplete' on password field
+
+solution: 
+
+```
+<input type=”text” name=”username” autocomplete=”off” />
+<input type=”password” name=”password” autocomplete=”off” />
+```
+
+
 # Authenticated Sessions should not be Transferable (or should they ?)
 
 solution : "Incorporate Client Identifiers Within Session Data"
