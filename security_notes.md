@@ -1,3 +1,9 @@
+tools 
+ https://addons.mozilla.org/en-US/firefox/addon/httpfox/  inspect your post requests
+ http://chrispederick.com/work/web-developer/  inspect cookies
+
+
+
 # forgoten password links should expire
 
 Given user reset password now
