@@ -16,6 +16,7 @@ information.
 
 http://www.contextis.co.uk/services/research/white-
 papers/clickjacking-black-hat-2010/
+https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options
 
 solution:
 
