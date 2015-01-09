@@ -1,3 +1,10 @@
+# disable Concurrent Logins 
+
+...in other words only one computer should be able to loggin for the same user. Logout the other computer.
+
+Make sence for a bank dashboard, make no sence for social app (multiple devices at a same time)
+
+
 # HTML "AutoComplete" should not be on Password Field Enabled
 
 Many web browsers will prompt the user to remember
