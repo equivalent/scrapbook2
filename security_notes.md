@@ -13,6 +13,7 @@ solution:
 <input type=”password” name=”password” autocomplete=”off” />
 ```
 
+more info https://github.com/plataformatec/simple_form/issues/1191
 
 # Authenticated Sessions should not be Transferable (or should they ?)
 
