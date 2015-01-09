@@ -1,3 +1,9 @@
+# forgoten password links should expire
+
+Given user reset password now
+When he tries to access it within 2 hours
+Then resset password link should not be valid
+
 # disable Concurrent Logins 
 
 ...in other words only one computer should be able to loggin for the same user. Logout the other computer.
