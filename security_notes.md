@@ -14,9 +14,8 @@ to manipulate a user into performing actions
 unbeknownst to them, such as stealing sensitive
 information.
 
-http://www.contextis.co.uk/services/research/white-
-papers/clickjacking-black-hat-2010/
-https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options
+* http://www.contextis.co.uk/services/research/white-papers/clickjacking-black-hat-2010/
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options
 
 solution:
 
