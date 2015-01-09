@@ -16,7 +16,8 @@ information.
 
 * http://www.contextis.co.uk/services/research/white-papers/clickjacking-black-hat-2010/
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options
-
+* http://blog.kotowicz.net/2009/12/5-ways-to-prevent-clickjacking-on-your.html
+* 
 solution:
 
 
@@ -40,9 +41,10 @@ For older browsers use:
 
 ```
 <script>
-try { top.document.domain } catch (e) {
-  var f = function() { document.body.innerHTML = ''; }
-  setInterval(f, 1); if (document.body) document.body.onload = f;
+try {
+if (top.location.hostname != self.location.hostname) throw 1;
+} catch (e) {
+top.location.href = self.location.href;
 }
 </script>
 ```
