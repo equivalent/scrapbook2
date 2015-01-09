@@ -49,6 +49,12 @@ try { top.document.domain } catch (e) {
 
 you should place both on your server 
 
+to test this create simple html file with iframe
+
+```html
+ <iframe src="http://my-site.com"></iframe>.
+```
+
 # forgoten password links should expire
 
 Given user reset password now
