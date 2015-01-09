@@ -1,3 +1,27 @@
+# Authenticated Sessions should not be Transferable (or should they ?)
+
+solution : "Incorporate Client Identifiers Within Session Data"
+
+```
+Consider implementing a mechanism to detect session
+tokens being moved between client machines
+
+* user agent changing (browser)
+* ip chang
+```
+
+basically the premiss is to map session ids to IP adresses however there is lot of discussion on how this may be an overkill http://stackoverflow.com/questions/618301/binding-of-ip-address-with-session-id
+
+especially: 
+
+```
+ if you want to use it as a general session ID, you might have problem to deal with users behind a certain proxy gateway, where all users will have the same IP address. although it could be used to prevent session theft (using techniques like cookie highjacking) for some level. but it should be considered that the cookie hijacker can also mimic the IP address of the victim. so checking the user session and also the IP address can be a good practice to have a higher security, but is not a bullet proof solution.
+```
+
+in other words if you building nuclear misle application it make sence but you are better of just whitelisting IP addresses that can access the site on a firewall
+
+one good approach is just to map changes of IP addresses and Browser changes analized in backgorund job and then just force them to verify (like caling client manager number)
+
 # secure XSS file name
 
 try to upload located in  `scrapbook2/assets/XSSfile.<a onmouseover="alert(1)">a`
