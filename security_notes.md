@@ -181,9 +181,9 @@ http {
 
 ```
 
-# NginX should not display version 
+# NginX should not display version in error page
 
-test it with:
+test it with opening browser at :
 
 ```
 http://my-site.com/%%
@@ -201,9 +201,9 @@ http {
 
 ```
 
-This also disable the version number fromnext check headers in
+This also disable the version number from next check headers in
 `server` header. You should hide this header. You can find how to 
-remove headers is in  this scapbook note file
+remove headers is in  this scapbook note file under "#Remove Headers"
 
 source
 
