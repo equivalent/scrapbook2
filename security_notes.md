@@ -24,7 +24,13 @@ Server should send X-Frame-Option to client browser (most modern browsers sport 
 When browser receive it web page will prevent beeing redered in Iframe
 
 ```
-X-Frame-Options: SAMEORIGIN
+# nginx/sites-enabled/my-site.conf
+
+location @unicorn {
+  # ...
+  add_header X-Frame-Options SAMEORIGIN;
+  # ...
+}
 ```
 
 * note that the above will only work as an HTTP header; a META tag inside the page will not work
