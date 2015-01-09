@@ -49,6 +49,17 @@ top.location.href = self.location.href;
 </script>
 ```
 
+same cofeescript version: 
+
+```
+try
+  throw 1 unless top.location.hostname is self.location.hostname
+catch e
+  top.location.href = self.location.href
+```
+
+
+
 you should place both on your server 
 
 to test this create simple html file with iframe
