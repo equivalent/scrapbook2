@@ -2,8 +2,46 @@ tools
 
 * https://addons.mozilla.org/en-US/firefox/addon/httpfox/  inspect your post requests
 * http://chrispederick.com/work/web-developer/  inspect cookies
+* https://addons.mozilla.org/en-US/firefox/addon/export-cookies export cookies so you can use them with `wget` or `curl`
 
 
+# Clickjacking
+
+Cickjacking is an attack whereby a web application is
+loaded in an IFRAME and transparently layered above an
+innocent looking malicious page. This allows the attacker
+to manipulate a user into performing actions
+unbeknownst to them, such as stealing sensitive
+information.
+
+http://www.contextis.co.uk/services/research/white-
+papers/clickjacking-black-hat-2010/
+
+solution:
+
+
+Server should send X-Frame-Option to client browser (most modern browsers sport it ).
+When browser receive it web page will prevent beeing redered in Iframe
+
+```
+X-Frame-Options: SAMEORIGIN
+```
+
+* note that the above will only work as an HTTP header; a META tag inside the page will not work
+
+
+For older browsers use:
+
+```
+<script>
+try { top.document.domain } catch (e) {
+  var f = function() { document.body.innerHTML = ''; }
+  setInterval(f, 1); if (document.body) document.body.onload = f;
+}
+</script>
+```
+
+you should place both on your server 
 
 # forgoten password links should expire
 
