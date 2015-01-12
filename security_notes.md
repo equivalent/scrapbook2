@@ -98,6 +98,11 @@ solution:
 
 more info https://github.com/plataformatec/simple_form/issues/1191
 
+
+# Session Remains Active After Logout
+
+make sure you don't use cookie storage but some other better storage like cache store, database store, .. (explained in https://github.com/equivalent/scrapbook2/blob/master/security_notes.md#use-secure-cookies) 
+
 # Authenticated Sessions should not be Transferable (or should they ?)
 
 solution : "Incorporate Client Identifiers Within Session Data"
