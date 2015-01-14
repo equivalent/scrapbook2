@@ -7,6 +7,20 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## image magic trikcs
+
+resize one image
+
+```
+convert my-img.jpg -resize 900x90
+```
+
+resize bulk / batch of images
+
+```
+mogrify  -resize 900x900 *.jpg
+```
+
 
 ## badblocks (check hdd disk for bad sectors / blocks)
 
