@@ -4,6 +4,15 @@ tools
 * http://chrispederick.com/work/web-developer/  inspect cookies
 * https://addons.mozilla.org/en-US/firefox/addon/export-cookies export cookies so you can use them with `wget` or `curl`
 
+# concurent login
+
+* ability to login with 2 devices at the same time 
+
+now this may be a good thing for social network (mobile, tablet, computer at a same time) however in banking system dashboard that is a security risk. Make sure that only one session stays active.
+
+for Devise gem in Rails there exist gem [devise security extension](https://github.com/phatworx/devise_security_extension) which tracks only one session an logs  out other one
+
+
 
 # Clickjacking
 
