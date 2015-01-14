@@ -21,6 +21,11 @@ resize bulk / batch of images
 mogrify  -resize 900x900 *.jpg
 ```
 
+bulk of images to pdf
+
+```
+convert *jpg -compress jpeg test.pdf
+```
 
 ## badblocks (check hdd disk for bad sectors / blocks)
 
