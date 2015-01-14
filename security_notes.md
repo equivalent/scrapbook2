@@ -10,7 +10,7 @@ tools
 
 now this may be a good thing for social network (mobile, tablet, computer at a same time) however in banking system dashboard that is a security risk. Make sure that only one session stays active.
 
-for Devise gem in Rails there exist gem [devise security extension](https://github.com/phatworx/devise_security_extension) which tracks only one session an logs  out other one
+for Devise gem in Rails there exist gem [devise security extension](https://github.com/phatworx/devise_security_extension) `:session_limitable` which tracks only one session an logs  out other one
 
 
 
