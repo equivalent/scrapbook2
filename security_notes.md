@@ -4,6 +4,10 @@ tools
 * http://chrispederick.com/work/web-developer/  inspect cookies
 * https://addons.mozilla.org/en-US/firefox/addon/export-cookies export cookies so you can use them with `wget` or `curl`
 
+# antivirus
+
+you can use cloud API solutions like [Scanii](https://scanii.com/) which can directly pull from S3, or implement solution where you would have antivirus VM that would pull list of files from app and then pull files from S3 and POST to your app resoult
+
 # concurent login
 
 * ability to login with 2 devices at the same time 
