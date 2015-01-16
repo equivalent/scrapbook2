@@ -10,7 +10,8 @@ tools
 
 now this may be a good thing for social network (mobile, tablet, computer at a same time) however in banking system dashboard that is a security risk. Make sure that only one session stays active.
 
-for Devise gem in Rails there exist gem [devise security extension](https://github.com/phatworx/devise_security_extension) `:session_limitable` which tracks only one session an logs  out other one
+for Devise gem in Rails there exist gem [devise security extension](https://github.com/phatworx/devise_security_extension) `:session_limitable` which tracks only one session an logs  out other one (Beware, this gem has no tests and promote "writing own integration tests on application side)
+
 
 
 
@@ -125,6 +126,8 @@ tokens being moved between client machines
 ```
 
 basically the premiss is to map session ids to IP adresses however there is lot of discussion on how this may be an overkill http://stackoverflow.com/questions/618301/binding-of-ip-address-with-session-id
+
+(for devise you can use my for of [devise_security_extensions](https://github.com/equivalent/devise_security_extension)  branch: sessions_non_transferable, once again there are no tests yet as original gem promotes writing integration test)
 
 especially: 
 
