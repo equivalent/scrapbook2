@@ -1,3 +1,13 @@
+## Amazon CLI AWS
+
+http://docs.aws.amazon.com/cli/latest/reference/
+http://docs.aws.amazon.com/cli/latest/reference/s3/index.html
+
+```
+aws s3 ls
+```
+
+
 ## s3 policy example
 
 ```
