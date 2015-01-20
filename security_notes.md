@@ -155,32 +155,46 @@ Ensure that the secure flag is set on all cookies that are
 used to maintain user state or have any security impact, and
 that all sensitive data is transmitted over HTTPS.
 
+meaning that `secure = secure` cookies wont be sent via http => only https => cannot hijack
+
 Also ensure that any redirects from HTTPS pages redirect to
 HTTPS and not HTTP pages.
 
 **fix** 
 
+eithere use `config.force_ssl` in production => everyting is https == and all cookies are secure
+
+or if you need some pages to be "http" as well `force_ssl` only on controller and 
+you need to manually pass allong `session_id` cookie another secure cookie with 
+random string you'll compare on your side
+
 you can do 
+
+http://railscasts.com/episodes/356-dangers-of-session-hijacking
 
 ```ruby
 # in config/environment.rb:
 config.action_controller.session = {
-    :key    => '_myapp_session',
+    :key    => '_myapp_secure_session',
     :secret => 'super_very_long_key_more_than_30_chars',
-    :expire_after => 3600 # 1 hour
+    :expire_after => 3600 # 1 hour , or use session option to expiere when session expire
   }
 ```
 
-and for devise:
+...or for Devise gem:
 
+https://github.com/plataformatec/devise/issues/3433
+
+add gem https://github.com/mobalean/devise_ssl_session_verifiable
+
+and if you're using devise rememberable use
 ```
 # config/initializers/devise.rb
 config.rememberable_options = { secure: true }
 
 ```
 
-...HOVEVER the thing abount flaging cookies with secure flag is pointless
-there as the whole cookie store is bad, so better use some other type of storage(ActiveRecord db, Redis,
+one more thing don't use cookies to store information just use them to session ID. Rather store cookies in diferrent way. There as the whole cookie store is bad, so better use some other type of storage(ActiveRecord db, Redis,
 Memcache) [more info here](http://dev.housetrip.com/2014/01/14/session-store-and-security/)
 
 ```ruby
