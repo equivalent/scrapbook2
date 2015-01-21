@@ -1,5 +1,5 @@
 
-## Upgrade rvm 
+## Upgrade rvm & reload list of availible rubies
 
      rvm get stable
 
