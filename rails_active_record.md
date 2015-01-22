@@ -1,5 +1,31 @@
 # Rails Active Record Scrapbook
 
+
+# validations 
+
+```ruby
+:name, presence: true, uniqueness: { case_sensitive: true }
+
+validates :in_stock,
+  inclusion: { in: [true, false] },
+  allow_nil: true  # there is also allow_blank: true
+
+validates :in_stock,
+  exclusion: { in: [nil] },
+  on: :create  # on create means only when creating resource
+
+validates :email, format: { with: /\ A([ ^@\ s] +)@((?:[-a-z0-9] +\.) +[a-z]{ 2,})\ Z/ i }
+
+validates_length_of :essay,
+  minimum: 100,
+  too_short: 'Your essay must be at least 100 words.',
+  tokenizer: ->(str) { str.scan(/\w+/) } # Specifies how to split up the
+             # attribute string. (e.g. tokenizer: ->(str) { str.scan(/\w+/) } to count
+             # words). Defaults to ->(value) { value.split(//) }
+             # which counts individual characters.
+```
+
+
 ## disable readonly on scope
 
 any record loaded via join loaded  will be readonly (piggy back object)
