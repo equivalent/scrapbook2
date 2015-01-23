@@ -22,11 +22,11 @@ HOWEVER !!
 
 if you want to send 'Accept' header (Accept: application/json) to Rails application, you cannot do:
 
-req.add_field("Accept", "application/json")
+`req.add_field("Accept", "application/json")`
 
 but do:
 
-req['Accept'], 'application/json'
+`req['Accept'], 'application/json'`
 
 The reason for this that Rails ignores the Accept header when it contains “,/” or “/,” and returns HTML
 This is by design to always return HTML when being accessed from a browser.
