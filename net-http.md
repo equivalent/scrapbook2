@@ -1,4 +1,6 @@
-Request with headers
+best cheat sheet ever http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
+
+# Request with headers
 
 ```ruby
 require "net/http"
