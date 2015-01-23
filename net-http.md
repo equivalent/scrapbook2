@@ -36,3 +36,23 @@ source:
 
 * http://www.dzone.com/snippets/send-custom-headers-ruby
 * http://apidock.com/rails/ActionController/MimeResponds/respond_to#1436-Accept-header-ignored
+
+# post / put json
+
+```ruby
+    uri = URI.parse 'https://abcd.efg:3456'
+    uri.path = "/virus_scans/#{scan_id}"
+
+    scan_push_req = Net::HTTP::Put.new(uri.to_s)
+    scan_push_req.add_field("Authorization", "Token #{token}")
+    scan_push_req['Accept'] = 'application/json'
+    scan_push_req.add_field('Content-Type', 'application/json')
+    scan_push_req
+      .body = {"virus_scan" => {'scan_result' => result}}
+      .to_json
+
+    response = Net::HTTP.start(uri.host, uri.port) { |http|
+      http.request(scan_push_req)
+    }
+    response.body
+```
