@@ -16,6 +16,23 @@ res = Net::HTTP.new(url.host, url.port).start do |http|
 end
 
 puts res.body
-```
 
-vicously stolen from http://www.dzone.com/snippets/send-custom-headers-ruby
+```
+HOWEVER !!
+
+if you want to send 'Accept' header (Accept: application/json) to Rails application, you cannot do:
+
+req.add_field("Accept", "application/json")
+
+but do:
+
+req['Accept'], 'application/json'
+
+The reason for this that Rails ignores the Accept header when it contains “,/” or “/,” and returns HTML
+This is by design to always return HTML when being accessed from a browser.
+This doesn’t follow the mime type negotiation specification but it was the only way to circumvent old browsers with bugged accept header. They had he accept header with the first mime type as image/png or text/xm
+
+source: 
+
+* http://www.dzone.com/snippets/send-custom-headers-ruby
+* http://apidock.com/rails/ActionController/MimeResponds/respond_to#1436-Accept-header-ignored
