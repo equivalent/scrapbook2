@@ -1,4 +1,28 @@
 
+# notes from RSpce 3 meetup London Dec 2014
+
+skillmasters meetup
+
+* Rspeec ~> 2.99
+* transpec gem can help you upgrade
+*
+ 
+```
+instance_double(Foo, cell: xx)
+class_double
+object_double 
+
+# composed matchers
+expect(json).to match("foo" => 'bar", "x"=>{y:z}
+
+RSpec.descirbe 'Foo' do
+  describe 'du stuff' do
+  end
+end
+```
+
+RSpec 3 with combination with rails has `spec_helper` and `rails_helper`
+
 
 # stub
 
