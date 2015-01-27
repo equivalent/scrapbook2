@@ -57,9 +57,10 @@ conection.
 
 ![Cookies after config.force_ssl webdeveloper tools](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-after-config-force_ssl-web-developer.png)
 
+Awesome `:)`
 
 
-
+But problem is that I need to have entire app under `https`. I't2
 Let's try controller force_ssl
 
 
@@ -70,7 +71,6 @@ Let's try controller force_ssl
 
 
 
-My reaction at this point can be described like this => http://youtu.be/TOakzl0k6ik
 
 Well I guess we need to check the source `:(`
 
@@ -113,6 +113,8 @@ end
 # ...
 ```
 
+Discussion on Devise gem issues page https://github.com/plataformatec/devise/issues/3433
+My reaction at this point can be described like this => http://youtu.be/TOakzl0k6ik
 
 ## Solution ?
 
