@@ -17,7 +17,25 @@ now this may be a good thing for social network (mobile, tablet, computer at a s
 for Devise gem in Rails there exist gem [devise security extension](https://github.com/phatworx/devise_security_extension) `:session_limitable` which tracks only one session an logs  out other one (Beware, this gem has no tests and promote "writing own integration tests on application side)
 
 
+# exposing emails
 
+if website is providing reset password feature, make sure that you show
+same error message (and redirect to same page) nomather if the email
+address is in your database or not. If you don't do that someone can
+crate bot that would randomply hammer your application with email
+addresses => exposing what email addresses are in DB
+
+with Devise there is build in option
+
+```ruby
+# config/initializers/devise.rb
+
+Devise.setup do |config|
+  # ...
+  config.paranoid = true
+  # ...
+end
+```
 
 # Clickjacking
 
