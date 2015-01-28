@@ -1,5 +1,10 @@
 # Free up space on your Linux server
 
+You can check your disk space usage with `df`, or particular folder `df -sh`.
+
+You can check inode space usage by `df -i` (if you running caching server with file storage this will be often an issue)
+
+
 ### Delete downloaded packages (.deb) 
 
 E.g.: already installed (and no longer needed)
