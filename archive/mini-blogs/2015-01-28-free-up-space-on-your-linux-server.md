@@ -29,7 +29,20 @@ sudo apt-get autoremove
 
 ### Remove old unused kernels
 
-Be really carefull with this 
+list all your kernels:
+
+```sh
+dpkg --get-selections | grep linux-image
+```
+
+to remove  particular kernel:
+
+```sh
+sudo apt-get remove --purge linux-image-X.X.XX-XX-generic
+```
+
+
+You can also run this script that will remove all unecesarry kernels, Be really carefull with this !!
 
 ```
 #!/bin/sh
