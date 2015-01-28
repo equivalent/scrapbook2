@@ -1,5 +1,24 @@
 # Free up space on your Linux server
 
+### Delete downloaded packages (.deb) already installed (and no longer needed)
+
+```sh
+sudo apt-get clean
+```
+
+### Remove stored archives in your cache for packages that can not be downloaded anymore
+
+E.g.: packages are no longer in the repository or that have a newer version in the repository
+
+```sh
+sudo apt-get autoclean
+```
+
+### Remove unnecessary packages (After uninstalling an app)
+
+```sh
+sudo apt-get autoremove
+```
 
 ### Remove old unused kernels
 
