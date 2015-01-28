@@ -325,35 +325,9 @@ keywords: space left on linux machine
 
 ## free disk space on server (vm)
 
-To delete downloaded packages (.deb) already installed (and no longer needed)
+delete downloaded packages, remove unnecesary kernels
 
-`sudo apt-get clean`
-
-To remove all stored archives in your cache for packages that can not be downloaded anymore (thus packages that are no longer in the repository or that have a newer version in the repository).
-
-`sudo apt-get autoclean`
-
-To remove unnecessary packages (After uninstalling an app there could be packages you don't need anymore)
-
-`sudo apt-get autoremove`
-
-To remove unnecesary kernels
-
-```sh
-#!/bin/sh
-# BE CAREFULL WITH THIS !!! always restart computer before runnig this
-dpkg -l linux-*  | \
-awk '/^ii/{ print $2}' | \
-grep -v -e `uname -r | cut -f1,2 -d"-"` | \
-grep  -e '[0-9]' | xargs sudo apt-get -y purge
-```
-
-where `uname -r` is current kernel, `dpkg -l linux-*` is list of all kernels
-
-source: 
-
-* http://askubuntu.com/questions/5980/how-do-i-free-up-disk-space
-* http://askubuntu.com/questions/138026/how-do-i-delete-kernels-from-a-server
+Entire topic moved to miniblog here: https://github.com/equivalent/scrapbook2/blob/master/archive/mini-blogs/2015-01-28-free-up-space-on-your-linux-server.md
 
 ## solve VM out of space even after deleting large file
 
