@@ -337,6 +337,18 @@ To remove unnecessary packages (After uninstalling an app there could be package
 
 `sudo apt-get autoremove`
 
+To remove unnecesary kernels
+
+```sh
+#!/bin/sh
+# BE CAREFULL WITH THIS !!! always restart computer before runnig this
+dpkg -l linux-*  | \
+awk '/^ii/{ print $2}' | \
+grep -v -e `uname -r | cut -f1,2 -d"-"` | \
+grep  -e '[0-9]' | xargs sudo apt-get -y purge
+```
+
+where `uname -r` is current kernel, `dpkg -l` is list of all kernels
 
 source: http://askubuntu.com/questions/5980/how-do-i-free-up-disk-space
 
