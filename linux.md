@@ -348,9 +348,12 @@ grep -v -e `uname -r | cut -f1,2 -d"-"` | \
 grep  -e '[0-9]' | xargs sudo apt-get -y purge
 ```
 
-where `uname -r` is current kernel, `dpkg -l` is list of all kernels
+where `uname -r` is current kernel, `dpkg -l linux-*` is list of all kernels
 
-source: http://askubuntu.com/questions/5980/how-do-i-free-up-disk-space
+source: 
+
+* http://askubuntu.com/questions/5980/how-do-i-free-up-disk-space
+* http://askubuntu.com/questions/138026/how-do-i-delete-kernels-from-a-server
 
 ## solve VM out of space even after deleting large file
 
