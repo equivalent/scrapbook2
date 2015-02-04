@@ -1,3 +1,17 @@
+```ruby
+
+# rspec spec/model/post_test.rb
+require 'minitest/autorun'
+require_relative '../../app/models/post'
+
+# mock
+@blog=MiniTest::Mock.new
+
+# Avdi sometimes mock like this
+@blog = Object.new
+```
+ 
+
 # setup gem
  
 ### run just one test file
