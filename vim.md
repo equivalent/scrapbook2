@@ -1,7 +1,21 @@
+
 ```
 =          # reindent, highligted text
 J          # join highlited lines a\n b\n c\  => abc
 
+```
+
+# resize split window
+
+http://vim.wikia.com/wiki/Resize_splits_more_quickly
+
+vs
+
+```
+:vertical resize +5
+:vertical resize -5
+
+Ctrl-w <    > 
 ```
 
 # CTags in rails
