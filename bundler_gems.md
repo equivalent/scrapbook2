@@ -3,6 +3,15 @@ bundle outdated  # list of outdated gems
 bundle update    # update all gems
 bundle update rails  #update rails gem
 ```
+
+# restore gem stete from cache
+
+if you screw up `EDITOR=vim bundle open`
+
+```
+gem pristine gem name
+```
+
 # publish gems to rubygem
 
 http://guides.rubygems.org/make-your-own-gem/#your-first-gem
