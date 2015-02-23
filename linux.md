@@ -7,6 +7,22 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+## change lid closed settings LXDE ubuntu
+
+http://ubuntuhandbook.org/index.php/2014/04/enable-hibernate-ubuntu-14-04/
+
+```
+sudo vim /etc/systemd/logind.conf
+```
+
+```
+#HandleLidSwitch=suspend
+```
+
+```
+sudo restart systemd-logind
+```
+
 ## image magic trikcs
 
 resize one image
