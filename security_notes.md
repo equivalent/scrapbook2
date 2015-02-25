@@ -5,6 +5,11 @@ tools
 * https://addons.mozilla.org/en-US/firefox/addon/export-cookies export cookies so you can use them with `wget` or `curl`
 
 
+# Todo
+
+* session cookie should expire on when user window is closed
+  ( cookie attribute `Expires` should be `Session` not some date in future )
+
 # Spreadsheet Formula Injection prevention
 
 to protect replace `=` with `'=` 
