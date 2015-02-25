@@ -3,7 +3,17 @@
 =          # reindent, highligted text
 J          # join highlited lines a\n b\n c\  => abc
 
+
+
+# Tabularize
+
 ```
+:'<,'>Tabularize /=
+:'<,'>Tabularize /:\zs
+```
+
+http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+
 
 # resize split window
 
