@@ -344,6 +344,38 @@ http {
 
 ```
 
+# custom error pages
+
+make sure that you render custom error pages for every error. You
+don't have to create own page for every error but you must ensure that
+you won't show NginX error page or Rails stack trace page
+
+
+```
+# /etc/nginx/sites-enabled/my-site.conf
+
+  #...
+  error_page 500 501 502 503 504 /500.html;
+  error_page 400 /400.html;
+  error_page 401 /401.html;
+  error_page 403 /403.html;
+  error_page 404 /404.html;
+  error_page 405 /405.html;
+  error_page 406 /406.html;
+
+```
+
+
+test `http://my-site.com/%%`  will render custom error page (400)
+
+test if raisng `ActionController::UnknownHttpMethod` wont render stack
+trace (this is raised by Rack)
+
+
+source:
+
+* http://stackoverflow.com/questions/13621915/nginx-error-pages-one-location-rule-to-fit-them-all
+
 # NginX should not display version in error page
 
 test it with opening browser at :
@@ -367,6 +399,7 @@ http {
 This also disable the version number from next check headers in
 `server` header. You should hide this header. You can find how to 
 remove headers is in  this scapbook note file under "#Remove Headers"
+
 
 source
 
