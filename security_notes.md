@@ -364,14 +364,18 @@ you won't show NginX error page or Rails stack trace page
   error_page 406 /406.html;
 
 ```
-
-
 test `http://my-site.com/%%`  will render custom error page (400)
 
-test if raisng `ActionController::UnknownHttpMethod` wont render stack
-trace (this is raised by Rack)
 
-test `curl -XINVALID https://my-application.com/clients -k`
+another isuse is `Rack::ShowExceptions` stack trace when you do
+something like:
+
+`curl -XINVALID https://my-application.com/clients -k`
+
+this stack trace is by default turn off in production in rails 3.2.21 &
+rails 4.x  but maybe you will need to turn it off for other enviroments.
+I don't know the solution for that, for me the production was good
+enough
 
 
 source:
