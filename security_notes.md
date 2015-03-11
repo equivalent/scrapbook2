@@ -371,6 +371,8 @@ test `http://my-site.com/%%`  will render custom error page (400)
 test if raisng `ActionController::UnknownHttpMethod` wont render stack
 trace (this is raised by Rack)
 
+test `curl -XINVALID https://my-application.com/clients -k`
+
 
 source:
 
