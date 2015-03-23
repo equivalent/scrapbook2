@@ -328,6 +328,30 @@ gzip -d /tmp/backup.gz
 tar -zcvf prog-1-jan-2005.tar.gz /home/jerry/prog
 ```
 
+## copmpress with aes password
+
+
+encrypt
+
+```
+tar cz folder_to_encrypt | openssl enc -aes-256-cbc -e > out.tar.gz.enc
+```
+
+Decrypt
+
+```
+openssl aes-256-cbc -d -in out.tar.gz.enc | tar xz
+```
+
+Or using gpg
+
+```
+gpg --encrypt out.tar.gz
+```
+
+* http://superuser.com/questions/162624/how-to-password-protect-gzip-files-on-the-command-line
+
+
 ## disk usage and what's the size of directory
 
 ```bash
