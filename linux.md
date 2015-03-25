@@ -388,6 +388,8 @@ whatever your log directory is, empty it and then use a `ramisk` for that folder
 ## Replace string/text in multiple files in folder
 
     grep -rl 'I am a car' ./ | xargs sed -i 's/I am a car/I am a Plane/g'
+    
+    grep -rl 'windows' ./ | xargs sed -i 's/windows/linux/g'
 
 ## ls permissions 
 
