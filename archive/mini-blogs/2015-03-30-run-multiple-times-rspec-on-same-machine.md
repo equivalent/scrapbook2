@@ -37,4 +37,4 @@ test:
  TEST_ENV_NUMBER=2 rspec spec/
 ```
 
- 
+ If you are looking for solution how to run same test suite on multiple databases check https://github.com/grosser/parallel_tests
