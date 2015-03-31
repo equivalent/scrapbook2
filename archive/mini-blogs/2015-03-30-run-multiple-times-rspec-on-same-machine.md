@@ -23,11 +23,11 @@ default: &default
 
 development:
   <<: *default
-  database: gtld_dashboard_development
+  database: myapp_development
 
 test:
   <<: *default
-  database: gtld_dashboard_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: myapp_test<%= ENV['TEST_ENV_NUMBER'] %>
 ```
 
 ```sh
