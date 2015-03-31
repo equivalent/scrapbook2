@@ -1,3 +1,9 @@
+# params 
+
+```
+@params =  ActionController::Parameters.new(abc: 123)
+```
+
 
 # How to render previous view
 
