@@ -1,9 +1,16 @@
 # params 
 
+rails 4
+
 ```
 @params =  ActionController::Parameters.new(abc: 123)
 ```
 
+rails 3
+
+```
+HashWithIndifferentAccess.new
+````
 
 # How to render previous view
 
