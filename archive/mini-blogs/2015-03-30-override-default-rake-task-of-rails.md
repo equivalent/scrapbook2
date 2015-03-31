@@ -6,7 +6,7 @@ task info: :environment do
     puts 'Run rake test to test'
 end
 
-task(:default).clear.enhance ['info']
+task(:default).clear.enhance(['info'])
 ```
 
 source
