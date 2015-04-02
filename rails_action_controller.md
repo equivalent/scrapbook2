@@ -1,3 +1,13 @@
+# reveal all controller callbacks / filters
+
+inside pry (where self is controllec)
+
+```
+_process_action_callbacks.map(&:filter)
+```
+
+http://pivotallabs.com/revealing-the-actioncontroller-callback-filter-chain/
+
 # extend on load
 
 ```ruby
