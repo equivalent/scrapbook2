@@ -47,8 +47,20 @@ RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 ```
 
+if you need to override default Rails task
+
+```
+desc "this will be now a default task"
+task info: :environment do
+    puts 'Run rake test to test'
+end
+
+task(:default).clear.enhance ['info']
+```
+
 * sources: https://www.relishapp.com/rspec/rspec-core/docs/command-line/rake-task
-* published: october 2013
+* http://stackoverflow.com/questions/8112074/overriding-rails-default-rake-tasks
+* published: october 2013 updated march 2015
 
 
 ### rake defaults
