@@ -196,7 +196,7 @@ testing session-non transferable using firefox-export-cookies plugin
 
 # secure XSS file name
 
-try to upload located in  `scrapbook2/assets/XSSfile.<a onmouseover="alert(1)">a`
+try to upload located in  `scrapbook2/examples/filename_xss_example/XSSfile.<a onmouseover="alert(1)">a`
 
 
 
