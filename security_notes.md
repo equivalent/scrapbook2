@@ -66,6 +66,9 @@ end
 
 # Clickjacking
 
+...or iframe hijacking 
+
+
 Cickjacking is an attack whereby a web application is
 loaded in an IFRAME and transparently layered above an
 innocent looking malicious page. This allows the attacker
@@ -126,6 +129,9 @@ to test this create simple html file with iframe
 ```html
  <iframe src="http://my-site.com"></iframe>.
 ```
+
+
+example is in `examples/clickjacking-iframe-example.html`
 
 # forgoten password links should expire
 
