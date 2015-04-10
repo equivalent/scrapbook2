@@ -188,6 +188,12 @@ in other words if you building nuclear misle application it make sence but you a
 
 one good approach is just to map changes of IP addresses and Browser changes analized in backgorund job and then just force them to verify (like caling client manager number)
 
+
+testing session-non transferable using firefox-export-cookies plugin
+* 1 cleare all cookies in firefox
+* 2 login to your site and export cookies using firefox export cookies plugin
+* 3 `wget --load-cookies=/tmp/cookies.txt`
+
 # secure XSS file name
 
 try to upload located in  `scrapbook2/assets/XSSfile.<a onmouseover="alert(1)">a`
