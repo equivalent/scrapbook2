@@ -7,6 +7,13 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+
+## ssh with specific pem file
+
+```
+ssh -i ~/Downloads/my-key.pem ubuntu@52.333.222.123
+```
+
 ## change lid closed settings LXDE ubuntu
 
 http://ubuntuhandbook.org/index.php/2014/04/enable-hibernate-ubuntu-14-04/
