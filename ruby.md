@@ -12,6 +12,13 @@ Topics not included/moved:
 
 Topics:
 
+## get klass
+
+```
+Object.const_get('String')
+```
+
+
 ## ruby convent integer to hex octal binary and other
 
 ```
