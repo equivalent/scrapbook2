@@ -43,13 +43,13 @@ but class `DarthVader` is just a class on it's own.
 
 Here is a little UML to demonstrate this
 
-```
-____________       ________
-|DarthVader|    <- | Luck |
-------------       --------
-                   ________
-                <- | Lea  |
-                   --------
+```ruby
+# ____________      ________
+# |DarthVader|   <- | Luck |
+# ------------      --------
+#                   ________
+#                <- | Lea  |
+#                   --------
 ```
 
 > This is really good example of no mather how much you try, your
@@ -106,7 +106,7 @@ end
 
 Benchmark on plain Ruby project (irb):
 
-```
+```bash
           user     system      total        real
 1st call  0.010000   0.000000   0.010000 (  0.011786)
 2nd call  0.010000   0.000000   0.010000 (  0.004776)
@@ -114,7 +114,7 @@ Benchmark on plain Ruby project (irb):
 
 Benchmark on medium size production Rails project that I work on currently:
 
-```
+```bash
           user       system      total        real
 1st call  0.030000   0.000000   0.030000 (  0.034386)
 2nd call  0.020000   0.000000   0.020000 (  0.013391)
@@ -133,7 +133,7 @@ end
 
 Benchmark on medium size production Rails project that I work on currently:
 
-```
+```bash
           user     system      total        real
 1st call  0.030000   0.010000   0.040000 (  0.033732)
 2nd call  0.000000   0.000000   0.000000 (  0.000003)
@@ -163,7 +163,7 @@ end
 
 Here you can do:
 
-```
+```ruby
 DarthVader::Luck.ancestors
 # => [DarthVader::Luck, Object, Kernel, BasicObject]
 
@@ -282,7 +282,7 @@ end
 
 Benchmark on medium size production Rails project that I work on currently:
 
-```
+```bash
            user     system      total        real
 1st call  0.000000   0.000000   0.000000 (  0.000050)
 2nd call  0.000000   0.000000   0.000000 (  0.000027)
@@ -290,7 +290,7 @@ Benchmark on medium size production Rails project that I work on currently:
 
 ...and you can now do:
 
-```
+```ruby
 DarthVader.new.force
 # => "May the Force be with you"
 
