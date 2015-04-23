@@ -49,12 +49,9 @@ Integer("2A", 16)      # => 42
 
 ## is class ancestor 
 
-```ruby
-TldDecorator <= BaseDecorator # true
-TldDecorator <= Object # true
-TldDecorator <= Tld # false
+check blog 2015-04-23-ruby-ancestors-descendants-and-other-ways-how-to-pul-relatives.md
 
-```
+To be honest 
 
 ## Ruby String subscript assignment 
 
