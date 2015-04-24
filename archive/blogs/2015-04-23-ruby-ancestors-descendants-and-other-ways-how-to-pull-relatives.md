@@ -1,5 +1,9 @@
 # Ruby Ancestors, Descendants and other annoying relatives
 
+
+> Updates:
+> * 2015-04-24 23:22 Update 1: adding "Inherited hook" solution, recommended way how to do this
+
 (Spoiler alert, using StarWars plot to describe behavior)
 
 Let say you have an inheritance:
@@ -298,7 +302,9 @@ DarthVader::Luke.new.force
 # => "May the Force be with you"
 ```
 
-**UPDATE**
+------------
+
+**UPDATE 1:**
 
 ## Using the `inherited` hook
 
@@ -323,6 +329,6 @@ end
 DarthVader.descendants  # => [Luke]
 ```
 
-I don't really have to benchmark it as this solution is registering classes once they inherit parent class therefore is the fastest one.
+I don't really have to benchmark it as this solution is registering classes once they inherit parent class therefore is the fastest one. I'm recomending this approach as you will avoid silly cases where you both inherit and namespace the same Class.
 
 Thank you Jim
