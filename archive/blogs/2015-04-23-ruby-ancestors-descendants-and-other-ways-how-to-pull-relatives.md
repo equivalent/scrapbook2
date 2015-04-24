@@ -298,8 +298,31 @@ DarthVader::Luke.new.force
 # => "May the Force be with you"
 ```
 
-## Conclusion
+**UPDATE**
 
-Solution I'm proposing here is neither good or bad. It really depends on
-what you want to achieve. You may find it helpful you may find it stupid.
-I just want to provide some other way of pulling `descendants` of classes.
+## Using the `inherited` hook
+
+As Jim ([SaturnFlyer](http://www.saturnflyer.com/)) kindly pointed out in his [comment bellow](http://www.eq8.eu/blogs/13-ruby-ancestors-descendants-and-other-annoying-relatives#comment-1984880528)
+there is even better solution:
+
+```ruby
+class DarthVader
+  def self.inherited(klass)
+    @descendants ||= []
+    @descendants << klass
+  end
+
+  def self.descendants
+    @descendants || []
+  end
+end
+
+class Luke < DarthVader
+end
+
+DarthVader.descendants  # => [Luke]
+```
+
+I don't really have to benchmark it as this solution is registering classes once they inherit parent class therefore is the fastest one.
+
+Thank you Jim
