@@ -301,5 +301,5 @@ DarthVader::Luck.new.force
 ## Conclusion
 
 Solution I'm proposing here is neither good or bad. It really depends on
-what you want to achive. You may find it helpful you may find it stupid.
+what you want to achieve. You may find it helpful you may find it stupid.
 I just want to provide some other way of pulling `descendants` of classes.
