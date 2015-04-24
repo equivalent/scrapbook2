@@ -308,8 +308,7 @@ DarthVader::Luke.new.force
 
 ## Using the `inherited` hook
 
-As Jim ([SaturnFlyer](http://www.saturnflyer.com/)) kindly pointed out in his [comment bellow](http://www.eq8.eu/blogs/13-ruby-ancestors-descendants-and-other-annoying-relatives#comment-1984880528)
-there is even better solution:
+As Jim Gay ([SaturnFlyer](http://www.saturnflyer.com/)) kindly pointed out in his [comment bellow](http://www.eq8.eu/blogs/13-ruby-ancestors-descendants-and-other-annoying-relatives#comment-1984880528) and Steve Jorgensen in his [reddit post](http://www.reddit.com/r/ruby/comments/33naj7/ruby_ancestors_descendants_and_other_annoying/) there is even better solution:
 
 ```ruby
 class DarthVader
