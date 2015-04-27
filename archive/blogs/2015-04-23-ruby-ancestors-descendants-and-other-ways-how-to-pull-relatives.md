@@ -1,5 +1,9 @@
 # Ruby Ancestors, Descendants and other annoying relatives
 
+
+> Updates:
+> * 2015-04-24 23:22 Update 1: adding "Inherited hook" solution, recommended way how to do this
+
 (Spoiler alert, using StarWars plot to describe behavior)
 
 Let say you have an inheritance:
@@ -8,7 +12,7 @@ Let say you have an inheritance:
 class DarthVader
 end
 
-class Luck < DarthVader
+class Luke < DarthVader
 end
 
 class Leia < DarthVader
@@ -18,17 +22,17 @@ end
 ...and you want to pull some Ancestor information from classes
 
 ```ruby
-Luck.superclass        # => DarthVader
+Luke.superclass        # => DarthVader
 DarthVader.superclass  # => Object
 
-Luck.ancestors         # => [Luck, DarthVader, Object, Kernel, BasicObject]
+Luke.ancestors         # => [Luke, DarthVader, Object, Kernel, BasicObject]
 DarthVader.ancestors   # => [DarthVader, Object, Kernel, BasicObject]
 
 # compare
-Luck <= DarthVader  # true
-Luck <= Object      # true
-Luck <= Leia        # nil
-DarthVader <= Luck  # false
+Luke <= DarthVader  # true
+Luke <= Object      # true
+Luke <= Leia        # nil
+DarthVader <= Luke  # false
 ```
 
 > (So we finaly know who is [Darth Vader's father](http://scifi.stackexchange.com/questions/1630/who-is-anakin-skywalkers-father))
@@ -36,16 +40,16 @@ DarthVader <= Luck  # false
 But how would you pull "Descendats" (children classes) from parent class (`DarthVader`) ?
 
 Well turns out in our Ruby world the StarWars plot is in **reverse**
-Luck knows that Darth Vader is his father but Darth Vader has no clue.
+Luke knows that Darth Vader is his father but Darth Vader has no clue.
 
-This logically make sence. Class `Luck` knows about existance of `DarthVader`
+This logically make sence. Class `Luke` knows about existance of `DarthVader`
 but class `DarthVader` is just a class on it's own.
 
 Here is a little UML to demonstrate this
 
 ```ruby
 # ____________      ________
-# |DarthVader|   <- | Luck |
+# |DarthVader|   <- | Luke |
 # ------------      --------
 #                   ________
 #                <- | Lea  |
@@ -153,7 +157,7 @@ namespace the related Classes:
 
 ```ruby
 module DarthVader
-  class Luck
+  class Luke
   end
 
   class Lea
@@ -164,19 +168,19 @@ end
 Here you can do:
 
 ```ruby
-DarthVader::Luck.ancestors
-# => [DarthVader::Luck, Object, Kernel, BasicObject]
+DarthVader::Luke.ancestors
+# => [DarthVader::Luke, Object, Kernel, BasicObject]
 
 DarthVader.constants
-# => [:Luck, :Lea]
+# => [:Luke, :Lea]
 
 DarthVader
   .constants
   .map { |const_symbol| DarthVader.const_get(class_symbol) }
-# => [DarthVader::Luck, DarthVader::Lea]
+# => [DarthVader::Luke, DarthVader::Lea]
 ```
 
-> You still have a wierd situation wher Luck kinda knows about DarthVader
+> You still have a wierd situation wher Luke kinda knows about DarthVader
 > beeing his father, so there will be no drama in cinema, but you can
 > finally pull the children from `DarthVader`.
 
@@ -189,7 +193,7 @@ module DarthVader
 
   BlowUpDeathStar = Class.new(StandardError)
 
-  class Luck
+  class Luke
   end
 
   class Lea
@@ -200,7 +204,7 @@ end
 ...will give you:
 
 ```ruby
-DarthVader.constants  # => [:DarkForce, :BlowUpDeathStar, :Luck, :Lea]
+DarthVader.constants  # => [:DarkForce, :BlowUpDeathStar, :Luke, :Lea]
 ```
 
 So you may want to filter out the values you don't want:
@@ -210,7 +214,7 @@ DarthVader
   .constants
   .map { |class_symbol| DarthVader.const_get(class_symbol) }
   .select { |c| !c.ancestors.include?(StandardError) && c.class != Module }
-  # => [DarthVader::Luck, DarthVader::Lea]
+  # => [DarthVader::Luke, DarthVader::Lea]
 ```
 
 > You don't have to blacklist all classes you don't like.
@@ -227,7 +231,7 @@ Here are the benchmarks:
 module DarthVader
   DarkForce = Module.new
   BlowUpDeathStar = Class.new(StandardError)
-  Luck = Class.new
+  Luke = Class.new
   Lea = Class.new
 
   def self.descendants
@@ -266,7 +270,7 @@ class DarthVader
       .map { |class_symbol| DarthVader.const_get(class_symbol) }
   end
 
-  class Luck < DarthVader
+  class Luke < DarthVader
     # ...
   end
 
@@ -294,12 +298,36 @@ Benchmark on medium size production Rails project that I work on currently:
 DarthVader.new.force
 # => "May the Force be with you"
 
-DarthVader::Luck.new.force
+DarthVader::Luke.new.force
 # => "May the Force be with you"
 ```
 
-## Conclusion
+------------
 
-Solution I'm proposing here is neither good or bad. It really depends on
-what you want to achive. You may find it helpful you may find it stupid.
-I just want to provide some other way of pulling `descendants` of classes.
+**UPDATE 1:**
+
+## Using the `inherited` hook
+
+As Jim Gay ([SaturnFlyer](http://www.saturnflyer.com/)) kindly pointed out in his [comment bellow](http://www.eq8.eu/blogs/13-ruby-ancestors-descendants-and-other-annoying-relatives#comment-1984880528) and Steve Jorgensen in his [reddit post](http://www.reddit.com/r/ruby/comments/33naj7/ruby_ancestors_descendants_and_other_annoying/) there is even better solution:
+
+```ruby
+class DarthVader
+  def self.inherited(klass)
+    @descendants ||= []
+    @descendants << klass
+  end
+
+  def self.descendants
+    @descendants || []
+  end
+end
+
+class Luke < DarthVader
+end
+
+DarthVader.descendants  # => [Luke]
+```
+
+I don't really have to benchmark it as this solution is registering classes once they inherit parent class therefore is the fastest one. I'm recomending this approach as you will avoid silly cases where you both inherit and namespace the same Class.
+
+Thank you Jim

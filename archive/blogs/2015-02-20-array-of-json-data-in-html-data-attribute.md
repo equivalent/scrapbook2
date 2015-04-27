@@ -9,13 +9,13 @@ how to actually render array to a `data` html attribute.
 
 I was thinking about doing something like:
 
-```html
+```markup
 <button data-document-ids="abcefg,efgabcd" />
 ```
 
 ...and on JS side just parse like:
 
-```js
+```javascript
 $('button').data('documentIds').split(',')
 ```
 
@@ -25,7 +25,7 @@ JavaScript data format, ...you know, ... JSON :)
 So I'll just put JSON to button `data` attribute and do something like
 
 
-```js
+```javascript
 JSON.parse($('button').data('documentIds'))
 ```
 
@@ -35,7 +35,7 @@ Array without me manualy saying `JSON.parse`.
 
 All I have to do is:
 
-```js
+```javascript
 $('button').data('documentIds')
 ```
 
@@ -51,7 +51,7 @@ module ApplicationHelper
 end
 ```
 
-```erb
+```markup
 <%= button_of_ids %>
 ```
 
@@ -60,7 +60,7 @@ end
 The shock came to me when I was writing a test for this. The HTML output
 was like:
 
-```html
+```markup
 <button data-document-ids="[&quot;abcdefg&quot;,&quot;efgabcd&quot;]" />
 ```
 
