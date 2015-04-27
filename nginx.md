@@ -301,6 +301,9 @@ example
 and you can test it on https://sslcheck.globalsign.com/en_US/sslcheck
 
 
+When you renewing certificate just replace the old cert part with new
+cert (keep root and intermed) 
+
 
 #restrict access / basic auth
 
