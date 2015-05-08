@@ -63,10 +63,10 @@ But problem is that I need to have entire app under `https` and  one
 controller `http`. So let's try controller `force_ssl`:
 
 
-![Cookies using controller force_ssl firebug](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-uning-controller-force_ssl-firebug.png)
+![Cookies using controller force_ssl firebug](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-using-controller-config-force_ssl-firebug.png)
 
 
-![Cookies using controller force_ssl webdeveloper tools](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-uning-controller-force_ssl-web-developer.png)
+![Cookies using controller force_ssl webdeveloper tools](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-using-controller-config-force_ssl-web-developer.png)
 
 
 Well I guess we need to check the source `:(`
