@@ -3,7 +3,31 @@
 =          # reindent, highligted text
 J          # join highlited lines a\n b\n c\  => abc
 
+
+# Tabs vim 
+
+http://vim.wikia.com/wiki/Using_tab_pages
+
 ```
+gt            go to next tab  # equivalent to tabnext
+gT            go to previous tab # equivalent to tabprevious
+{i}gt         go to tab in position i
+:tabe
+:tabfirst
+:tablast
+:tabclose
+```
+
+
+# Tabularize
+
+```
+:'<,'>Tabularize /=
+:'<,'>Tabularize /:\zs
+```
+
+http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+
 
 # resize split window
 

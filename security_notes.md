@@ -5,6 +5,11 @@ tools
 * https://addons.mozilla.org/en-US/firefox/addon/export-cookies export cookies so you can use them with `wget` or `curl`
 
 
+# Todo
+
+* session cookie should expire on when user window is closed
+  ( cookie attribute `Expires` should be `Session` not some date in future )
+
 # Spreadsheet Formula Injection prevention
 
 to protect replace `=` with `'=` 
@@ -60,6 +65,9 @@ end
 ```
 
 # Clickjacking
+
+...or iframe hijacking 
+
 
 Cickjacking is an attack whereby a web application is
 loaded in an IFRAME and transparently layered above an
@@ -122,6 +130,9 @@ to test this create simple html file with iframe
  <iframe src="http://my-site.com"></iframe>.
 ```
 
+
+example is in `examples/clickjacking-iframe-example.html`
+
 # forgoten password links should expire
 
 Given user reset password now
@@ -183,9 +194,15 @@ in other words if you building nuclear misle application it make sence but you a
 
 one good approach is just to map changes of IP addresses and Browser changes analized in backgorund job and then just force them to verify (like caling client manager number)
 
+
+testing session-non transferable using firefox-export-cookies plugin
+* 1 cleare all cookies in firefox
+* 2 login to your site and export cookies using firefox export cookies plugin
+* 3 `wget --load-cookies=/tmp/cookies.txt`
+
 # secure XSS file name
 
-try to upload located in  `scrapbook2/assets/XSSfile.<a onmouseover="alert(1)">a`
+try to upload located in  `scrapbook2/examples/filename_xss_example/XSSfile.<a onmouseover="alert(1)">a`
 
 
 
@@ -339,6 +356,44 @@ http {
 
 ```
 
+# custom error pages
+
+make sure that you render custom error pages for every error. You
+don't have to create own page for every error but you must ensure that
+you won't show NginX error page or Rails stack trace page
+
+
+```
+# /etc/nginx/sites-enabled/my-site.conf
+
+  #...
+  error_page 500 501 502 503 504 /500.html;
+  error_page 400 /400.html;
+  error_page 401 /401.html;
+  error_page 403 /403.html;
+  error_page 404 /404.html;
+  error_page 405 /405.html;
+  error_page 406 /406.html;
+
+```
+test `http://my-site.com/%%`  will render custom error page (400)
+
+
+another isuse is `Rack::ShowExceptions` stack trace when you do
+something like:
+
+`curl -XINVALID https://my-application.com/clients -k`
+
+this stack trace is by default turn off in production in rails 3.2.21 &
+rails 4.x  but maybe you will need to turn it off for other enviroments.
+I don't know the solution for that, for me the production was good
+enough
+
+
+source:
+
+* http://stackoverflow.com/questions/13621915/nginx-error-pages-one-location-rule-to-fit-them-all
+
 # NginX should not display version in error page
 
 test it with opening browser at :
@@ -362,6 +417,7 @@ http {
 This also disable the version number from next check headers in
 `server` header. You should hide this header. You can find how to 
 remove headers is in  this scapbook note file under "#Remove Headers"
+
 
 source
 

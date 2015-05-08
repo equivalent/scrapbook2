@@ -10,3 +10,8 @@
   = f.input :validation_type_id, collection: @application.tld.validation_types
   
 ```
+
+
+# bootstrap 3 
+
+https://github.com/rafaelfranca/simple_form-bootstrap

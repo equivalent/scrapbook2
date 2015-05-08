@@ -3,6 +3,16 @@
 configurations](https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)
 http://unicorn.bogomips.org/examples/nginx.conf
 
+
+# use  NginX  just to list items in dir
+
+
+   server {
+       listen 80
+       root /tmp/blah
+       autoindex on;
+   }
+
 # Rails force_ssl causes NginX to do infinite loop
 
 more info here  https://github.com/equivalent/scrapbook2/blob/master/archive/mini-blogs/2014-12-16-force-ssl-nginx-infinite-loop.md
@@ -290,6 +300,9 @@ example
 
 and you can test it on https://sslcheck.globalsign.com/en_US/sslcheck
 
+
+When you renewing certificate just replace the old cert part with new
+cert (keep root and intermed) 
 
 
 #restrict access / basic auth

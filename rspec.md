@@ -1,5 +1,25 @@
 # RSpec scrapbook
 
+### post create file to rails controller in RSpec
+
+```ruby
+  describe 'POST create' do
+    it do
+      params = {
+        "utf8"=>"✓",
+        "document"=>{
+          "attachment"=>ActionDispatch::Http::UploadedFile
+            .new(tempfile: File.open(Rails.root.join('spec', 'fixtures','passport.jpg')))
+        },
+        format: 'js' #html js #it's up  to you
+      }
+      post :create, params
+    end
+  end
+```
+
+you may also need to add `filename: File.basename(document), type:
+"image/jpeg"` depending on what you doing`
 
 ### RSpec datetime Factory at midnight
 

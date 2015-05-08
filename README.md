@@ -110,6 +110,12 @@ source: ruby tapas 42
  tail -f log/production.log | grep "NoMethodError"
 ```
 
+### rails time to iso 8601 (javascript time)
+
+```
+"2010-10-25 23:48:46 UTC".to_time.iso8601
+```
+
 ### Gems
 
 * Moneta key store (good for caching) https://github.com/minad/moneta

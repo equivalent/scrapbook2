@@ -1,6 +1,15 @@
 # Rails Active Record Scrapbook
 
 
+# none
+
+```
+# two are the same thing
+tld.validation_types.templates.select { |vt| vt.fields.count == 0  }.empty?
+tld.validation_types.none? { |vt| vt.fields.count == 0 }
+```
+
+
 # validations 
 
 ```ruby

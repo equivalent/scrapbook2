@@ -7,6 +7,29 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+
+## ssh with specific pem file
+
+```
+ssh -i ~/Downloads/my-key.pem ubuntu@52.333.222.123
+```
+
+## change lid closed settings LXDE ubuntu
+
+http://ubuntuhandbook.org/index.php/2014/04/enable-hibernate-ubuntu-14-04/
+
+```
+sudo vim /etc/systemd/logind.conf
+```
+
+```
+#HandleLidSwitch=suspend
+```
+
+```
+sudo restart systemd-logind
+```
+
 ## image magic trikcs
 
 resize one image
@@ -312,6 +335,30 @@ gzip -d /tmp/backup.gz
 tar -zcvf prog-1-jan-2005.tar.gz /home/jerry/prog
 ```
 
+## copmpress with aes password
+
+
+encrypt
+
+```
+tar cz folder_to_encrypt | openssl enc -aes-256-cbc -e > out.tar.gz.enc
+```
+
+Decrypt
+
+```
+openssl aes-256-cbc -d -in out.tar.gz.enc | tar xz
+```
+
+Or using gpg
+
+```
+gpg --encrypt out.tar.gz
+```
+
+* http://superuser.com/questions/162624/how-to-password-protect-gzip-files-on-the-command-line
+
+
 ## disk usage and what's the size of directory
 
 ```bash
@@ -348,6 +395,8 @@ whatever your log directory is, empty it and then use a `ramisk` for that folder
 ## Replace string/text in multiple files in folder
 
     grep -rl 'I am a car' ./ | xargs sed -i 's/I am a car/I am a Plane/g'
+    
+    grep -rl 'windows' ./ | xargs sed -i 's/windows/linux/g'
 
 ## ls permissions 
 

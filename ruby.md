@@ -12,14 +12,46 @@ Topics not included/moved:
 
 Topics:
 
-## is class ancestor 
-
-```ruby
-TldDecorator <= BaseDecorator # true
-TldDecorator <= Object # true
-TldDecorator <= Tld # false
+## get klass
 
 ```
+Object.const_get('String')
+```
+
+
+## ruby convent integer to hex octal binary and other
+
+```
+ 42.to_s(16)  # => 2a
+ 42.to_s(8)   # => 52
+ 42.to_s(2)   # => 101010
+ 42.to_s(36)  # => 16
+```
+
+convert to number from hex octal other
+
+```
+"2A".to_i(16)  # => 42
+"101010".to_i(2)  # => 42
+
+"2A".to_i(8)   # => 2 basically ignors A
+"bullshit".to_i # => 0
+
+# you should use
+Integer("42")   # => 42
+Integer("bullshit")   # =>  ArgumentError exception
+
+Integer("101010", 2)   # => 42
+Integer("2A", 8)       # => ArgumentError
+Integer("2A", 16)      # => 42
+```
+
+
+## is class ancestor 
+
+check blog 2015-04-23-ruby-ancestors-descendants-and-other-ways-how-to-pul-relatives.md
+
+To be honest 
 
 ## Ruby String subscript assignment 
 

@@ -1,5 +1,14 @@
 # CarrierWave File Uploader Scrapbook
 
+## carrierwave uploader not processing in RSpec
+
+processing is turn off for sake of test speed
+
+```ruby
+before do
+  DocumentUploader.enable_processing = true
+end
+```
 
 # save original filename size mime type 
 

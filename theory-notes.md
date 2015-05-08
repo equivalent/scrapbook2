@@ -13,6 +13,8 @@ URL uniform resource locator - is URI with network protocol (.html, ..json...)
 
 ## Dictionary
 
+* ambiguity - as a bad thing wher feature can mean several
+  diferent senarios (Oposite to clarity)
 * SAX - Simple API for XML - example to nokogiri you can pass custom
   parser 
 * special case pattern - pattern where multiple similar if statements
