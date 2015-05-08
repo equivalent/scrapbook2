@@ -1,15 +1,14 @@
 # `config.force_ssl` is different than controller `force_ssl`
 
-
 ... or why my cookies don't have `secure` flag anymore
 
-Several of you may know that rails provide `force_ssl` feature. This is
-a handy option that will tell rails application to load website as
-`https` when someone tries to access it  via `http`
+Several of you may know that Rails provide `force_ssl` feature. This is
+a handy option that will tell Rails application to load website as
+`https` when someone tries to access it  via `http`.
 
 This baby comes in two forms:
 
-Developer can specify that entire website is `https` only in
+Developer can specify that the entire website is `https` in
 `config/enviroments/production.rb` or `config/initializers/...`
 
 ```ruby
@@ -34,21 +33,21 @@ end
 ```
 
 Let's try the `config.force_ssl` (config for entire application).
-All web-pages will be enforced to use `https` (nice). 
+All web-pages will be enforced to use `https` (nice).
 How about cookies ?
 
-Some of you may know that cookies have security opotions like:
+Some of you may know that cookies have security options like:
 
 * when to expire the cookie (`Expire` option),
-* should the cookie be sent only via Http on also other protocols like JavaScript (`HttpOnly`)
+* should the cookie be sent only via HTTP on also other protocols like JavaScript (`HttpOnly`)
 * wether the cookie should be sent over by `http` and `https` connection
   or just via `https` connection (`Secure` option)
 
 If you're using in your Rails app authentication gem [Devise](https://github.com/plataformatec/devise) 
 it will take good care when setting `session_id` cookie on options
-`HttpOnly` and  when to expire. But `Secure` option wont be set.
+`HttpOnly` and  when to expire. But `Secure` option won't be set.
 
-This is where `force_ssl` (still the config one) comes handy. It will
+This is where `force_ssl` (still the global config one) comes handy. It will
 not only enforce the `http` to `https` redirect, but will enforce
 session cookie to be `secure` => not to be sent via non-secure
 conection.
@@ -57,10 +56,11 @@ conection.
 
 ![Cookies after config.force_ssl webdeveloper tools](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-after-config-force_ssl-web-developer.png)
 
+Awesome `:)`
 
 
-
-Let's try controller force_ssl
+But problem is that I need to have entire app under `https` and  one
+controller `http`. So let's try controller `force_ssl`:
 
 
 ![Cookies using controller force_ssl firebug](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-uning-controller-force_ssl-firebug.png)
@@ -68,9 +68,6 @@ Let's try controller force_ssl
 
 ![Cookies using controller force_ssl webdeveloper tools](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/cookies-uning-controller-force_ssl-web-developer.png)
 
-
-
-My reaction at this point can be described like this => http://youtu.be/TOakzl0k6ik
 
 Well I guess we need to check the source `:(`
 
@@ -113,6 +110,9 @@ end
 # ...
 ```
 
+Discussion on Devise gem issues page https://github.com/plataformatec/devise/issues/3433
+
+My reaction at this point can be described like this => http://youtu.be/TOakzl0k6ik
 
 ## Solution ?
 
@@ -124,25 +124,31 @@ Well the easiest way would be just tell that:
  config.session_options[:secure] = true
 ```
 
-... right ? 
+... right ?
 
-Well, this wont work: 
+Well, this wont work:
 
 A/ Rails will ignore this option ( don't quite know why because I
 stopped investigationg source code when I realized point B)
 
-B/ you are setting `secure=true` meaning send the session cookie only if on
-secure connection. This is ok when you `config.force_ssl` globaly on
+B/ you are setting `secure=true` meaning send the session cookie only if user is on
+secure connection. This is ok when `config.force_ssl` is used globaly on
 whole application as everything will be under `https` but if you
-forcing `https` only to some parts of application you wont know what is
-the session visiting site (for example you may want to track if public
-FAQ was wisited by logged in user, or session will expire if user is
+forcing `https` only to some parts of the application you will not know what is
+the session of a user visiting site (for example you may want to track if public
+FAQ was visited by logged in user, or session will expire if user is
 browsing too much public content)
 
-## So, the solution => 2 cookies to save the day
+## So, the solution: two cookies to save the day!
+
+Basically the idea is that you will leave the "unsecure" session cookie
+alone and you create another "secure" cookie. You evaluate both cookies
+to check who the user is on `https` sites (protected sites) and you will
+still be able to use unsecure cookie to track movement on public pages.
+
+good example is here:
 
 http://railscasts.com/episodes/356-dangers-of-session-hijacking
-
 
 ```ruby
 # app/controllers/sessions_controller.rb
@@ -160,4 +166,7 @@ http://railscasts.com/episodes/356-dangers-of-session-hijacking
   end
 ```
 
+### Devise solution 
 
+...in progress: I'm in a middle of Pull request to
+https://github.com/phatworx/devise_security_extension
