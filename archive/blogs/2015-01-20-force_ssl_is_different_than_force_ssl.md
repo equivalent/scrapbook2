@@ -110,8 +110,6 @@ end
 # ...
 ```
 
-Discussion on Devise gem issues page https://github.com/plataformatec/devise/issues/3433
-
 My reaction at this point can be described like this => http://youtu.be/TOakzl0k6ik
 
 ## Solution ?
@@ -146,7 +144,7 @@ to check who the "logged in" user is on `https` sites (protected sites) and you 
 still be able to use unsecure cookie to track movement on public pages
 (once again the "secure" cookie won't be sent on non-https conection).
 
-In otherword this will prevent session hijacking as you need both
+In other words this will prevent session hijacking as you need both
 cookies to validate the user, and only unsecure cookie to track user
 activity on public pages.
 
@@ -185,3 +183,8 @@ gem 'devise'
 gem 'devise_ssl_session_verifiable'
 # ...
 ```
+
+souces:
+
+* Discussion on Devise gem issues page https://github.com/plataformatec/devise/issues/3433
+
