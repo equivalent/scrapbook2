@@ -39,7 +39,7 @@ How about cookies ?
 Some of you may know that cookies have security options like:
 
 * when to expire the cookie (`Expire` option),
-* should the cookie be sent only via HTTP on also other protocols like JavaScript (`HttpOnly`)
+* should the cookie be sent only via HTTP or also other protocols like JavaScript (`HttpOnly`)
 * wether the cookie should be sent over by `http` and `https` connection
   or just via `https` connection (`Secure` option)
 
@@ -134,7 +134,7 @@ Well, this wont work:
   whole application as everything will be under `https`, but if you
   forcing `https` only on some parts of the application you will not know what is
   the session of a user visiting site (for example you may want to track if public
-  FAQ was visited by a particular user that just logged out)
+  FAQ was visited by a particular user that is still logged in)
 
 ## So, the solution: two cookies to save the day!
 
