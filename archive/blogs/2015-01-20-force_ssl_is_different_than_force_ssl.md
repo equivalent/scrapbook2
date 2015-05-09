@@ -128,25 +128,33 @@ Well the easiest way would be just tell that:
 
 Well, this wont work:
 
-A/ Rails will ignore this option ( don't quite know why because I
-stopped investigationg source code when I realized point B)
+* A/ Rails will ignore this option ( don't quite know why because I
+  stopped investigationg source code when I realized point B)
 
-B/ you are setting `secure=true` meaning send the session cookie only if user is on
-secure connection. This is ok when `config.force_ssl` is used globaly on
-whole application as everything will be under `https` but if you
-forcing `https` only to some parts of the application you will not know what is
-the session of a user visiting site (for example you may want to track if public
-FAQ was visited by logged in user, or session will expire if user is
-browsing too much public content)
+* B/ you are setting `secure=true` meaning: send the session cookie only if user is on
+  secure connection. This is ok when `config.force_ssl` is used globaly on a
+  whole application as everything will be under `https`, but if you
+  forcing `https` only on some parts of the application you will not know what is
+  the session of a user visiting site (for example you may want to track if public
+  FAQ was visited by a particular user that just logged out)
 
 ## So, the solution: two cookies to save the day!
 
 Basically the idea is that you will leave the "unsecure" session cookie
 alone and you create another "secure" cookie. You evaluate both cookies
-to check who the user is on `https` sites (protected sites) and you will
-still be able to use unsecure cookie to track movement on public pages.
+to check who the "logged in" user is on `https` sites (protected sites) and you will
+still be able to use unsecure cookie to track movement on public pages
+(once again the "secure" cookie won't be sent on non-https conection).
 
-good example is here:
+In otherword this will prevent session hijacking as you need both
+cookies to validate the user, and only unsecure cookie to track user
+activity on public pages.
+
+It may be the case that you will need to have two user variables in you
+controller `@current_user` and `@current_user_non_secure` but I'll skip
+the implementation details as the article is not about this.
+
+Good example how to implement secure cookie is here:
 
 http://railscasts.com/episodes/356-dangers-of-session-hijacking
 
@@ -165,8 +173,15 @@ http://railscasts.com/episodes/356-dangers-of-session-hijacking
     cookies.delete(:secure_user_id)
   end
 ```
-
 ### Devise solution 
 
-...in progress: I'm in a middle of Pull request to
-https://github.com/phatworx/devise_security_extension
+There is [devise_ssl_session_verifiable](https://github.com/mobalean/devise_ssl_session_verifiable) doing exactly what you need.
+
+```ruby
+# Gemfile
+
+# ...
+gem 'devise'
+gem 'devise_ssl_session_verifiable'
+# ...
+```
