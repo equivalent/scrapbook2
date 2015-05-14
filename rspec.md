@@ -485,3 +485,92 @@ describe ErrorsController
   end  
 end
 ```
+
+### Example of `rspec_helper`
+
+this is from old project I'm not recommending to just paste it, rather just pick bits and pieces 
+
+
+```ruby
+# spec/spec_helper.rb
+
+require 'rubygems'
+require 'spork'
+
+Spork.prefork do
+  ENV["RAILS_ENV"] ||= 'test'
+
+  unless ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
+
+  require File.expand_path("../../config/environment", __FILE__)
+  require 'rspec/rails'
+  require 'rspec/autorun'
+  require 'capybara/rspec'
+  require 'factory_girl_rails'
+  require 'database_cleaner'
+  require 'sunspot_test/rspec'
+
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+  #$original_sunspot_session = Sunspot.session
+  #Sunspot::Rails::Tester.start_original_sunspot_session
+
+  RSpec.configure do |config|
+    config.infer_base_class_for_anonymous_controllers = false
+
+    config.treat_symbols_as_metadata_keys_with_true_values = true
+    config.filter_run :focus => true
+    config.run_all_when_everything_filtered = true
+
+    config.include FactoryGirl::Syntax::Methods
+
+    # Devise
+    config.include Devise::TestHelpers, :type => :controller
+    config.extend ControllerMacros, :type => :controller
+    config.include RequestMacros, :type => :request
+
+    # Sunspot Solr
+    #config.before do
+    #Delayed::Worker.delay_jobs = false
+    #Sunspot.session = Sunspot::Rails::StubSessionProxy.new($original_sunspot_session)
+    #config.before :each, :solr => true do
+    #Sunspot.session = $original_sunspot_session
+    #Sunspot.remove_all!
+    #end
+    #end
+
+    # Helpers
+    config.include Haml::Helpers , :type => :helper
+    config.include ActionView::Helpers, :type => :helper
+    config.before :each, :type => :helper do
+      init_haml_helpers
+    end
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+  end
+end
+
+Spork.each_run do
+  if ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
+
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+  FactoryGirl.reload
+end 
+```
