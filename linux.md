@@ -271,7 +271,9 @@ trickle -u 15 -d 2000 /usr/bin/google-chrome-stable --incognito %U
 ### limit entire bandwith
 
 ```
-sudo wondershaper eth1 500 100
+sudo apt-get wondershader
+sudo wondershaper eth1 800 200
+sudo wondershaper clear eth1 
 ```
 
 http://jwalanta.blogspot.co.uk/2009/04/easy-bandwidth-shaping-in-linux.html
