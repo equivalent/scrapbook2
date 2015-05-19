@@ -8,6 +8,22 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## encrypt folder 
+
+```sh
+sudo apt-get install encfs
+
+encfs /home/user/Documents/encrypted_folder/ /home/user/mount_point
+fusermount -u /home/user/mount_point  # unmount
+```
+
+notes: 
+* encrypted_folder and mount_point needs to be empty when init encrypt
+* make sure you have read write permissions
+
+
+
+
 ## ssh with specific pem file
 
 ```
