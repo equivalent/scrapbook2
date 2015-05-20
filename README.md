@@ -87,7 +87,9 @@ ActiveRecord::Type::Boolean.new.type_cast_from_database(value)
 ```
 
 ...works the same the only difference is that when `nil` is passed it
-returns `nil`
+returns `nil` and `"y"`, `"n"` will give you deprication warning 
+
+https://gist.github.com/equivalent/3825916
 
 ### Robots.txt examlpe
 
