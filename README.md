@@ -78,8 +78,16 @@ ActiveRecord::ConnectionAdapters::Column.value_to_boolean 't'  # => true
 ActiveRecord::ConnectionAdapters::Column.value_to_boolean '0'  # => false
 ActiveRecord::ConnectionAdapters::Column.value_to_boolean '1'  # => true
 ActiveRecord::ConnectionAdapters::Column.value_to_boolean nil  # => false
-
 ```
+
+in Rails 4.2 and above this is depricated and replaced with
+
+```ruby
+ActiveRecord::Type::Boolean.new.type_cast_from_database(value)
+```
+
+...works the same the only difference is that when `nil` is passed it
+returns `nil`
 
 ### Robots.txt examlpe
 
