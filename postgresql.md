@@ -260,3 +260,50 @@ end
 sources:
 
 * railscasts-345
+
+## moving postgres datastore location
+
+```bash
+sudo su postgres
+psql
+>    SHOW data_directory;
+```
+
+let say `/var/lib/postgresql/9.3/main/postgresql.conf`
+
+```bash
+mkdir -p /mnt/database_volume/postgres
+chown -R postgres:postgres /mnt/database_volume/postgres
+
+/usr/lib/postgresql/9.1/bin/initdb -D /mnt/database_volume/postgres # this will init the dir structure
+```
+
+now `vim /etc/postgresql/9.3/main/postgresql.conf` 
+
+... and change:
+
+```
+data_directory = '/var/lib/postgresql/9.3/main/'
+```
+
+... to:
+
+```
+data_directory = '/mnt/database_volume/postgres/'
+```
+
+Now kill postgress (`killall -9 postgre`)
+
+... and start it `sudo /etc/init.d/postgresql restart`
+
+If you need to remove system autostart (e.g. your `/mnt/database_volume`
+is encrypted) you can do it by remonig rc-d 
+
+```bash
+sudo update-rc.d -f postgresql remove`
+```
+
+source:
+
+* http://www.whiteboardcoder.com/2012/04/change-postgres-datadirectory-folder.html
+* http://askubuntu.com/questions/25713/how-to-stop-postgres-from-autostarting-during-start-up
