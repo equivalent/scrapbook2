@@ -43,6 +43,14 @@ end
 
 source: ruby tapas 30
 
+### rails all models
+
+```ruby
+Rails.application.eager_load!
+ActiveRecord::Base.descendants
+```
+
+
 ### include Rails helpers in cusom class
 
 ```ruby

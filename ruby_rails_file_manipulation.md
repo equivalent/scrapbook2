@@ -259,6 +259,13 @@ Rails.root.to_s
 Dir["#{Rails.root}/app/models/**/*.rb"].each {|file| print file }
 ~~~
 
+or in rails 3 and 4 better solution is
+
+```ruby
+Rails.application.eager_load!
+puts ActiveRecord::Base.descendants
+```
+
 ### load/reload all models and decorators
 
 ```ruby
