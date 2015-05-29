@@ -2,6 +2,41 @@
 
 http://guides.rubyonrails.org/action_view_overview.html
 
+
+## presenter example
+
+```ruby
+class FileFieldPresenter
+  include Rails.application.routes.url_helpers
+  include ActionView::Helpers::TagHelper
+  include ActionView::Context
+  include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::UrlHelper
+
+  attr_reader :documents
+
+  def initialize(options)
+    @documents = options.fetch(:documents)
+  end
+
+  def to_html
+    documents
+      .map { |document| format_document(document) }
+      .join("")
+      .html_safe
+  end
+
+  private
+
+  def format_document(document)
+    content_tag :div, nil, class: 'attachment' do
+      concat content_tag(:i, nil,  class: 'fa fa-file-o')
+      concat link_to(document.filename, document.attachment.url)
+    end
+  end
+end
+```
+
 ## Time format
 
 ```ruby
