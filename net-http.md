@@ -28,7 +28,9 @@ but do:
 
 `req['Accept'], 'application/json'`
 
-The reason for this that Rails ignores the Accept header when it contains “,/” or “/,” and returns HTML
+The reason for this is that `add_field` will just append "application/json" to `["*/*"]` (accept any). `'Accept'=>['*/*', 'application/json']` 
+
+Another reason aparantly in sthat Rails ignores the Accept header when it contains “,/” or “/,” and returns HTML
 This is by design to always return HTML when being accessed from a browser.
 This doesn’t follow the mime type negotiation specification but it was the only way to circumvent old browsers with bugged accept header. They had he accept header with the first mime type as image/png or text/xm
 
