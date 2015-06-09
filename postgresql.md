@@ -3,6 +3,20 @@
 
 * [upsert feature](http://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=168d5805e4c08bed7b95d351bf097cff7c07dd65)  (INSERT ... ON CONFLICT  UPDATE)
 
+
+### clusters and upgrading postgres
+
+
+command that will give you information on existing clusters
+
+```bash
+sudo pg_lsclusters
+```
+
+[ upgrade from 9.1 to 9.3](http://nixmash.com/postgresql/upgrading-postgresql-9-1-to-9-3-in-ubuntu/)
+
+
+
 ### array 
 
 to create rails migration for array  (it can be text as well as postgres will make it array)
