@@ -5,6 +5,41 @@ git log --decorate --graph
 git reflog
 ```
 
+### git-crypt (gitcrypt)
+
+usage:
+
+```sh
+mkdir  foo
+cd foo
+git init
+gitcrypt init
+
+# Generate a random salt? [Y/n] n
+# Shared salt as hex characters: mysecretsalt
+# Generate a random password? [Y/n]n
+# Enter your passphrase: mysecretpassword
+# What encryption cipher do you want to use? [aes-256-ecb] 
+# Do you want to use .git/info/attributes? [Y/n] y
+# What files do you want encrypted? [*] 
+# git-encrypt filter enabled
+#
+#  ...or just copy configuration to .git/config
+```
+
+##### git-crypt instalation
+
+```sh
+$ git clone https://github.com/shadowhand/git-encrypt
+$ cd git-encrypt
+$ chmod 0755 gitcrypt
+$ sudo ln -s "$(pwd)/gitcrypt" /usr/local/bin/gitcrypt
+$ gitcrypt -h
+```
+
+* https://github.com/shadowhand/git-encrypt
+* https://www.agwa.name/projects/git-crypt/
+
 ### git cancle merge / reset merge
 
 ```
