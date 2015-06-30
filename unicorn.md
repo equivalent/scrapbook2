@@ -86,9 +86,9 @@ set -e
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/home/deploy/apps/myapp/current
-PID=/home/deploy/apps/myapp_deployment_setup/assets/unicorn/unicorn.myapp.pid
+PID=/var/run/unicorn.myapp.pid
 
-CMD="cd /home/deploy/apps/myapp/current; bundle exec unicorn -D -c /home/deploy/apps/myapp_deployment_setup/assets/unicorn/unicorn.conf.rb -E staging"
+CMD="cd /home/deploy/apps/myapp/current; bundle exec unicorn -D -c /home/deploy/apps/myapp/config/unicorn.conf.rb -E staging"
 AS_USER=deploy
 
 # Exit script if you try to use an uninitialised variable
