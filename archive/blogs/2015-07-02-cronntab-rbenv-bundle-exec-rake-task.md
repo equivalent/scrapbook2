@@ -92,7 +92,7 @@ tail -f /var/log/syslog
 For me helpfull was to add something like this to crontab
 
 ```bash
-* * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/sewc && RACK_ENV=production bundle exec rake event:process > /tmp/lets_figure_this_out.txt
+* * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/myapp && RACK_ENV=production bundle exec rake event:process > /tmp/lets_figure_this_out.txt
 ```
 
 To check what ENV variables are actually set
