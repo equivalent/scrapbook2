@@ -17,9 +17,9 @@ already have our project in folder `~/apps/myapp`
 
 The task that we want cron to process is `RACK_ENV=production bundle exec rake event:process`
 
-note: `RACK_ENV` is similar to `RAILS_ENV`. In my example I'm using
+*note: `RACK_ENV` is similar to `RAILS_ENV`. In my example I'm using
 simple Sinatra framework app therefore I'm passing `RACK_ENV` to
-`ActiveRecord::Base`
+`ActiveRecord::Base`*
 
 
 ## set up cron
@@ -49,9 +49,9 @@ So you need to extend the `PATH` and then trigger your command via `bash -lc` wh
 
 From what I've seen playing around with our curl example  (but I may be wrong on this)  because we load the `.bash_profile` the ENV changes yet again therefore `RACK_ENV=production` (or `RAILS_ENV=production`) must be inside the quotes othervise it's not going to be passed to `rake`.
 
-note: Of course you can setup cron on whatever user or as a global cron job
+*note: Of course you can setup cron on whatever user or as a global cron job
 (`crontab -e`) but then your `rbenv` needs to be installed globaly on
-system not on a user.
+system not on a user.*
 
 ### .bash_profile is not the same as .bashrc
 
