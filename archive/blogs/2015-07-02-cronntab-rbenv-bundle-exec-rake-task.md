@@ -123,6 +123,7 @@ https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2015-07-02-cr
 ## Source of information
 
 * http://www.relativkreativ.at/articles/running-ruby-scripts-from-within-a-cron-job-in-an-rbenv-environment
+* http://stackoverflow.com/questions/8434922/ruby-script-using-rbenv-in-cron
 * http://tutorials.jumpstartlab.com/topics/systems/automation.html
 * https://help.ubuntu.com/community/CronHowto
 * http://askubuntu.com/questions/23009/reasons-why-crontab-does-not-work
