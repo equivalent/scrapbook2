@@ -118,6 +118,8 @@ I'm not an expert on Cron or Bash I'm just a Ruby developer trying to
 get stuff done. I may be wrong on some stuff mentioned in here, please
 correct me in comment or make a Pull Request to the article.
 
+https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2015-07-02-cronntab-rbenv-bundle-exec-rake-task.md
+
 ## Source of information
 
 * http://www.relativkreativ.at/articles/running-ruby-scripts-from-within-a-cron-job-in-an-rbenv-environment
