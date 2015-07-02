@@ -26,13 +26,13 @@ simple Sinatra framework app therefore I'm passing `RACK_ENV` to
 
 To setup cron job for user `deploy` you do:
 
-```sh
+```bash
 crontab -u deploy -e
 ```
 
 And we add:
 
-```
+```bash
 * * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/sewc && RACK_ENV=production bundle exec rake event:process
 ```
 
@@ -57,7 +57,7 @@ system not on a user.
 
 if you have lines:
 
-```sh
+```bash
 export RBENV_ROOT="${HOME}/.rbenv"
 
 if [ -d "${RBENV_ROOT}" ]; then
@@ -73,7 +73,7 @@ before) `bash -lc` loads `.bash_profile` context.
 To solve this either load `.bash_profile` form `.bashrc` or other way
 around.
 
-```
+```bash
 # in .bashrc
 . ~/.bash_profile
 ```
@@ -82,7 +82,7 @@ around.
 
 If you need further debugging what is going worng check:
 
-```sh
+```bash
 grep CRON /var/log/syslog
 tail -f /var/log/syslog
 ```
@@ -91,19 +91,19 @@ tail -f /var/log/syslog
 
 For me helpfull was to add something like this to crontab
 
-```
+```bash
 * * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/sewc && RACK_ENV=production bundle exec rake event:process > /tmp/lets_figure_this_out.txt
 ```
 
 To check what ENV variables are actually set
 
-```
+```bash
 * * * * * bash -lc "env > /tmp/env.txt"
 ```
 
 ...and check if you have something like this
 
-```
+```bash
 PATH=/home/app/.rbenv/shims:/home/app/.rbenv/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/app/bin
 ```
 
