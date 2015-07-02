@@ -53,7 +53,7 @@ note: Of course you can setup cron on whatever user or as a global cron job
 (`crontab -e`) but then your `rbenv` needs to be installed globaly on
 system not on a user.
 
-# .bash_profile is not the same as .bashrc
+### .bash_profile is not the same as .bashrc
 
 if you have lines:
 
