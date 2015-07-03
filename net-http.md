@@ -1,5 +1,65 @@
 best cheat sheet ever http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
 
+
+# https request
+
+My example 
+
+```ruby
+class MakeHttpsRequest
+  attr_reader :token
+
+  def initialize(token)
+    @token = token
+  end
+
+  def call(url)
+    response(url)
+  end
+
+  private
+    def response(url)
+      uri = URI.parse(url)
+      req = Net::HTTP::Get.new(uri.to_s)
+      req['Authorization'] = "Token #{token}"
+
+      response = https(uri).request(req)
+
+      response.body
+    end
+
+    def https(uri)
+      Net::HTTP.new(uri.host, uri.port).tap do |http|
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
+    end
+end
+
+MakeHttpsRequest.new('secretauthtoken').call('https://blabla.com/api/v1/events')
+```
+
+
+Soultion from http://www.rubyinside.com/nethttp-cheat-sheet-2940.html :
+
+```ruby
+require "net/https"
+require "uri"
+
+uri = URI.parse("https://secure.com/")
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Get.new(uri.request_uri)
+
+response = http.request(request)
+response.body
+response.status
+response["header-here"] # All headers are lowercase
+```
+
+
 # Request with headers
 
 ```ruby
