@@ -3,11 +3,11 @@
 keywords: cron, crontab, Ubuntu 14.04, rbenv, RACK_ENV, RAILS_ENV, Ruby
 2.2.2, Rails backgroud job
 
-## The exeample
+## The example
 
 Let say we have a `deploy` user and we want to have an automated rake task execution that would proces some events every minute.
 
-We could use [whenever](https://github.com/javan/whenever) gem or some other gem altering crontab or behaving similar to `cron` ([daemons gem](https://github.com/thuehlinger/daemons)) but
+We could use [whenever](https://github.com/javan/whenever) gem or some other gem altering `crontab` or behaving similar to `cron` ([daemons gem](https://github.com/thuehlinger/daemons)) but
 this project is too small or VM has too litle memory or project is too not-important so we want to keep it simple.
 
 Our server deploy user already has
@@ -18,11 +18,11 @@ already have our project in folder `~/apps/myapp`
 The task that we want cron to process is `RACK_ENV=production bundle exec rake event:process`
 
 *note: `RACK_ENV` is similar to `RAILS_ENV`. In my example I'm using
-simple Sinatra framework app therefore I'm passing `RACK_ENV` to
+simple [Sinatra](http://www.sinatrarb.com/) app therefore I'm passing `RACK_ENV` to
 `ActiveRecord::Base`*
 
 
-## set up cron
+## Set up cron
 
 To setup cron job for user `deploy` you do:
 
@@ -36,7 +36,7 @@ And we add:
 * * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/myapp && RACK_ENV=production bundle exec rake event:process
 ```
 
-Obviously the  `* * * * *` is a crontab scheduling syntax and you can learn
+Obviously the  `* * * * *` is a crontab scheduling syntax (run something every minute) and you can learn
 abaut the values anywhere (e.g. http://kvz.io/blog/2007/07/29/schedule-tasks-on-linux-using-crontab/), this is outside the topic of our article.
 
 But why all those command arguments ? Well it's tricky.
@@ -89,13 +89,13 @@ tail -f /var/log/syslog
 
 ### Even more cron rbenv debugging
 
-For me helpfull was to add something like this to crontab
+For me helpfull was to add something like this to crontab:
 
 ```bash
 * * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/myapp && RACK_ENV=production bundle exec rake event:process > /tmp/lets_figure_this_out.txt
 ```
 
-To check what ENV variables are actually set
+To check what ENV variables are actually set:
 
 ```bash
 * * * * * bash -lc "env > /tmp/env.txt"
