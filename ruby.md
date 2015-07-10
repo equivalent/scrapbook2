@@ -12,6 +12,14 @@ Topics not included/moved:
 
 Topics:
 
+
+## select elements of Array that occured multiple times
+
+```ruby
+a = [1,2,3,2,4,4,2,5]
+a.select{ |el| a.count(el) > 1 }
+```
+
 ## get klass
 
 ```
