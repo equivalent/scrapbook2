@@ -15,7 +15,17 @@ Topics:
 
 ## select elements of Array that occured multiple times
 
+https://gist.github.com/equivalent/3c9a4c9d07fff79062a3
+http://stackoverflow.com/questions/31342473/fetch-elements-that-occurred-multiple-times-in-ruby-array/31342580#31342580
+
 ```ruby
+# fastest
+[1,2,3,2,4,4,2,5]
+  .group_by{ |e| e }
+  .select { |k, v| v.size > 1 }
+  .map(&:first)
+
+#slow on large array but elegant
 a = [1,2,3,2,4,4,2,5]
 a.select{ |el| a.count(el) > 1 }.uniq
 ```

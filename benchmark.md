@@ -1,6 +1,8 @@
 
 source: ruby tapas 322 benchmarking
 
+some examples https://gist.github.com/equivalent/3c9a4c9d07fff79062a3
+
 ```ruby
 require 'benchmark'
 
