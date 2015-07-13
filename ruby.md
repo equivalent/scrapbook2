@@ -17,7 +17,7 @@ Topics:
 
 ```ruby
 a = [1,2,3,2,4,4,2,5]
-a.select{ |el| a.count(el) > 1 }
+a.select{ |el| a.count(el) > 1 }.uniq
 ```
 
 ## get klass
