@@ -13,6 +13,55 @@ Topics not included/moved:
 Topics:
 
 
+## case 
+
+```ruby
+case 5
+when (1..10)
+  puts "case statements match inclusion in a range"
+end
+
+case "Hi there"
+when String
+  puts "case statements match class"
+end
+
+case "FOOBAR"
+when /BAR$/
+  puts "they can match regular expressions!"
+end
+
+case 40
+when -> (n) { n.to_s == "40" }
+  puts "lambdas!"
+end
+
+
+
+
+class Success
+  def self.===(item)
+    item.status >= 200 && item.status < 300
+  end
+end
+ 
+class Empty
+  def self.===(item)
+    item.response_size == 0
+  end
+end
+ 
+case http_response
+when Empty
+  puts "response was empty"
+when Success
+  puts "response was a success"
+end
+ 
+```
+
+source: http://blog.honeybadger.io/rubys-case-statement-advanced-techniques/?utm_source=rubyweekly&utm_medium=email
+
 ## select elements of Array that occured multiple times
 
 https://gist.github.com/equivalent/3c9a4c9d07fff79062a3
