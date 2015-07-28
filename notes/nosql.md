@@ -1,4 +1,7 @@
 
+# NoSQL Distilled by Martin Fowler
+
+https://www.youtube.com/watch?v=ASiU89Gl0F0
 
 # Introduction to NoSQL by Martin Fowler
 
@@ -6,8 +9,8 @@ https://www.youtube.com/watch?v=qI_g07C_Q5I&feature=youtu.be
 
 * name nosql comes from a twitter hash tag of a first conferecnce on non
   relational databases
-* nosql movement - 21 sentury nonrelational databases (as similar
-  concepts was before too and they are not considered nosql)
+* nosql movement - *21 sentury* (as similar
+  concepts was before too and they are not considered nosql), *nonrelational* databases 
 
 * relational DB has explicit scheme
 * noSql DB has implicit scheme (how is data used is the schema)
