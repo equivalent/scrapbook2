@@ -23,7 +23,7 @@ then push to dockerhub
 
 in theory a single docker container should run only one process (ruby
 container, postgres container) . When this main process dies docker
-container will go down (equivalent of `docker kill`)  (ref: [1]#27:00)
+container will go down (equivalent of `docker kill`)  (ref: [27:00][1])
 ... sometimes you want to run multiple processes in onne container
 (early development) check supervisor
 
