@@ -90,6 +90,7 @@ docker stop web2
 docker ps  # will give you 2 images running
 docker start web2   
 
+1:14:49
 
 # sources and references:
 
@@ -97,4 +98,3 @@ docker start web2
 [2]: https://www.youtube.com/watch?v=JBtWxj9l7zM  "Docker Tutorial - Docker Container Tutorial for Beginners"
 
 
-1:14:49
