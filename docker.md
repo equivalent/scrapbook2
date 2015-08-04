@@ -92,6 +92,27 @@ docker start web2
 
 1:14:49
 
+
+```
+docker run -i containername bash        # run bash on container
+docker run -d containername sleep 10    # run sleep 10 on container as daemon. after 10s container dies
+docker run containername sleep 10      # run sleep 10 on container normal mode => you will wait 10s after which container dies
+
+
+docker run -i -v /home/ubuntu/mnt containername bash # mount folder and run bash in interactive mode
+
+```
+
+
+
+
+
+
+
+
+
+
+
 # sources and references:
 
 [1]: https://www.youtube.com/watch?v=ddhU3NMrhX4 "3 hours to docker fundaments"
