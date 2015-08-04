@@ -304,6 +304,36 @@ and you can test it on https://sslcheck.globalsign.com/en_US/sslcheck
 When you renewing certificate just replace the old cert part with new
 cert (keep root and intermed) 
 
+# dubugging ssl certificates
+
+
+1. check content of csr and crt file if they are for same thing (check
+   subject CN)
+
+https://redkestrel.co.uk/articles/openssl-commands/#view-csr
+
+```
+openssl x509 -noout -text -in my-domain.crt
+# ...and 
+openssl req -in my-domain.csr -noout -text
+# ...should have similar subject (specially CN ) :
+
+#Certificate Request:
+#    Data:
+#        Version: 0 (0x0)
+#        Subject: C=UK, ST=Berkshire, L=Reading, O=Bla Bla Ltd,OU=bla, CN=my-domain.tld/emailAddress=blabla@bla.bla
+# .....
+```
+
+2. Check an MD5 hash of the CRT to ensure that it matches with what
+is in a private key
+
+```bash
+openssl x509 -noout -modulus -in certificate.crt | openssl md5
+
+openssl rsa -noout -modulus -in privateKey.key | openssl md5
+```
+
 
 #restrict access / basic auth
 
