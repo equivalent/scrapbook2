@@ -17,8 +17,8 @@ using only required amounts of memory /processor power.
 then push to dockerhub
 - docker file =  similar to cheff file, holds instructions how to build
   container
-- docker layer = ??? is stacked each time docker mounts root fs ???
--
+- docker layer = is stacked each time docker mounts root fs
+
 
 
 in theory a single docker container should run only one process (ruby
