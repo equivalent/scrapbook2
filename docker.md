@@ -67,7 +67,7 @@ Dockerfile
 - ENV <key> <value>  # set env variables
 - USER <uid>   # sets user that container is running as
 
-- EXPOSE  123  # port container listen to
+- EXPOSE 123  #port container listen to
 - 
 
 image is exposing a port to docker-daemon but in order to really access
