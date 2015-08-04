@@ -93,7 +93,8 @@ docker start web2
 
 # sources and references:
 
-[1]  3 hours to docker fundaments
+[1]: https://www.youtube.com/watch?v=ddhU3NMrhX4 "3 hours to docker fundaments"
+[2]: https://www.youtube.com/watch?v=JBtWxj9l7zM  "Docker Tutorial - Docker Container Tutorial for Beginners"
 
 
 1:14:49
