@@ -304,7 +304,7 @@ and you can test it on https://sslcheck.globalsign.com/en_US/sslcheck
 When you renewing certificate just replace the old cert part with new
 cert (keep root and intermed) 
 
-# dubugging ssl certificates
+# debugging ssl certificates
 
 
 1. check content of csr and crt file if they are for same thing (check
@@ -333,6 +333,8 @@ openssl x509 -noout -modulus -in certificate.crt | openssl md5
 
 openssl rsa -noout -modulus -in privateKey.key | openssl md5
 ```
+
+http://stackoverflow.com/questions/26191463/ssl-error0b080074x509-certificate-routinesx509-check-private-keykey-values
 
 
 #restrict access / basic auth
