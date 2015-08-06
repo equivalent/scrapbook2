@@ -22,6 +22,14 @@ sudo pg_lsclusters
 [ upgrade from 9.1 to 9.3](http://nixmash.com/postgresql/upgrading-postgresql-9-1-to-9-3-in-ubuntu/)
 
 
+```bash
+sudo pg_lsclusters
+sudo pg_dropcluster --stop 9.3 main #  delete the default 9.3 cluster created by the 9.3 install.
+sudo pg_upgradecluster 9.1 main     #  create a new 9.3 cluster from the existing 9.1 cluster
+sudo service postgresql start 9.3
+sudo pg_dropcluster --stop 9.1 main      # delete the 9.1 Cluster.
+```
+
 
 ### array 
 
