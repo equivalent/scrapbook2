@@ -304,6 +304,15 @@ and you can test it on https://sslcheck.globalsign.com/en_US/sslcheck
 When you renewing certificate just replace the old cert part with new
 cert (keep root and intermed) 
 
+
+**note2**
+
+for geotrust certificate all you need is one root/intermediate
+certificate. For example for "Geotrust True BusinessID Wildcard " you need only "True Business ID Wildcard RSA-SHA2 Intermediate CA" listed  under SHA-2 Root. 
+
+The link to this root should be in the email
+
+
 # debugging ssl certificates
 
 
