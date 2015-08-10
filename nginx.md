@@ -314,6 +314,8 @@ For example for "Geotrust True BusinessID Wildcard " you need only "True Busines
 
 The link to this root should be in the email
 
+https://knowledge.geotrust.com/support/knowledge-base/index?page=content&id=AR1421
+
 
 # debugging ssl certificates
 
