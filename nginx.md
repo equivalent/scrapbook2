@@ -307,8 +307,10 @@ cert (keep root and intermed)
 
 **note2**
 
-for geotrust certificate all you need is one root/intermediate
-certificate. For example for "Geotrust True BusinessID Wildcard " you need only "True Business ID Wildcard RSA-SHA2 Intermediate CA" listed  under SHA-2 Root. 
+for geotrust certificate all you need is one intermediate
+certificate as browsers has a list of "trusted" root certificates (e.g. Geotrust is one of them).
+
+For example for "Geotrust True BusinessID Wildcard " you need only "True Business ID Wildcard RSA-SHA2 Intermediate CA" listed  under SHA-2 Root. 
 
 The link to this root should be in the email
 
