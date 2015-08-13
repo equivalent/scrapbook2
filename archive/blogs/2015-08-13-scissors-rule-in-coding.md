@@ -25,25 +25,33 @@ default (not sure if that was intention doh):
 
 ```ruby
 class Foo
-  def call(number)
-    new_number = do_some_stuff(number)
-    do_some_other_stuff(new_number)
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    do_some_stuff
+    do_some_other_stuff
   end
 
   private
 
-  def do_some_stuff(number)
-    number + 100
+  def do_some_stuff
+    @number = number + 100
   end
 
-  def do_some_other_stuff(number)
-    number + 50
+  def do_some_other_stuff
+    @number = number + 50
   end
 end
 
-foo = Foo.new
-foo.call(2)
-# => 152
+foo = Foo.new(2)
+foo.public_methods(false)     # => [:number, :call]
+foo.number                    # => 2
+foo.call
+foo.number                    # => 152
 ```
 
 Ruby on Rails framework best practices goes even further and recommend to
@@ -52,18 +60,24 @@ browsing the code clearly notice that the context of methods changed
 
 ```ruby
 class Foo
-  def call(number)
-    new_number = do_some_stuff(number)
-    do_some_other_stuff(new_number)
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    do_some_stuff
+    do_some_other_stuff
   end
 
   private
-    def do_some_stuff(number)
-      number + 100
+    def do_some_stuff
+      @number = number + 100
     end
 
-    def do_some_other_stuff(number)
-      number + 50
+    def do_some_other_stuff
+      @number = number + 50
     end
 end
 ```
