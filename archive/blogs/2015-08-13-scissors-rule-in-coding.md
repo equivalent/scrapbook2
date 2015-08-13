@@ -10,8 +10,8 @@ screencasts [Clean Coder][2].
 The rule is from old days where programes where styling the code in a
 way that public methods / interface methods were at the top of the code
 and private methods were at the bottom. So if you teoreticly print the
-source code of a file you can cut it with scissors in half, you will end
-up with just a list of public methods other programers / developers can use.
+source code of a file and you can cut it with scissors in half. This
+way you will end up with list of public methods so that other programers / developers can implement them in their code.
 
 How much usefull is it these days ? Well depend on what's your opinion
 on `private` methods in general. Are you using them ? Are you trying to
@@ -19,9 +19,9 @@ clearly point out to other developers which are the "stable" `public`
 interface methods and which are the "unstable" `private` methods that
 are target of functionality change.
 
-I'm a follower of Clean Coder principles so for me scissor rule is "good
-to know" rule as Ruby has this rule by default (not sure if that was
-intention doh):
+I'm a Ruby developer and a follower of Clean Coder principles so for me
+scissor rule is "good to know" rule. Plus, Ruby has this rule by
+default (not sure if that was intention doh):
 
 ```ruby
 class Foo
@@ -46,7 +46,7 @@ foo.call(2)
 # => 152
 ```
 
-Ruby on Rails best practices goes even further and recommend to
+Ruby on Rails framework best practices goes even further and recommend to
 add extra level of indentation bellow private, so that developer
 browsing the code clearly notice that the context of methods changed
 
@@ -71,15 +71,17 @@ end
 So the scissors rule is already in place for Ruby developers. And to be
 honest it's not that bad idea. The code is more readable.
 
+That's why I'm always trying to fallow it when I'm using other languages.
+
 I wouldn't call this rule a rule but more a recomendation. Sometimes you
 need to do stuff that will break this convention. But in general if you
 have two ways how to do same piece of functional code, with same
 performance and same readability but one is not fallowing the scissors
-rule and other is, I would chose the one fallowing scissors rule `:)`
+rule and other is, I would go with the one that comply with the rule `:)`
 
 If you want to learn more about why `public` -  `private` is important
 I'm recommending you to read [Practical Object-Oriented Design in
-Ruby][4] by [Sandi Metz][5] or formerly mentioned [Clean Coders
+Ruby][4] by [Sandi Metz][5] or watch formerly mentioned [Clean Coders
 Screencasts][2] (from what I remmember first two or three episodes
 are talking about importance of the well structured code)
 
