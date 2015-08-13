@@ -84,7 +84,7 @@ Screencasts][2] (from what I remmember first two or three episodes
 are talking about importance of the well structured code)
 
 
-[1]: http://stackoverflow.com/questions/31983479/alias-method-private-method-in-ruby/31983509#31983564
+[1]: http://stackoverflow.com/a/31983564/473040
 [2]: https://cleancoders.com/
 [3]: http://www.objectmentor.com/omTeam/martin_r.html
 [4]: http://www.poodr.com/
