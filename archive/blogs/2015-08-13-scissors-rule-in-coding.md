@@ -7,11 +7,13 @@ there is no google search result `:)`.
 I first learned about Scissors Rule from [Robet C. Martin][3] in his
 screencasts [Clean Coder][2].
 
-The rule is from old days where programers where styling the code in a
+The rule is from **old days** where programers where styling the code in a
 way that public methods / interface methods were at the top of the code
 and private methods were at the bottom. So if you theoretically print the
 source code of a file and you can cut it with scissors in half. This
 way you will end up with list of public methods so that other programers / developers can implement them in their code.
+
+### Does it have to be at top ?
 
 User TurquoiseTurkey in a [Reddit Discussion][6] on this toppic had really good point:
 
@@ -23,15 +25,72 @@ The rule is not about placing them only at the top, but having them in one place
 developers implement your code much easily and they don't end up
 jumping around the file to find all public interface methods.
 
-How much useful is it these days ? Well depend on what's your opinion
-on `private` methods in general. Are you using them ? Are you trying to
+One more thing I want to point out to avoid confusion:
+
+*The rule is not about placing public methods on the very top / bottom of a file
+Nope it's just about not mixing public and private methods.*
+
+Here is an example from [Ruby Style Guide][7] on the topic: "how to organize Ruby
+classes":
+
+```ruby
+class Person
+  # extend and include mixins
+  extend SomeModule
+  include AnotherModule
+
+  # inner classes
+  CustomErrorKlass = Class.new(StandardError)
+
+  # constants
+  SOME_CONSTANT = 20
+
+  # attribute macros
+  attr_reader :name
+
+  # other macros
+  validates :name
+
+  # public class methods
+  def self.some_method
+  end
+
+  # initialization goes between class methods and other instance methods
+  def initialize
+  end
+
+  # followed by other public instance methods
+  def some_method
+  end
+
+  # protected and private methods are grouped near the end
+  protected
+
+  def some_protected_method
+  end
+
+  private
+
+  def some_private_method
+  end
+end
+```
+
+As you can see class has many different declarations before the public
+interface starts, yet this still comply with scissor rule.
+
+### How much useful is it these days ?
+
+Well depend on what's your opinion on `private` methods in general.
+Are you using them ? Are you trying to
 clearly point out to other developers which are the "stable" `public`
 interface methods and which are the "unstable" `private` methods that
 are target of functionality change.
 
-I'm a Ruby developer and a follower of Clean Coder principles so for me
-scissor rule is "good to know" rule. Plus, Ruby has this rule by
-default (not sure if that was intention doh):
+I'm a Ruby developer that is trying to comply with Clean Coder principles
+(meaning I respect public / private separation) so for me scissor rule is a good guide.
+
+Plus, Ruby has this in place by default (not sure if that was intention doh):
 
 ```ruby
 class Foo
@@ -97,7 +156,7 @@ honest it's not that bad idea. The code is more readable.
 
 That's why I'm always trying to fallow it when I'm using other languages.
 
-I wouldn't call this rule a rule but more a recommendation. Sometimes you
+I wouldn't call this "rule" a rule but more a recommendation. Sometimes you
 need to do stuff that will break this convention. But in general if you
 have two ways how to do same piece of functional code, with same
 performance and same readability but one is not fallowing the scissors
@@ -337,3 +396,4 @@ all the stuff I forgot to mention in the article.
 [4]: http://www.poodr.com/
 [5]: http://www.sandimetz.com/
 [6]: https://www.reddit.com/r/programming/comments/3gu1sc/scissors_rule_in_coding_put_your_public_methods/
+[7]: https://github.com/bbatsov/ruby-style-guide#classes--modules
