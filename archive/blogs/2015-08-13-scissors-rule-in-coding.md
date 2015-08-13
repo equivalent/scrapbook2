@@ -99,6 +99,58 @@ Ruby][4] by [Sandi Metz][5] or watch formerly mentioned [Clean Coders
 Screencasts][2] (from what I remember first two or three episodes
 are talking about importance of the well structured code)
 
+But the main point is that your public methods suppose to be the "stable
+methods" that you wont change that often (e.g. change arguments), so
+other developers can relly on using your class. Private methods are the
+one you can go nuts in refatroring, change attributes, add functionality,
+improving benchmarks and so on.
+
+The scissors rule just adds a cherry on top of it by making the class
+clear enough visually. So you wont end up doing something like this:
+
+
+```ruby
+
+class Foo
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    do_some_stuff
+    do_some_other_stuff
+  end
+
+  def do_some_stuff
+    @number = number + 100
+  end
+  private :do_some_stuff
+
+  def do_some_other_stuff
+    @number = number + 50
+  end
+  private :do_some_other_stuff
+
+  def diffeent_call
+    something_different
+  end
+
+  def something_different
+  end
+
+  private :something_different
+end
+
+Foo.new(2).public_methods(false)  #=> [:number, :call, :diffeent_call]
+```
+
+Thank you to all that joint the discussion on Redit and reminded me of
+some more stuff I didn't mentioned.
+
+* https://www.reddit.com/r/ruby/comments/3gu51u/scissors_rule_in_coding_put_your_public_methods/
+* https://www.reddit.com/r/programming/comments/3gu1sc/scissors_rule_in_coding_put_your_public_methods/
 
 [1]: http://stackoverflow.com/a/31983564/473040
 [2]: https://cleancoders.com/
