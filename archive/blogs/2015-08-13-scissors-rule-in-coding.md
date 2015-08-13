@@ -158,6 +158,171 @@ end
 Foo.new(2).public_methods(false)  #=> [:number, :call, :diffeent_call]
 ```
 
+### Context indented methods
+
+Reddit user `mirhagk` responded to [the discussion][6] with this point:
+
+> For myself I tend to structure most classes with related methods
+> together, even if one is public and the other is private
+
+I seen this before (again in Clean Coders screencasts) where the
+developer done same thing plus he actually indented methods depending
+on the level of calling.
+
+For example if you have `public_method` calling `private_method_1` and
+that is calling `private_method_2`
+
+For example the abbove example could be written like this:
+
+```ruby
+
+class Foo
+  attr_reader :number
+  private :do_some_other_stuff, :do_some_stuff, :something_different, :something_more_different
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    do_some_stuff
+    do_some_other_stuff
+  end
+
+    def do_some_stuff
+      @number = number + 100
+    end
+
+    def do_some_other_stuff
+      @number = number + 50
+    end
+
+  def diffeent_call
+    something_different
+    # ...
+  end
+
+    def something_different
+      something_more_different
+      # ...
+    end
+
+      def something_more_different
+        # ...
+      end
+end
+```
+
+And it's a really good point and I fully agree that this is good approach in some languages,
+specially if you writing something in functional programing style.
+
+It's realy about the Language you are using and how flexible it's syntax
+is.
+
+*I personally don't recommend it in Ruby as it's killing Ruby's elegance.*
+
+But if you really want to write the code this way maybe combine both rules.
+Write public methods to top and indent private methods to their context.
+
+```ruby
+class Foo
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    do_some_stuff
+    do_some_other_stuff
+  end
+
+  def diffeent_call
+    something_different
+  end
+
+  private
+    def do_some_stuff
+      # ...
+    end
+
+    def do_some_other_stuff
+      # ...
+    end
+
+    def something_different
+      something_more_different
+      # ...
+    end
+
+      def something_more_different
+        something_more_more_different
+        # ...
+      end
+
+        def something_more_more_different
+          # ...
+        end
+end
+```
+
+If you have this code in any Object Oriented Language in 90% of casses you
+missed an abstration, meaning that the class has too many responsibilities
+and therefore some parts shoud be extracted to a different classes or the class should be
+actually two separate classes:
+
+```ruby
+class FooStuff
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    do_some_stuff
+    do_some_other_stuff
+  end
+
+  private
+    def do_some_stuff
+      # ...
+    end
+
+    def do_some_other_stuff
+      # ...
+    end
+end
+
+class FooDifferentStuff
+  attr_reader :number
+
+  def initialize(number)
+    @number = number
+  end
+
+  def call
+    something_more_different
+    # ..
+  end
+
+  private
+    def something_different
+      something_more_different
+      # ...
+    end
+
+    def something_more_different
+      something_more_more_different
+      # ...
+    end
+
+    def something_more_more_different
+      # ...
+    end
+end
+```
+
 ### Discussion and Sources
 
 Thank you to all that joint the discussion on Redit and reminded me of
