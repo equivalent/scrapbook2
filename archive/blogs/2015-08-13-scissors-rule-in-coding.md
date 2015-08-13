@@ -325,8 +325,8 @@ end
 
 ### Discussion and Sources
 
-Thank you to all that joint the discussion on Redit and reminded me of
-some more stuff I didn't mentioned.
+Thank you to all that joined the discussion on Reddit and reminded me of
+all the stuff I forgot to mention in the article.
 
 * https://www.reddit.com/r/ruby/comments/3gu51u/scissors_rule_in_coding_put_your_public_methods/
 * https://www.reddit.com/r/programming/comments/3gu1sc/scissors_rule_in_coding_put_your_public_methods/
