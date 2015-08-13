@@ -13,6 +13,16 @@ and private methods were at the bottom. So if you theoretically print the
 source code of a file and you can cut it with scissors in half. This
 way you will end up with list of public methods so that other programers / developers can implement them in their code.
 
+User TurquoiseTurkey in a [Reddit Discussion][6] on this toppic had really good point:
+
+> I always put the public functions at the bottom of the file and the static
+> ones at the top, so I don't have to use forward declarations.
+
+The rule is not about placing them only at the top, but having them in one place
+(Top or Bottom whatever is the best practice in your language) so that other
+developers implement your code much easily and they don't end up
+jumping around the file to find all public interface methods.
+
 How much useful is it these days ? Well depend on what's your opinion
 on `private` methods in general. Are you using them ? Are you trying to
 clearly point out to other developers which are the "stable" `public`
@@ -93,16 +103,7 @@ have two ways how to do same piece of functional code, with same
 performance and same readability but one is not fallowing the scissors
 rule and other is, I would go with the one that comply with the rule `:)`
 
-
-User TurquoiseTurkey in a [Reddit Discussion][6] on this toppic had really good point:
-
-> I always put the public functions at the bottom of the file and the static
-> ones at the top, so I don't have to use forward declarations.
-
-The rule is not about placing them only at the top, but having them in one place
-(Top or Bottom whatever is the best practice in your language) so that other
-developers implement your code much easily and they don't end up
-jumping around the file to find all public interface methods.
+### private vs public
 
 If you want to learn more about why `public` -  `private` is important
 I'm recommending you to read [Practical Object-Oriented Design in
@@ -156,6 +157,8 @@ end
 
 Foo.new(2).public_methods(false)  #=> [:number, :call, :diffeent_call]
 ```
+
+### Discussion and Sources
 
 Thank you to all that joint the discussion on Redit and reminded me of
 some more stuff I didn't mentioned.
