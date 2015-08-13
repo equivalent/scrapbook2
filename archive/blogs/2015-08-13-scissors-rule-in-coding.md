@@ -100,13 +100,13 @@ Screencasts][2] (from what I remember first two or three episodes
 are talking about importance of the well structured code)
 
 But the main point is that your public methods suppose to be the "stable
-methods" that you wont change that often (e.g. change arguments), so
-other developers can relly on using your class. Private methods are the
+methods" that you won't change that often (e.g. change arguments), so
+that other developers can relly on your class. Private methods are the
 one you can go nuts in refatroring, change attributes, add functionality,
 improving benchmarks and so on.
 
 The scissors rule just adds a cherry on top of it by making the class
-clear enough visually. So you wont end up doing something like this:
+clear enough visually. So you won't end up doing something like this:
 
 
 ```ruby
