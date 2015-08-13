@@ -93,6 +93,17 @@ have two ways how to do same piece of functional code, with same
 performance and same readability but one is not fallowing the scissors
 rule and other is, I would go with the one that comply with the rule `:)`
 
+
+User TurquoiseTurkey in a [Reddit Discussion][6] on this toppic had really good point:
+
+> I always put the public functions at the bottom of the file and the static
+> ones at the top, so I don't have to use forward declarations.
+
+The rule is not about placing them only at the top, but having them in one place
+(Top or Bottom whatever is the best practice in your language) so that other
+developers implement your code much easily and they don't end up
+jumping around the file to find all public interface methods.
+
 If you want to learn more about why `public` -  `private` is important
 I'm recommending you to read [Practical Object-Oriented Design in
 Ruby][4] by [Sandi Metz][5] or watch formerly mentioned [Clean Coders
@@ -157,3 +168,4 @@ some more stuff I didn't mentioned.
 [3]: http://www.objectmentor.com/omTeam/martin_r.html
 [4]: http://www.poodr.com/
 [5]: http://www.sandimetz.com/
+[6]: https://www.reddit.com/r/programming/comments/3gu1sc/scissors_rule_in_coding_put_your_public_methods/
