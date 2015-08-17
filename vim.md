@@ -3,6 +3,27 @@
 =          # reindent, highligted text
 J          # join highlited lines a\n b\n c\  => abc
 
+# buffers
+
+
+to change yank to buffer `a` in normal mod do
+
+```
+"ay
+"ap
+```
+
+... so the quote `"` is the buffer changer
+
+default buffer is `"`  so `""y`
+
+While you are in insert mode you can press `ctrl + r`(paste mode) and name of buffer
+(`a`) and you will paste the content of a buffer
+
+there is also a "black hole" buffer `_` that will lose the information
+inmidiately
+
+
 
 # Tabs vim 
 
