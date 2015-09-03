@@ -105,6 +105,71 @@ docker run -i -v /home/ubuntu/mnt containername bash # mount folder and run bash
 
 
 
+# docker-composer
+
+form [3][docker composer rails]
+
+```
+# docker-compose.yml
+db:
+  image: postgres:9.4.1
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/myapp
+  ports:
+    - "3001:3000"
+  links:
+    - db
+```
+
+```
+# Dockerfile
+FROM ruby:2.2.2
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+RUN mkdir /myapp
+WORKDIR /myapp
+ADD Gemfile /myapp/Gemfile
+RUN bundle install
+ADD . /myapp
+```
+
+```
+# Gemfile
+source 'https://rubygems.org'
+gem 'rails', '4.2.0'
+```
+
+```bash
+docker-compose run web rails new . --force --database=postgresql --skip-bundle  # bulid docker + create rails app
+
+# ...or just:
+docker-compose run      #build the docker
+```
+
+```
+# database.yml
+development: &default
+  adapter: postgresql
+  encoding: unicode
+  database: postgres
+  pool: 5
+  username: postgres
+  password:
+  host: db
+
+test:
+  <<: *default
+  database: myapp_test
+```
+
+```
+docker-compose up   # boot the application
+cd ~/my-app-with-docker-files
+docker-compose run web rake db:create
+docker-compose run web rails c
+```
 
 
 
@@ -117,5 +182,5 @@ docker run -i -v /home/ubuntu/mnt containername bash # mount folder and run bash
 
 [1]: https://www.youtube.com/watch?v=ddhU3NMrhX4 "3 hours to docker fundaments"
 [2]: https://www.youtube.com/watch?v=JBtWxj9l7zM  "Docker Tutorial - Docker Container Tutorial for Beginners"
-
+[3]: https://docs.docker.com/compose/rails/  "docker composer rails"
 
