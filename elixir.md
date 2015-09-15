@@ -88,6 +88,24 @@ would mean leaving
 off Drop. and just using `&(do_shit_publicly/1)`.
 
 
+# pipe forward
+
+defmodule CombinedStuff do
+  def stuff do
+    MyStuff.do_stuff(OtherStuff.other(5))
+  end
+
+  def stuff_different_way do
+    OtherStuff.other(5) |> MyStuff.do_stuff
+  end
+end
+
+The  pipe  operator  only  passes  one  result  into  the  next
+function  as  its first  parameter.  If  you  need  to  use  a  function
+that  takes  multiple  parameters,  just  specify  the  additional
+parameters  as  if  the  first  didn’t have  to  be  there.
+
+# exaple of knowlednge sofar
 
 ```
 defmodule Bla do
