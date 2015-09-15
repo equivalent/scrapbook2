@@ -89,4 +89,51 @@ off Drop. and just using `&(do_shit_publicly/1)`.
 
 
 
+```
+defmodule Bla do
+  def blabla(arg) do
+    arg * 8
+  end
+end
 
+defmodule Foo do
+  def foo(arg) do
+    arg + 3
+  end
+end
+
+defmodule Bar do
+  def bar(arg) do
+    arg + 13
+  end
+end
+
+Foo.foo(6) |> Bla.blabla |> Bar.bar
+#> 85
+
+defmodule Combined do
+  import Bar
+  import Foo
+  import :math
+
+  def call do
+    bar(Bla.blabla(foo(6)))
+  end
+
+
+  def call_pipe_forward do
+    foo(6) |> Bla.blabla |> bar
+  end
+
+  def x
+    sqrt(5)
+  end
+end
+
+Combined.call
+#> 85
+Combined.call_pipe_forward
+#> 85
+Combined.x
+
+```
