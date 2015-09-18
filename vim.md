@@ -24,6 +24,10 @@ there is also a "black hole" buffer `_` that will lose the information
 inmidiately
 
 
+# increese number 
+
+hover ower number in normal mod and press `ctrl-a` to increase number or `ctrl-x` to
+decrease
 
 # Tabs vim 
 
