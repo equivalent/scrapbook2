@@ -35,6 +35,12 @@ list all your kernels (installed and deinstalled) :
 dpkg --get-selections | grep linux-image
 ```
 
+your currently used kernel
+
+```
+uname -r
+```
+
 to remove  particular kernel:
 
 ```sh
