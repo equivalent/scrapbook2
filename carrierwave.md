@@ -1,5 +1,53 @@
 # CarrierWave File Uploader Scrapbook
 
+## Store / Retrieve without model
+
+```ruby
+class ReportUploader < CarrierWave::Uploader::Base
+  storage(Rails.configuration.carrierwave_storage_type)
+  permissions 0644
+
+  attr_accessor :explicit_filename # I'm storing Tempfile => the file name is altered with randomnes
+                                   # this way I'll explicitly name the file when storing
+
+  def store_dir
+    "uploads/reports/"
+  end
+
+  def filename
+    explicit_filename || raise('you need to explicitly pass file name')
+  end
+end
+
+RSpec.describe 'store & retriev' do
+
+  let(:report_file_name) { 'test.csv' }
+
+  describe "store" do
+    it do
+      tmp_file = Tempfile.new(report_file_name)
+      tmp_file.write('test, other test, bla bla')
+      tmp_file.close
+      @uploader = ReportUploader.new
+      @uploader.explicit_filename = report_file_name
+      @uploader.store!(tmp_file)  # or File.open(tmp_file.path)
+      # ...
+      tmp_file.unlink # rm tmp file
+    end
+  end
+  
+  describe "retriew" do
+    it do 
+      uploader = ReportUploader.new
+      uploader.retrieve_from_store!(report_file_name)
+      CSV.read(uploader.path)
+    end
+  end
+    
+end
+```
+
+
 ## carrierwave uploader not processing in RSpec
 
 processing is turn off for sake of test speed
