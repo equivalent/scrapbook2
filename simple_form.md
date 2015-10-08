@@ -11,6 +11,15 @@
   
 ```
 
+# selected via lambda
+
+```haml
+= f.input :application_strategy,
+  required: true,
+  collection: Strategy.strategies_for_view,
+  selected: lambda { |option| @user.application_strategy == option[0] }
+```
+
 # simple form for plain ruby class
 
 ```ruby
