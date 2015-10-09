@@ -3,6 +3,7 @@
 within( all('tr').last ) { click_icon_link title: 'Validation Types' 
 ```
 
+capybara rspec cheat sheet:  http://cheatrags.com/capybara
 
 # Spinach hooks
 
