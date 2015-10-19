@@ -1,4 +1,5 @@
-
+* https://github.com/neckhair/rails-on-docker/blob/master/docker-compose.yml
+* 
 
 
 coreos, mesos -linux distros  OS where multiple computers acts as one
