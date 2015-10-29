@@ -1,3 +1,8 @@
+## specific rvm exec
+
+```
+rvm ruby-2.2.3@someproject exec bundle exec rspec spec
+```
 
 ## Upgrade rvm & reload list of availible rubies
 
