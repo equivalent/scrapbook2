@@ -1,3 +1,38 @@
+```
+foo = 1 # 1
+1 = foo # 1
+2 = foo # ** (MatchError) no match of right hand side value: 1
+bar     # ** (CompileError) iex:3: undefined function bar/0
+{:foo, bar} = {:foo, 3}   # {:foo, 3}
+{_, baz} = {1, 2}
+baz # 2 
+[a, 2] = [1, 2]
+[a, 2] = [3, 2] # Here, "a" gets re-bound
+[^a, 2] = [4, 2] # MatchError
+
+
+
+
+false == :false
+nil == :nil   # atoms are like symbols in Ruby 
+
+```
+
+
+##  Keyword list (Ruby hash like syntax)
+
+```
+[author: "Josh Adams", title: "Basic Elixir"] == [{:author, "Josh
+Adams"}, {:title, "Basic Elixir"}]
+```
+
+
+## regular expression
+
+```
+Regex.replace %r/[aeiou]/, "Beginning Elixir", "z" # "Bzgznnzng Elzxzr"
+```
+
 
 ## functions with `fn`
 
@@ -155,3 +190,4 @@ Combined.call_pipe_forward
 Combined.x
 
 ```
+
