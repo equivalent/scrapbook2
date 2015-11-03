@@ -1,5 +1,33 @@
 # Rails Active Record Scrapbook
 
+# order via Arel table
+
+
+    class User < ActiveRecord::Base
+      has_many :status_changes
+
+      def latest_status_change
+        status_changes
+         .order(StatusChange.arel_table['created_at'].desc) #
+         .first
+      end
+    end
+ 
+    class StatusChange < ActiverRecord::Base
+      belongs_to :user
+    end
+
+resulting in:
+
+    SELECT "status_changes".* FROM "status_changes" WHERE "status_changes"."user_id" = 1 ORDER BY "status_changes"."created_at" DESC
+
+Benefits: 
+
+* you are strictly bound to Modelclass name => renaming table in model will not break the sql code (of if it will, it will explicitly break the syntax on Ruby level, not DB level)
+* you still have the benefit of explicitly saying what table.column the order should be 
+
+http://apidock.com/rails/ActiveRecord/QueryMethods/order
+
 
 # none
 

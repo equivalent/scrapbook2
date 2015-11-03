@@ -206,4 +206,19 @@ calls.
 
 One thing to remmember is that you may need to wipe your database after this particular spec description/context finish so that next spec context wont have database records created in this instance ( look at the `after(:all)` block ).
 
+# Example
+
+The other day I was working on large change in the application I'm currently working. Because tight deadline I didn't refactor the tests to the way how this article is proposing (I was using lot of `let(:user) { create :user , ... }` and `before(:each) { ... } `). 
+The perfmance of test suite was like this: 
+
+![screenshot of screen before refactore - 2m 22s](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/2015-08-20-rspec-before-all_before-improvement.png)
+
+I'm  triggering just 4 - 6 create queries per test.
+
+After things settled down I've manage to find some time and do the refactoring to `before(:all)` test suite was like: 
+
+![screenshot of screen afer refactore - 21s](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/2015-08-20-rspec-before-all_before-improvement.png)
+
+I'm not introducing any other code / specs changes, just the `before(:all)` change
+
 Keywords: Rails 4, Ruby 2, RSpec, before all, after all, test-suite, TDD

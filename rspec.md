@@ -1,5 +1,8 @@
 # RSpec scrapbook
 
+capybara rspec cheat sheet:  http://cheatrags.com/capybara
+
+
 ### post create file to rails controller in RSpec
 
 ```ruby

@@ -1,4 +1,5 @@
-
+* https://github.com/neckhair/rails-on-docker/blob/master/docker-compose.yml
+* 
 
 
 coreos, mesos -linux distros  OS where multiple computers acts as one
@@ -105,6 +106,88 @@ docker run -i -v /home/ubuntu/mnt containername bash # mount folder and run bash
 
 
 
+# docker-composer
+
+form [3][docker composer rails]
+
+```
+# docker-compose.yml
+db:
+  image: postgres:9.4.1
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/myapp
+  ports:
+    - "3001:3000"
+  links:
+    - db
+```
+
+```
+# Dockerfile
+FROM ruby:2.2.2
+RUN apt-get update -qq && apt-get install -y build-essential
+
+# for json gem
+RUN apt-get install -y libc6-dev
+
+# for postgres
+RUN apt-get install -y libpq-dev
+
+# for nokogiri
+RUN apt-get install -y libxml2-dev libxslt1-dev
+
+# for capybara-webkit
+# RUN apt-get install -y libqt4-webkit libqt4-dev xvfb
+
+# for a JS runtime
+RUN apt-get install -y nodejs
+
+ENV APP_HOME /myapp
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+ADD Gemfile* $APP_HOME/
+RUN bundle install
+ADD . $APP_HOME
+```
+
+```
+# Gemfile
+source 'https://rubygems.org'
+gem 'rails', '4.2.0'
+```
+
+```bash
+docker-compose run web rails new . --force --database=postgresql --skip-bundle  # bulid docker + create rails app
+
+# ...or just:
+docker-compose run      #build the docker
+```
+
+```
+# database.yml
+development: &default
+  adapter: postgresql
+  encoding: unicode
+  database: postgres
+  pool: 5
+  username: postgres
+  password:
+  host: db
+
+test:
+  <<: *default
+  database: myapp_test
+```
+
+```
+docker-compose up   # boot the application
+cd ~/my-app-with-docker-files
+docker-compose run web rake db:create
+docker-compose run web rails c
+```
 
 
 
@@ -117,5 +200,5 @@ docker run -i -v /home/ubuntu/mnt containername bash # mount folder and run bash
 
 [1]: https://www.youtube.com/watch?v=ddhU3NMrhX4 "3 hours to docker fundaments"
 [2]: https://www.youtube.com/watch?v=JBtWxj9l7zM  "Docker Tutorial - Docker Container Tutorial for Beginners"
-
+[3]: https://docs.docker.com/compose/rails/  "docker composer rails"
 
