@@ -13,6 +13,61 @@ Topics not included/moved:
 Topics:
 
 
+## lazy enum
+
+```ruby
+
+file = open('/usr/share/dict/words')
+
+file
+  .readlines  #read all 1000000 lines
+  .first(100) # give me first 100
+
+enum files
+  .each_line    # enum
+  .first(100)   # lazy read first 100 withotu reading all 1000000 in
+                # first place
+
+
+Prime.each do |n|
+  puts n   # this will print prime numbers forever
+end
+
+# use only one at the time
+enum = Prime.each  # enum
+enum.next # => 2
+enum.next # => 3
+
+
+arry_of_squares = 1
+  .step #  enum
+  .first(4)  # [1,2,3,4]
+  .map { |n| n**2 } # [1, 4, 9, 16]
+
+
+squares = 1
+  .step #  enum
+  .lazy #  lazy enum <enum>
+  .map { |n| n**2 } # lazy enum <lazy enum <enum>> 
+                    # so this is "potential" to produce square numbers
+
+arry_of_squares = squares.first(4) # [1, 4, 9, 16]
+
+squares.each_slice  # Enum<enum<enum<enum>>>
+squares.each_slice.first(4)  # array
+squares.each_slice.take(4)   # Enum<enum<enum<enum<enum>>>>
+
+
+# when using lazy, we crate a chanin of enumarators
+# each enum has a link to the enum before 
+```
+
+
+
+
+
+
+
 ## case 
 
 ```ruby
