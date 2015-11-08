@@ -13,6 +13,15 @@ Topics not included/moved:
 Topics:
 
 
+## 
+
+```ruby
+(1..9).each_cons(2) { |a| a } # nil
+
+(1..9).each_cons(2).map { |a| a } # [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9]]
+
+```
+
 ## lazy enum
 
 ```ruby
