@@ -1,3 +1,19 @@
+# quai.io
+
+
+```
+docker run busybox echo "fun" > newfile
+deckor ps -l
+#  my image is id dbe072c4c613
+docker commit dbe072c4c613 quay.io/equivalent/test-docker
+
+
+```
+
+
+# docker
+
+
 * https://github.com/neckhair/rails-on-docker/blob/master/docker-compose.yml
 * 
 
@@ -51,6 +67,10 @@ docker commands
   depending on settings default is docker hub
 - docker rm a2cc01627771    # remove image
 
+
+```
+sudo docker build -t qa  .
+```
 
 
 Dockerfile
