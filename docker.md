@@ -1,3 +1,20 @@
+# docker refusing pus after hiting ctrl-c in middle of docker push
+
+scenario
+
+```
+sudo docker push quay.io/equivalent/foobar:qa-3
+FATA[0000] Error response from daemon: push quay.io/equivalent/foobar is
+already in progress 
+```
+
+solution
+
+```
+$ sudo service docker restart   # on the machine frm which you pushing
+```
+
+
 # quai.io
 
 
@@ -70,6 +87,14 @@ docker commands
 
 ```
 sudo docker build -t qa  .
+sudo docker build -t=quay.io/equivalent/foobar:latestbla .
+sudo docker exec xyzfabcd ls
+sudo docker push quay.io/equivalent/foobar:latestbla
+sudo docker run -i -w='/app'  e56b3471f8d6  ruby ./build/getLatestFromOldSite.rb
+
+sudo docker exec -it 16997394032d bash  # execute on running container
+
+
 ```
 
 

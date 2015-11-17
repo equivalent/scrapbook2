@@ -4,6 +4,7 @@
 ```
 eb init --interactive
 eb ssh productionMycom-env
+eb deploy qaMyEnvironment #deploy currently commited code
 ```
 
 
