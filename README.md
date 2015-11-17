@@ -1,3 +1,5 @@
+![Gitten](http://gittens.r15.railsrumble.com//badge/koudelka/visualixir)
+
 Scrapbook2
 ==============
 
