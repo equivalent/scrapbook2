@@ -1,5 +1,11 @@
 # Rails Active Record Scrapbook
 
+# get the Active record (rails) db configuration
+
+```
+ActiveRecord::Base.connection.instance_variable_get(:@config)
+```
+
 # order via Arel table
 
 
