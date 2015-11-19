@@ -1,3 +1,6 @@
+* elastic search
+* redis is in elastic cache
+* postgre is in RDS
 
 # eb cli
 
