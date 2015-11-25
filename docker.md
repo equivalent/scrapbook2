@@ -104,6 +104,10 @@ sudo docker ps #get the log ID
 sudo docker run -it --link
 ecs-awseb-qa-3Pobblecom-env-f7yq6jhmpm-17-elasticsearch-cec6b5bd9bfed4e42b00:elasticsearch
 999dockerimage999 bash
+
+
+# mounting volume
+sudo docker run -it -v ~/shared/logs/:/shared/logs 999dockerimage999 bash
 ```
 
 
