@@ -2,6 +2,16 @@
 * redis is in elastic cache
 * postgre is in RDS
 
+
+# debugging eb aws docker
+
+```
+tail /var/log/eb-activity.log -n 100
+tail /var/log/docker.log -n 100
+
+```
+
+
 # eb cli
 
 ```

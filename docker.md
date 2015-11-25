@@ -92,9 +92,18 @@ sudo docker exec xyzfabcd ls
 sudo docker push quay.io/equivalent/foobar:latestbla
 sudo docker run -i -w='/app'  e56b3471f8d6  ruby ./build/getLatestFromOldSite.rb
 
-sudo docker exec -it 16997394032d bash  # execute on running container
+# execute on running container
+sudo docker exec -it 16997394032d bash   # not recommended for long task
 
+docker commit CONTAINER_ID [image_name]  # recommended, commit image state
+docker run -it [image_name] /bin/bash    # and run the command on
+                                         # commited state
 
+# if you need to link some other docker
+sudo docker ps #get the log ID 
+sudo docker run -it --link
+ecs-awseb-qa-3Pobblecom-env-f7yq6jhmpm-17-elasticsearch-cec6b5bd9bfed4e42b00:elasticsearch
+999dockerimage999 bash
 ```
 
 
