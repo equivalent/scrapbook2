@@ -1,4 +1,6 @@
 
+http://www.rubydoc.info/gems/resque/Resque/Failure
+
 
 Show what's going on:
 
