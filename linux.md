@@ -8,6 +8,31 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## install Ubuntu 15.10 on Dell 2915 XPS
+
+
+replace wifi card for intell otherwise all should be good
+
+http://hgdev.co/install-ubuntu-15-10-on-the-dell-xps-13-9343-2015-a-complete-guide/
+http://hgdev.co/optimize-battery-life-on-ubuntu/
+
+palm detection :
+
+```
+sudo vim /usr/share/X11/xorg.conf.d/10-evdev.conf
+```
+
+
+```
+Section "InputClass"
+  Identifier "evdev touchscreen catchall"
+  MatchIsTouchscreen "on"
+  MatchDevicePath "/dev/input/event*"
+  Driver "evdev"
+  Option "Ignore" "on"
+EndSection
+```
+
 ## encrypt folder 
 
 ```sh
