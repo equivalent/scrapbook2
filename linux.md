@@ -11,9 +11,12 @@ old stuff can be found on
 
 ## Kensington orbit 2 button scrooll ball scroling in linux / ubuntu 15.10
 
-```
-# /usr/share/X11/xorg.conf.d/10-evdev.conf 
 
+add this to `/usr/share/X11/xorg.conf.d/10-evdev.conf `
+
+```
+
+# ...
 Section "InputClass"
         Identifier "Kensington     Kensington USB/PS2 Orbit"
         Driver "evdev"
@@ -30,6 +33,11 @@ Section "InputClass"
         Option "Emulate3Timeout" "50"
 EndSection
 ```
+
+it's from a discussion I cannot find as I restarted my X server (btw you
+need ot restart Xorg in order to this to work)  therefore I have no
+source link. but the author was mentioning than the middle button is not
+working but scrolling is
 
 ## install Ubuntu 15.10 on Dell 2915 XPS
 
