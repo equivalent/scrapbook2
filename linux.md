@@ -8,6 +8,29 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+
+## Kensington orbit 2 button scrooll ball scroling in linux / ubuntu 15.10
+
+```
+# /usr/share/X11/xorg.conf.d/10-evdev.conf 
+
+Section "InputClass"
+        Identifier "Kensington     Kensington USB/PS2 Orbit"
+        Driver "evdev"
+        MatchProduct "Kensington"
+        MatchDevicePath "/dev/input/event*"
+        MatchIsPointer "yes"
+        Option "ButtonMapping" "1 2 3 4 5 6 7 8"
+        Option "EmulateWheel" "true"
+        Option "EmulateWheelButton" "3"
+        Option "EmulateWheelTimeout" "200"
+        Option "ZAxisMapping" "4 5"
+        Option "XAxisMapping" "6 7"
+        Option "Emulate3Buttons" "true"
+        Option "Emulate3Timeout" "50"
+EndSection
+```
+
 ## install Ubuntu 15.10 on Dell 2915 XPS
 
 
