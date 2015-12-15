@@ -8,6 +8,15 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## turn on off touchpat
+
+```
+synclient TouchpadOff=1
+synclient TouchpadOff=0
+```
+
+http://askubuntu.com/questions/65951/how-to-disable-the-touchpad/67724
+
 
 ## Kensington orbit 2 button scrooll ball scroling in linux / ubuntu 15.10
 
