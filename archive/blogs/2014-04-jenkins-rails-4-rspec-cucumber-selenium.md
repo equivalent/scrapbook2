@@ -6,7 +6,7 @@ Dan Maclains blog on configuring Jenkins:
 * http://rails-jenkins.danmcclain.net/#1
 * http://danmcclain.net/blog/2011/11/22/using-jenkins-with-rails/
 
-## Instalation
+## Installation
 
 First install some general stuff:
 
