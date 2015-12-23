@@ -1,3 +1,15 @@
+# examples
+
+```
+docker build -t=static-html-nginx .
+docker run --name mytest -d -p 8080:80 static-html-nginx
+curl localhost:8080
+docker stop mytest
+```
+
+https://hub.docker.com/_/nginx/
+
+
 # docker refusing pus after hiting ctrl-c in middle of docker push
 
 scenario
