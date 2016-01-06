@@ -35,7 +35,17 @@ MyProject.publish('foo')
 # with no args from this dir you will have this mobule availible 
 iex
 MyProject.publish('foo')
+
 ```
+
+
+to install dependency 
+
+```
+vim my_project/mix.exs  # alter the `dep` with tupple { :blabla, github: 'bla/blabla' }
+mix deps.get 
+```
+
 
 
 ##  Keyword list (Ruby hash like syntax)

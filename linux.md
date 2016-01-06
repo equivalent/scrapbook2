@@ -8,6 +8,17 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## kill all ssh sessions
+
+if someone is ssh'd to your computer 
+
+```
+who # list of all conected ppl ...the ip adresess are ssh connections
+ps -ef | grep sshd | grep -v root | grep -v 12345 | grep -v grep | awk '{print "sudo kill -9", $2}' |sh 
+
+who
+```
+
 ## turn on off touchpat
 
 ```
