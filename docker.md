@@ -1,3 +1,20 @@
+# examples
+
+```
+docker build -t=static-html-nginx .
+docker run --name mytest -d -p 8080:80 static-html-nginx
+curl localhost:8080
+docker stop mytest
+
+# use local folder content
+sudo docker run -it -p 8080:80  -v
+/home/local-machine-user/projoct-root/html-content/:/usr/share/nginx/html:ro
+stac-html-nginx # or use nginx image directly
+```
+
+https://hub.docker.com/_/nginx/
+
+
 # docker refusing pus after hiting ctrl-c in middle of docker push
 
 scenario

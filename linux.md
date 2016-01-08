@@ -8,6 +8,17 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## kill all ssh sessions
+
+if someone is ssh'd to your computer 
+
+```
+who # list of all conected ppl ...the ip adresess are ssh connections
+ps -ef | grep sshd | grep -v root | grep -v 12345 | grep -v grep | awk '{print "sudo kill -9", $2}' |sh 
+
+who
+```
+
 ## turn on off touchpat
 
 ```
@@ -15,7 +26,22 @@ synclient TouchpadOff=1
 synclient TouchpadOff=0
 ```
 
-http://askubuntu.com/questions/65951/how-to-disable-the-touchpad/67724
+toggle
+
+```
+if synclient -l | egrep "TouchpadOff.*= *0" ; then 
+    synclient touchpadoff=1 ; 
+else 
+    synclient touchpadoff=0 ; 
+fi
+```
+
+I recommend to put this to a sh script (e.g.: `~/.hp_5330_misc/touchpadoff.sh`) and set ubuntu keyboard shortcut to trigger this script
+
+source 
+
+* http://askubuntu.com/questions/65951/how-to-disable-the-touchpad/67724
+* http://unix.stackexchange.com/questions/50440/how-to-create-script-that-toggles-one-value-in-synclient
 
 
 ## Kensington orbit 2 button scrooll ball scroling in linux / ubuntu 15.10

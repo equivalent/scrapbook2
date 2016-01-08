@@ -18,6 +18,35 @@ nil == :nil   # atoms are like symbols in Ruby
 
 ```
 
+## mix
+
+```
+mix new my_project
+cd my_project
+
+vim lib/modules_example.ex
+
+iex lib/my_project.ex
+# iex will compile, therefore module is avalible
+MyProject.publish('foo')
+
+# to compile to .beam file use `elixirc lib/my_project.ex`, 
+# this will create .beam file in dir. Next time you lunch plain `iex`
+# with no args from this dir you will have this mobule availible 
+iex
+MyProject.publish('foo')
+
+```
+
+
+to install dependency 
+
+```
+vim my_project/mix.exs  # alter the `dep` with tupple { :blabla, github: 'bla/blabla' }
+mix deps.get 
+```
+
+
 
 ##  Keyword list (Ruby hash like syntax)
 

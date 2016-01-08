@@ -1,3 +1,12 @@
+# after create trait
+
+```
+    trait :with_media do
+      after :create do |work|
+        FactoryGirl.create :media, work: work
+      end
+    end
+```
 
 # notes from RSpce 3 meetup London Dec 2014
 
