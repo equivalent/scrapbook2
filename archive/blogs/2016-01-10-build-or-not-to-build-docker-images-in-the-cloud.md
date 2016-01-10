@@ -1,4 +1,4 @@
-# to Docker Build (in the Clound), or not to Docker Build (in the Cloud)
+# to Docker build image, or not to Docker build image (in the Cloud)
 
 ...or: There is no shame in not automating everything via a cool hosted tools.
 
@@ -56,7 +56,9 @@ technology) but when I started learning late 2014 every other talk I
 watched presented Docker as a way how to **"ship the same container that
 you have in your laptop to QA, staging, production and it just work"**.
 
-For me Docker is more than just tool for `production`. For me is also a
+![](https://www.docker.com/sites/default/files/legal/small_v.png)
+
+For me Docker is more than just a tool for `production`. For me is also a
 `development` tool (write application code for Docker running container
 via linked volume) and `test` env tool (run tests on a container)
 so it makes perfect sence for me to build the
@@ -70,7 +72,7 @@ That being said I don't stand any groud here. It may just happen that I'll
 update this article in few months with few more lines in favor of remote
 build idea.
 
-| **Update:** The wery next day that I drafted this article I was kicked
+| **Update:** The very next day that I drafted this article I was kicked
 | by the idea behind it. I was working from home on a really crapy DSL
 | connection. Guess who needed to build and push 3 builds of ~100MB images that day
 | `:-/`.
