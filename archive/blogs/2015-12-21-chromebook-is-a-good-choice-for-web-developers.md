@@ -66,6 +66,7 @@ it was just replaced by era of Cloud.
 
 Think about it:
 
+* we store all our assets on Dropbox or Google Drive
 * yes we run the tests on our laptops but we also run them
 on a CI tools like [CodeShip](http://codeship.com/),
 [TravisCI](https://travis-ci.com/), [Circle cI](https://circleci.com/)
@@ -81,6 +82,7 @@ for us.
 * our Docker images get automatically build by the Docker Registry
   itself by pulling content from Github ([DockerHub](https://docs.docker.com/docker-hub/builds/),
 [Quay.io](https://quay.io) )
+* Even our personal holiday photos are on Google photos or Flicker
 
 ## IDE in the Cloud
 
@@ -168,11 +170,41 @@ non-configured PC ;) .
 ## UX and Design
 
 And then one day comes where you need to some wireframes for a client.
-Are you using 
+Are you using tools like Adobe Fireworks and Adobe Photoshop on a daily
+base? Do you deliver website designs, templates, assets on daily base ?
+Well I wont be helpfull with that.
 
+But If you're creating black/white/grey wireframes check online tool [UX
+pin](https://www.uxpin.com/). If you are UX guy and newer tried it you would
+be suprise how much you can do with this online tool. As a Linux guy
+with lack of software options I
+use to use it way before my Chromebook experiments it's really
+comprehensive UX tool.
 
-## Holiday concern
+If you need to just resize an image that a clumsy designer sent you in
+wrong size, or you need to do some image alteration for which
+[Gimp](https://www.gimp.org/) would be good enough check out [Pixlr](https://pixlr.com).
+You can can install Chrome extension for Pixlr that give you bit better
+usable interface.
 
+## Holiday and Apocalypse  concern
+
+Let say you are a Lead Web Developer or a DevOps person and you want to
+go on a holiday. Your boss ask's you if you can bring your laptop with
+you in case they have an unsolvable problem with server. You know just
+in case. Because you are profesionnal you will say no problem and pack
+your $2000 i7 MacBook Profesional with custom component choise with you.
+
+Now you come to the check in to the hotel and you want to store your
+precious Laptop in a save. Yet you discover the safe is 7 by 10 inch
+tall and you cannot fit your precious expensive laptop. What will you do
+? Shell you leave it under the bed? Hidden amongs towels in a wardrobe ?
+Will you go to the reception and place it in a hotel safe ?
+
+And most importantly, will you actually enjoy the holiday thinking about
+weather your laptop is still there ?
+
+Ok another scenario. You are invited to a 
 
 ## Famous last words
 
