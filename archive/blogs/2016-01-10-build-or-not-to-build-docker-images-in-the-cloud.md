@@ -3,13 +3,13 @@
 ...or: There is no shame in not automating everything via a cool hosted tools.
 
 [Quay.io](https://quay.io/) is Docker image repo (similar like [Docker Hub](https://hub.docker.com/))
-where you can store your docker images or configure automatic built of
+where you can store your docker images or configure automated build of
 docker images when you push to certain Github branches. For example in my current role
 there was a configured Github push trigger on branch `heads/live-*` (e.g. `live-20151221_0001`)
-to automatically build the image. After build is done I'll just use this image
+to build the image. After build is done I'll just use this image
 to deploy to the server (Heroku, AWS ElasticBeanstalk, DigitalOcean,...)
 via [CodeShip](https://codeship.com/), [Circle CI](https://circleci.com) or other hosted CI+deployment tool, or
-directly from your laptop.
+directly from my laptop.
 
 First of all don't get me wrong, I really enjoyed Quay.io and ideas behind
 it + I'm a huge fan of any automation that could be done outside of my
@@ -36,8 +36,8 @@ So long story short: When I built the docker image on my laptop
 
 But when I let the Quay.io to build the docker image for me from Github
 branch, it seems that one part went wrong and container was crushing.
- I cannot go to much details into this, but the point of this article is the idea/question **who
-should be building the Docker image in first place**.
+ I cannot go to much details into this, but the point of this article is the idea/question: **who
+should be building the Docker image in the first place ?**.
 
 Letting hosted container service (or custom build machines) to build your images make perfect sence.
 The setup is the same for everyone, junior developers don't have to care
@@ -54,15 +54,13 @@ that's not really my point.
 I'm still new to Docker (well I think we all are as it's relatively new
 technology) but when I started learning late 2014 every other talk I
 watched presented Docker as a way how to **"ship the same container that
-you have in your laptop to QA, staging, production and it just work"**.
+you have in your laptop to QA, staging, production and it just works"**.
+
+That's why we have that whale with all the containers in the logo. You ship
+collection of containters that works on one computer, to another
+(whether it's a VM or colleagues laptop)
 
 ![](https://www.docker.com/sites/default/files/legal/small_v.png)
-
-For me Docker is more than just a tool for `production`. For me is also a
-`development` tool (write application code for Docker running container
-via linked volume) and `test` env tool (run tests on a container)
-so it makes perfect sence for me to build the
-production Docker image on my laptop as well and then ship it when/if it works.
 
 So in my opinion developers should be building Docker images on their
 local computers/laptops and then push them to Docker Registry, not let hosted tool to build/push
@@ -76,6 +74,12 @@ build idea.
 | by the idea behind it. I was working from home on a really crapy DSL
 | connection. Guess who needed to build and push 3 builds of ~100MB images that day
 | `:-/`.
+
+For me Docker is more than just a tool for `production`. For me is also a
+`development` tool (write application code for Docker running container
+via linked volume) and `test` env tool (run tests on a container)
+so it makes perfect sence for me to build the
+production Docker image on my laptop as well and then ship it when/if it works.
 
 All I'm saying is that there is no right or wrong. There is no harm in trying
 new automation tools and new approaches to deploying builds. Just always reevaluate
