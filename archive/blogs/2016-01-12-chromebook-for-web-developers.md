@@ -14,8 +14,8 @@ running tests, deploying the app from a brand new $200 - $300 Chromebook.
 There are already some articles on experience that Web-Developers had
 developing code on Chromebooks:
 
-* https://divshot.com/blog/tips/using-a-Chromebook-for-web-development/
-* https://medium.com/@martinmalinda/ultimate-guide-for-web-development-on-Chromebook-part-1-crouton-2ec2e6bb2a2d#.r7bn4vqpx
+* https://divshot.com/blog/tips/using-a-chromebook-for-web-development/
+* https://medium.com/@martinmalinda/ultimate-guide-for-web-development-on-chromebook-part-1-crouton-2ec2e6bb2a2d#.r7bn4vqpx
 
 ...I just though I'll bring to comunity another article with my experience from diferent angle.
 
