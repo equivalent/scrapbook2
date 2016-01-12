@@ -163,7 +163,7 @@ deployments([Capistrano](http://capistranorb.com/)) no problemo.
 I was running development Rails server and
 connecting via AWS EC2 instance public DNS address or IP + port.
 
-Everything worked like a charm, therefore I've unsuscribed form the
+Everything worked like a charm, therefore I've unsuscribe form the
 Koding.com paid plan and just had it as a backup in case my flat is
 robbed and all my laptops are stolen and I need to do a fix from a
 non-configured PC ;) .
@@ -353,6 +353,6 @@ be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-to-do
 To be honest even this was not argument to switch from Chromebook, as I
 could just build my Docker images on a larger AWS VM, however you know
 how new contracts are, they expect miracles from you the first day, that's
-why I switch to enviroment I'm familiar several years and I am the most
+why I switch to environment I'm familiar several years and I am the most
 productive (Linux).
 
