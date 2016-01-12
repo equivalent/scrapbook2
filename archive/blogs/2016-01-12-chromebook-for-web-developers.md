@@ -30,7 +30,7 @@ I am writing and running tests, I am doing deployments,
 and all that other stuff and yes one can survive
 with a Chromebook doing that.
 
-I've been using my [2015 HP Chromebook 14](https://www.google.com/chrome/devices/hp-Chromebook-14/)
+I've been using my [2015 HP Chromebook 14](https://www.google.com/chrome/devices/hp-chromebook-14/)
 in summer 2015 for like 3-4 months developing medium-large size Ruby on Rails application
 for the company I was working for during that period.
 *To be honest I was not using Chromebook all the time*. I've usually worked
