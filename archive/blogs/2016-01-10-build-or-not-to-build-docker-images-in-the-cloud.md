@@ -19,7 +19,7 @@ as the level of automation in my previous role was so system agnostic.
 Now the Quay.io automatic build works like a charm for most application,
 it's just I've found the automatic built problematic for the project I'm working
 currently. My platform is Ruby on Rails monolith app
-with butload of JS asset copilation to CDN and
+with butload of JS asset compilation to CDN and
 therefore `Dockerfile` is bit tricky.
 
 So long story short: When I built the docker image on my laptop with:
@@ -30,7 +30,7 @@ So long story short: When I built the docker image on my laptop with:
 
 `docker push quay.io/myorg/myproject:live-20151221_0001`
 
-... my deployent of this image worked.
+... my deployment of this image worked.
 
 But when I let the Quay.io to build the Docker image for me from Github
 branch, it seems that some part went wrong and even though the build image was successful,
@@ -41,16 +41,16 @@ The point of this problem was the fact that this got me thinking about a questio
 
 Me on my laptop or hosted build tool ?
 
-Letting hosted container service (or custom build machines) to build your images make perfect sence.
+Letting hosted container service (or custom build machines) to build your images make perfect sense.
 The setup is the same for everyone, junior developers don't have to care
-about advanced Docker topics, when you have slow internet conection from
+about advanced Docker topics, when you have slow internet connection from
 where you work it's a life saver,...
 
 But if you are not building your production Docker images on your laptop
 how do you know if they work before you push them live?
 Of course that's why we have different environment
 servers like Staging, or QA where we push the image before release, or
-we can just build them remotly and just pull them to our laptops, but
+we can just build them remotely and just pull them to our laptops, but
 that's not really my point.
 
 I'm still new to Docker (well I think we all are as it's relatively new
@@ -71,14 +71,14 @@ the images for them.
 For me Docker is more than just a tool for `production`. For me is also a
 `development` tool (write application code for Docker running container
 via linked volume) and `test` env tool (run tests on a container)
-so it makes perfect sence for me to build the
+so it makes perfect sense for me to build the
 production Docker image on my laptop as well and then ship it when/if it works.
 
 If you need to ship to CI to run the tests, Ship the image that you had and tested on your
 laptop. If you need to ship to production, ship the image that you had
 on your laptop.
 
-That being said I don't stand any groud here. It may just happen that I'll
+That being said I don't stand any ground here. It may just happen that I'll
 update this article in few months with few more lines in favor of remote
 build idea.
 
