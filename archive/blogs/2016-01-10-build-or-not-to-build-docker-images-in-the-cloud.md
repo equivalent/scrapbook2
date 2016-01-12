@@ -13,7 +13,7 @@ directly from my laptop.
 
 First of all don't get me wrong, I really enjoyed Quay.io and ideas behind
 it + I'm a huge fan of any automation that could be done outside of my
-laptop. In fact I  even use to write Web-App backend code on a Chromebook,
+laptop. In fact I  even use to write [Web-App backend code on a Chromebook](http://www.eq8.eu/blogs/18-chromebook-for-web-developers),
 as the level of automation in my previous role was so system agnostic.
 
 Now the Quay.io automatic build works like a charm for most application,
