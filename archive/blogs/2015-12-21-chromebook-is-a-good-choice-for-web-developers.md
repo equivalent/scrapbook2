@@ -14,33 +14,29 @@ running tests, deploying the app from a brand new $200 - $300 Chromebook.
 There are already some articles on experience that Web-Developers had
 developing code on Chromebooks:
 
-* https://divshot.com/blog/tips/using-a-chromebook-for-web-development/
-* https://medium.com/@martinmalinda/ultimate-guide-for-web-development-on-chromebook-part-1-crouton-2ec2e6bb2a2d#.r7bn4vqpx
+* https://divshot.com/blog/tips/using-a-Chromebook-for-web-development/
+* https://medium.com/@martinmalinda/ultimate-guide-for-web-development-on-Chromebook-part-1-crouton-2ec2e6bb2a2d#.r7bn4vqpx
 
-...I just though I'll bring to comunity another article with my experience.
+...I just though I'll bring to comunity another article with my experience from diferent angle.
 
-If you had by any chance red my previous blog posts before you may know that I'm a Full Stack Ruby on Rails
-Developer. I daily write tone of code on both Backend & Frontend side +
+If you had by any chance red my previous blog posts before you may know that I'm a Full Stack Ruby on Rails Developer. I daily write tone of code on both Backend & Frontend side +
 butload of DevOps. I'm a huge proponent of testing, TDD, BDD, CI tools.
 I even do some level of UX design, wireframing + some
 level of design alterations (we call those people Photoshop guys)
 
 The reason why I'm mentioning all of this is to present a view that on
-daily base I am working with servers, I am writing and running tests, I
-am doing deployments, and all that other stuff, and yes one can survive
+daily base I am working with servers, I write code for living,
+I am writing and running tests, I am doing deployments,
+and all that other stuff, and yes one can survive
 with a Chromebook doing that.
 
-I've been using my [2015 HP chromebook 14](https://www.google.com/chrome/devices/hp-chromebook-14/)
+I've been using my [2015 HP Chromebook 14](https://www.google.com/chrome/devices/hp-Chromebook-14/)
 in summer 2015 for like 3-4 months developping medium-large size Ruby on Rails application
-for the company I was working for during that time.
+for the company I was working for during that period.
 *To be honest I was not using Chromebook all the time*. Usually I worked
-3 days a week from home during that time I was using chromebook most of
+3 days a week from home, during which I was using Chromebook most of
 the time. Remaining 2 days in the office I was developing on a work
 computer.
-
-Reason why I stopped using Chromebook was due
-to keyboard fauthy on chrombook. One thing to remmember is that chromebooks
-are cheap so simetimes the hardware suffers due to the price.
 
 The biggest mind shift is that it's no longer the computing power of the
 laptop in your hands doing that but the VM you are connected to.
@@ -50,22 +46,22 @@ laptop in your hands doing that but the VM you are connected to.
 Before we go deeper let me present the stage (or just skip this section)
 
 In the old days there was no such thing as having a huge computer power
-at your hands. Everyone was connecting via they terminals to a huge
+at your hands. Everyone was connecting via terminals to a huge
 computer that was doing the work remmotly for them. Then came the era of Personal
 Computers where each person had computer power at their desks. Now we
 are in the era where nearly every web-developer has a shiny `i7` MacBook with
 SSD drive, where tests are running blazing fast and we connect to remote
 computer only if server is down and we need to debug.
 
-if you are a web-developer and not a linux server sys-admin or
+If you are a web-developer and not a linux server sys-admin or
 DevOps guy it kinda feels that the era of Terminals is long gone. Well in my opinion
 it was just replaced by era of Cloud.
 
 Think about it:
 
 * we store all our assets and documents on Dropbox or Google Drive
-* yes we run the tests on our laptops but we also run them
-on a CI tools like [CodeShip](http://codeship.com/),
+* yes we run the tests on our laptopso but we also run them
+on hosted CI tools like [CodeShip](http://codeship.com/),
 [TravisCI](https://travis-ci.com/), [Circle cI](https://circleci.com/)
 * lot of time we don't need to dig around with Git commands to merge our code changes, we just use Github web interface
 * we no longer ssh to the servers to do the deployment we configure our
@@ -74,12 +70,9 @@ builds for us.
 * we no longer have to configure our entire Server Rack
 ourself we push applications to Cloud hostings like
 [Heroku](www.heroku.com), [DigitalOcean](https://www.digitalocean.com).
-* (In some cases) we no longer write server shell scripts,
-we configure web interface tools like [Jenkins](https://jenkins-ci.org/)  to do stuff
-for us.
 * our Docker images get automatically build by the Docker Registry
   itself by pulling content from Github ([DockerHub](https://docs.docker.com/docker-hub/builds/),
-[Quay.io](https://quay.io) )
+  [Quay.io](https://quay.io) )
 * are email / comunication tools has web interface (Slack, Gmail,
   Hangout,...)
 * Even our personal holiday photos are on Google photos or Flicker
@@ -99,7 +92,7 @@ I've personally tried:
 * [codeanywhere](https://codeanywhere.com/)
 * [koding.com](https://koding.com/)
 
-| Google "Cloude IDE" and you'll get more
+| Google search for "Cloude IDE" and you'll get more
 
 Cloud9 and Codeanywhere appeard to me really simillar. They have wider
 range of pricing (therefore you can have a cheeper plan) than
@@ -119,7 +112,7 @@ any web-application software, they rapidly evolve features so I highly
 recommend to just play around and get the feeling yourself. All 3 (and
 also other) cloud IDE providers provide Free plan to play around the
 only catch is that you need to shut them down and lunch them back up
-after while. You don't have to buy a chromebook to try them out.
+after while. You don't have to buy a Chromebook to try them out.
 
 In the end I end up with Koding.com paid plan for couple of weeks and I
 was just using Vim editor for editing code. The only big problem for any Vim
@@ -245,12 +238,12 @@ or listening some podcasts.
 
 And if you are really concern about internet being down in the office
 and you not able to work, you can have old comupter somewhere in the
-corrner of the office and ssh-ing to it via a chromebook and writing
+corrner of the office and ssh-ing to it via a Chromebook and writing
 your code there.
 
 ## Security
 
-Chromebook by very definition is secure ([Chromebook security](https://support.google.com/chromebook/answer/3438631?hl=en-GB)).
+Chromebook by very definition is secure ([Chromebook security](https://support.google.com/Chromebook/answer/3438631?hl=en-GB)).
 You don't store files, 99% of everything you open is opend on a cloud
 provider (probably with antivirus) like Gmail, Google Drive, Dropbox.
 Only application that can be installed are Browser application for
@@ -268,8 +261,8 @@ When you want to connect to public WiFi always connect via [VPN
 connection](http://www.howtogeek.com/133680/htg-explains-what-is-a-vpn/).
 Don't be cheap there is no good free solution that you can trust (unless
 your company has a VPN of their own). You can get really secure
-and good comertial VPN for like $10 a month and yes chromebook has really easy way
-to set it up([How to set up VPN in chromebook](https://support.google.com/chromebook/answer/1282338?hl=en-GB).
+and good comertial VPN for like $10 a month and yes Chromebook has really easy way
+to set it up([How to set up VPN in Chromebook](https://support.google.com/Chromebook/answer/1282338?hl=en-GB).
 I'm using [TorGuard VPN](https://torguard.net/)  (no, it
 has nothing to do with Tor network)
 
@@ -295,13 +288,16 @@ you are a developer focusing on one thing and you don't have to be
 switching context so often all the time I think you will actually ejoy the
 experience.
 
+Screen was really good. I love anti-gloss screens and this Chromebook
+had 14 inch one. It wasn't HD resolution but for text editing you don't need that.
+
 One thing that was really bad was the lack of memory on Chromebook. My
-was just 2GB and that's ok for several tabs open. But once I started to 
+was just 2GB and that's ok for several tabs open. But once I started to
 stream some music from Google Music or Youtube lot of time the
-chromebook run out of memory and crushed some tabs. This may however be
+Chromebook run out of memory and crushed some tabs. This may however be
 only with my model. I didn't extend memory in mine because I found a way
 how to ballance my memory power, but if this would be your plan make sure that you check if your
-model is upgradable as some chromebooks are not ([source](http://www.omgchrome.com/chromebooks-can-upgraded/))
+model is upgradable as some Chromebooks are not ([source](http://www.omgchrome.com/Chromebooks-can-upgraded/))
 and definitelly check some reviews before you buy.
 
 ## Famous last words
@@ -315,17 +311,48 @@ those cool automated 3rd party tools with you.
 
 I've survid working on a Chromebook I'll bet you will too.
 
-Now do I recommend you to  buy a Chromebook ? Well, no. 
+Now do I recommend you to  buy a Chromebook ? Well, no.
 
 Do I recommend Chromebook as a primary comupter ? Well, absolutely not !
 
 In this article I was mainly my standing ground for alternative way how
-to develop software via terminal connection. Like I said I'm a huge fan
+to develop software via a terminal connection / Cloud IDE. Like I said I'm a huge fan
 of idea that the best comupter backup is the one you don't have to do.
-By having your devleopment toolset you will loos offline posibility to
-write software but gain the freedom of not care about what is your
-laptop or what data you will loos on laptop. Friend of my use to develop
-Ruby on Ralis 
+By having your devlelopment toolset outside your box you will loos offline posibility to
+write software, but gain the freedom of not care about when your laptop
+crash.
 
-Only limitation is Docker
+Friend of my use to develop Rails application on Windows 7 as he was
+composing music on that machine. For some time he was fighting the
+dependancy struggle but in the end he give up and just done dual boot
+with Fedora. With similar approach he would not have to.
+
+So don't buy Chromebook yet. Play around with idea *"how would it feel
+like to be stuck with ssh and Chrome only"* for few weeks and if you find
+it possible go for it. You may not be the most prodactive but it's a
+nice alternative experience. At least you will have backup machine with good
+battery power if you need to go on a hardcore holiday.
+
+My estiments are that you will be productive on Chromebook the same as
+you are productive on Mac or Ubuntu if you are just developing backend
+code and write tests. You may not be as productive if you do bunch of other stuff along
+that.
+
+## Reasons why I don't use it anymore
+
+Reason why I stopped using Chromebook was partly due
+to keyboard fauthy on my Chrombook. One thing to remmember is that Chromebooks
+are cheap so simetimes the hardware suffers due to the price.
+After that it took me a while to schedule a replacement it so I kinda
+switch to old PC habits.
+
+During that time I also changed my job to contracting, where I'm doing butload of
+DevOps using Docker. I'm a proponent of idea that [Docker images should
+be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-to-docker-build-image-or-not-to-docker-build-image-in-the-cloud) therefore I needed to swith back to Ubuntu.
+
+To be honest even this was not argument to switch from Chromebook, as I
+could just build my Docker images on a larger AWS VM, however you know
+how new contracts are, they expect miracles from you the first day, that's
+why I switch to enviroment I'm fimilar several years and I am the most
+productive (Linux).
 
