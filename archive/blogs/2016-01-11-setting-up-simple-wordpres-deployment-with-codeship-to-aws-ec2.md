@@ -59,10 +59,16 @@ ssh $EC2_SERVER "rsync -rvI $ROOT_FOLDER/themes/mytheme/ /var/www/my-application
 
 The script does following:
 
-1. sets `$BRANCH_NAME` variable with the name of the branch from the
+1. sets `$BRANCH_NAME` variable with the name of the branch (e.g.: `live-20161101`) from the
    webhook (yes you can use directly the `$CI_BRANCH` but I like this
    way better as you can overide it in future)
-2. set some other varibales with location of the git
+2. set some other varibales with location of the git ropo folder
+   (`ROOT_FOLDER`), login to the server(`EC2_SERVER`)
+3. fetch remote branches on VM
+4. checkout to the deployment branch e.g.: `live-20161101` and pull it's
+   content (on VM)
+5. sync folder `/home/ec2-user/my-project/themes/mytheme/` to
+   `https://support.google.com/chromebook/answer/1282338?hl=en-GB`
 
 
 

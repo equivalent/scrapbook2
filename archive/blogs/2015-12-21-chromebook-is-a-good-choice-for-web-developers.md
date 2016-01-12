@@ -243,6 +243,11 @@ seriously how many times you done that past month in a crowded tube? You
 know you're usually watching some screencasts on the phone
 or listening some podcasts.
 
+And if you are really concern about internet being down in the office
+and you not able to work, you can have old comupter somewhere in the
+corrner of the office and ssh-ing to it via a chromebook and writing
+your code there.
+
 ## Security
 
 Chromebook by very definition is secure ([Chromebook security](https://support.google.com/chromebook/answer/3438631?hl=en-GB)).
@@ -275,6 +280,30 @@ latest fixes, connect to VM via ssh key-pair not password, and don't
 open ports you necesary have to. You will probably survive first year
 with just SSH port and port 80 on your VM.
 
+## Overal Developer experience
+
+On my HP 14 Chromebook the keyboard was really plesent (untill the
+hardware issue). I must admit that Chrome OS developer introduced lot of
+really cool keybord shortcuts to various cool stuff. PC people won't be
+missing the "windows" key, Mac people wont be missing the CMD key.
+
+One thing to remmember is that Chromebook is just one big browser. If you
+use to work with workspaces in Ubuntu or OsX you will definitelly
+miss them. As I'm usually working on 3 things during a day it was hard
+for me to switch context (as everything is just a Chrome tab). But if
+you are a developer focusing on one thing and you don't have to be
+switching context so often all the time I think you will actually ejoy the
+experience.
+
+One thing that was really bad was the lack of memory on Chromebook. My
+was just 2GB and that's ok for several tabs open. But once I started to 
+stream some music from Google Music or Youtube lot of time the
+chromebook run out of memory and crushed some tabs. This may however be
+only with my model. I didn't extend memory in mine because I found a way
+how to ballance my memory power, but if this would be your plan make sure that you check if your
+model is upgradable as some chromebooks are not ([source](http://www.omgchrome.com/chromebooks-can-upgraded/))
+and definitelly check some reviews before you buy.
+
 ## Famous last words
 
 My previous company was security crazy to be honest. We couldn't use lot
@@ -286,8 +315,17 @@ those cool automated 3rd party tools with you.
 
 I've survid working on a Chromebook I'll bet you will too.
 
-Now do I recommend you to  buy a chromebook ? Absolutely not
+Now do I recommend you to  buy a Chromebook ? Well, no. 
 
+Do I recommend Chromebook as a primary comupter ? Well, absolutely not !
+
+In this article I was mainly my standing ground for alternative way how
+to develop software via terminal connection. Like I said I'm a huge fan
+of idea that the best comupter backup is the one you don't have to do.
+By having your devleopment toolset you will loos offline posibility to
+write software but gain the freedom of not care about what is your
+laptop or what data you will loos on laptop. Friend of my use to develop
+Ruby on Ralis 
 
 Only limitation is Docker
 
