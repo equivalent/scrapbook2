@@ -1,5 +1,7 @@
 # Chromebook for Web Developers
 
+![''](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/chromebook.jpg)
+
 Now this may sound stupid but It's true.
 
 I'm not just talking about some basic frontend debugging, I'm not
