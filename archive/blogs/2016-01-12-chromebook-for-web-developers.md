@@ -349,7 +349,7 @@ switch back to my old PC habits.
 
 During that time I also changed my job to contracting, where I'm using a lot Docker.
 I'm a proponent of idea that [Docker images should
-be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-to-docker-build-image-or-not-to-docker-build-image-in-the-cloud) therefore I needed to switch back to Ubuntu.
+be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-build-docker-images-on-your-machine-or-in-the-cloud) therefore I needed to switch back to Ubuntu.
 
 This was not the argument to switch from Chromebook, as I
 could just build my Docker images on a larger AWS VM, however you know
