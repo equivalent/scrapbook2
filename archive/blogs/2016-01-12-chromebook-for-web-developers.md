@@ -143,7 +143,7 @@ scheduling deployment, ssh to other servers when stuff went down.
 After a while I realized I don't need Web-Interface to connect to this AWS EC2 micro instance VM.
 Chromebook has a extension SSH tool [Secure Shell](https://chrome.google.com/webstore/search/ssh)
 
-| [AWS EC2 micro instance](https://aws.amazon.com/ec2/instance-types/) is eligable for
+| [AWS EC2 micro instance](https://aws.amazon.com/ec2/instance-types/) is eligible for
 | [AWS free tier](https://aws.amazon.com/free/), so if you do your math correctly on provided resources
 | you'll end up not paying a dime
 
@@ -151,7 +151,7 @@ All you have to do is to [generate ssh
 keys](https://help.github.com/articles/generating-ssh-keys/) on some laptop or VM,
 and copy the private key to Chromebook downloads folder. Then when you are
 creating new connection in Chomebook Secure Shel extension, tell it to
-use this key. Chromebook will then store this priate key in some folder
+use this key. Chromebook will then store this private key in some folder
 outside Downloads folder, so then you can delete from Downloads folder.
 
 | Remember kids, having a password on a server is irresponsible and
@@ -194,7 +194,7 @@ usable interface.
 Let say you are a Lead Web Developer or a DevOps person and you want to
 go on a holiday. Your boss ask's you if you can bring your laptop with
 you in case they have an unsolvable problem with server. You know just
-in case. Because you are profesionnal you will say no problem and pack
+in case. Because you are professional you will say no problem and pack
 your $2000 i7 MacBook Profesional with custom component build with you.
 
 Now you come to the check in to the hotel and you want to store your
@@ -207,7 +207,7 @@ And most importantly, will you actually enjoy the holiday thinking about
 weather your laptop is still there ?
 
 Ok another scenario. You know on Friday you are invited to Metalcore
-concert and there will be definitelly a great [mosh pit](https://www.youtube.com/watch?v=73d8pMnMbKg).
+concert and there will be definitely a great [mosh pit](https://www.youtube.com/watch?v=73d8pMnMbKg).
 Now you wont be able to keep your laptop in the office due to some made
 up reason. Would you take $300 Chromebook or $2000
 MacBook to the office that day ?
@@ -249,10 +249,10 @@ provider (probably with antivirus) like Gmail, Google Drive, Dropbox.
 Only application that can be installed are Browser application for
 Chrome.
 
-Only thing from a security prespective that you need to be worried about
-is wheather your internet connection is secure. Yes we all have `https`
-websites but even that stuff can be hacked and you would be supprised
-how many websites are misconfigured to send your cookie even if accessed
+Only thing from a security perspective that you need to be worried about
+is whether your internet connection is secure. Yes we all have `https`
+websites but even that stuff can be hacked and you would be suprised
+how many websites are misconfigure to send your cookie even if accessed
 from `http` That's the sys-adming dude is so paranoid each time you are
 mentioning that "you will be working from coffee place down the road
 next Tuesday".
@@ -270,7 +270,7 @@ Then comes to VM security that you are connecting too. Just fallow any
 good practices that you would normally fallow for a web-app server. If
 you are new to servers basic rules are keep your system up to date with
 latest fixes, connect to VM via ssh key-pair not password, and don't
-open ports you necesary have to. You will probably survive first year
+open ports you necessary have to. You will probably survive first year
 with just SSH port and port 80 on your VM.
 
 ## Overal Developer experience
@@ -281,11 +281,11 @@ really cool keybord shortcuts to various cool stuff. PC people won't be
 missing the "windows" key, Mac people wont be missing the CMD key.
 
 One thing to remember is that Chromebook is just one big browser. If you
-use to work with workspaces in Ubuntu or OsX you will definitelly
+use to work with workspaces in Ubuntu or OsX you will definitely
 miss them. As I'm usually working on 3 things during a day it was hard
 for me to switch context (as everything is just a Chrome tab). But if
 you are a developer focusing on one thing and you don't have to be
-switching context so often all the time I think you will actually ejoy the
+switching context so often all the time I think you will actually enjoy the
 experience.
 
 Screen was really good. I love anti-gloss screens and this Chromebook
@@ -296,16 +296,16 @@ was just 2GB and that's ok for several tabs open. But once I started to
 stream some music from Google Music or Youtube lot of time the
 Chromebook run out of memory and crushed some tabs. This may however be
 only with my model. I didn't extend memory in mine because I found a way
-how to ballance my memory power, but if this would be your plan make sure that you check if your
+how to balance my memory power, but if this would be your plan make sure that you check if your
 model is upgradable as some Chromebooks are not ([source](http://www.omgchrome.com/Chromebooks-can-upgraded/))
-and definitelly check some reviews before you buy.
+and definitely check some reviews before you buy.
 
 ## Famous last words
 
 My previous company was security crazy to be honest. We couldn't use lot
 of tools that were on the market. We had our own Jenkins CI our own
 servers our own everything except Github. The chances  are you are
-working in more enlight enviromnet where you guys are using TravisCI or
+working in more enlighten environment where you guys are using TravisCI or
 CodeShip or DockerHub automated image builds and therefore you have all
 those cool automated 3rd party tools with you.
 
@@ -313,12 +313,12 @@ I've survived working on a Chromebook I'll bet you will too.
 
 Now do I recommend you to  buy a Chromebook ? Well, no.
 
-Do I recommend Chromebook as a primary comupter ? Well, absolutely not !
+Do I recommend Chromebook as a primary computer ? Well, absolutely not !
 
 In this article I was mainly my standing ground for alternative way how
 to develop software via a terminal connection / Cloud IDE. Like I said I'm a huge fan
-of idea that the best comupter backup is the one you don't have to do.
-By having your devlelopment toolset outside your box you will loose offline possibility to
+of idea that the best computer backup is the one you don't have to do.
+By having your development toolset outside your box you will loose offline possibility to
 write software, but gain the freedom of not care about when your laptop
 crash.
 
@@ -333,7 +333,7 @@ it possible go for it. You may not be the most productive but it's a
 nice alternative experience. At least you will have backup machine with good
 battery power if you need to go on a hardcore holiday.
 
-My estiments are that you will be productive on Chromebook the same as
+My estimates are that you will be productive on Chromebook the same as
 you are productive on Mac or Ubuntu if you are just developing backend
 code and write tests. You may not be as productive if you do bunch of other stuff along
 that.
@@ -341,8 +341,8 @@ that.
 ## Reasons why I don't use it anymore
 
 Reason why I stopped using Chromebook was partly due
-to keyboard faulty on my Chrombook. One thing to remmember is that Chromebooks
-are cheap so simetimes the hardware suffers due to the price.
+to keyboard faulty on my Chrombook. One thing to remember is that Chromebooks
+are cheap so sometimes the hardware suffers due to the price.
 After that it took me a while to schedule a replacement it so I kinda
 switch to old PC habits.
 
