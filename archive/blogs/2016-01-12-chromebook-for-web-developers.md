@@ -47,7 +47,7 @@ Before we go deeper let me present the stage (or just skip this section)
 
 In the old days there was no such thing as having a huge computer power
 at your hands. Everyone was connecting via terminals to a huge
-computer that was doing the work remotly for them. Then came the era of Personal
+computer that was doing the work remotely for them. Then came the era of Personal
 Computers where each person had computer power at their desks. Now we
 are in the era where nearly every web-developer has a shiny `i7` MacBook with
 SSD drive, where tests are running blazing fast and we connect to remote
@@ -107,7 +107,7 @@ for some reason the web interface is faster on a poor network.
 Unfortunatelly I cannot give you much feedback on the IDE experience as I'm a
 **Vim** user and I didn't spend much time in the provided IDE. Also I didn't
 convince my co-workers to try any of the cloud IDE tools I have no
-feedback on the pairprogramming features either. Hovever as it is with
+feedback on the pair-programming features either. Hovever as it is with
 any web-application software, they rapidly evolve features so I highly
 recommend to just play around and get the feeling yourself. All 3 (and
 also other) cloud IDE providers provide Free plan to play around the
@@ -116,14 +116,14 @@ after while. You don't have to buy a Chromebook to try them out.
 
 In the end I end up with Koding.com paid plan for couple of weeks and I
 was just using Vim editor for editing code. The only big problem for any Vim
-user on a Chromebook will be the infamous `Ctrl+w` shotcut is configured
+user on a Chromebook will be the infamous `Ctrl+w` shortcut is configured
 to close browser tab. There is no way to change this, the only
 workaround is either to remap split screen switch to other key combination or
 just use `Alt+Ctrl+w` which is basically the same thing by default.
 
 The VM provided in all three of these cloud IDE providers was fast
 enough to run tests, in some cases the tests were actually faster on
-the VM (1 core) than my work laptop (intel i5 4th gen). Think about it
+the VM (1 core) than my work laptop (Intel i5 4th gen). Think about it
 VM's are in a serveroom with air-conditioning. You are sometimes running
 your tests while sitting in a couch with your laptop on your lap
 listening to music, with 50 firefox tabs open and mining bitcoins.
@@ -163,7 +163,7 @@ deployments([Capistrano](http://capistranorb.com/)) no problemo.
 I was running development Rails server and
 connecting via AWS EC2 instance public DNS address or IP + port.
 
-Everything worked like a charm, therefore I've unsuscribe form the
+Everything worked like a charm, therefore I've unsubscribe form the
 Koding.com paid plan and just had it as a backup in case my flat is
 robbed and all my laptops are stolen and I need to do a fix from a
 non-configured PC ;) .
@@ -173,7 +173,7 @@ non-configured PC ;) .
 And then one day comes where you need to some wireframes for a client.
 Are you using tools like Adobe Fireworks and Adobe Photoshop on a daily
 base? Do you deliver website designs, templates, assets on daily base ?
-Well I wont be helpfull with that.
+Well I wont be helpful with that.
 
 But If you're creating black/white/grey wireframes check online tool [UX
 pin](https://www.uxpin.com/). If you are UX guy and newer tried it you would
@@ -185,7 +185,7 @@ comprehensive UX tool.
 If you need to resize an image that a clumsy designer sent you in
 wrong size, or you need to do some simple css sprice or image alteration for which
 [Gimp](https://www.gimp.org/) would be good enough check out [Pixlr](https://pixlr.com).
-Pixlr is a online Photoshop wanabe that contains lot of features (yes
+Pixlr is a online Photoshop wannabe that contains lot of features (yes
 layers included). You can can install Chrome extension for Pixlr that will give you bit better
 usable interface.
 
@@ -275,9 +275,9 @@ with just SSH port and port 80 on your VM.
 
 ## Overal Developer experience
 
-On my HP 14 Chromebook the keyboard was really plesent (untill the
+On my HP 14 Chromebook the keyboard was really pleasant (untill the
 hardware issue). I must admit that Chrome OS developer introduced lot of
-really cool keybord shortcuts to various cool stuff. PC people won't be
+really cool keyboard shortcuts to various cool stuff. PC people won't be
 missing the "windows" key, Mac people wont be missing the CMD key.
 
 One thing to remember is that Chromebook is just one big browser. If you
