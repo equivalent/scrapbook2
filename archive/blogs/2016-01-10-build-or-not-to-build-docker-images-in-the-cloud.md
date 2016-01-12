@@ -1,4 +1,4 @@
-# to Docker build image, or not to Docker build image (in the Cloud)
+# Build Docker images on your machine or in the cloud ?
 
 ...or: There is no shame in not automating everything via a cool hosted tools.
 
@@ -67,6 +67,10 @@ collection of containters that works on one computer, to another
 So in my opinion developers should be building Docker images on their
 local computers/laptops and then push them to Docker Registry, not let hosted tool to build/push
 the images for them.
+
+| It may be that if you are building microservice application the cloud
+| solution is much better choice. I'm mainly talking from monolith perspective
+| in this article.
 
 For me Docker is more than just a tool for `production`. For me is also a
 `development` tool (write application code for Docker running container
