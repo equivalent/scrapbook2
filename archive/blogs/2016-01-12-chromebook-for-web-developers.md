@@ -17,7 +17,7 @@ developing code on Chromebooks:
 * https://divshot.com/blog/tips/using-a-chromebook-for-web-development/
 * https://medium.com/@martinmalinda/ultimate-guide-for-web-development-on-chromebook-part-1-crouton-2ec2e6bb2a2d#.r7bn4vqpx
 
-...I just though I'll bring to community another article with my experience from diferent angle.
+...I just though I'll bring to community another article with my experience from different angle.
 
 If you had by any chance red my previous blog posts before you may know that I'm a Full Stack Ruby on Rails Developer. I daily write tone of code on both Backend & Frontend side +
 but load of DevOps. I'm a huge proponent of testing, TDD, BDD, CI tools.
@@ -95,7 +95,7 @@ I've personally tried:
 | Google search for "Cloude IDE" and you'll get more
 
 Cloud9 and Codeanywhere appear to me really similar. They have wider
-range of pricing (therefore you can have a cheeper plan) than
+range of pricing (therefore you can have a cheaper plan) than
 koding.com.
 
 For me Cloud9 and Codeanywhere feels more IDE focused and Pair programming
@@ -124,7 +124,7 @@ just use `Alt+Ctrl+w` which is basically the same thing by default.
 The VM provided in all three of these cloud IDE providers was fast
 enough to run tests, in some cases the tests were actually faster on
 the VM (1 core) than my work laptop (Intel i5 4th gen). Think about it
-VM's are in a serveroom with air-conditioning. You are sometimes running
+VM's are in a server room with air-conditioning. You are sometimes running
 your tests while sitting in a couch with your laptop on your lap
 listening to music, with 50 firefox tabs open and mining bitcoins.
 
@@ -177,13 +177,13 @@ Well I wont be helpful with that.
 
 But If you're creating black/white/grey wireframes check online tool [UX
 pin](https://www.uxpin.com/). If you are UX guy and newer tried it you would
-be supprise how much you can do with a online tool. As a Linux guy
+be suprise how much you can do with a online tool. As a Linux guy
 with lack of software options I've
 use to use it way before my Chromebook experiment. It's really
 comprehensive UX tool.
 
 If you need to resize an image that a clumsy designer sent you in
-wrong size, or you need to do some simple css sprice or image alteration for which
+wrong size, or you need to do some simple css image-sprite or image alteration for which
 [Gimp](https://www.gimp.org/) would be good enough check out [Pixlr](https://pixlr.com).
 Pixlr is a online Photoshop wannabe that contains lot of features (yes
 layers included). You can can install Chrome extension for Pixlr that will give you bit better
@@ -275,7 +275,7 @@ with just SSH port and port 80 on your VM.
 
 ## Overal Developer experience
 
-On my HP 14 Chromebook the keyboard was really pleasant (untill the
+On my HP 14 Chromebook the keyboard was really pleasant (until the
 hardware issue). I must admit that Chrome OS developer introduced lot of
 really cool keyboard shortcuts to various cool stuff. PC people won't be
 missing the "windows" key, Mac people wont be missing the CMD key.
