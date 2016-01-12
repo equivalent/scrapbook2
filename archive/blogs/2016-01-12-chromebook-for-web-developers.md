@@ -19,7 +19,7 @@ developing code on Chromebooks:
 
 ...I just though I'll bring to community another article with my experience from different angle.
 
-If you had by any chance red my previous blog posts before you may know that I'm a Full Stack Ruby on Rails Developer. I daily write tone of code on both Backend & Frontend side +
+If you had by any chance read my previous blog posts before you may know that I'm a Full Stack Ruby on Rails Developer. I daily write tone of code on both Backend & Frontend side +
 but load of DevOps. I'm a huge proponent of testing, TDD, BDD, CI tools.
 I even do some level of UX design, wireframing + some
 level of design alterations (we call those people Photoshop guys)
@@ -27,13 +27,13 @@ level of design alterations (we call those people Photoshop guys)
 The reason why I'm mentioning all of this is to present a view that on
 daily base I am working with servers, I write code for living,
 I am writing and running tests, I am doing deployments,
-and all that other stuff, and yes one can survive
+and all that other stuff and yes one can survive
 with a Chromebook doing that.
 
 I've been using my [2015 HP Chromebook 14](https://www.google.com/chrome/devices/hp-Chromebook-14/)
 in summer 2015 for like 3-4 months developing medium-large size Ruby on Rails application
 for the company I was working for during that period.
-*To be honest I was not using Chromebook all the time*. Usually I worked
+*To be honest I was not using Chromebook all the time*. I've usually worked
 3 days a week from home, during which I was using Chromebook most of
 the time. Remaining 2 days in the office I was developing on a work
 computer.
@@ -69,11 +69,11 @@ on hosted CI tools like [CodeShip](http://codeship.com/),
 builds for us.
 * we no longer have to configure our entire Server Rack
 ourself we push applications to Cloud hostings like
-[Heroku](www.heroku.com), [DigitalOcean](https://www.digitalocean.com).
+[Heroku](www.heroku.com).
 * our Docker images get automatically build by the Docker Registry
   itself by pulling content from Github ([DockerHub](https://docs.docker.com/docker-hub/builds/),
   [Quay.io](https://quay.io) )
-* are email / communication tools has web interface (Slack, Gmail,
+* our email / communication tools has web interface (Slack, Gmail,
   Hangout,...)
 * Even our personal holiday photos are on Google photos or Flicker
 
@@ -125,7 +125,7 @@ The VM provided in all three of these cloud IDE providers was fast
 enough to run tests, in some cases the tests were actually faster on
 the VM (1 core) than my work laptop (Intel i5 4th gen). Think about it
 VM's are in a server room with air-conditioning. You are sometimes running
-your tests while sitting in a couch with your laptop on your lap
+your tests while you're sitting in a couch with your laptop on your lap
 listening to music, with 50 firefox tabs open and mining bitcoins.
 
 I was running "local" Ruby on Rails development server and using the
@@ -135,7 +135,7 @@ working on a real laptop.
 So that I comply with strict security policy of my company I've ended up actually
 connecting from koding.com VM via encrypted ssh key to external VM (AWS EC2 micro instance)
 where I had the code & ssh keys to connect to other servers and so on.
-From here I was doing all the magic, developing code, running tests,
+From there I was doing all the magic, developing code, running tests,
 scheduling deployment, ssh to other servers when stuff went down.
 
 ## SSH for hard-core linux/vim/emacs audience
@@ -216,7 +216,7 @@ I'm a huge fan of idea that the best laptop backup ist the one you never have
 to do; store stuff in the cloud, in git repo, in remote server and you
 don't have to worry about what will happen if ....
 
-Chromebook is build on top of that philosophy.
+Chromebook is built on top of that philosophy.
 
 ## What if I don't have internet ?
 
@@ -229,7 +229,7 @@ Let say you are on Airport and you want to write some code. Have you got
 your 4G Iphone or Android phone with you ? Cool press the HotSpot button.
 
 If you like to code in a coffee shop or library there is always WiFi
-(just always use secure VPN connection  more on that in topic below on security)
+(just always use secure VPN connection  more on that in topic below on security).
 
 If you're saying: "but I want to write a code in a tube on my way home",
 seriously how many times you done that past month in a crowded tube? You
@@ -253,23 +253,23 @@ Only thing from a security perspective that you need to be worried about
 is whether your internet connection is secure. Yes we all have `https`
 websites but even that stuff can be hacked and you would be suprised
 how many websites are misconfigure to send your cookie even if accessed
-from `http` That's the sys-adming dude is so paranoid each time you are
+from `http` That's why the sys-adming dude is so paranoid each time you are
 mentioning that "you will be working from coffee place down the road
 next Tuesday".
 
 When you want to connect to public WiFi always connect via [VPN
 connection](http://www.howtogeek.com/133680/htg-explains-what-is-a-vpn/).
-Don't be cheap there is no good free solution that you can trust (unless
+Don't be cheap. There is no good free solution that you can trust (unless
 your company has a VPN of their own). You can get really secure
 and good commercial VPN for like $10 a month and yes Chromebook has really easy way
-to set it up([How to set up VPN in Chromebook](https://support.google.com/Chromebook/answer/1282338?hl=en-GB).
+to set it up([How to set up VPN in Chromebook](https://support.google.com/Chromebook/answer/1282338?hl=en-GB)).
 I'm using [TorGuard VPN](https://torguard.net/)  (no, it
 has nothing to do with Tor network)
 
-Then comes to VM security that you are connecting too. Just fallow any
-good practices that you would normally fallow for a web-app server. If
-you are new to servers basic rules are keep your system up to date with
-latest fixes, connect to VM via ssh key-pair not password, and don't
+Then comes to VM security that you are connecting too. Just follow any
+good practices that you would normally follow for a web-app server. If
+you are new to servers, the basic rules are to keep your system up to date with
+latest fixes, connect to VM via ssh key-pair not password and don't
 open ports you necessary have to. You will probably survive first year
 with just SSH port and port 80 on your VM.
 
@@ -300,7 +300,7 @@ how to balance my memory power, but if this would be your plan make sure that yo
 model is upgradable as some Chromebooks are not ([source](http://www.omgchrome.com/Chromebooks-can-upgraded/))
 and definitely check some reviews before you buy.
 
-## Famous last words
+## Conclusion
 
 My previous company was security crazy to be honest. We couldn't use lot
 of tools that were on the market. We had our own Jenkins CI our own
@@ -311,15 +311,16 @@ those cool automated 3rd party tools with you.
 
 I've survived working on a Chromebook I'll bet you will too.
 
-Now do I recommend you to  buy a Chromebook ? Well, no.
-
 Do I recommend Chromebook as a primary computer ? Well, absolutely not !
 
-In this article I was mainly my standing ground for alternative way how
+Now, do I recommend you to  buy a Chromebook ? Well, not necessary, but
+it's interesting experience.
+
+In this article I was mainly standing ground for alternative way how
 to develop software via a terminal connection / Cloud IDE. Like I said I'm a huge fan
 of idea that the best computer backup is the one you don't have to do.
 By having your development toolset outside your box you will loose offline possibility to
-write software, but gain the freedom of not care about when your laptop
+write software, but gain the freedom of not to care about when your laptop
 crash.
 
 Friend of my use to develop Rails application on Windows 7 as he was
@@ -343,16 +344,16 @@ that.
 Reason why I stopped using Chromebook was partly due
 to keyboard faulty on my Chrombook. One thing to remember is that Chromebooks
 are cheap so sometimes the hardware suffers due to the price.
-After that it took me a while to schedule a replacement it so I kinda
-switch to old PC habits.
+After that it took me a while to schedule a replacement, so I kinda
+switch back to my old PC habits.
 
 During that time I also changed my job to contracting, where I'm using a lot Docker.
 I'm a proponent of idea that [Docker images should
 be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-to-docker-build-image-or-not-to-docker-build-image-in-the-cloud) therefore I needed to switch back to Ubuntu.
 
-To be honest even this was not argument to switch from Chromebook, as I
+This was not the argument to switch from Chromebook, as I
 could just build my Docker images on a larger AWS VM, however you know
 how new contracts are, they expect miracles from you the first day, that's
 why I switch to environment I'm familiar several years and I am the most
-productive (Linux).
+productive (Ubuntu Linux).
 
