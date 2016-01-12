@@ -17,10 +17,10 @@ developing code on Chromebooks:
 * https://divshot.com/blog/tips/using-a-chromebook-for-web-development/
 * https://medium.com/@martinmalinda/ultimate-guide-for-web-development-on-chromebook-part-1-crouton-2ec2e6bb2a2d#.r7bn4vqpx
 
-...I just though I'll bring to comunity another article with my experience from diferent angle.
+...I just though I'll bring to community another article with my experience from diferent angle.
 
 If you had by any chance red my previous blog posts before you may know that I'm a Full Stack Ruby on Rails Developer. I daily write tone of code on both Backend & Frontend side +
-butload of DevOps. I'm a huge proponent of testing, TDD, BDD, CI tools.
+but load of DevOps. I'm a huge proponent of testing, TDD, BDD, CI tools.
 I even do some level of UX design, wireframing + some
 level of design alterations (we call those people Photoshop guys)
 
@@ -31,7 +31,7 @@ and all that other stuff, and yes one can survive
 with a Chromebook doing that.
 
 I've been using my [2015 HP Chromebook 14](https://www.google.com/chrome/devices/hp-Chromebook-14/)
-in summer 2015 for like 3-4 months developping medium-large size Ruby on Rails application
+in summer 2015 for like 3-4 months developing medium-large size Ruby on Rails application
 for the company I was working for during that period.
 *To be honest I was not using Chromebook all the time*. Usually I worked
 3 days a week from home, during which I was using Chromebook most of
@@ -47,7 +47,7 @@ Before we go deeper let me present the stage (or just skip this section)
 
 In the old days there was no such thing as having a huge computer power
 at your hands. Everyone was connecting via terminals to a huge
-computer that was doing the work remmotly for them. Then came the era of Personal
+computer that was doing the work remotly for them. Then came the era of Personal
 Computers where each person had computer power at their desks. Now we
 are in the era where nearly every web-developer has a shiny `i7` MacBook with
 SSD drive, where tests are running blazing fast and we connect to remote
@@ -60,7 +60,7 @@ it was just replaced by era of Cloud.
 Think about it:
 
 * we store all our assets and documents on Dropbox or Google Drive
-* yes we run the tests on our laptopso but we also run them
+* yes we run the tests on our laptops, but we also run them
 on hosted CI tools like [CodeShip](http://codeship.com/),
 [TravisCI](https://travis-ci.com/), [Circle cI](https://circleci.com/)
 * lot of time we don't need to dig around with Git commands to merge our code changes, we just use Github web interface
@@ -73,7 +73,7 @@ ourself we push applications to Cloud hostings like
 * our Docker images get automatically build by the Docker Registry
   itself by pulling content from Github ([DockerHub](https://docs.docker.com/docker-hub/builds/),
   [Quay.io](https://quay.io) )
-* are email / comunication tools has web interface (Slack, Gmail,
+* are email / communication tools has web interface (Slack, Gmail,
   Hangout,...)
 * Even our personal holiday photos are on Google photos or Flicker
 
@@ -94,20 +94,20 @@ I've personally tried:
 
 | Google search for "Cloude IDE" and you'll get more
 
-Cloud9 and Codeanywhere appeard to me really simillar. They have wider
+Cloud9 and Codeanywhere appear to me really similar. They have wider
 range of pricing (therefore you can have a cheeper plan) than
 koding.com.
 
-For me Cloud9 and Codeanywhere feels more IDE focused and Pair programing
+For me Cloud9 and Codeanywhere feels more IDE focused and Pair programming
 focused (https://blog.codeanywhere.com/share-links-pair-programming/, https://www.youtube.com/watch?v=RLKEaMs1p10),
-accesibility focused (codeanywhere has a mobile app, so you can
+accessibility focused (codeanywhere has a mobile app, so you can
 seriously code anywhere `:)` ) and Koding.com was giving you bigger VM and
-for some reason the web interface is faster on a crapy network.
+for some reason the web interface is faster on a poor network.
 
 Unfortunatelly I cannot give you much feedback on the IDE experience as I'm a
 **Vim** user and I didn't spend much time in the provided IDE. Also I didn't
-convince my covorkers to try any of the cloud IDE tools I have no
-feedback on the pairprograming features either. Hovever as it is with
+convince my co-workers to try any of the cloud IDE tools I have no
+feedback on the pairprogramming features either. Hovever as it is with
 any web-application software, they rapidly evolve features so I highly
 recommend to just play around and get the feeling yourself. All 3 (and
 also other) cloud IDE providers provide Free plan to play around the
@@ -118,11 +118,11 @@ In the end I end up with Koding.com paid plan for couple of weeks and I
 was just using Vim editor for editing code. The only big problem for any Vim
 user on a Chromebook will be the infamous `Ctrl+w` shotcut is configured
 to close browser tab. There is no way to change this, the only
-workaround is either to remap split screan switch to other key combination or
+workaround is either to remap split screen switch to other key combination or
 just use `Alt+Ctrl+w` which is basically the same thing by default.
 
 The VM provided in all three of these cloud IDE providers was fast
-enough to run tests, in some casese the tests were actually faster on
+enough to run tests, in some cases the tests were actually faster on
 the VM (1 core) than my work laptop (intel i5 4th gen). Think about it
 VM's are in a serveroom with air-conditioning. You are sometimes running
 your tests while sitting in a couch with your laptop on your lap
@@ -132,8 +132,8 @@ I was running "local" Ruby on Rails development server and using the
 public DNS url of the Koding VM to access it, so it felt like I'm
 working on a real laptop.
 
-So that I comply with strict securrity policy of my company I've ended up actually
-conecting from koding.com VM via encrypted ssh key to external VM (AWS EC2 micro instance)
+So that I comply with strict security policy of my company I've ended up actually
+connecting from koding.com VM via encrypted ssh key to external VM (AWS EC2 micro instance)
 where I had the code & ssh keys to connect to other servers and so on.
 From here I was doing all the magic, developing code, running tests,
 scheduling deployment, ssh to other servers when stuff went down.
@@ -159,7 +159,7 @@ outside Downloads folder, so then you can delete from Downloads folder.
 
 The development process was exactly the same as I described in previous
 section. I was writing code via a Vim, running tests on a VM, doing
-deploymennts([Capistrano](http://capistranorb.com/)) no problemo.
+deployments([Capistrano](http://capistranorb.com/)) no problemo.
 I was running development Rails server and
 connecting via AWS EC2 instance public DNS address or IP + port.
 
@@ -177,7 +177,7 @@ Well I wont be helpfull with that.
 
 But If you're creating black/white/grey wireframes check online tool [UX
 pin](https://www.uxpin.com/). If you are UX guy and newer tried it you would
-be suprise how much you can do with a online tool. As a Linux guy
+be supprise how much you can do with a online tool. As a Linux guy
 with lack of software options I've
 use to use it way before my Chromebook experiment. It's really
 comprehensive UX tool.
@@ -206,7 +206,7 @@ Will you go to the reception and place it in a hotel safe ?
 And most importantly, will you actually enjoy the holiday thinking about
 weather your laptop is still there ?
 
-Ok another scenario. You know on friday you are invited to Metalcore
+Ok another scenario. You know on Friday you are invited to Metalcore
 concert and there will be definitelly a great [mosh pit](https://www.youtube.com/watch?v=73d8pMnMbKg).
 Now you wont be able to keep your laptop in the office due to some made
 up reason. Would you take $300 Chromebook or $2000
@@ -214,7 +214,7 @@ MacBook to the office that day ?
 
 I'm a huge fan of idea that the best laptop backup ist the one you never have
 to do; store stuff in the cloud, in git repo, in remote server and you
-don't have to wory about what will happen if ....
+don't have to worry about what will happen if ....
 
 Chromebook is build on top of that philosophy.
 
@@ -222,7 +222,7 @@ Chromebook is build on top of that philosophy.
 
 I'm mainly focusing this article for web-developers and all good
 web-developers introduce changes only if they have metrics to prove their point.
-How many times lastmonth you were in a situation you had no internet in your office ?
+How many times last month you were in a situation you had no internet in your office ?
 ...ok how about at home ?
 
 Let say you are on Airport and you want to write some code. Have you got
@@ -237,14 +237,14 @@ know you're usually watching some screencasts on the phone
 or listening some podcasts.
 
 And if you are really concern about internet being down in the office
-and you not able to work, you can have old comupter somewhere in the
-corrner of the office and ssh-ing to it via a Chromebook and writing
+and you not able to work, you can have old computer somewhere in the
+corner of the office and ssh-ing to it via a Chromebook and writing
 your code there.
 
 ## Security
 
 Chromebook by very definition is secure ([Chromebook security](https://support.google.com/Chromebook/answer/3438631?hl=en-GB)).
-You don't store files, 99% of everything you open is opend on a cloud
+You don't store files, 99% of everything you open on a cloud
 provider (probably with antivirus) like Gmail, Google Drive, Dropbox.
 Only application that can be installed are Browser application for
 Chrome.
@@ -252,7 +252,7 @@ Chrome.
 Only thing from a security prespective that you need to be worried about
 is wheather your internet connection is secure. Yes we all have `https`
 websites but even that stuff can be hacked and you would be supprised
-how many websites are misconfigured to send your cookie even if accesed
+how many websites are misconfigured to send your cookie even if accessed
 from `http` That's the sys-adming dude is so paranoid each time you are
 mentioning that "you will be working from coffee place down the road
 next Tuesday".
@@ -261,12 +261,12 @@ When you want to connect to public WiFi always connect via [VPN
 connection](http://www.howtogeek.com/133680/htg-explains-what-is-a-vpn/).
 Don't be cheap there is no good free solution that you can trust (unless
 your company has a VPN of their own). You can get really secure
-and good comertial VPN for like $10 a month and yes Chromebook has really easy way
+and good commercial VPN for like $10 a month and yes Chromebook has really easy way
 to set it up([How to set up VPN in Chromebook](https://support.google.com/Chromebook/answer/1282338?hl=en-GB).
 I'm using [TorGuard VPN](https://torguard.net/)  (no, it
 has nothing to do with Tor network)
 
-Then comes to VM security that you are conecting too. Just fallow any
+Then comes to VM security that you are connecting too. Just fallow any
 good practices that you would normally fallow for a web-app server. If
 you are new to servers basic rules are keep your system up to date with
 latest fixes, connect to VM via ssh key-pair not password, and don't
@@ -280,7 +280,7 @@ hardware issue). I must admit that Chrome OS developer introduced lot of
 really cool keybord shortcuts to various cool stuff. PC people won't be
 missing the "windows" key, Mac people wont be missing the CMD key.
 
-One thing to remmember is that Chromebook is just one big browser. If you
+One thing to remember is that Chromebook is just one big browser. If you
 use to work with workspaces in Ubuntu or OsX you will definitelly
 miss them. As I'm usually working on 3 things during a day it was hard
 for me to switch context (as everything is just a Chrome tab). But if
@@ -309,7 +309,7 @@ working in more enlight enviromnet where you guys are using TravisCI or
 CodeShip or DockerHub automated image builds and therefore you have all
 those cool automated 3rd party tools with you.
 
-I've survid working on a Chromebook I'll bet you will too.
+I've survived working on a Chromebook I'll bet you will too.
 
 Now do I recommend you to  buy a Chromebook ? Well, no.
 
@@ -318,18 +318,18 @@ Do I recommend Chromebook as a primary comupter ? Well, absolutely not !
 In this article I was mainly my standing ground for alternative way how
 to develop software via a terminal connection / Cloud IDE. Like I said I'm a huge fan
 of idea that the best comupter backup is the one you don't have to do.
-By having your devlelopment toolset outside your box you will loos offline posibility to
+By having your devlelopment toolset outside your box you will loose offline possibility to
 write software, but gain the freedom of not care about when your laptop
 crash.
 
 Friend of my use to develop Rails application on Windows 7 as he was
 composing music on that machine. For some time he was fighting the
-dependancy struggle but in the end he give up and just done dual boot
+dependency struggle but in the end he give up and just done dual boot
 with Fedora. With similar approach he would not have to.
 
 So don't buy Chromebook yet. Play around with idea *"how would it feel
 like to be stuck with ssh and Chrome only"* for few weeks and if you find
-it possible go for it. You may not be the most prodactive but it's a
+it possible go for it. You may not be the most productive but it's a
 nice alternative experience. At least you will have backup machine with good
 battery power if you need to go on a hardcore holiday.
 
@@ -341,18 +341,18 @@ that.
 ## Reasons why I don't use it anymore
 
 Reason why I stopped using Chromebook was partly due
-to keyboard fauthy on my Chrombook. One thing to remmember is that Chromebooks
+to keyboard faulty on my Chrombook. One thing to remmember is that Chromebooks
 are cheap so simetimes the hardware suffers due to the price.
 After that it took me a while to schedule a replacement it so I kinda
 switch to old PC habits.
 
-During that time I also changed my job to contracting, where I'm doing butload of
-DevOps using Docker. I'm a proponent of idea that [Docker images should
-be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-to-docker-build-image-or-not-to-docker-build-image-in-the-cloud) therefore I needed to swith back to Ubuntu.
+During that time I also changed my job to contracting, where I'm using a lot Docker.
+I'm a proponent of idea that [Docker images should
+be build on developer machine not in the cloud](http://www.eq8.eu/blogs/17-to-docker-build-image-or-not-to-docker-build-image-in-the-cloud) therefore I needed to switch back to Ubuntu.
 
 To be honest even this was not argument to switch from Chromebook, as I
 could just build my Docker images on a larger AWS VM, however you know
 how new contracts are, they expect miracles from you the first day, that's
-why I switch to enviroment I'm fimilar several years and I am the most
+why I switch to enviroment I'm familiar several years and I am the most
 productive (Linux).
 
