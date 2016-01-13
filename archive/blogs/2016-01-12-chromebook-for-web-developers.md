@@ -243,7 +243,7 @@ and you not able to work, you can have old computer somewhere in the
 corner of the office and ssh-ing to it via a Chromebook and writing
 your code there.
 
-**update** in [Reddit discussion](https://www.reddit.com/r/rubyonrails/comments/40otiw/chromebook_for_ruby_on_rails_developers/)
+**Update1:** in [Reddit discussion](https://www.reddit.com/r/rubyonrails/comments/40otiw/chromebook_for_ruby_on_rails_developers/)
 user `vinsneezel` pointed out that I skipped the topic of popular [Crouton](https://github.com/dnschneid/crouton).
 With Crouton you will run linux enviroment (Ubuntu, Debian) inside your Chromebook and therefore you have
 trully  connection agnostic enviroment directly on Chromebook.
