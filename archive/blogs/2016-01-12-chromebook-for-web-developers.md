@@ -94,7 +94,7 @@ I've personally tried:
 * [codeanywhere](https://codeanywhere.com/)
 * [koding.com](https://koding.com/)
 
-| Google search for "Cloude IDE" and you'll get more
+> Google search for "Cloude IDE" and you'll get more
 
 Cloud9 and Codeanywhere appear to me really similar. They have wider
 range of pricing (therefore you can have a cheaper plan) than
@@ -145,9 +145,9 @@ scheduling deployment, ssh to other servers when stuff went down.
 After a while I realized I don't need Web-Interface to connect to this AWS EC2 micro instance VM.
 Chromebook has a extension SSH tool [Secure Shell](https://chrome.google.com/webstore/search/ssh)
 
-| [AWS EC2 micro instance](https://aws.amazon.com/ec2/instance-types/) is eligible for
-| [AWS free tier](https://aws.amazon.com/free/), so if you do your math correctly on provided resources
-| you'll end up not paying a dime
+> [AWS EC2 micro instance](https://aws.amazon.com/ec2/instance-types/) is eligible for
+> [AWS free tier](https://aws.amazon.com/free/), so if you do your math correctly on provided resources
+> you'll end up not paying a dime
 
 All you have to do is to [generate ssh
 keys](https://help.github.com/articles/generating-ssh-keys/) on some laptop or VM,
@@ -156,8 +156,8 @@ creating new connection in Chomebook Secure Shel extension, tell it to
 use this key. Chromebook will then store this private key in some folder
 outside Downloads folder, so then you can delete from Downloads folder.
 
-| Remember kids, having a password on a server is irresponsible and
-| stupid. Always prefer the SSH key connection.
+> Remember kids, having a password on a server is irresponsible and
+> stupid. Always prefer the SSH key connection.
 
 The development process was exactly the same as I described in previous
 section. I was writing code via a Vim, running tests on a VM, doing
@@ -243,11 +243,11 @@ and you not able to work, you can have old computer somewhere in the
 corner of the office and ssh-ing to it via a Chromebook and writing
 your code there.
 
-**Update1:** in [Reddit discussion](https://www.reddit.com/r/rubyonrails/comments/40otiw/chromebook_for_ruby_on_rails_developers/)
-user `vinsneezel` pointed out that I skipped the topic of popular [Crouton](https://github.com/dnschneid/crouton).
-With Crouton you will run linux enviroment (Ubuntu, Debian) inside your Chromebook and therefore you have
-trully  connection agnostic enviroment directly on Chromebook.
-To be honest I didn't try Cruton therefore I cannot speek for it.
+> **Update1:** in [Reddit discussion](https://www.reddit.com/r/rubyonrails/comments/40otiw/chromebook_for_ruby_on_rails_developers/)
+> user `vinsneezel` pointed out that I skipped the topic of popular [Crouton](https://github.com/dnschneid/crouton).
+> With Crouton you will run linux enviroment (Ubuntu, Debian) inside your Chromebook and therefore you have
+> trully  connection agnostic enviroment directly on Chromebook.
+> To be honest I didn't try Cruton therefore I cannot speek for it.
 
 ## Security
 
