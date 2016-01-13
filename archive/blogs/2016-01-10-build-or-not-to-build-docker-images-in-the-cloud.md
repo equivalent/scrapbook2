@@ -68,9 +68,9 @@ So in my opinion developers should be building Docker images on their
 local computers/laptops and then push them to Docker Registry, not let hosted tool to build/push
 the images for them.
 
-| It may be that if you are building microservice application the cloud
-| solution is much better choice. I'm mainly talking from monolith perspective
-| in this article.
+> It may be that if you are building microservice application the cloud
+> solution is much better choice. I'm mainly talking from monolith perspective
+> in this article.
 
 For me Docker is more than just a tool for `production`. For me is also a
 `development` tool (write application code for Docker running container
