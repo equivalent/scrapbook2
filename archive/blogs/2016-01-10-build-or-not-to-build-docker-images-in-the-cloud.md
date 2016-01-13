@@ -86,10 +86,10 @@ That being said I don't stand any ground here. It may just happen that I'll
 update this article in few months with few more lines in favor of remote
 build idea.
 
-| **Update:** The very next day that I drafted this article I was kicked
-| by the idea behind it. I was working from home on a really crapy DSL
-| connection. Guess who needed to build and push 3 builds of ~100MB images that day
-| `:-/`.
+> **Update:** The very next day that I drafted this article I was kicked
+> by the idea behind it. I was working from home on a really crapy DSL
+> connection. Guess who needed to build and push 3 builds of ~100MB images that day
+> `:-/`.
 
 All I'm saying is that there is no right or wrong. There is no harm in trying
 new automation tools and new approaches to deploying builds. Just always reevaluate
