@@ -13,6 +13,10 @@ weird expensive Chromebook.
 No Sir (...or Madam ) I'm talking about writing WebApp backend code,
 running tests, deploying the app from a brand new $200 - $300 Chromebook.
 
+> User `MindPlace` from [Reddit discussion](https://www.reddit.com/r/ruby/comments/40oxcy/chromebook_for_webdevelopers/)
+> told me that he managed to get a deal `$60` for his Chromebook
+> as it was returned to the store.
+
 There are already some articles on experience that Web-Developers had
 developing code on Chromebooks:
 
@@ -244,7 +248,7 @@ corner of the office and ssh-ing to it via a Chromebook and writing
 your code there.
 
 > **Update1:** in [Reddit discussion](https://www.reddit.com/r/rubyonrails/comments/40otiw/chromebook_for_ruby_on_rails_developers/)
-> user `vinsneezel` pointed out that I skipped the topic of popular [Crouton](https://github.com/dnschneid/crouton).
+> User `vinsneezel` pointed out that I skipped the topic of popular [Crouton](https://github.com/dnschneid/crouton).
 > With Crouton you will run linux enviroment (Ubuntu, Debian) inside your Chromebook and therefore you have
 > trully  connection agnostic enviroment directly on Chromebook.
 > To be honest I didn't try Cruton therefore I cannot speek for it.
