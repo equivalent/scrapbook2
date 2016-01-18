@@ -34,9 +34,9 @@ Just purely deployng changes of a Wordpress template.
 First step: create a CodeShip project.
 
 Then go to `Project Settings > General` and copy `SSH public key`
-for the project to your clipboard. We will need to paste this SSH key to VM (EC2 server). 
+for the project to your clipboard. We will need to paste this SSH key to VM (EC2 server).
 
-[ssh to the EC2 instance](1) `ssh ec2-user@ec2-52-66-66-66.eu-west-1.compute.amazonaws.com`
+[ssh to the EC2 instance][1] `ssh ec2-user@ec2-52-66-66-66.eu-west-1.compute.amazonaws.com`
 paste the the key to `~/.ssh/authorized_keys`. Make sure you don't delete
 any existing keys in the file.
 
@@ -53,7 +53,7 @@ After you `Save pipline settings` a section  `"Add deployment"` appears. Click t
 "Custom Script" (big blue dolar sign icon). Paste this to this script
 window:
 
-```
+```bash
 BRANCH_NAME="${CI_BRANCH}"
 ROOT_FOLDER="/home/ec2-user/my-project"
 EC2_SERVER="ec2-user@ec2-52-66-66-66.eu-west-1.compute.amazonaws.com"
@@ -91,5 +91,5 @@ Please remove the `--dry-run` when you're ready.
 Ok now on push some change to project Github repo branch `live-20161101`. If configured correctly CodeShip will do the changes of a template.
 
 
-[1][http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-connect-to-instance-linux]
-[2][http://coenraets.org/blog/2012/01/setting-up-wordpress-on-amazon-ec2-in-5-minutes/]
+[1]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-connect-to-instance-linux
+[2]: http://coenraets.org/blog/2012/01/setting-up-wordpress-on-amazon-ec2-in-5-minutes/
