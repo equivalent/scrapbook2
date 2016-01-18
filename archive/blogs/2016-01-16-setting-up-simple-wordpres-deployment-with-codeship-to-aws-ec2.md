@@ -1,10 +1,10 @@
 # Setting up simple Wordpress deployment with CodeShip to AWS EC2
 
 The other day I was asked to set up deployment pipe for a blog
-website built in Wordpress. Although I was a PHP developer for a few years before I swithed to Ruby, I've never worked with WordPress.
+website built in Wordpress. Although I was a PHP developer for a few years before I switched to Ruby, I've never worked with WordPress.
 Plus the last time I've seen PHP
 code was like 6 years ago. That should not be a problem as I will not be
-working with Wordpress internals here, however if you find anything I've missed or incorectly explained please leave a comment (...or even better do a
+working with Wordpress internals here, however if you find anything I've missed or incorrectly explained please leave a comment (...or even better do a
 pull request for this article :) )
 
 I will not be explaining  how to set up Wordpress or how to install
@@ -23,11 +23,11 @@ it via ssh key-pair.
 `/home/centos` well that's ok just make sure you change any of the lines
 in the script bellow to whatever is your EC2 user home folder.
 
-I was told that a good practictice in WordPress project is just to
+I was told that a good practice in WordPress project is just to
 commit and
 deploy changes of a template (in our case `my-application/wp-content/themes/mytheme/`).
 Therefore this article is not dealing with syncing up plugins or assets.
-Just purly deployng changes of a Wordpress template.
+Just purely deployng changes of a Wordpress template.
 
 ## Setup
 
@@ -69,8 +69,8 @@ The script does following:
 
 1. sets `$BRANCH_NAME` variable with the name of the branch (e.g.: `live-20161101`) from the
    webhook (yes you can use directly the `$CI_BRANCH` but I like this
-   way better as you can overide it in future)
-2. set some other varibales with location of the git ropo folder
+   way better as you can override it in future)
+2. set some other varibale with location of the git ropo folder
    (`ROOT_FOLDER`), login to the server(`EC2_SERVER`)
 3. fetch remote branches on VM
 4. checkout to the deployment branch e.g.: `live-20161101` and pull it's
@@ -80,7 +80,7 @@ The script does following:
 
 
 
-If you are in doubt what would the `rsync` command overide you can just
+If you are in doubt what would the `rsync` command override you can just
 add `--dry-run` option at the end. This will just output stuf to your
 console but wont change any files:
 
@@ -88,7 +88,7 @@ console but wont change any files:
 
 Please remove the `--dry-run` when you're ready.
 
-Ok now on push shome change to project Github repo branch `live-20161101`. If configured correctly CodeShip will do the changes of a template.
+Ok now on push some change to project Github repo branch `live-20161101`. If configured correctly CodeShip will do the changes of a template.
 
 
 [1][http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-connect-to-instance-linux]
