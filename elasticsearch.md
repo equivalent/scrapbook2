@@ -1,4 +1,49 @@
+```
+    def self.search(query, options={})
+      __set_filters = lambda do |key, f|
 
+        @search_definition[:filter][:and] ||= []
+        @search_definition[:filter][:and]  |= [f]
+      end
+
+      @search_definition = {
+        query: {},
+        filter: {},
+      }
+
+      unless query.blank?
+        @search_definition[:query] = {
+          bool: {
+            should: [
+              { multi_match: {
+                query: query,
+                fields: ['title^10', 'body'],
+                operator: 'and',
+                analyzer: 'russian_morphology_custom'
+              }
+              }
+            ]
+          }
+        }
+        @search_definition[:sort]  = { updated_at: 'desc' }
+        # Without that parameter default is 10
+        @search_definition[:size]  = 100
+      else
+        @search_definition[:query] = { match_all: {} }
+        @search_definition[:sort]  = { updated_at: 'desc' }
+      end
+      __elasticsearch__.search(@search_definition)
+    end
+```
+
+
+
+
+```
+#index one record
+
+MyModel.last.__elasticsearch__.index_document
+```
 
 ```
 MyModel.import  #  reindex all
