@@ -128,9 +128,70 @@ pair coding on one computer if needed.
 
 ![image of my keyboard]
 
+
+## Vim
+
+When I decided to learn Ten Finger Technique, I was starting to learn
+basics of [Vim][1] editor. As if this combination was not hard enough I
+thought to myself, hmm how about I teach myself Dvorak too. The
+transition was really hard, and for period of 2 weeks I had headaches,
+but it was worth it.
+
+Dvorak and Ten Finger Typing Technique comes naturally  together and
+Vim is awesome addition to this symphony. Vim is tremendres when it
+comes to keyboard shortcuts limiting usage of Right Hand Pinky to
+minimum. Lot of people will refernec Vim to a dinosaur and reliqe that
+only "wierd old Linux Hippies use" but they never used Vim them self, or
+if they did they didn't try any extension.
+
+My encorigement is to try Vim for a week, but not with just basics. Lern
+split screens, visual selection,  read some tutorials watch some screencats,
+ if you ar a Ruby person install [Janus Vim][12] (collection of cool lib
+that will make your Vim proper IDE)
+
+* [vim][10]
+* [vim][11]
+
+But realliy if  you decide you want to use  [Emacs][8]
+ or [Sublime][9] edittor it doesn't really matter, just make sure you
+discover all the potentianal cool shortcuts that will ease your life,
+only that way you will truly benefit Dvorak and Ten Finger Typing
+Technique.
+
+> In any case be sure to focuse on quality rather than speed. Less errors
+> when typing and then improving your speed. Play every morning
+> [typeracer](http://play.typeracer.com/)
+
+
 ## All about keeping your eyes on the screen
 
-I'm a [Vim][1] User. 
+> fallowing 2 paragraphs I  have no study or research to point to, I's just the
+> experiments I'm doing over several years on myself. If you find that
+> you disagree with me, please feel free to ignore them.
+
+
+The true key towards productivity is to do everything in order to keep
+your eyes on the screen. Think about it. When you are typing with  2 / 3
+fingers you need to look from time to time  if you are hitting the
+correct keys. The time to locate the position of the line is quick, but
+still it's extra uncesarry work for your eyes and brain that's adds up
+by end of the day.
+
+Lot of time I see people worknig on two or three monitors where on one
+screen they have console on other logs on other browser, ... I was using
+similar setup year or two myself and the biggest problem I found in it
+was that in order to switch context I needed to actually turn my head.
+Now this sounds really stupid but think about it. In order to switch
+from console to logs you need to turn your head then use your eyes to
+find the line and then start processing the information. When you want
+to go back to console you need to turn your head, adjust eyes,  find
+information, and so on...
+
+Try this yourself: on one screen, same workspace lunch only Rails console and Rails logs
+
+
+
+
 
 
 
@@ -141,3 +202,33 @@ I'm a [Vim][1] User.
 [5]: https://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard
 [6]: https://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard#History
 [7]: http://www.kaufmann.no/roland/dvorak/
+[8]: emacs
+[9]: sublime
+[10]: vim resources
+[11]: vim resources
+[12]: https://github.com/carlhuda/janus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
