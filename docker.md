@@ -271,9 +271,35 @@ docker-compose run web rails c
 
 
 
-# sources and references:
+## sources and references:
 
 [1]: https://www.youtube.com/watch?v=ddhU3NMrhX4 "3 hours to docker fundaments"
 [2]: https://www.youtube.com/watch?v=JBtWxj9l7zM  "Docker Tutorial - Docker Container Tutorial for Beginners"
 [3]: https://docs.docker.com/compose/rails/  "docker composer rails"
+
+
+
+# install older docker version 
+
+How to Install Docker Engine 1.6.2
+
+    Download the repository key with:
+
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+
+    Then setup the repository:
+
+    $ sudo sh -c "echo deb https://get.docker.io/ubuntu docker main >
+/etc/apt/sources.list.d/docker.list"
+    $ sudo apt-get update
+    $ sudo apt-get install lxc-docker-1.6.2
+
+    Run docker as non-sudo:
+
+    $ sudo usermod -a -G docker $USER
+    $ exit
+
+Reference:
+http://www.ubuntuupdates.org/ppa/docker?dist=docker55
+https://forums.docker.com/t/how-can-i-install-a-specific-version-of-the-docker-engine/1993/6
 

@@ -14,6 +14,28 @@ tail /var/log/docker.log -n 100
 
 # eb cli
 
+installing
+
+```
+# on ubuntu 14.04
+sudo apt-get install python-pip
+sudo pip install awsebcli
+# now you have the `eb` command, make sure to update your credentials in
+# ~/.aws/config
+#
+#     [profile eb-cli]
+#     aws_access_key_id = A******************Q
+#     aws_secret_access_key = A**************************************U
+#     
+#     [default]
+#     aws_access_key_id = A******************Q
+#     aws_secret_access_key = Ar************************************XU
+#     region = eu-west-1
+
+```
+
+usage
+
 ```
 eb init --interactive
 eb ssh productionMycom-env
