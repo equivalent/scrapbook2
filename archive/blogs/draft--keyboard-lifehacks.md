@@ -172,7 +172,7 @@ Technique.
 
 The true key towards productivity is to do everything in order to keep
 your eyes on the screen. Think about it. When you are typing with  2 / 3
-fingers you need to look from time to time  if you are hitting the
+fingers you need to look from time to time on the keyboard whether you are hitting the
 correct keys. The time to locate the position of the line is quick, but
 still it's extra uncesarry work for your eyes and brain that's adds up
 by end of the day.
@@ -180,16 +180,61 @@ by end of the day.
 Lot of time I see people worknig on two or three monitors where on one
 screen they have console on other logs on other browser, ... I was using
 similar setup year or two myself and the biggest problem I found in it
-was that in order to switch context I needed to actually turn my head.
+was that in order to switch context I needed to actually **turn my
+head**.
+
 Now this sounds really stupid but think about it. In order to switch
 from console to logs you need to turn your head then use your eyes to
 find the line and then start processing the information. When you want
 to go back to console you need to turn your head, adjust eyes,  find
-information, and so on...
+information, and so on..., There is unecesary element of mechanical neck
+movement.
 
-Try this yourself: on one screen, same workspace lunch only Rails console and Rails logs
+> Try this yourself. Plug in for several minutes external screen where on one window you will have
+> only editor, and in another monitor console. Then after time is up try
+> it on one monitor (same workspace) lunch only console and Rails logs
+> and use only Alt+Tab to switch between them. Which one feels more
+> natural for you?
 
+Now two /three monitors may be awesome or even necesary for designers working in
+Photoshop or 3Ds Max. My girlfriend is a 3D modeler and from countless
+weekends I was watching her working in her enviroment and how everything
+has it's place. more bigger  screen she has the more productive she is.
 
+But web developers spend most of time solving issues in text editors
+We don't have to have different tabs for special tools.
+
+> Few honorable exception I found over the years where it make sence to
+> have two screens:
+>
+> * if develpors do  UX design or, Photoshop mockups allong code
+> * full IDEs like Eclipse, RubyMine, Netbeans, ...
+> * if you write Cucumber tests (Gerkin lang) in one screen and step definitions in other
+>   screen
+
+We usually fallow programming conventions (like [ruby style guide][13])
+that guides us to use 80 or so chars per line as a limit, so that our
+code is readable to all our collegues and on Github.
+
+In my opinion external screens when used as the only screen are not needed as well.
+I like to use them whenever possible as larger text means less struggle for the eyes
+but there is a sort of elegance in writing text on a smaller screen. You
+will be pusshed to focuse on one thing, you will be pusshed to close
+any background  appplications that are not necesary needed for the
+current task. Another point is that you will get use to same screen as
+you have when you code in sofa, train, or coffee shop.
+If you are a person who codes only on office table none of the points I
+made in this paragraph may not be relevant for you.
+
+It's really up to you to try out what works for you and figure these for
+your self.
+
+But if we don't use two screens how can we be sill productive ?
+
+## Workspaces
+
+in ubuntu go to `Apperance` click tab `Behavior` and click checkbox
+`enable workspaces`
 
 
 
@@ -207,6 +252,7 @@ Try this yourself: on one screen, same workspace lunch only Rails console and Ra
 [10]: vim resources
 [11]: vim resources
 [12]: https://github.com/carlhuda/janus
+[13]: https://github.com/bbatsov/ruby-style-guide
 
 
 
