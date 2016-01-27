@@ -233,9 +233,57 @@ But if we don't use two screens how can we be sill productive ?
 
 ## Workspaces
 
+Workspaces (or sometime refernced as "Desktops") are your visual
+enviromne........
+
+In sort of extension we all are familiar with `Alt+Tab` combination
+(switch to other application). Now imagine you need for your work
+WebBrowser where you run the web application you are developing, Rails
+console to debug, another console where you run test and text editor.
+That is 4 applications that means on one workspace that means pressing
+up to 4 times `Alt+Tab` combination
+
+Now imagine a boss ask's you to `ssh` to server and to reply to
+important email. That's extra 2. Some of us would be tempted just to
+close some of the applications we not necesserally need in order to
+complete the task, but let's be realistic, you were working on this
+piece of code since morning, you don't want to reopen all the editor
+tabs, and in Rails console you are in middle of writing a object on the
+fly. Therefore you chose to open 2 more apps and than just deal with 6
+`Alt+tabs` 
+
+All of us experienced how this go out of hand.
+
+Now imagine that we will add extra workspace where we would keep the
+stuff we were working on, and we would do the stuff that boss asked us.
+
+Now this is more productive. But this goes out of control really easy
+and soon we loose track of what is on what workspace. That is the main
+point that OperatingSystems removed workspaces from default setup, as
+users were complaining that they cannot find their applications.
+
+Now Imagine you will not use 2 workspaces but you would use 6 (3 columns
+in 2 rows). Now imagine you will make a contract with your self that you
+will have max 3 windows 
+
+
 in ubuntu go to `Apperance` click tab `Behavior` and click checkbox
 `enable workspaces`
 
+
+
+
+# Standing descs
+
+Expedit standing desk by Peter Marks, Portland, OR ([source][17], [source][14])
+
+![Expedit standing desk by Peter Marks, Portland](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/expedit-standing-desk.jpg)
+
+Here you can see Jessica Allen's (Engine Yard) implementation of
+Standing Desk ([Jessica's blog post on Standing Desk][16]) 
+
+I recommend to check [this blog post][15] for more ideas for home made
+standing desk ideas.
 
 
 
@@ -253,8 +301,16 @@ in ubuntu go to `Apperance` click tab `Behavior` and click checkbox
 [11]: vim resources
 [12]: https://github.com/carlhuda/janus
 [13]: https://github.com/bbatsov/ruby-style-guide
+[14]: http://www.ikeahackers.net/2011/04/expedit-standing-desk.html
+[15]: http://www.homedit.com/ikea-standing-desk/
+[16]: http://spacekat.me/blog/2012/07/26/diy-standing-desk/
+[17]: http://petermarks.info/2011/04/11/the-spaceship-2-0/
 
 
+Image sources
+
+* [Standing Desk ergonomics img](http://fitness.stackexchange.com/questions/9660/proper-ergonomics-for-a-standing-desk)
+* [Standing Desk ideas imgs](http://www.homedit.com/ikea-standing-desk/)
 
 
 
