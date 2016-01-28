@@ -13,7 +13,21 @@ Topics not included/moved:
 Topics:
 
 
-## 
+## execute something in dir
+
+```ruby
+# ~/app
+Dir.chdir('~/diferent/project/') do
+  `git pull origin master`
+  `git add . `
+  `git commit -m 'lazy bastard' `
+  `git push origin master`
+end
+```
+
+
+
+##  each_cons
 
 ```ruby
 (1..9).each_cons(2) { |a| a } # nil
