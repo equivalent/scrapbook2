@@ -1,10 +1,10 @@
 # Web Developers Life Hacks
 
-When it comes to multitasking often the role of web-developer is put to
-the limit, specially when you are Full Stack developer in startup
-environment or a smaller team company where is counter productive to
-specialize. We are often asked to work on back-end, front-end, roll deployments run
-tests do code reviews, and answer to important email at the same time.
+When it comes to multitasking, often the role of web-developer is put to
+the limit. Specially when you are Full Stack developer in startup
+environment or a smaller company where is counter productive to
+specialize. We are often asked to work on back-end, front-end, do deployments, run
+tests, do code reviews, and answer to important email at the same time.
 
 There has been lot of [research][4] done on how humans do multitasking and basically
 we don't. Our brain can really do only one thing effective. Yes we can
@@ -14,53 +14,59 @@ Spanish at the same time.
 That's why I like adjust my work environment in a way that helps my
 brain do least amount of work to switch between multiple tasks.
 
+This article will be about some of the techniques / life-hacks I use in daily base.
 
 ## Typing with Ten Finger Typing Technique
 
 In ten Ten Finger Typing Technique a person is using all fingers to
 type. With left pinky on a QWERTY keyboard you type `1, q, a, z`, Left
-ring finger `2, w, s, x`, and so on. 
+ring finger `2, w, s, x`, and so on.
+
+
+!['Ten Finger Typing - hand positions'][101]
 
 When developers type with ten finger technique, we are using the full
 potential of our hands and fingers to type.
 
 We:
 
+* move our hand only up and down not side to side - less effort for
+  fingers
 * type faster
-* move our hand only up and down not side to side
 * type without looking on a keyboard
 * keep our eyes on a text entire time
 * less mistakes, less deleting
+* more productive editor shortcut execution
 
-When developers type with 2 or 3 finger they are loosing all the
-above benefits.
+When developers type with freestyle (2 or 3 finger) technique
+they are loosing all the above benefits.
 
 One of the biggest arguments against typing with Ten Finger Technique is
 that programmers and web-developers to often use special chars like
 `{}"'/?\~ <>` usually located on the right side of the keyboard, and
-therefore the right pinky gets to tired. Well, this is true, however the
-problem isn't that the technique is bad, the problem is that the of
-keyboard layout we use was designed for different group of people
-(writers, newspaper editors, ...)
+therefore the right pinky gets to tired (image above, yellow section).
 
+Well, this is true, however the problem isn't that the technique is bad,
+the problem is that the of nearly all keyboard layouts we use were designed for
+different group of people (writers, newspaper editors, ...)
 
 ## Dvorak
 
-The QWERTY layout that is mostly used in western culture was designed
+The [QWERTY][18] layout that is mostly used in western countries was designed
 for typewriters. The problem is that the layout was designed not for
-speed and productivity, but so that the typewriter wont jam. 
+speed and productivity, but so that the mechanical typewriter won't jam.
 
 In 1918 Dr August Dvorak and Wiliam Dealey designed new layout of
-keyboard designed for speed and less error in typing called [Dvorak
+keyboard designed for speed and less errors in typing called [Dvorak
 keyboard][5]. In experiments done on typists it was discovered that Dvorak
-layout was 1/3 more effective in speed
+layout was + 1/3 more effective in speed than QWERTY.
 
 > in 1933  International Commercial Schools
 > Contest typing competition QWERTY typists were complaining that they
 > were "disconcerted" from the noise of fast typing of Dvorak typists
 > [source][6]
 
-![dvorak keyboard] 
+![Dvorak keyboard layout][102]
 
 With your left hand you hold all the vowels
 on the master line (which you type most of the time as they are in all
@@ -69,7 +75,7 @@ therefore your left hand is on the master line most of the time and only
 right hand is moving up and down. 
 
 As you can see the Dvorak keyboard is much more friendly for
-programers/developers as you have `"'<,>.` on the line above left hand
+programmers/developers as you have `"'<,>.` on the line above left hand
 master line and therefore you don't use your right pinky that often.
 
 There is also a [Programmer Dvorak][7] which suppose to be designed to
@@ -263,8 +269,44 @@ point that OperatingSystems removed workspaces from default setup, as
 users were complaining that they cannot find their applications.
 
 Now Imagine you will not use 2 workspaces but you would use 6 (3 columns
-in 2 rows). Now imagine you will make a contract with your self that you
-will have max 3 windows 
+in 2 rows). Now imagine you will make a contract with yourself that you
+will have ideally 2, max 3 windows and on particilar workspaces you will
+have only certain usage scope of applications. For example
+
+* workspace 1: Browser with `localhost:3000`, and Rails server / log
+* workspace 2: Editor, Rails console, console to run tests
+* workspace 3: Comunication tools with your collegues (Slack, email
+               client, browser with work Gmail,...)
+* workspace 4: ssh connection to app server
+* workspace 5: personal stuff, music, personal Gmail, ..
+* workspace 6: everything else
+
+Now in every workspace you will press ideally 2, max 3 times `Alt+Tab`
+to get your stuff done.
+
+Key here is not to think about the work spaces in numbers, but imagine
+them in space; table of 3 cols in 2 rows.
+
+    |  workspace 1  |  workspace 2 | workspace 3 |
+    |  workspace 4  |  workspace 5 | workspace 6 |
+
+Therefore you don't think about `"I need to test my localhost in
+workspace 1 and turn of music in Workspace 5"` but you imagine `"I have my localhost browser in top-left"`
+
+In terms of switching between workspaces you
+will configure keybord shortcuts that would be easily accessable.
+Because the previous section was about Ten Finger Typing Technique we
+will assume you are typing with 10 fingers. 
+Best accessible numbers for 10 finger technique are 1,2 3, 0, 9, 8 as
+they are easily reachable, therefore we will configure this shortcuts:
+
+* workspace 1: `ctrl + 1`
+* workspace 2: `ctrl + 2`
+* workspace 3: `ctrl + 3`
+* workspace 4: `ctrl + 8`
+* workspace 5: `ctrl + 9`
+* workspace 6: `ctrl + 0`
+
 
 
 in ubuntu go to `Apperance` click tab `Behavior` and click checkbox
@@ -305,7 +347,12 @@ standing desk ideas.
 [15]: http://www.homedit.com/ikea-standing-desk/
 [16]: http://spacekat.me/blog/2012/07/26/diy-standing-desk/
 [17]: http://petermarks.info/2011/04/11/the-spaceship-2-0/
+[18]: qwerty keyborad wikipedia
 
+
+
+[101]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/ten-finger-typing.png 'Original Wikipedia'
+[102]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/dvorak-layout.png
 
 Image sources
 
