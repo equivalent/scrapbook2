@@ -38,7 +38,7 @@ We:
 * less mistakes, less deleting
 * more productive editor shortcut execution
 
-When developers type with freestyle (2 or 3 finger) technique
+When developers type with freestyle typing technique
 they are loosing all the above benefits.
 
 One of the biggest arguments against typing with Ten Finger Technique is
@@ -46,8 +46,8 @@ that programmers and web-developers to often use special chars like
 `{}"'/?\~ <>` usually located on the right side of the keyboard, and
 therefore the right pinky gets to tired (image above, yellow section).
 
-Well, this is true, however the problem isn't that the technique is bad,
-the problem is that the of nearly all keyboard layouts we use were designed for
+Well, this is true, however the problem isn't that the typing technique is bad,
+the problem is that QWERTY keyboard layout we use were designed for
 different group of people (writers, newspaper editors, ...)
 
 ## Dvorak
