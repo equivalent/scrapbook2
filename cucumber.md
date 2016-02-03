@@ -1,6 +1,19 @@
 
 ```
-within( all('tr').last ) { click_icon_link title: 'Validation Types' 
+within( all('tr').last ) { click_icon_link title: 'Validation Types'
+
+execute_script("$('.btn.btn-default.form-control.ui-select-toggle').first().click()")
+page.find(:xpath,'.//a[@class="ui-select-choices-row-inner"][contains(.,"27")]' ).click
+
+execute_script("$('.btn.btn-default.form-control.ui-select-toggle').last().click()")
+page.find(:xpath, './/a[@class="ui-select-choices-row-inner"]/span[contains(.,"May")]' ).click
+
+page.find(:css, '.next-step.active' ).click
+
+page.all(:css, '.key').to_a.each do |element|
+  element.click
+end
+
 ```
 
 capybara rspec cheat sheet:  http://cheatrags.com/capybara
