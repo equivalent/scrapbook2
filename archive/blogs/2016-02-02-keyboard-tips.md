@@ -1,27 +1,22 @@
-# Web Developers Life Hacks
+# Ergonomic and faster typing practices for Web Developers
 
-When it comes to multitasking, often the role of web-developer is put to
-the limit. Specially when you are Full Stack developer in startup
-environment or a smaller company where is counter productive to
-specialize. We are often asked to work on back-end, front-end, do deployments, run
-tests, do code reviews, and answer to important email at the same time.
 
-There has been lot of [research][4] done on how humans do multitasking and basically
-we don't. Our brain can really do only one thing effective. Yes we can
-listen music and still do Math, but we cannot teach ourself Math and
-Spanish at the same time.
+As with any craft there comes a natural need to improve our skills in
+Web Development methods. We teach ourself new coding patterns, we try
+new development tools, new 
 
-That's why I like adjust my work environment in a way that helps my
-brain do least amount of work to switch between multiple tasks.
+Brains are the engine of web-developer and the fingers are the wheels.
+So far there is no better way how to express Web Developers intentions
+than typing the code on or keyboards to our editors.
 
-This article will be about some of the techniques / life-hacks I use in daily base.
+
+
 
 ## Typing with Ten Finger Typing Technique
 
-In ten Ten Finger Typing Technique a person is using all fingers to
+With  Ten Finger Typing Technique  typists are using all fingers to
 type. With left pinky on a QWERTY keyboard you type `1, q, a, z`, Left
 ring finger `2, w, s, x`, and so on.
-
 
 !['Ten Finger Typing - hand positions'][101]
 
@@ -44,16 +39,15 @@ they are loosing all the above benefits.
 One of the biggest arguments against typing with Ten Finger Technique is
 that programmers and web-developers too often use special chars like
 `{}"'/?\~ <>` usually located on the right side of the keyboard, and
-therefore the right pinky gets to tired (image above, yellow section).
+therefore the right small finger (pinky) gets to tired (image above, yellow section).
 
 Well, this is true, however the problem isn't that the typing technique is bad,
-the problem is that QWERTY keyboard layout we use were designed for
+the problem is that QWERTY keyboard layout we  designed for
 different group of people (writers, newspaper editors, ...)
 
 ## Dvorak
 
-The [QWERTY][18] layout that is mostly used in western countries, was designed
-for typewriters. The problem is that the layout was designed not for
+The [QWERTY][18] layout was designed not for
 speed and productivity, but so that the mechanical typewriter won't jam.
 
 Between 1914-1932 Dr August Dvorak and Wiliam Dealey designed new layout of
@@ -68,8 +62,9 @@ layout was + 1/3 more effective in speed than QWERTY.
 
 ![Dvorak keyboard layout][102]
 
-With your left hand you type the vowels
-while your right hand is typing mostly used consonants. Now this design choice brought very
+With your left hand typist type the vowels while his right hand is typing mostly used consonants.
+
+Now this design choice brought very
 interesting side-effect for web-developers. Some of the special chars (`"'<,>.`) were moved
 to the left hand side of the layout. This doesn't solve the right-hand
 little finger problem entirely but definitely helps a lot.
@@ -80,7 +75,7 @@ however I'm not recommending it as it's maybe way too different. I've
 tried it for a week was not suitable for me, maybe it well be for you.
 
 Usually the question I get from people is: "But where would I buy a
-MacBook with Dvorak?". Well simply you don't have to. If you use 10
+MacBook with Dvorak?". Well, simply you don't have to. If you use 10
 finger technique you don't need to see the keys, your brain knows where
 the keys are. Sure, you can buy a mechanical keyboard and reposition the key,
 but that's noth the point. The layout is in your head.
@@ -92,6 +87,29 @@ the Dvorak would not be the best idea in my opinion.
 
 > I'm right handed, I'm not sure how effective is Dvorak for Left handed
 > folks, but I bet there is lot of articles if you google them.
+
+### Pair coding argument against Dvorak
+
+One argument against Dvorak I get a lot is that: 
+
+`"For pair coding I want to use same layout as my colegues"`
+
+Well yes that's a valid argument, however the question is what layout we
+are talking about? If QWERTY are we talking about `US` or `GB` version
+of QWERTY ? (I work in London UK).
+
+Here is a photo  of a Belgium keyboard MacBook of my friend / colleague:
+
+
+!['Ten Finger Typing - hand positions'][101]
+
+For me argument that "everyone should use EN QWERTY" in a multicultural
+City is more than nonsense.
+
+Now days there are better ways how to pair-code, like using CloudIDE or
+SSHing to a common VM or use [tmux][19]
+
+
 
 ## Split Keyboards
 
@@ -344,7 +362,7 @@ standing desk ideas.
 [16]: http://spacekat.me/blog/2012/07/26/diy-standing-desk/
 [17]: http://petermarks.info/2011/04/11/the-spaceship-2-0/
 [18]: qwerty keyborad wikipedia
-
+http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
 
 
 [101]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/ten-finger-typing.png 'Original Wikipedia'
