@@ -146,7 +146,7 @@ pair coding on one computer if needed.
 ## Vim
 
 When I decided to learn Ten Finger Technique, I was starting to learn
-basics of [Vim][1] editor. As if this combination was not hard enough I
+basics of [Vim][11] editor. As if this combination was not hard enough I
 thought to myself, hmm how about I teach myself Dvorak too. The
 transition was really hard, and for period of 2 weeks I had headaches,
 but it was worth it.
@@ -164,7 +164,7 @@ screencasts, if you ar a Ruby person install [Janus Vim][8] (collection of cool 
 that will make your Vim proper IDE)
 
 
-But really if  you decide you want to use  [Emacs][8]
+But really if  you decide you want to use  [Emacs][10]
  or [Sublime][9] editor it doesn't really matter, just make sure you
 discover all the potential cool shortcuts that will ease your life,
 only that way you will truly benefit Dvorak and Ten Finger Typing
@@ -183,8 +183,9 @@ Technique.
 [6]: https://github.com/equivalent/scrapbook2/blob/master/archive/web-developer-productivity/ep-1-split-keyboards.md
 [7]: https://en.wikipedia.org/wiki/Soldering
 [8]: https://github.com/carlhuda/janus
-[9]: https://en.wikipedia.org/wiki/Emacs
 [9]: https://www.sublimetext.com/
+[10]: https://en.wikipedia.org/wiki/Emacs
+[11]: https://en.wikipedia.org/wiki/Vim_%28text_editor%29
 
 [101]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/ten-finger-typing.png 'Original Wikipedia'
 [102]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/dvorak-layout.png
