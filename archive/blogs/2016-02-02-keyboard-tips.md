@@ -192,4 +192,4 @@ Technique.
 [104]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/ergonomic-keyboard.jpg
 [105]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/split-keyboard.jpg
 [106]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/my-split-keyboard.jpg
-[107]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/my-split-keyboard-2.jpg
+[107]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/my-split-keyboard-2.png
