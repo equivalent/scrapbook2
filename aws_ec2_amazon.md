@@ -1,5 +1,43 @@
 # Notes on AWS Amazon EC2
 
+
+## policy for adding IP to security group
+
+```
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:AuthorizeSecurityGroupIngress"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}
+
+# or 
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:AuthorizeSecurityGroupIngress"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+              "arn:aws:ec2:eu-west-1:123myaccountnumber890:security-group/sg-4bbbbb2e"
+            ]
+        }
+    ]
+}
+```
+
 ## adding EBS volume to EC2 
 
 list all availible mount points (EBS and EC2)
