@@ -40,32 +40,36 @@ that programmers and web-developers too often use special chars like
 therefore the right small finger (pinky) gets to tired (image above, yellow section).
 
 Well, this is true, however the problem isn't that the typing technique is bad,
-the problem is that QWERTY keyboard layout we  designed for
-different group of people (writers, newspaper editors, ...)
+the problem is that QWERTY keyboard layout (as any other layout out
+there) was designed for different group of people (book writers, newspaper editors, ...)
 
 ## Dvorak
 
-The [QWERTY][1] layout was designed not for
-speed and productivity, but so that the mechanical typewriter won't jam.
+The [QWERTY][1] keyboard layout was designed so that the mechanical typewriter won't jam.
+Layout designers did consider speed, but speed in terms of
+type faster when you don't have to fix typewriter every 4 minutes.
 
 Between 1914-1932 Dr August Dvorak and Wiliam Dealey designed new layout of
 keyboard designed for speed and less errors in typing called [Dvorak
 Simplifiex Keyboard Layout][2]. In experiments done on typists it was discovered that Dvorak
 layout was + 1/3 more effective in speed than QWERTY.
 
+![Dvorak keyboard layout][102]
+
+With your left hand typist type the vowels while his right hand is typing mostly used consonants.
+
 > in 1933  International Commercial Schools
 > Contest typing competition QWERTY typists were complaining that they
 > were "disconcerted" from the noise of fast typing of Dvorak typists
 > [source][3]
 
-![Dvorak keyboard layout][102]
-
-With your left hand typist type the vowels while his right hand is typing mostly used consonants.
-
 Now this design choice brought very
 interesting side-effect for web-developers. Some of the special chars (`"'<,>.`) were moved
 to the left hand side of the layout. This doesn't solve the right-hand
 little finger problem entirely but definitely helps a lot.
+
+The reason why I recommend Dvorak is not necessarily because of typing
+speed but because the design is more comfortable to write code on.
 
 There is also a [Programmer Dvorak][4] which suppose to be designed to
 even more improve productivity of typing for programmers / software developers
@@ -94,7 +98,7 @@ One argument against Dvorak I get a lot is that:
 
 Well yes that's a valid argument, however the question is what layout we
 are talking about? If QWERTY are we talking about `US` or `GB` version
-of QWERTY ? (I work in London UK).
+of QWERTY ?.
 
 Here is a photo  of a Belgium keyboard MacBook of my friend / colleague:
 
@@ -160,7 +164,7 @@ if they did they didn't try any extension.
 
 I'm just saying: try Vim for a week, but not with just basics. Learn
 split screens, visual selection,  read some tutorials watch some
-screencasts, if you ar a Ruby person install [Janus Vim][8] (collection of cool lib
+screencasts, if you are a Ruby Developer install [Janus Vim][8] (collection of cool lib
 that will make your Vim proper IDE)
 
 
