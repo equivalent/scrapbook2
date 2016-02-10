@@ -20,6 +20,18 @@ Archive:
 ## Web-development notes unsorted
 
 
+### Rails find session_id in rails console
+
+```
+#  `app` is variable  and `ENV` a constant loaded when you start rails console
+a = Rails.application.config.session_store.new(app, Rails.application.config.session_options)
+a.class # => ActionDispatch::Session::RedisStore
+a.get_session(ENV, '07319b2485be9ac4850664cd47cede38')  # you can find session id inspecting
+                                                        # your cookis via firefox or plugin
+
+# or a.find_session(ENV, '07319b2485be9ac4850664cd47cede38')
+```
+
 ### generate ri documentation
 
 
