@@ -1,4 +1,4 @@
-# Rails redirects to wrong host when NginX
+# Rails redirects to wrong host (NginX `HTTP_X_FORWARDED_HOST`)
 
 The other day I was noticing a problem on a beta server
 (let's call it **qa.ourapplication.it**): Some controllers were redirecting
@@ -49,7 +49,7 @@ Looks ok to me.
 
 So lets have a look into NginX config:
 
-```nginx
+```sh
 upstream ourapplication {
   server unix:///shared/sockets/ourapplication.sock;
 }
