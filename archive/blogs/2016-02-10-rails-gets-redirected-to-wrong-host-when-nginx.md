@@ -1,8 +1,8 @@
 # Rails redirects to wrong host (NginX `HTTP_X_FORWARDED_HOST`)
 
-The other day I was noticing a problem on a beta server
-(let's call it **qa.ourapplication.it**): Some controllers were redirecting
-to production (let's call it **www.ourapplication.com**).
+The other day I noticed a problem on our beta server
+(let's call it `qa.ourapplication.it`): Some controllers were redirecting
+to production (let's call it `www.ourapplication.com`).
 
 This happened due to fact that entire Rails application was hardcoding
 `*_url` (like `root_url`, `welcome_url`, ...) and I've replace them to
@@ -37,7 +37,7 @@ end
 http://apidock.com/rails/ActionController/Base/default_url_options
 
 
-> Configuring  this in a controller is ok
+> Note: Configuring  this in a controller is ok
 > but better practice to configure it in `config/enviroments/qa.rb` like
 > `config.action_controller.default_url_options = { host: 'qa.ourapplication.it' }`.
 > Or if you really want to have it in a controller,  configure `config.x.app_host =`'qa.ourapplication.it'
@@ -76,7 +76,7 @@ server {
 
 So all should be good ! What is  happening here ?
 
-I decided I'll print out the entire `request.inspect` to the Rails logs to see
+Lets do some debugging and print out the entire `request.inspect` to the Rails logs to see
 what's happening
 
 ```ruby
@@ -91,7 +91,11 @@ class WelcomeController < ApplicationController
 end
 ```
 
-> If you use Docker + Nginx + Puma and if you need to debug running docker
+```bash
+tail -f log/qa.log
+```
+
+> Note: If you use Docker + Nginx + Puma and if you need to debug running docker
 > container, you don't have to
 > deploy new image or commit running container with a change in a file.
 > All you have to do is get inside running docker container ,
@@ -99,10 +103,6 @@ end
 >  and once inside do a file change and then run `pumactl restart` that
 > will reload Puma workers with file change without killing Docker container.
 
-
-```bash
-tail -f log/qa.log
-```
 
 ...and this is what popped out (inside qa.ourapplication.it):
 
@@ -130,8 +130,9 @@ http://calvincorreli.com/2005/12/05/what-s-with-http_x_forwarded_host/comment-pa
 
 ### Solution
 
-So either remove `HTTP_X_FORWARDED_HOST` header if you don't necessarily need it,
-or extract servers to individual blocks and include [commonalities](https://kcode.de/wordpress/2033-nginx-configuration-with-includes) like this:
+So either remove `proxy_set_header  X-Forwarded-Host $server_name;`
+if you don't necessarily need  header `HTTP_X_FORWARDED_HOST`,
+or [extract servers to individual blocks and include commonalities](https://kcode.de/wordpress/2033-nginx-configuration-with-includes) like this:
 
 
 ```
