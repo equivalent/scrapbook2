@@ -49,7 +49,7 @@ Looks ok to me.
 
 So lets have a look into NginX config:
 
-```js
+```nginx
 upstream ourapplication {
   server unix:///shared/sockets/ourapplication.sock;
 }
