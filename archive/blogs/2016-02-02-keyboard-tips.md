@@ -28,7 +28,7 @@ We:
 
 * move our hand only up and down not side to side - less effort for
   fingers
-* type faster
+* type faster (**update**: may not be true [watch research here][13])
 * type without looking on a keyboard
 * keep our eyes on a text entire time
 * less mistakes, less deleting
@@ -194,6 +194,7 @@ Technique.
 [10]: https://en.wikipedia.org/wiki/Emacs
 [11]: https://en.wikipedia.org/wiki/Vim_%28text_editor%29
 [12]: https://skillsmatter.com/skillscasts/7455-web-developer-life-hacks
+[13]: https://www.youtube.com/watch?v=MhYFRr2gUaw&feature=youtu.be
 
 [101]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/ten-finger-typing.png 'Original Wikipedia'
 [102]: https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/dvorak-layout.png
