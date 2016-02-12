@@ -9,6 +9,13 @@
 SELECT * FROM pg_stat_activity;
 ```
 
+in docker container
+
+```
+psql --username="$DB_ENV_POSTGRES_USERNAME" --host="$DB_PORT_5432_TCP_ADDR" --dbname="$DB_ENV_POSTGRES_DATABASE" -c 'SELECT * from pg_stat_activity ;'  --password >> /tmp/out.txt
+```
+
+
 ### Rails time gt date lt
 
 ```ruby
