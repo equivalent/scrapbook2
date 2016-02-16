@@ -31,4 +31,10 @@ edge.length             #  100.0
 
 f.area
 
+
+(1..100).each do |i|
+  f = m.entities.add_face [[10 * i,10 * i,10 * i],[20 * i,10 * i,10 * i],[20 * i,20 * i,10 * i],[10 * i,20 * i,10 * i]]
+  f.pushpull -100
+end
+
 ```
