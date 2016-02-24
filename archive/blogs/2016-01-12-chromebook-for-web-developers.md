@@ -129,7 +129,7 @@ just use `Alt+Ctrl+w` which is basically the same thing by default.
 
 The VM provided in all three of these cloud IDE providers was fast
 enough to run tests, in some cases the tests were actually faster on
-the VM (1 core) than my work laptop (Intel i5 4th gen). Think about it
+the VM (1 core) than my work laptop (Intel i5 4th gen + SSD PRO drive). Think about it
 VM's are in a server room with air-conditioning. You are sometimes running
 your tests while you're sitting in a couch with your laptop on your lap
 listening to music, with 50 firefox tabs open and mining bitcoins.
