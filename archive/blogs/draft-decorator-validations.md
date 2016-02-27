@@ -373,7 +373,7 @@ carefull with them and really understand what is going on and write
 tests for the uscases not only on Unit level but on integration level
 as the may backfire when a Junior Developer join your team.
 
-# Separate Validation object
+## Separate Validation object
 
 Other way to deal with this is to have the validations on a separate
 object. Basically your model will stay validation free and you call
@@ -382,6 +382,95 @@ holds the validations:
 
 
 
+```ruby
+# app/model/identity.rb
+class Identity < ActiveRecord::Base
+  # nice thin model doing other improtant model stuff
+end
+
+# app/services/oauth_identity_creator.rb
+class OauthIdentityCreator
+  include ActiveModel::Validations
+
+  attr_accessor :uid, :provider
+
+  validates_presence_of :uid, :provider, :auth
+  validates_uniqueness_of :uid, :scope => :provider
+
+  def create
+    if valid?
+      identity
+        .tap do |i|
+          i.uid = uid
+          i.provider = provider
+        end
+        .save
+    end
+  end
+
+  def identity
+    @identity ||= Identity.new
+  end
+end
+
+# app/services/identity_updater.rb
+class IdentityUpdater
+  include ActiveModel::Validations
+
+  attr_accessor :submitted_identity, :identity_id
+
+  validates_presence_of :submitted_email, if: :interface_context?
+  validates_format_of   :submitted_email, with: EMAIL_REXP, if: :interface_context?
+
+  def update
+    identity
+      .tap { |i| i.submitted_email = submitted_email }
+      .save
+  end
+
+  def identity
+    @identity ||= Identity.find_by!(id: identity_id)
+  end
+end
+
+```ruby
+# app/controllers/identities_controller.rb
+class IdentitiesController
+  def create
+    @service = OauthIdentityCreator.new.tap do |service|
+      service.uid      = params[:auth][:uid]
+      service.provider = params[:auth][:provider]
+    end
+
+    if @service.create
+      @identity = @service.identity
+      # ...
+    else
+      render json: service.errors.full_messages
+    end
+  end
+end
+
+# app/controllers/admin/identities_controller.rb
+class Admin::IdentitiesController
+  def update
+    @service = OauthIdentityCreator.new.tap do |service|
+      service.submitted_email = params[:auth][:submitted_email]
+      service.identity_id     = params[:id]
+    end
+
+    if @service.update
+      @identity = @service.identity
+      # ...
+    else
+      render json: service.errors.full_messages
+    end
+  end
+end
+```
+
+> if you want to leart more on Service objects in Rails, watch
+> https://www.youtube.com/watch?v=LsUx0dWikmo
 
 
 
@@ -391,6 +480,9 @@ holds the validations:
 
 
 
+  <!--validates_each :first_name, :last_name do |record, attr, value|-->
+    <!--record.errors.add attr, 'starts with z.' if value.to_s[0] == ?z-->
+  <!--end-->
 
 
 
@@ -398,7 +490,8 @@ holds the validations:
 
 
 
-> One more recomendation ar validation factory objects: http://blog.lunarlogic.io/2015/models-on-a-diet/
+
+> One other way is tho usevalidation factory objects: http://blog.lunarlogic.io/2015/models-on-a-diet/
 
 
 gg
