@@ -1,50 +1,83 @@
+Last weeks I stumble upon a discussion on ["How to add validations to a
+specific instance of an active record object?"][5] and I was trying to
+write an answer in few words yet that turned to this "short" article :)
 
+Problem with Rails validations is that they are registered on a Class
+level not instance level.
 
-The problem:
+This means that in ideal object world we could just do this:
+
+```ruby
+# Reminder, This is not possible !!!
+identity = Identity.new
+identity.validations << ValidateEmailFormat.new(with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/, on: :submitted_email) 
+identity.validators # => [#<ValidateEmailFormat ...>] # ...
+```
+
+...and therefore instance would just as itself "what are the registered
+validators I have to apply"
+
+But in reality our validators are registered when class is registered to
+the system:
+
+```
+class Identity < ActiveRecord::Base
+  validates_format_of :submitted_email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z
+end
+
+Identity._validators # {:submited_email=>[#<ActiveRecord::Validations::PresenceValidator:0x00000002258ff8 # ....
+```
+
+...and therefore instance is asking Class "what are the registered validators on you that I have to apply"
+
+So if you try to register another validator, that will then reflect to all
+instances.
+
+In remaining part of the article we will have a look on some
+alternatives how something similar can be done. Just to repeat we
+will be trying to solve this example issue:
 
 ```ruby
 # app/models/identity.rb
 class Identity < ActiveRecord::Base
   # this should be validated all the time
   validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
 
-  # this should be validated only from Identity update controller
+  # this should be validated only in some cases
   validates_presence_of :submitted_email
-  validates_format_of   :submitted_email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z
+  validates_format_of   :submitted_email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
 end
 ```
 
-So we want to validate presence and uniquenes of `:uid` all the time (e.g.: model 
-update received via OAuthCallbackController), but we should validate `:submitted_email`
+So we want to validate presence of `:uid` and `:provider` all the time (e.g.: model
+update received via `OAuthCallbackController#create`), but we should validate `:submitted_email`
 only when submitted from other controller when we prompt User to update
 his record(`Identities#update`)
 
 
-One way how to do this is to use custom validators that deals with all
-the conditions that we need
+## `attr_accessor` as a behavior modifier
 
-
-Other way would be to provide `attr_accessor` and we would set some
-value (without writing to DB) and deal with the condition there
+One way would be to enable `attr_accessor` in our model and we would set some
+value (without writing to DB) from a controller and deal with the condition inside the model:
 
 ```ruby
 # app/controllers/identities_controller.rb
-class IdentitiesController
-  def update
-    @identity = Identiny.find(params[:id])
+class OAuthCallbackController
+  def create
+    @identity = Identiny.new(params.slice(:uid, :provider))
     if @identity.save # will validate only :uid, :provider
       # ...
     end
   end
 end
 
-# app/controllers/admin/identities_controller.rb
-class Admin::IdentitiesController
+# app/controllers/identities_controller.rb
+class IdentitiesController
   def update
     @identity = Identiny.find(params[:id])
+    @identity.attributes(params.require(:identity).permit(:submitted_email))
     @identity.editting_context = :interface
-    if @identity.save(context: :admin) # will validate :uid, :provider and :submitted_email
+    if @identity.save   # will validate :uid, :provider and :submitted_email
       # ...
     end
   end
@@ -55,7 +88,6 @@ class Identity < ActiveRecord::Base
   attr_accessor: :editting_context
 
   validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
 
   validates_presence_of :submitted_email, if: :interface_context?
   validates_format_of   :submitted_email, with: EMAIL_REXP, if: :interface_context?
@@ -72,7 +104,6 @@ class Identity < ActiveRecord::Base
   attr_accessor: :editting_context
 
   validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
 
   validates_presence_of :submitted_email,
     if: Proc.new{|i| i.editting_context == :interface }
@@ -86,17 +117,7 @@ end
 Problem is that this may easily get out of hand and your model will be
 too fat.
 
-<!--class Identity < ActiveRecord::Base-->
-  <!--attr_accessor: :editting_context-->
-
-  <!--validates_presence_of :uid, :provider, :auth-->
-  <!--validates_uniqueness_of :uid, :scope => :provider-->
-
-  <!--validates_presence_of :submitted_email, on: :admin-->
-  <!--validates_format_of   :submitted_email, with: EMAIL_REXP, on: :admin-->
-  <!--[>validates_length_of :slug, minimum: 3, unless: Proc.new{|u| u.edited_by_admin? }<]-->
-  <!--[>validates_length_of :slug, minimum: 1, if:     Proc.new{|u| u.edited_by_admin? }<]-->
-<!--end-->
+## Rails built in `on:` context
 
 Ruby on Rails has a bulit in way how to deal with this situations by
 introducing validation context.
@@ -107,27 +128,28 @@ class Identity < ActiveRecord::Base
   EMAIL_REXP = /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z
 
   validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
 
-  validates_presence_of :submitted_email, on: :admin
-  validates_format_of   :submitted_email, with: EMAIL_REXP, on: :admin
+  validates_presence_of :submitted_email, on: :interface
+  validates_format_of   :submitted_email, with: EMAIL_REXP, on: :interface
 end
 
-# app/controllers/identities_controller.rb
-class IdentitiesController
-  def update
-    @identity = Identiny.find(params[:id])
+# app/controllers/oauth_callback__controller.rb
+class OAuthCallbackController
+  def create
+    @identity = Identiny.new
+    @identity.attributes(params.slice(:uid, :provider))
     if @identity.save # will validate only :uid, :provider
       # ...
     end
   end
 end
 
-# app/admin/controllers/identities_controller.rb
-class Admin::IdentitiesController
+# app/controllers/identities_controller.rb
+class IdentitiesController
   def update
     @identity = Identiny.find(params[:id])
-    if @identity.save(context: :admin) # will validate :uid, :provider and :submitted_email
+    @identity.attributes(params.require(:identity).permit(:submitted_email))
+    if @identity.save(context: :interface) # will validate :uid, :provider and :submitted_email
       # ...
     end
   end
@@ -149,34 +171,34 @@ module InterfaceIdentityConcern
   extend ActiveSupport::Concern
 
   included do
-    validates_presence_of :submitted_email, on: :admin
-    validates_format_of   :submitted_email, with: EMAIL_REXP, on: :admin
+    validates_presence_of :submitted_email, on: :interface
+    validates_format_of   :submitted_email, with: EMAIL_REXP, on: :interface
   end
 end
 
 
 # app/model/identity.rb
 class Identity < ActiveRecord::Base
-  include InterfaceIdentityConcern
-
   EMAIL_REXP = /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z
 
+  include InterfaceIdentityConcern
+
   validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
-
-  # ...
 end
+```
 
-But puting everything into Concerns is like putting all the mess
-into drawer when your Mom asks you to clean the room. It looks clean but
+But placing everything into Concerns is like putting all the mess
+into drawer when your Mom asks you to clean your room. It looks clean but
 the mess is still there and finding stuff when you need is difficult.
 
 It also doesn't solve the fact that you are basically using "hash map" for
-controlling you use cases (which is in 90% of cases enough) but you are not using
-real Object Oriented Solutions and that can get quickly out of hands
-into developer nightmare.
+controlling you use cases (which is in 90% of cases ok) but you are not using
+can get quickly out of hands.
 
+Let's have a look on some Object Oriented Solutions.
 
+> If you are Ruby novice I'm recommending to stuck with existing conventions that were
+> described above, topics bellow may feel too out of hand for untrained eye.
 
 
 ## Validations on Decorator object
@@ -194,8 +216,7 @@ Another solution is to define validations on a Delegator object and then just
 ```ruby
 # app/models/identity.rb
 class Identity < ActiveRecord::Base
-  validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
+  validates_presence_of :uid, :provider
 end
 
 # app/models/submitted_identity.rb
@@ -218,11 +239,11 @@ class SubmittedIdentity < SimpleDelegator
   end
 end
 
-# app/controllers/identities_controller.rb
-class IdentitiesController
+# app/controllers/oauth_callback_controller.rb
+class OAuthCallbackController
   def update
     @identity = Identiny.find(params[:id])
-    @identity.attributes = params.require(:identity).permit(:uid, :provider)
+    @identity.attributes = params.slice(:uid, :provider)
 
     if @identity.save
       # ...
@@ -230,12 +251,14 @@ class IdentitiesController
   end
 end
 
-# app/controllers/admin/identities_controller.rb
-class Admin::IdentitiesController
+# app/controllers/identities_controller.rb
+class IdentitiesController
   def update
     @identity = Identiny.find(params[:id])
     @identity = SubmittedIdentity.new(@identity)
+
     # @identity.class # => SubmittedIdentity
+
     @identity.attributes = params.require(:identity).permit(:submitted_email)
 
     if @identity.save
@@ -256,8 +279,10 @@ and have different layers of validation
 # ...
 ```
 
-This may seem as ideal solution however there is one issue with this
-approach. First of all you may stumble on the naming issue if you
+This may seem as ideal solution however there are some big issues with this
+approach.
+
+First of all you may stumble on the naming issue if you
 do something like `My <%= @identity.class.name %>` in your views, as
 your instance variable `@identity` is class `SubmittedIdentity`.
 
@@ -282,7 +307,7 @@ end
 
 Another issue is that the `@errors` instance_variable is defined on the
 instance level of the decorator class, meaning that the model and the
-decorator has their own separate `@instance.errors`
+decorator has their own separate `errors`
 
 > This happens due to `include ActiveModel::Validations` [source here][3]
 
@@ -301,12 +326,13 @@ Therefore if you do:
 
 So the question really is if this is a bug or a feature for the
 particular usecase that you need. For example when submitting Rails form
-on a New Identity you don't want to display errors on fields that are
+on a new Identity you don't want to display errors on fields that are
 not shown in the input.
 
-This may be also a problem if you use some other Rails gem that is
-forcing itself to comunicate directly with model. For example if you use
-Draper gem and you try to Draper Decorate our Validation Decorator it
+The "own `errors`" problem may be also an issue if you use some other Rails gem that is
+forcing itself to communicate directly with model. For example if you use
+Draper gem and you try to Draper Decorate our Validation Decorator
+instance it
 will not recognize the `errors` on Validation Decorator:
 
 ```
@@ -317,12 +343,12 @@ will not recognize the `errors` on Validation Decorator:
 @submitted_identity.valid? # => false
 
 @draper_decorated_identity = @submitted_identity.decorate  # drapers IdentityDecorator
-@draper_decorated_identity.vaild ?      # true
+@draper_decorated_identity.vaild?      # true
 @draper_decorated_identity.erros.size   # 0
 @draper_decorated_identity.object.class # Identity
 ```
 
-As you can see Draper will decorate itself around undelying instance of
+As you can see Draper will decorate itself around underlying instance of
 `Identity` not `SubmittedIdentity`
 
 So in this case you need to have all the errors brought together you
@@ -369,9 +395,9 @@ This will sync up errors from the `SubmittedIdentity` object to `Identity`
 ```
 
 Decorator Validation objects are handy and quick to introduce but you need to be really
-carefull with them and really understand what is going on and write
-tests for the uscases not only on Unit level but on integration level
-as the may backfire when a Junior Developer join your team.
+careful with them and really understand what is going on and write
+tests for the usecases, not only on Unit level but on integration level
+as they may backfire when a Junior Developer join your team.
 
 ## Separate Validation object
 
@@ -379,7 +405,6 @@ Other way to deal with this is to have the validations on a separate
 object. Basically your model will stay validation free and you call
 `valid?` on external object. This way your for example your `service object`
 holds the validations:
-
 
 
 ```ruby
@@ -395,7 +420,6 @@ class OauthIdentityCreator
   attr_accessor :uid, :provider
 
   validates_presence_of :uid, :provider, :auth
-  validates_uniqueness_of :uid, :scope => :provider
 
   def create
     if valid?
@@ -419,13 +443,15 @@ class IdentityUpdater
 
   attr_accessor :submitted_identity, :identity_id
 
-  validates_presence_of :submitted_email, if: :interface_context?
-  validates_format_of   :submitted_email, with: EMAIL_REXP, if: :interface_context?
+  validates_presence_of :submitted_email
+  validates_format_of   :submitted_email, with: EMAIL_REXP
 
   def update
-    identity
-      .tap { |i| i.submitted_email = submitted_email }
-      .save
+    if valid?
+      identity
+        .tap { |i| i.submitted_email = submitted_email }
+        .save
+    end
   end
 
   def identity
@@ -434,8 +460,8 @@ class IdentityUpdater
 end
 
 ```ruby
-# app/controllers/identities_controller.rb
-class IdentitiesController
+# app/controllers/oauth_callback_controller.rb
+class OAuthCallbackController
   def create
     @service = OauthIdentityCreator.new.tap do |service|
       service.uid      = params[:auth][:uid]
@@ -451,8 +477,8 @@ class IdentitiesController
   end
 end
 
-# app/controllers/admin/identities_controller.rb
-class Admin::IdentitiesController
+# app/controllers/identities_controller.rb
+class IdentitiesController
   def update
     @service = OauthIdentityCreator.new.tap do |service|
       service.submitted_email = params[:auth][:submitted_email]
@@ -469,35 +495,113 @@ class Admin::IdentitiesController
 end
 ```
 
-> if you want to leart more on Service objects in Rails, watch
+> NOTE: if you want to leart more on Service objects in Rails, watch
 > https://www.youtube.com/watch?v=LsUx0dWikmo
 
+> NOTE: One other way is tho use Validation Factory objects: http://blog.lunarlogic.io/2015/models-on-a-diet/
 
+Those who worked with Service objects or Processor objects know that
+they sometimes may do too many tasks and placing overhead of validation
+on the may be another extra unecesarry complexicity.
 
+Imagine you are dealing with client who want to send you to your app API
+an overly composed API request creating multiple resources. It's an
+improtarnt client so you cannot say no to their request and they don't
+want to alocate any time to make the request more RESTfull.
 
+Imagine they are sending you something like this:
 
+```json
+{
+  "user": {
+    "name": "Jhonny",
+    "email":  "blabla@test.com",
+  },
+  "document": {
+    "url":"http://blabla.com/abc.txt" }
+  }
+}
+```
 
+My favorite approeach to situations like this is to initialize **Request
+Model** and deal with validations in it, and when valid then pass it to
+service object or processor object.
 
+```ruby
+# app/requent_models/document_bulk_request_model.rb
+class DocumentBulkRequestModel
+  def initialize(params)
+    @params = params
+  end
 
+  validates :user_name,
+    length: { maximum: 255 },
+    presence: true
 
-  <!--validates_each :first_name, :last_name do |record, attr, value|-->
-    <!--record.errors.add attr, 'starts with z.' if value.to_s[0] == ?z-->
-  <!--end-->
+  validates :user_email,
+    length: { maximum: 255 },
+    presence: true,
+    format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/ }
 
+  validates :document_url,
+    length: { maximum: 1200 },
+    presence: true,
+    format: { with: /\Ahttp.*/ }
 
+  def user_name
+    user_params.fetch('name')
+  end
 
+  def user_email
+    user_params.fetch('email')
+  end
 
+  def document_url
+    document_params.fetch('url')
+  end
 
+  private
+    attr_reader :params
 
+    def user_params
+      params.fetch('user')
+    end
 
+    def document_params
+      params.fetch('document')
+    end
+end
+```
 
-> One other way is tho usevalidation factory objects: http://blog.lunarlogic.io/2015/models-on-a-diet/
+Then you can do:
 
+```ruby
+# app/controllers/bulk_requents_controller.rb
+class BulkRequestsController.rb
+  def process_client
+    request_model = DocumentBulkRequestModel.new(params)
 
-gg
-answer https://gist.github.com/thechrisoshow/2236521`
+    if request_model.valid?
+      ClientBulkProcess.new(request_model).call
+      # ...
+    else
+      render json: request_model.errors.full_messages
+    end
+  end
+end
+```
 
+My advice is don't go ower board, if something can be done simple make
+it simple. If the code of simple solution looks too heavy refactore.
+
+Always make sure you write tests for your scenarious. Don't just use
+shoulda matchers for validation, feed the object real data, and always
+write at least few integration scenarios. You don't necesary have to write
+Selenium/Capybara scenario, [RSpec request spec][4] sending some faulty
+prams should be enough.
 
 [1]: http://api.rubyonrails.org/classes/ActiveSupport/Concern.html
 [2]: https://github.com/drapergem/draper
 [3]: https://github.com/rails/rails/blob/6dfab475ca230dfcad7a603483431c8e7a8f908e/activemodel/lib/active_model/validations.rb
+[4]: https://www.relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec
+[5]: https://gist.github.com/thechrisoshow/2236521
