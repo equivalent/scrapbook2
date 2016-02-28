@@ -16,8 +16,8 @@ identity.validations << ValidateEmailFormat.new(with: /\A[^@\s]+@([^@\s]+\.)+[^@
 identity.validators # => [#<ValidateEmailFormat ...>] # ...
 ```
 
-...and therefore instance would just as itself "what are the registered
-validators I have to apply"
+...and therefore instance would just ask itself *"what are the registered
+validators I have to apply"*
 
 But in reality our validators are registered when class is registered to
 the system:
@@ -30,14 +30,15 @@ end
 Identity._validators # {:submited_email=>[#<ActiveRecord::Validations::PresenceValidator:0x00000002258ff8 # ....
 ```
 
-...and therefore instance is asking Class "what are the registered validators on you that I have to apply"
+...and therefore instance is asking Class *"what are the registered validators on you that I have to apply"*
 
 So if you try to register another validator, that will then reflect to all
 instances.
 
 In remaining part of the article we will have a look on some
-alternatives how something similar can be done. Just to repeat we
-will be trying to solve this example issue:
+alternatives how something similar can be done.
+
+In our examples will be trying to solve this issue:
 
 ```ruby
 # app/models/identity.rb
@@ -66,7 +67,7 @@ value (without writing to DB) from a controller and deal with the condition insi
 # app/controllers/identities_controller.rb
 class OAuthCallbackController
   def create
-    @identity = Identiny.new(params.slice(:uid, :provider))
+    @identity = Identity.new(params.slice(:uid, :provider))
     if @identity.save # will validate only :uid, :provider
       # ...
     end
@@ -76,7 +77,7 @@ end
 # app/controllers/identities_controller.rb
 class IdentitiesController
   def update
-    @identity = Identiny.find(params[:id])
+    @identity = Identity.find(params[:id])
     @identity.attributes(params.require(:identity).permit(:submitted_email))
     @identity.editting_context = :interface
     if @identity.save   # will validate :uid, :provider and :submitted_email
@@ -123,7 +124,7 @@ too fat.
 
 ## Rails built in `on:` context
 
-Ruby on Rails has a bulit in way how to deal with this situations by
+Ruby on Rails has a build in way how to deal with this situations by
 introducing validation context.
 
 ```ruby
@@ -140,7 +141,7 @@ end
 # app/controllers/oauth_callback__controller.rb
 class OAuthCallbackController
   def create
-    @identity = Identiny.new
+    @identity = Identity.new
     @identity.attributes(params.slice(:uid, :provider))
     if @identity.save # will validate only :uid, :provider
       # ...
@@ -151,7 +152,7 @@ end
 # app/controllers/identities_controller.rb
 class IdentitiesController
   def update
-    @identity = Identiny.find(params[:id])
+    @identity = Identity.find(params[:id])
     @identity.attributes(params.require(:identity).permit(:submitted_email))
     if @identity.save(context: :interface) # will validate :uid, :provider and :submitted_email
       # ...
@@ -249,7 +250,7 @@ end
 # app/controllers/oauth_callback_controller.rb
 class OAuthCallbackController
   def update
-    @identity = Identiny.find(params[:id])
+    @identity = Identity.find(params[:id])
     @identity.attributes = params.slice(:uid, :provider)
 
     if @identity.save
@@ -261,7 +262,7 @@ end
 # app/controllers/identities_controller.rb
 class IdentitiesController
   def update
-    @identity = Identiny.find(params[:id])
+    @identity = Identity.find(params[:id])
     @identity = SubmittedIdentity.new(@identity)
 
     # @identity.class # => SubmittedIdentity
@@ -275,13 +276,13 @@ class IdentitiesController
 end
 ```
 
-!['Controller comunicating with decorated model '](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-controller-comunicating-with-decorated-model.png)
+!['Controller communicating with decorated model '](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-controller-comunicating-with-decorated-model.png)
 
 The biggest benefit is that you can stack several decorators like this
 and have different layers of validation
 
 ```ruby
-@identity = Identiny.find(params[:id])
+@identity = Identity.find(params[:id])
 @identity = SubmittedIdentity.new(@identity)
 @identity = SomeOtherValidationIdentityDecorator.new(@identity)
 @identity = AndAnotherValidationIdentityDecorator.new(@identity)
@@ -527,7 +528,7 @@ complex):
 ```json
 {
   "user": {
-    "name": "Jhonny",
+    "name": "Jonny",
     "email":  "blabla@test.com",
   },
   "document": {
@@ -633,7 +634,7 @@ I've never used them but they are definitely interesting concept
 
 In normal situation in 80% to 90% of cases regular Rails validations on
 a model would be enough. However there are cases when keeping your
-validation in a Model is conterproductive. Don't be afraid to separate
+validation in a Model is counterproductive. Don't be afraid to separate
 concerns and responsibilities to different objects.
 
 My advice is don't go over board, if something can be done simple make
