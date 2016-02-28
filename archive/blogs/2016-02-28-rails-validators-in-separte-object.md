@@ -1,7 +1,7 @@
 # Rails validators in separate object
 
 Last weeks I stumble upon a discussion on "[How to add validations to a
-specific instance of an active record object?] [5]" and I was trying to
+specific instance of an active record object?][5]" and I was trying to
 write an answer in few words yet that turned to this "short" article :)
 
 Problem with Rails validations is that they are registered on a Class
@@ -461,7 +461,6 @@ class IdentityUpdater
   end
 end
 
-```ruby
 # app/controllers/oauth_callback_controller.rb
 class OAuthCallbackController
   def create
