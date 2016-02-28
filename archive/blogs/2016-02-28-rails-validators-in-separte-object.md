@@ -620,6 +620,7 @@ class BulkRequestsController.rb
   end
 end
 ```
+!['Request Model taking care of validations'](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-request-model-service.png)
 
 ## Validator Factory
 
@@ -644,6 +645,9 @@ kick you if you are doing something big. Try to feed the validation object multi
 write at least few integration scenarios. You don't necessary have to write
 Selenium/Capybara scenario, [RSpec request spec][4] sending some faulty
 prams should be enough.
+
+> If you enjoyed the images in this article, you may find them at 
+> [my DevianArt profile](http://equivalent8.deviantart.com/gallery/58024529/objects-oriented-programnig)
 
 [1]: http://api.rubyonrails.org/classes/ActiveSupport/Concern.html
 [2]: https://github.com/drapergem/draper
