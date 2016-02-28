@@ -1,7 +1,7 @@
 # Rails validators in separate object
 
 Last weeks I stumble upon a discussion on "[How to add validations to a
-specific instance of an active record object?][5]" and I was trying to
+specific instance of an active record object?] [5]" and I was trying to
 write an answer in few words yet that turned to this "short" article :)
 
 Problem with Rails validations is that they are registered on a Class
@@ -311,7 +311,7 @@ Another issue is that the `@errors` instance_variable is defined on the
 instance level of the decorator class, meaning that the model and the
 decorator has their own separate `errors`
 
-> This happens due to `include ActiveModel::Validations` [source here][3]
+> This happens due to `include ActiveModel::Validations` [source here] [3]
 
 Therefore if you do:
 
