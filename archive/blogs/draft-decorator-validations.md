@@ -552,26 +552,26 @@ class DocumentBulkRequestModel
     format: { with: /\Ahttp.*/ }
 
   def user_name
-    user_params.fetch('name')
+    user_params['name']
   end
 
   def user_email
-    user_params.fetch('email')
+    user_params['email']
   end
 
   def document_url
-    document_params.fetch('url')
+    document_params['url']
   end
 
   private
     attr_reader :params
 
     def user_params
-      params.fetch('user')
+      params['user'] || {}
     end
 
     def document_params
-      params.fetch('document')
+      params['document'] || {}
     end
 end
 ```
