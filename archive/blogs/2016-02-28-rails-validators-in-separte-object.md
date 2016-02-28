@@ -1,4 +1,4 @@
-# Rails validators in separate object
+# Different ways how to do Rails validations
 
 Last weeks I stumble upon a discussion on "[How to add validations to a
 specific instance of an active record object?][5]" and I was trying to
@@ -119,6 +119,8 @@ end
 Problem is that this may easily get out of hand and your model will be
 too fat.
 
+!['Model too fat'](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-model-too-fat.png)
+
 ## Rails built in `on:` context
 
 Ruby on Rails has a bulit in way how to deal with this situations by
@@ -197,6 +199,8 @@ It also doesn't solve the fact that you are basically using "hash map" for
 controlling you use cases (which is in 90% of cases ok) but you are not using
 can get quickly out of hands.
 
+!['Model too many responsibility'](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-model-too-many-responsibilities.png)
+
 Let's have a look on some Object Oriented Solutions.
 
 > If you are Ruby novice I'm recommending to stuck with existing conventions that were
@@ -214,6 +218,7 @@ Another solution is to define validations on a Delegator object and then just
 > validation level)
 > Draper is just really good implementation on decorating Models with
 > View responsibilities.
+
 
 ```ruby
 # app/models/identity.rb
@@ -270,6 +275,8 @@ class IdentitiesController
 end
 ```
 
+!['Controller comunicating with decorated model '](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-controller-comunicating-with-decorated-model.png)
+
 The biggest benefit is that you can stack several decorators like this
 and have different layers of validation
 
@@ -280,6 +287,9 @@ and have different layers of validation
 @identity = AndAnotherValidationIdentityDecorator.new(@identity)
 # ...
 ```
+
+!['Stack up multiple validation decorators'](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-model-decorated-multiple-times.png)
+
 
 This may seem as ideal solution however there are some big issues with this
 approach.
@@ -495,6 +505,9 @@ class IdentitiesController
   end
 end
 ```
+
+!['Service object validations'](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/oop-service-taking-care-of-validation.png)
+
 
 > NOTE: if you want to learn more on Service objects in Rails, watch
 > https://www.youtube.com/watch?v=LsUx0dWikmo
