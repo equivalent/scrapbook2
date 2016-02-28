@@ -498,8 +498,6 @@ end
 > NOTE: if you want to learn more on Service objects in Rails, watch
 > https://www.youtube.com/watch?v=LsUx0dWikmo
 
-> NOTE: One other interesting way is tho use Validator Factory: http://blog.lunarlogic.io/2015/models-on-a-diet/
-
 Those who worked with Service objects or Processor objects know that
 they sometimes may do too many tasks and placing overhead of validation
 on the may be another extra complexity.
@@ -574,6 +572,21 @@ class DocumentBulkRequestModel
       params['document'] || {}
     end
 end
+
+# app/services/client_bulk_process.rb
+class ClientBulkProcess
+  attr_reader :request_model
+
+  def initialize(request_model)
+    @request_model = request_model
+  end
+
+  def call
+    # create User with  `request_model.user_name`, `request_model.user_email`
+    # create User documents with  `request_model.document_url`
+    # other processing ...
+  end
+end
 ```
 
 Then you can do:
@@ -585,7 +598,7 @@ class BulkRequestsController.rb
     request_model = DocumentBulkRequestModel.new(params)
 
     if request_model.valid?
-      ClientBulkProcess.new(request_model).call
+      ClientBulkProcess.new(request_model).call 
       # ...
     else
       render json: request_model.errors.full_messages
@@ -594,12 +607,27 @@ class BulkRequestsController.rb
 end
 ```
 
-My advice is don't go ower board, if something can be done simple make
+## Validator Factory
+
+One other interesting way is tho use Validator Factory. I'm not going to
+explain them here but there is a wonderful article going into depth: http://blog.lunarlogic.io/2015/models-on-a-diet/
+
+I've never used them but they are definitely interesting concept
+
+## Conclusion
+
+In normal situation in 80% to 90% of cases regular Rails validations on
+a model would be enough. However there are cases when keeping your
+validation in a Model is conterproductive. Don't be afraid to separate
+concerns and responsibilities to different objects.
+
+My advice is don't go over board, if something can be done simple make
 it simple. If the code of simple solution looks too heavy refactore.
 
-Always make sure you write tests for your scenarious. Don't just use
-shoulda matchers for validation, feed the object real data, and always
-write at least few integration scenarios. You don't necesary have to write
+Always make sure you write tests for your scenarios. Don't just use
+[Shoulda Matchers][6] for validation. The may be enough for Model but may
+kick you if you are doing something big. Try to feed the validation object multiple data, and always
+write at least few integration scenarios. You don't necessary have to write
 Selenium/Capybara scenario, [RSpec request spec][4] sending some faulty
 prams should be enough.
 
@@ -608,3 +636,4 @@ prams should be enough.
 [3]: https://github.com/rails/rails/blob/6dfab475ca230dfcad7a603483431c8e7a8f908e/activemodel/lib/active_model/validations.rb
 [4]: https://www.relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec
 [5]: https://gist.github.com/thechrisoshow/2236521
+[6]: https://github.com/thoughtbot/shoulda-matchers
