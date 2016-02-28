@@ -495,21 +495,22 @@ class IdentitiesController
 end
 ```
 
-> NOTE: if you want to leart more on Service objects in Rails, watch
+> NOTE: if you want to learn more on Service objects in Rails, watch
 > https://www.youtube.com/watch?v=LsUx0dWikmo
 
-> NOTE: One other way is tho use Validation Factory objects: http://blog.lunarlogic.io/2015/models-on-a-diet/
+> NOTE: One other interesting way is tho use Validator Factory: http://blog.lunarlogic.io/2015/models-on-a-diet/
 
 Those who worked with Service objects or Processor objects know that
 they sometimes may do too many tasks and placing overhead of validation
-on the may be another extra unecesarry complexicity.
+on the may be another extra complexity.
 
-Imagine you are dealing with client who want to send you to your app API
+Imagine you are dealing with client who want to send to your app  API
 an overly composed API request creating multiple resources. It's an
-improtarnt client so you cannot say no to their request and they don't
-want to alocate any time to make the request more RESTfull.
+important client so you cannot say no to their request and they don't
+want to allocate any time to make the request more RESTfull.
 
-Imagine they are sending you something like this:
+Imagine they are sending you something like this (but 20times more
+complex):
 
 ```json
 {
@@ -523,13 +524,15 @@ Imagine they are sending you something like this:
 }
 ```
 
-My favorite approeach to situations like this is to initialize **Request
+My favorite approach to situations like this is to initialize **Request
 Model** and deal with validations in it, and when valid then pass it to
 service object or processor object.
 
 ```ruby
 # app/requent_models/document_bulk_request_model.rb
 class DocumentBulkRequestModel
+  include ActiveModel::Validations
+
   def initialize(params)
     @params = params
   end
