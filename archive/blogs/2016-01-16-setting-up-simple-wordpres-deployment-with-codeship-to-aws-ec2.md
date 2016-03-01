@@ -90,6 +90,10 @@ Please remove the `--dry-run` when you're ready.
 
 Ok now on push some change to project Github repo branch `live-20161101`. If configured correctly CodeShip will do the changes of a template.
 
+> **Note:** Be sure that you have your server firewall set up in a way
+> that it will enable CodeShip to SSH to you machine othevise the SSH
+> connection will Freeze
+> https://codeship.com/documentation/faq/enabling-access-to-servers/
 
 [1]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-connect-to-instance-linux "Connect to EC2 instance"
 [2]: http://coenraets.org/blog/2012/01/setting-up-wordpress-on-amazon-ec2-in-5-minutes/ "Settup WordPress in EC2 instance"

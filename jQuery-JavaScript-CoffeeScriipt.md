@@ -1,3 +1,8 @@
+### check last 5 checkboxes
+
+```
+$('tr input').slice(-5).prop('checked', 'true')
+```
 
 ### Escaping XSS
 

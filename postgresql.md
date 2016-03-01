@@ -9,6 +9,25 @@
 SELECT * FROM pg_stat_activity;
 ```
 
+
+once you find proces causing issue (usually one stuck there `active`
+for hours)  kill it
+
+```
+  # SELECT pg_cancel_backend(pid-of-the-postgres-process);   # 3rd line of pg_stat_activity;
+  SELECT pg_cancel_backend(123456);  
+```
+
+in docker container
+
+```
+psql --username="$DB_ENV_POSTGRES_USERNAME" --host="$DB_PORT_5432_TCP_ADDR" --dbname="$DB_ENV_POSTGRES_DATABASE" -c 'SELECT * from pg_stat_activity ;'  --password >> /tmp/out.txt
+```
+
+
+
+
+
 ### Rails time gt date lt
 
 ```ruby
