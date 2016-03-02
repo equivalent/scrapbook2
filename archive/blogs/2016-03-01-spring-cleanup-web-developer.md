@@ -77,7 +77,7 @@ sudo docker rmi -f $(sudo docker images | grep live-2015 | awk "{print \$3}")
 sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
 ```
 
-#### Removing old release Git branches
+## Removing old release Git branches
 
 After some time release branches piles up and we may want to clean up
 our Github from old `live-*` branches
