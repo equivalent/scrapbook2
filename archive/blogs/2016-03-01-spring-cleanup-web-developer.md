@@ -1,4 +1,4 @@
-# Spring Cleanup on WebDevelopers environment
+# Spring Cleaning for WebDevelopers
 
 After some time WebDevelopers local machine (as well as server) gets
 full of stuff not needed, here are some commands that I use to erase
