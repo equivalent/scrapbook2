@@ -20,4 +20,5 @@ Rails.configuration.cache_store
 ```
 
 [1]: https://hub.docker.com/_/postgres/ "Postgress docker image docs, ENV var examples"
-[2]: https://docs.docker.com/v1.8/compose/yml/ "Docker Compose documentation"
+[2]: https://docs.docker.com/compose/compose-file/ "Docker Compose documentation"
+
