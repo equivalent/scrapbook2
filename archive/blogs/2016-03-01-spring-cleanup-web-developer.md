@@ -55,6 +55,9 @@ free -m
 
 ```bash
 docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")
+
+# sudo version
+sudo docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}")
 ```
 
 > Idea stolen from [Damien Coraboeuf](https://forums.docker.com/t/command-to-remove-all-unused-images/20/4)
