@@ -77,6 +77,14 @@ sudo docker rmi -f $(sudo docker images | grep live-2015 | awk "{print \$3}")
 sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
 ```
 
+... or if you use format like `live-yyyymmdd_xxxx` where `xxxx` is
+release number of a day (`live-20160130_0002`) you can do 
+
+```bash
+# two dots in this context represent regular expression "any two char" before underscore
+sudo docker rmi -f $(sudo docker images | grep live-201602.._ | awk"{print \$3}")
+```
+
 ## Removing old release Git branches
 
 After some time release branches piles up and we may want to clean up
