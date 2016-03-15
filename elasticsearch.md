@@ -1,3 +1,21 @@
+
+seach priority:
+
+```
+# look at the ^num   biger number bigger priority
+
+query[:query][:filtered][:query] = {
+  multi_match: {
+    query: terms.join(" "),
+    fields: ['tags^4', 'school_title^5', 'title^3', 'description^1'],
+    type: "most_fields"
+  }
+}
+```
+
+
+
+
 ```
     def self.search(query, options={})
       __set_filters = lambda do |key, f|
