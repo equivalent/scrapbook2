@@ -1,4 +1,14 @@
 
+flush redis
+
+```
+#will erase entire redis
+port = 10000
+$redis = Redis.new(:port => port)
+$redis.flushall
+
+```
+
 http://www.rubydoc.info/gems/resque/Resque/Failure
 
 
