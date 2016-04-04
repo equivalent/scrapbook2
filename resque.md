@@ -1,3 +1,20 @@
+get numbers in queues
+
+```
+Resque.info   
+#=> {:pending=>0, :processed=>346, :queues=>1, :workers=>1, :working=>1,
+:failed=>346,
+:servers=>["...."],
+:environment=>"qa"}
+
+```
+
+get number in particular queue
+
+```
+Resque.size('queue_name')
+```
+
 
 flush redis
 
@@ -30,7 +47,7 @@ Delete all failed jobs:
 Resque::Failure.clear
 ```
 
-Delete all pending jobs
+esque.queues.eachg jobs
 
 ```ruby
 Resque.queues.each { |q| Resque.redis.del "queue:#{q}" }
