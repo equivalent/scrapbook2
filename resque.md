@@ -72,6 +72,18 @@ Resque::Failure.clear
 # remove individual from failed
 Resque::Failure.remove(1196)
 
+
+# retriger jobs in spec queues
+Resque::Failure.all(0, (Resque::Failure.count)).each_with_index do |r, i|
+  resq_position = i+1
+
+  if r.fetch("queue").in?(['store_address_data', 'store_work_view_data'])
+    Resque::Failure.requeue(resq_position)
+  end
+end; true
+
+
+
 ```
 
 https://ariejan.net/2010/08/23/resque-how-to-requeue-failed-jobs/
