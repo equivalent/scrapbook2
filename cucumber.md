@@ -14,6 +14,10 @@ page.all(:css, '.key').to_a.each do |element|
   element.click
 end
 
+page.find(:xpath, './/a[position()=1][contains(.,"little john")]')
+page.find(:xpath, './/a[position()=2][contains(.,"Big Ben")]')
+page.find(:xpath, './/a[position()=3][contains(.,"Little prince1")]')
+
 ```
 
 capybara rspec cheat sheet:  http://cheatrags.com/capybara

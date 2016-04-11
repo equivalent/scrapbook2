@@ -1,3 +1,22 @@
+## browser upload
+
+http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
+https://github.com/waynehoover/s3_direct_upload/blob/master/spec/helpers/form_helper_spec.rb
+
+```
+"expiration": "'.date('Y-m-d\TG:i:s\Z', time()+10).'",
+"conditions": [
+    {"bucket": "xxx"},
+    {"acl": "public-read"},
+    ["starts-with","xxx",""],
+    {"success_action_redirect": "xxx"},
+    ["starts-with", "$Content-Type", "image/jpeg"],
+    ["content-length-range", 0, 10485760]
+]
+http://stackoverflow.com/questions/13390343/s3-direct-upload-restricting-file-size-and-type
+```
+
+
 ## Amazon CLI AWS
 
 http://docs.aws.amazon.com/cli/latest/reference/

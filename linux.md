@@ -533,6 +533,12 @@ source: http://www.chriswpage.com/2009/05/setup-an-advanced-webcam-security-syst
 
     setxkbmap -layout us
 
+## CentOS send mail with attachement
+
+    yum install mail
+
+    mail -a /tmp/school_counts.csv -s 'blaa subject' "tomas@blaaa.com" < /dev/null
+
 ## Ubuntu, Mint set up postfix 
 
     sudo apt-get install postfix

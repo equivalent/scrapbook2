@@ -1,3 +1,30 @@
+get numbers in queues
+
+```
+Resque.info   
+#=> {:pending=>0, :processed=>346, :queues=>1, :workers=>1, :working=>1,
+:failed=>346,
+:servers=>["...."],
+:environment=>"qa"}
+
+```
+
+get number in particular queue
+
+```
+Resque.size('queue_name')
+```
+
+
+flush redis
+
+```
+#will erase entire redis
+port = 10000
+$redis = Redis.new(:port => port)
+$redis.flushall
+
+```
 
 http://www.rubydoc.info/gems/resque/Resque/Failure
 
@@ -20,7 +47,7 @@ Delete all failed jobs:
 Resque::Failure.clear
 ```
 
-Delete all pending jobs
+esque.queues.eachg jobs
 
 ```ruby
 Resque.queues.each { |q| Resque.redis.del "queue:#{q}" }
@@ -44,6 +71,18 @@ Resque::Failure.clear
 
 # remove individual from failed
 Resque::Failure.remove(1196)
+
+
+# retriger jobs in spec queues
+Resque::Failure.all(0, (Resque::Failure.count)).each_with_index do |r, i|
+  resq_position = i+1
+
+  if r.fetch("queue").in?(['store_address_data', 'store_work_view_data'])
+    Resque::Failure.requeue(resq_position)
+  end
+end; true
+
+
 
 ```
 
