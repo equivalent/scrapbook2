@@ -1,3 +1,8 @@
+# Ruby on Rails, Docker and AWS Elastic Beanstalk
+
+In thin tutorial we are going to deploy [Ruby on
+Rails](http://rubyonrails.org/) application
+
 
 ```ruby
 
