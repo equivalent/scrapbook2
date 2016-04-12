@@ -32,7 +32,7 @@ like with `ruby debugger`
 > maintainability. That's why you see Ruby developers prefering `pry`
 
 
-## Get the Active record (Rails) db configuration
+## Get the Active Record (Rails) db configuration
 
 from `rails c`
 
