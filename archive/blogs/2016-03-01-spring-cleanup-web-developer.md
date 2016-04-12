@@ -54,6 +54,7 @@ free -m
 #### Get rid of all untagged images.
 
 ```bash
+# non sudo version
 docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")
 
 # sudo version
@@ -71,12 +72,20 @@ example: `quay.io/equivalent/myproject:20151129_0001`
 ...so in order to remove Images of year 2015 I can do:
 
 ```bash
+# non sudo version
+docker rmi -f $(docker images | grep live-2015 | awk "{print \$3}")
+
+# sudo version
 sudo docker rmi -f $(sudo docker images | grep live-2015 | awk "{print \$3}")
 ```
 
 ...in order to remove January images of 2015 I can do:
 
 ```bash
+# non sudo version
+sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
+
+# sudo version
 sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
 ```
 
@@ -84,9 +93,30 @@ sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
 release number of a day (`live-20160130_0002`) you can do 
 
 ```bash
+# non sudo version
+sudo docker rmi -f $(sudo docker images | grep live-201602.._ | awk "{print \$3}")
+
+# sudo version
+sudo docker rmi -f $(sudo docker images | grep live-201602.._ | awk "{print \$3}")
+
+
 # two dots in this context represent regular expression "any two char" before underscore
-sudo docker rmi -f $(sudo docker images | grep live-201602.._ | awk"{print \$3}")
 ```
+
+...or if you are a Ruby developer and you prefer Ruby syntax or you have no idea what awk does:
+
+```bash
+# non sudo version
+docker rmi -f $(docker images | ruby -ne 'puts $_.split[2] if $_.match(/live-201602\d\d_/)')
+
+# sudo version
+sudo docker rmi -f $(sudo docker images | ruby -ne 'puts $_.split[2] if $_.match(/live-201602\d\d_/)')
+```
+
+
+> **Quick tip:** similar way you can quickly run Rails console on running docker container running
+> Rails (assuming your docker image name contains word rails)
+> `rails_container_id=$(sudo docker ps | ruby -ne 'puts $_.split.first if $_ =~ /rails/') && sudo docker exec -it   $rails_container_id  rails c`
 
 ## Removing old release Git branches
 
