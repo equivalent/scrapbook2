@@ -83,7 +83,7 @@ sudo docker rmi -f $(sudo docker images | grep live-2015 | awk "{print \$3}")
 
 ```bash
 # non sudo version
-sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
+docker rmi -f $(docker images | grep live-201601 | awk "{print \$3}")
 
 # sudo version
 sudo docker rmi -f $(sudo docker images | grep live-201601 | awk "{print \$3}")
@@ -94,7 +94,7 @@ release number of a day (`live-20160130_0002`) you can do
 
 ```bash
 # non sudo version
-sudo docker rmi -f $(sudo docker images | grep live-201602.._ | awk "{print \$3}")
+docker rmi -f $(docker images | grep live-201602.._ | awk "{print \$3}")
 
 # sudo version
 sudo docker rmi -f $(sudo docker images | grep live-201602.._ | awk "{print \$3}")
