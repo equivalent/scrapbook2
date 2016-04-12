@@ -12,7 +12,7 @@ you can inspect objects (e.g.: `ls User.last`)
 But key benefit is using pry as a debugger tool
 
 
-```
+```ruby
 # app/model/user.rb
 
 class User < ActiveRecord::Base
@@ -36,10 +36,9 @@ like with `ruby debugger`
 
 from `rails c`
 
-```
+```ruby
 ActiveRecord::Base.connection.instance_variable_get(:@config)
 ```
-
 
 ## Establish connection with ActiveRecord
 
