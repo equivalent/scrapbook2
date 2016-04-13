@@ -1,5 +1,20 @@
 best cheat sheet ever http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
 
+# net http timeout
+
+```ruby
+    begin
+      uri = URI.parse('http://oldwebsite.it')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.read_timeout = 2
+      http.open_timeout = 2
+
+      http.get(uri.request_uri)
+    rescue Net::OpenTimeout
+      # do stuff
+    end
+```
+
 
 # https request
 
