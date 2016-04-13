@@ -1,6 +1,6 @@
 
 
-The other day I was going through some code and seen a [Resque job](https://github.com/resque/resque)w
+The other day I was going through some code and seen a [Resque job](https://github.com/resque/resque)
 like this:
 
 ```
@@ -40,11 +40,11 @@ doing something like this.
 ```ruby
 class Foo
   def self.set_user
-    @user = "User #{rand(0..10)}"
+    @user = "User #{rand(0..9999)}"
   end
 
   def self.set_ip
-    @ip = "ip #{rand(0..10)}"
+    @ip = "ip #{rand(0..9999)}"
   end
 end
 
@@ -56,19 +56,26 @@ Foo.instance_variable_get('@ip')
 Foo.set_user
 
 Foo.instance_variable_get('@user')
-# => User 1460453360
+# => User 9
 
 # 20 minutes pass
 
 Foo.instance_variable_get('@user')
-# => User 1460453360
+# => User 9  # random number didn't change
+```
+Don't see any problem so far ? OK look at this from this perspective:
 
+In non-thread environment like Unicord or Resque, workers work in
+(relatively) isolated worlds, so jobs are executed
 
-# Don't see any problem so far ? Ok imagine this scenario:
+> The isolation is relative to your configuration, there may be cases where you may share
+> some stuff, e.g: `ActiveRecord::Base.connection`. So if you switch DB
+> that may affect Worker.
 
-# in Thred safe worker enviroment  like Resque or Unicorn
-# the l
+...so they are executed like this:
 
+```ruby
+# worker 1
 Foo.set_user
 Foo.set_ip
 
@@ -78,10 +85,46 @@ puts Foo.instance_variable_get('@ip')
 # => ip 1
 
 
+# worker 2
+Foo.set_user
+Foo.set_ip
+
+puts Foo.instance_variable_get('@user')
+# => User 2
+puts Foo.instance_variable_get('@ip')
+# => ip 2
+```
+
+But in Threaded environments like Puma or Sidekiq jobs are sharing class
+level state
+
+> This apply for Ruby MRI (Cruby) threads.  With  Rubinius Threads you
+> share  more levels (I'm not that familiar with Rubinius)
+
+```ruby
+# worker 1
+Foo.set_user
+Foo.set_ip
+
+puts Foo.instance_variable_get('@user')
+# => User 1
+puts Foo.instance_variable_get('@ip')
+# => ip 1
+
+
+# worker 2
+Foo.set_user
+Foo.set_ip
+
+puts Foo.instance_variable_get('@user')
+# => User 2
+puts Foo.instance_variable_get('@ip')
+# => ip 2
 ```
 
 
 
+# in Thred safe worker enviroment  like Resque or Unicorn
 
 https://bearmetal.eu/theden/how-do-i-know-whether-my-rails-app-is-thread-safe-or-not/
 
