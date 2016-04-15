@@ -35,7 +35,7 @@ sceen Resque is calling `FooJob.perform(user_id: 123, ip: '8.8.8.8')`
 So far so good. The problem starts with setting instance variables
 `@user = ...` and `@ip = ...`. You
 see we are setting instance variables on class level. That means we are
-doing something like this.
+doing something like this:
 
 ```ruby
 class Foo
@@ -95,8 +95,8 @@ puts Foo.instance_variable_get('@ip')
 # => ip 2
 ```
 
-But in Threaded environments like Puma or Sidekiq jobs are sharing class
-level state
+But in Threaded environments like Puma or Sidekiq jobs are sharing lot
+of states ammons which is class level state => class variables
 
 > This apply for Ruby MRI (Cruby) threads.  With  Rubinius Threads you
 > share  more levels (I'm not that familiar with Rubinius)
