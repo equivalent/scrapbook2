@@ -202,8 +202,19 @@ http://askubuntu.com/questions/459284/how-to-use-different-workspaces-on-ubuntu-
 
 ## what is my public IP address (global ip address dns)
 
+keywords: myip my ip my-ip 
+
 ```
 curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//' 
+
+# same thing in var
+myip=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
+echo $myip
+
+
+
+ ## depricated: 
+ #myip=$(dig +short myip.opendns.com @resolver1.opendns.com)
 ```
 
 source: http://askubuntu.com/questions/95910/command-for-determining-my-public-ip
