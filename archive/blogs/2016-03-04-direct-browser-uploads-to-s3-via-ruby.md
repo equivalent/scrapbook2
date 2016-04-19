@@ -39,14 +39,15 @@ section click on `Attach Policy` for debuging purpose select
 button.
 
 Like I said this is just for Debugging. Once we test our S3 and SQS remember to change
-these policies to less vulnerable like this in step below (3.2). **Don't
-do that step now, but remember to return to it once finished.**
+these policies to less vulnerable like those in step below (3.2). **Don't
+do that step now, but remember to return to it once finished with this
+tutorial.**
 
 #### Step 3.2 -proper policies (Advanced)
 
 **Skip this step for now if you didn't finish other steps and you are new to AWS**
 
-Here is exmaple of much stricter policies that I'm using. Make sure you
+Here is an example of much stricter policies that I'm using. Make sure you
 replace endpoints properly according to your setup.
 
 Click on User > `Permissions` > `Inline Policies` and attach:
@@ -107,10 +108,10 @@ Go to AWS SQS section > create SQS
 I'm going to create `myappcom-queue-ireland-development`
 
 Once created click on it and click on `Permissions` > `edit policy
-document`. 
+document`.
 
 Here we are going to enable our bucket to write to this SQS Queue
-events.
+events as well as our user `uploader_DEVEL` to read form the Queue.
 
 ```json
 {
@@ -124,12 +125,10 @@ events.
         "AWS": "*"
       },
       "Action": "SQS:SendMessage",
-      "Resource":
-"arn:aws:sqs:eu-west-1:666666666666:myappcom-queue-ireland-development",
+      "Resource": "arn:aws:sqs:eu-west-1:666666666666:myappcom-queue-ireland-development",
       "Condition": {
         "ArnLike": {
-          "aws:SourceArn":
-"arn:aws:s3:*:*:myappcom-documnets-ireland-development"
+          "aws:SourceArn": "arn:aws:s3:*:*:myappcom-documnets-ireland-development"
         }
       }
     },
@@ -140,8 +139,7 @@ events.
         "AWS": "arn:aws:iam::666666666666:user/uploader_DEVEL"
       },
       "Action": "SQS:*",
-      "Resource":
-"arn:aws:sqs:eu-west-1:666666666666:myappcom-queue-ireland-development"
+      "Resource": "arn:aws:sqs:eu-west-1:666666666666:myappcom-queue-ireland-development"
     }
   ]
 }
@@ -149,7 +147,7 @@ events.
 
 
 Now switch region to Asia Pacific (top right corner) and create another SQS queue for
-Australia similarly.
+Sidney similarly.
 
 ## Step 4 - Bucket configuration
 
