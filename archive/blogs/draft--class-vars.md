@@ -1,4 +1,4 @@
-
+# Danger of class state in Ruby or Rails applications
 
 The other day I was going through some code and seen a [Resque job](https://github.com/resque/resque)
 like this:
@@ -33,8 +33,8 @@ As you can see the job has an class method `perform`. So behind the
 sceen Resque is calling `FooJob.perform(user_id: 123, ip: '8.8.8.8')`
 
 So far so good. The problem starts with setting instance variables
-`@user = ...` and `@ip = ...`. You
-see we are setting instance variables on class level. That means we are
+`@user = ...` and `@ip = ...`.
+You see we are setting instance variables on class level. That means we are
 doing something like this:
 
 ```ruby
@@ -96,31 +96,35 @@ puts Foo.instance_variable_get('@ip')
 ```
 
 But in Threaded environments like Puma or Sidekiq jobs are sharing lot
-of states ammons which is class level state => class variables
+of states ammongs which is class level state => class variables
 
 > This apply for Ruby MRI (Cruby) threads.  With  Rubinius Threads you
 > share  more levels (I'm not that familiar with Rubinius)
 
-```ruby
-# worker 1
-Foo.set_user
-Foo.set_ip
+So if you lucky enough one job may endup before other ends and you won't
+feel the pain:
 
-puts Foo.instance_variable_get('@user')
+```ruby
+Foo.set_user # thread 1
+Foo.set_ip   # thread 1
+
+puts Foo.instance_variable_get('@user') # thread 1
 # => User 1
-puts Foo.instance_variable_get('@ip')
+puts Foo.instance_variable_get('@ip')   # thread 1
 # => ip 1
 
 
-# worker 2
-Foo.set_user
-Foo.set_ip
+Foo.set_user # thread 2
+Foo.set_ip   # thread 2
 
-puts Foo.instance_variable_get('@user')
+puts Foo.instance_variable_get('@user') # thread 2
 # => User 2
-puts Foo.instance_variable_get('@ip')
+puts Foo.instance_variable_get('@ip')   # thread 2
 # => ip 2
+
 ```
+
+...but on a huge load jobs may be executed at the same time 
 
 
 
