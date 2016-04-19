@@ -221,6 +221,49 @@ In SQS you can click on the Queue > Queue Actions > View/Delet Messages > Start
 Pooling
 
 
+## Ruby Part
+
+Ok now we that we have the AWS part set up lets play around with Ruby
+setup.
+
+Install AWS SDK
+
+```Ruby
+# Gemfile
+# ...
+gem 'aws-sdk', '>= 2.0.0'
+# ...
+```
+
+and run irb console
+
+```ruby
+require 'aws-sdk'
+
+sqs = Aws::SQS::Client.new({
+ region: 'eu-west-1',
+ aws_access_key_id: 'AxxxxxxxxxxxxxxxA',
+ aws_secret_access_key = 'zbxxxxxxxxxxxxxxxxxxxxxxxxxv'
+})
+sqs.list_queues
+
+# => #<struct Aws::SQS::Types::ListQueuesResult queue_urls=["https://sqs.eu-west-1.amazonaws.com/6666666666/my-sqs-queue-name"]>
+```
+
+You should be able to see queue endpoints, if so you can fetch the
+messages:
+
+```
+# ...
+messages = []
+sqs.list_queues.queue_urls.each do |queue_url|
+  messages << @sqs.receive_message(queue_url: queue_url)
+end
+messages  #  [ #<struct Aws::SQS::Types::ReceiveMessageResult]
+```
+
+
+
 
 
 
@@ -242,3 +285,4 @@ sources:
 * [sns notification  structure](http://docs.aws.amazon.com/AmazonS3/latest/dev/notification-content-structure.html)
 * [ngrok   tool](https://blogs.aws.amazon.com/php/post/Tx2CO24DVG9CAK0/Testing-Webhooks-Locally-for-Amazon-SNS)
 * [confirm sns   suscription](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.html#SendMessageToHttp.confirm)
+* https://github.com/aws/aws-sdk-ruby/pull/1122/files
