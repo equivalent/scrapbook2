@@ -23,6 +23,11 @@ While you are in insert mode you can press `ctrl + r`(paste mode) and name of bu
 there is also a "black hole" buffer `_` that will lose the information
 inmidiately
 
+# scrolling two splits at the same time
+
+go to first split and `:set scrollbind`  go tho other and do `:set scrollbind`
+now you are scrolling both with j,k
+
 
 # increese number 
 
