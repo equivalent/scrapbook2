@@ -28,6 +28,8 @@ inmidiately
 go to first split and `:set scrollbind`  go tho other and do `:set scrollbind`
 now you are scrolling both with j,k
 
+`:set noscrollbind` to disable
+
 
 # increese number 
 
