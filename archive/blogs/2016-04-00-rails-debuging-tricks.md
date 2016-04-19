@@ -183,3 +183,14 @@ Check your NginX configuration file to ensure where to `curl` to.
 > NginX configuration fiele is usually located in `/etc/nginx/nginx.conf`,
 > `/opt/nginx/nginx.conf` or in sub conf. files
 > `etc/nginx/sites-enabled/default`
+
+Curl `--unix-socket` is there from version `7.40` so if you getting
+error: `curl: option --unix-sock: is unknown` there is another option:
+
+```bash
+# using socat
+echo -e "GET /welcome HTTP/1.1\r\n" | socat unix-connect:/var/sockets/pobblecom.sock STDIO
+
+# using netcat
+echo -e "GET /welcome HTTP/1.0\r\n" | nc -U /var/sockets/my-puma.sock
+```
