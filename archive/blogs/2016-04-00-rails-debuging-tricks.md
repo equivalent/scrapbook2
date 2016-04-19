@@ -144,3 +144,42 @@ Redis.new(host: 'localhost', port:'6379', db: 0).keys[0]
 
 bundle exec ruby -e 'require "redis"; Redis.new(host: "localhost", port:"6379", db: 0).keys[0]'
 ```
+
+## curl Puma/Unicorn socket
+
+Usually your webserver (Puma, Unicorn, ...) is behind loadbalancer/proxy-server like NginX.
+
+Therefore you can do:
+
+```bash
+curl http://my-website.co
+```
+
+...and you NginX will forward your request to WebServer (Puma) and that will retur response again via NginX.
+
+The problem is that simetimes you want to check if there is any problem between WebServer and NginX.
+
+If your NginX setup is forwarding requests to `localhost:3000` then no
+problem, all you have to do is ssh to server and do make a request
+from there:
+
+````bash
+ssh my-user@my-server.com
+curl localhost:3000/welcome
+```
+
+However Common practice (I would argue best-practice) in NginX world is to forward requests to the WebServer via a socket rather than
+url.
+
+Therefore you need to `curl` on a socket.
+
+```bash
+ssh my-user@my-server.com
+curl --unix-socket /var/sockets/my-puma.sock  http:/welcome
+```
+
+Check your NginX configuration file to ensure where to `curl` to.
+
+> NginX configuration fiele is usually located in `/etc/nginx/nginx.conf`,
+> `/opt/nginx/nginx.conf` or in sub conf. files
+> `etc/nginx/sites-enabled/default`
