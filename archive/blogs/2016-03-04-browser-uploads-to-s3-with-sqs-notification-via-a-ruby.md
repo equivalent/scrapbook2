@@ -1,4 +1,4 @@
-# Browser upload directly to S3 and triggering SNS notification to your App
+# Browser upload directly to S3 and triggering SQS notification to your App
 
 In this article we are going to configure direct browser upload to S3
 bucket.
@@ -245,23 +245,17 @@ sqs = Aws::SQS::Client.new({
  aws_access_key_id: 'AxxxxxxxxxxxxxxxA',
  aws_secret_access_key = 'zbxxxxxxxxxxxxxxxxxxxxxxxxxv'
 })
-sqs.list_queues
 
-# => #<struct Aws::SQS::Types::ListQueuesResult queue_urls=["https://sqs.eu-west-1.amazonaws.com/6666666666/my-sqs-queue-name"]>
-```
+# you can get queue endpoint in SQS web interface when you click on queue and `details`
+queue_url = 'https://sqs.eu-west-1.amazonaws.com/666666666666/myappcom-queue-ireland-development'
 
-You should be able to see queue endpoints, if so you can fetch the
-messages:
+sqs.receive_message(queue_url: queue_url)
 
-```
-# ...
-messages = []
-sqs.list_queues.queue_urls.each do |queue_url|
-  messages << @sqs.receive_message(queue_url: queue_url)
-end
 messages  #  [ #<struct Aws::SQS::Types::ReceiveMessageResult]
 ```
 
+You should be able to see queue endpoints, if so you can fetch the
+messages.
 
 
 
