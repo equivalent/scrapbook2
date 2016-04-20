@@ -111,7 +111,7 @@ Once created click on it and click on `Permissions` > `edit policy
 document`.
 
 Here we are going to enable our bucket to write to this SQS Queue
-events as well as our user `uploader_DEVEL` to read form the Queue.
+events as well as our user `uploader_DEVEL` to read / delete form the Queue.
 
 ```json
 {
@@ -194,7 +194,7 @@ for production
 <?xml version="1.0" encoding="UTF-8"?>
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
     <CORSRule>
-        <AllowedOrigin>https:www.myapp.com</AllowedOrigin>
+        <AllowedOrigin>https://www.myapp.com</AllowedOrigin>
         <AllowedMethod>GET</AllowedMethod>
         <AllowedMethod>POST</AllowedMethod>
         <AllowedMethod>PUT</AllowedMethod>
