@@ -219,6 +219,13 @@ echo $myip
 
 source: http://askubuntu.com/questions/95910/command-for-determining-my-public-ip
 
+
+## mount smb folder in /etc/mtab
+
+```bash
+//192.168.1.66/MyVolume/  /mnt/my_drive       cifs   uid=1000,gid=1000,rw,username=enrike,password=iglasias,nobootwait      0       0
+```
+
 ## mount smb folder 
 
 ... or how to mount NAS folder as local linux folder
@@ -229,6 +236,8 @@ mount -t cifs //ntserver/download -o username=vivek,password=myPassword /mnt/my_
 # you can skip -o option on public
 ```
 http://www.cyberciti.biz/tips/how-to-mount-remote-windows-partition-windows-share-under-linux.html
+
+
 
 
 ## secure delete

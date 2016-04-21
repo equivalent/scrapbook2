@@ -258,6 +258,13 @@ You should be able to see queue endpoints, if so you can fetch the
 messages.
 
 
+As for the browser upload:
+
+```ruby
+
+a = Aws::S3::Bucket.new('pobble.com-browser-uploads-production', region:
+'eu-west-1')
+
 
 
 
