@@ -4,6 +4,10 @@ https://github.com/mperham/sidekiq/wiki/API
 
 
 ```
+# redis info
+Sidekiq.redis { |c| p c.info }
+
+
 Sidekiq.redis {|c| c.del('stat:processed') }
 
 Sidekiq.redis {|c| c.del('stat:failed') }
