@@ -1,5 +1,12 @@
 
 
+# one or other in list
+
+```
+(?:tom|jon)
+```
+
+
 # when is  Regex slow
 
 ```ruby
