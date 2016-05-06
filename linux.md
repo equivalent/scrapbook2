@@ -8,6 +8,18 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## colorize output file
+
+```
+
+tput setaf 9; echo  'test text'
+
+tput setab 7; tput setaf 9; echo  'test text with bg'
+
+# given in ~/doge.txt you have image of doge
+tput setab 7; tput setaf 9; printf  '%b\n' $(cat /home/my-user/doge.txt)
+```
+
 ## kill all ssh sessions
 
 if someone is ssh'd to your computer 
