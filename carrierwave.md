@@ -1,5 +1,13 @@
 # CarrierWave File Uploader Scrapbook
 
+## testing upload file
+
+```
+ include Rack::Test::Methods
+
+post "/upload/", "attachement" => Rack::Test::UploadedFile.new("path/to/file.ext", "mime/type")
+```
+
 ## Store / Retrieve without model
 
 ```ruby
