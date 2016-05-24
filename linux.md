@@ -8,6 +8,45 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## samba 
+
+source: http://askubuntu.com/questions/208013/how-can-i-set-up-samba-shares-to-only-be-accessed-by-certain-users
+
+1. Make sure that every user can access the common media folder on the unix side (without samba)
+2. Make sure each user has a samba password set. You can set it with
+   `sudo smbpasswd -a your_user`
+3. Look at /etc/samba/smb.conf: check if the line `security = user` is set
+   in the `[GLOBAL]` section
+4. Set your shares in /etc/samba/smb.conf,  example:
+
+    ```
+    #  This will be accessible via `\\yourserver\allaccess`
+    [allaccess]
+        path = /media/common
+        read only = no
+        writeable = yes
+        browseable = yes
+        valid users = one, two, three, four
+        create mask = 0644
+        directory mask = 0755 # if you set this, all files get written as this user
+        force user = one
+
+    [special]
+        path = /home/two/onlytwo
+        read only = no
+        writeable = yes
+        browseable = yes
+        valid users = one
+        create mask = 0640
+        directory mask = 0750
+    ```
+
+5. `sudo service smbd restart`
+
+
+
+
+
 ## colorize output file
 
 ```
