@@ -1,5 +1,14 @@
 # Common AWS Elastic Beanstalk Docker issues and solutions.
 
+In this article I will be writing about common issues that I've stumble
+upon using AWS Elastic Beanstalk running Docker environment.
+I will be updating this article in future each time I stumble upon
+new  issue (...or remember old one) that may happen to you.
+
+Pull Requests are welcome to add more know-hows to this article
+(Github logo at the bottom will redirect you to git source of this
+Markdown file) as well as any unanswered question and Feedback in comment section bellow.
+
 ## Debugging Tools and files
 
 #### eb console
