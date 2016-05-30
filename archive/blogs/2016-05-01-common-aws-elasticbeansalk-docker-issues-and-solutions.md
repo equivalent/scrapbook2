@@ -56,7 +56,6 @@ as well as hook methods.
 * `/var/log/docker` and `/var/log/docker-events` - what is happening
   with docker images after `eb-activity` finishes - e.g. starting
 containers, die, ...
-* `~/shared/logs/` - `rails` and `nginx` logs 
 
 ## Restarting a server
 
