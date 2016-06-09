@@ -11,6 +11,63 @@ Markdown file) as well as any unanswered question and Feedback in comment sectio
 
 ## Debugging Tools and files
 
+#### Docker stats
+
+In order to debug Docker memory / CPU consumption of given Docker
+container you can do: 
+
+```bash
+# Get docker container ID
+sudo docker ps
+
+# CONTAINER ID
+# 8eff1959c23c
+
+# stats on it
+docker stats 8eff1959c23c
+
+CONTAINER           CPU %               MEM USAGE/LIMIT     MEM %     NET I/O
+8eff1959c23c        0.02%               44.16 MiB/300 MiB   14.72%    278.5 MiB/62.68 MiB
+```
+
+Read more https://docs.docker.com/engine/reference/commandline/stats/
+
+#### Overal Docker stats / info
+
+`docker info` will give you several usefull information:
+
+```bash
+sudo docker info
+# Containers: 4
+# Images: 180
+# Storage Driver: devicemapper
+#  Pool Name: docker-202:1-143330-pool
+#  Pool Blocksize: 65.54 kB
+#  Backing Filesystem: extfs
+#  Data file: /dev/loop0
+#  Metadata file: /dev/loop1
+#  Data Space Used: 4.493 GB
+#  Data Space Total: 107.4 GB
+#  Data Space Available: 45.69 GB
+#  Metadata Space Used: 8.86 MB
+#  Metadata Space Total: 2.147 GB
+#  Metadata Space Available: 2.139 GB
+#  Udev Sync Supported: true
+#  Data loop file: /var/lib/docker/devicemapper/devicemapper/data
+#  Metadata loop file: /var/lib/docker/devicemapper/devicemapper/metadata
+#  Library Version: 1.02.89-RHEL6 (2014-09-01)
+# Execution Driver: native-0.2
+# Kernel Version: 3.14.48-33.39.amzn1.x86_64
+# Operating System: Amazon Linux AMI 2015.03
+# CPUs: 1
+# Total Memory: 3.665 GiB
+# Name: ip-172-31-31-219
+# ID: MJVD:KSNK:3VLH:JYXK:HRXT:UVA2:JKLZ:FFK7:HXYL:7ZEU:DCHZ:JT2R
+```
+
+read more https://docs.docker.com/engine/reference/commandline/info/
+
+
 #### eb console
 
 AWS Elastic Beanstalk provides [EB CLI](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html)
