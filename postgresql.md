@@ -178,10 +178,14 @@ SELECT * FROM (select * ROW_NUMBER() OVER(PARTITION BY domain) AS domain_count F
 in heroku
 
 ```
+
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U myuser -d mydb latest.dump
 # ..or
  sudo -upostgres pg_restore --verbose --clean --no-acl --no-owner -d mydb latest.dump
 ```
+
+`pg_dump` for `pg_restore` the dump must be in `tar` format so e.g.
+`pg_dump --format=t` 
 
 #### create dump
 
