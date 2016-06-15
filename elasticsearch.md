@@ -1,4 +1,27 @@
 
+```ruby
+# match all  - return all
+
+{
+  query: {
+           "match_all": {}
+         }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 seach priority:
 
 ```
