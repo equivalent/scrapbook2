@@ -97,6 +97,10 @@ MyModel.import query: -> { where(id: MyModel.some_scope.pluck(:id)) }
 MyModel.__elasticsearch__.create_index! # create document
 MyModel.__elasticsearch__.delete_index! # delete document
 
+# ...or
+MyModel.__elasticsearch__.client.indices.delete index: MyModel.index_name
+
+
 ```
 
 check version
