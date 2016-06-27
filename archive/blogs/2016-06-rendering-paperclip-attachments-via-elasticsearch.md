@@ -3,8 +3,8 @@
 resources:
 
 * [Paperclip lib](https://github.com/thoughtbot/paperclip)
-* [Elastic search]
-* ruby elastic search model lib
+* [Elasticsearch Rails](https://github.com/elastic/elasticsearch-rails)
+* [source code example](https://gist.github.com/equivalent/ba7835e07fabc4ba103008f553dc2e3a)
 
 
 Imagine that we have existing system that is storing file attachments
@@ -13,21 +13,19 @@ Paperclip library and persisting reference to relational database
 (e.g.: PostgreSQL).
 
 So for example we will have a dummy Real Estate application that have resource `Property`
-showing description of the property. `Property`
+showing `#title` and `#description` of the property. Property has many
+`images`.
 
- and images
+For simplicity of in our code examle we are rendering just urls via JSON API but same principals will apply
+if you want to generate server side HTML via ERB, Slim, Haml, ...
 
-For simplicity of code examle  we are rendering just urls via JSON API
-
+## Relational DB example first
 
 ```ruby
 # Gemfile
 
 # ...
 gem 'pg'
-
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
 
 gem 'paperclip'
 # ...
@@ -40,7 +38,9 @@ class Property < ActiveRecord::Base
 
   has_many :images
 end
+```
 
+```ruby
 # app/model/image.rb
 class Image < ActiveRecord::Base
   # DB attributes :id, attachment_file_name, :updated_at
@@ -56,7 +56,9 @@ class Image < ActiveRecord::Base
     attachment.url(:thumb)
   end
 end
+```
 
+```ruby
 # app/serializer/properties_serializer.rb
 class PropertesSerializer
   attr_reader :collection
@@ -68,21 +70,22 @@ class PropertesSerializer
   def as_json
     collection.map do |property|
       {
-        id: property.id,
+        id: property.id.to_i,
         title: property.title,
         description: property.description,
-        images: property.map do |image|
+        images: property.images.map do |i|
           {
-            thumb:  image.thumb_url
-            screen: image.screen_url
+            thumb:  i.thumb_url
+            screen: i.screen_url
           }
         end
       }
     end
   end
 end
+```
 
-
+```ruby
 # app/controller/properties_controller.rb
 class PropertiesController < ApplicationController
   def index
@@ -106,12 +109,19 @@ class PropertiesController < ApplicationController
       PropertesSerializer.new(collection: @properties).as_json
     end
 end
+```
 
+```ruby
 # config/routes.rb
 # ...
 resources :properties, only: [:index]
 # ...
 ```
+
+So basically we have `PropertiesController` that is just rendering JSON.
+Result will contain either all records when not searched, or just
+results matchinch the search query.
+
 
 ```bash
 curl localhost:3000/properties?q=cool
@@ -138,18 +148,34 @@ curl localhost:3000/properties?q=cool
 ```
 
 
-Lets introduce elasticsearch
+## Lets introduce Elasticsearch
+
+
+```ruby
+# Gemfile
+
+# ...
+gem 'pg'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+gem 'paperclip'
+# ...
+```
 
 
 ```ruby
 # app/model/property.rb
 class Property < ActiveRecord::Base
-  # ...
-
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  # ...
+  mapping do
+    indexes :title
+  end
+
+  has_many :images
 
   def as_indexed_json
     {
@@ -165,19 +191,28 @@ end
 ```ruby
 # app/model/image.rb
 class Image < ActiveRecord::Base
-  # No need to add any elasticsearch includes here
-  # ...
+  belongs_to :property, touch: true
+  has_attached_file :attachment, styles: { thumb: '100x100>', screen: '1024x1024' }
+
+  def screen_url
+    attachment.url(:screen)
+  end
+
+  def thumb_url
+    attachment.url(:thumb)
+  end
 
   def as_indexed_json
     {
-      thumb_url: image.thumb_url,
-      screen_url: image.screen_url,
-      updated_at: image.updated_at
+      id:         image.id,
+      updated_at: image.updated_at,
+      attachment_file_name: image.attachment_file_name,
     }
   end
 end
 ```
 
+We've included Elasticsearch modules to `Property` model
 
 ```ruby
 # app/controller/properties_controller.rb
@@ -209,7 +244,86 @@ class PropertiesController < ApplicationController
 end
 ```
 
-> `Property.search` is just alias for 
+> `Property.search` is just alias for
 > `Property.__elasticsearch__.search` provided by Elasticsearch gem
 
 
+```ruby
+# app/serializer/properties_serializer.rb
+class PropertesSerializer
+  attr_reader :collection
+
+  def initialize(collection:)
+    @collection = collection
+  end
+
+  def as_json
+    collection.map do |property|
+      {
+        id: property.id,
+        title: property.title,
+        description: property.description,
+        images: property.images.map do |es_image|
+          {
+            thumb:  es_image_to_image(es_image).thumb_url,
+            screen: es_image_to_image(es_image).screen_url
+          }
+        end
+      }
+    end
+  end
+
+  # This image instance is purely for generating urls don't
+  # persist any data on it
+  #
+  def es_image_to_image(es_image)
+    Image.new({
+      id:         es_image.id,
+      updated_at: es_image.updated_at,
+      attachment_file_name: es_image.attachment_file_name,
+    })
+  end
+end
+```
+
+Lunch Rails console and run:
+
+```ruby
+Property.__elasticsearch__.create_index!
+Property.import
+```
+
+...and restart Rails server.
+
+Now you should have fully functional Elasticsearch that is rendering
+image urls without the need to access PostgreSQL data.
+
+```bash
+curl localhost:3000/properties?q=cool
+```
+
+```json
+[
+   {
+     "id": 123,
+     "title": "really cool property",
+     "description":"foobar",
+     "images": [
+       {
+         "thumb":  "http://localhost:3000/..../thumb/foo.jpg"
+         "screen": "http://localhost:3000/..../screen/foo.jpg"
+       },
+       {
+         "thumb":  "http://localhost:3000/..../thumb/bar.jpg"
+         "screen": "http://localhost:3000/..../screen/bar.jpg"
+       }
+     ]
+  }
+]
+```
+
+
+Source:
+
+* https://gist.github.com/equivalent/ba7835e07fabc4ba103008f553dc2e3a
+* https://gist.github.com/equivalent/310a948f9d6b4ade0ce1cb243e995569
