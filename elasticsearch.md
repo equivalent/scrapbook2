@@ -1,3 +1,5 @@
+* how to install cluster    https://www.elastic.co/blog/running-elasticsearch-on-aws
+* benchmarking   https://www.elastic.co/blog/announcing-rally-benchmarking-for-elasticsearch
 
 ```ruby
 # match all  - return all
