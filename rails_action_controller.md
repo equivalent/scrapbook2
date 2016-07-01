@@ -1,3 +1,19 @@
+# Rails native authentication via header
+
+````
+class ApiController < ApplicationController
+  def authenticate_api_user!
+    authenticate_or_request_with_http_token do |token, options|
+      @current_user = User.where(authentication_token: token).first
+    end 
+  end 
+end
+
+curl -H "Authorization: Token token=bbbmytokenbbbb" 
+```
+
+
+
 # reveal all controller callbacks / filters
 
 inside pry (where self is controllec)
