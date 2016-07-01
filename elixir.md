@@ -220,3 +220,72 @@ Combined.x
 
 ```
 
+
+
+
+# BOOK notes Elixir by D.T. notes
+
+`.ex` are files ment to be compiled to binary `.exs` are source files
+thta should not end in binaary (tests e.g.)
+
+`iex` helpers:
+* h
+  * h IO
+  * h IO.puts
+
+```iex
+iex(1)> a = [1,2,3]
+[1, 2, 3]
+iex(2)> a = 4
+4
+iex(3)> a
+4
+iex(4)> 4 = a
+4
+iex(5)> [a,b] = [1,2,3]
+** (MatchError) no match of right hand side value: [1, 2, 3]
+    
+iex(5)> a = [[1,2,3]]
+[[1, 2, 3]]
+iex(6)> [a] = [[1,2,3]]
+[[1, 2, 3]]
+iex(7)> a
+[1, 2, 3]
+iex(8)> [[a]] = [[1,2,3]]
+** (MatchError) no match of right hand side value: [[1, 2, 3]]
+    
+iex(8)> [a,b,c]=[1,2,[1,2,3]]
+[1, 2, [1, 2, 3]]
+```
+
+```iex
+iex(1)> [a,b,c]=[1,2,3]
+[1, 2, 3]
+iex(2)> [a,b,a]=[1,1,2]
+** (MatchError) no match of right hand side value: [1, 1, 2]
+    
+iex(2)> [a,b,a]=[1,2,1]
+```
+
+```iex
+iex(1)> a = 2
+2
+iex(2)> [a,b,c]=[1,2,3] 
+[1, 2, 3]
+iex(3)> [a,b,a]=[1,1,2]
+** (MatchError) no match of right hand side value: [1, 1, 2]
+    
+iex(3)> a = 1
+1
+iex(4)> ^a=2
+** (MatchError) no match of right hand side value: 2
+    
+iex(4)> ^a=1
+1
+iex(5)> ^a=2 -a
+1
+iex(6)>  
+```
+
+
+
