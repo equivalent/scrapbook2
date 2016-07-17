@@ -287,5 +287,80 @@ iex(5)> ^a=2 -a
 iex(6)>  
 ```
 
+```iex
+result = with {:ok, file} =  File.open("/etc/passwd"),
+               content    = IO.read(file, :all),
+               :ok        = File.close(file),
+               [_, uid, gid] = Regex.run(~r/_lp:.*?:(\d+):(\d+)/, content) do
+                 "Group  #{gid}, user #{uid}"
+               end
+```
+
+```iex
+abc = fn -> IO.puts "hello" end
+abc.()
+
+abcd = fn a, b -> a + b end
+abcd.(3,4)
+
+iex(15)> x = fn
+...(15)>   {2,2} -> " some twos"
+...(15)>   {:ok, _} -> "something ok"
+...(15)> end
+iex(17)> x.({2,2})
+" some twos"
+iex(18)> x.({:ok,2})
+"something ok"
 
 
+x = fn
+  {2,2} -> ( fn -> "two" end)
+  {:ok, _} -> ( fn -> "carl" end)
+end
+
+IO.puts x.({2,2}).()
+IO.puts x.({:ok, 'carl'}).()
+
+
+xx  = fn
+  x -> (fn y -> "#{y} #{x}" end)
+end
+IO.puts xx.("carl").("marks")
+#=> "marks carl"
+```
+
+```iex
+defmodule Greeter do
+  def for(name, greeting) do
+    fn
+      (^name) -> "#{greeting} #{name}"
+      (_) -> "I don't know you"
+    end
+  end
+end
+mr_valim = Greeter.for("tomi", "Oi!")
+IO.puts mr_valim.("tomi")
+IO.puts mr_valim.("dave")
+# => Oi! tomi
+# => I don't know you
+```
+
+```iex
+xx = fn
+  {:ok, file} -> IO.read(file, :all)
+  {_, error}  -> "Error #{error} #{:file.format_error(error)}"
+end
+
+IO.puts xx.(File.open("/etc/passwd"))
+IO.puts xx.(File.open("/etc/passwdddd"))
+
+# alternative
+
+with {:ok, abc} = File.read("/etc/passwd") do
+  IO.puts abc
+end
+```
+
+
+```iex
+```
