@@ -118,6 +118,55 @@ sudo docker rmi -f $(sudo docker images | ruby -ne 'puts $_.split[2] if $_.match
 > Rails (assuming your docker image name contains word rails)
 > `rails_container_id=$(sudo docker ps | ruby -ne 'puts $_.split.first if $_ =~ /rails/') && sudo docker exec -it   $rails_container_id  rails c`
 
+### Docker containers cleanup
+
+To see list of all  docker containers
+
+```bash
+docker ps -a
+
+# sudo version
+sudo docker ps -a
+```
+
+To see overal size of containers
+
+```bash
+docker ps -as
+
+# sudo version
+sudo docker ps -as
+
+#   NAMES        #...                 SIZE
+# b455d4dc8320   #...  2 B (virtual 1.512 GB)
+# 9aaf4133edd6   #...  0 B (virtual 132.3 MB)
+# ed37f797b6f4   #...  0 B (virtual 132.3 MB)
+# 96db55573ae8   #...  2 B (virtual 1.512 GB)   
+```
+
+But this is not actually a full picture !
+
+As described by Maciej Łebkowski in his excelent [article](https://lebkowski.name/docker-volumes/):
+
+> docker run leaves the container by default. This is convenient if you’d
+> like to review the process later -- look at the logs or exit status.
+> This also stores the aufs filesystem changes, so you can commit the
+> container as a new image.
+> This can be expensive in terms of disk space usage, especially during
+> testing. Remember to use docker run --rm flag if you don’t need to
+> inspect the container later. This flag doesn’t work with background
+> containers (-d), so you’ll be left with finished containers anyway.
+
+So in order to remove this dead containers run this command:
+
+```bash
+docker ps --filter status=dead --filter status=exited -aq | xargs docker rm -v
+```
+
+I had a situation where I runned every command possible but still my
+`/var/lib/docker/containers` had several GB. This command dropped 100%
+usage to 30%
+
 ## Removing old release Git branches
 
 After some time release branches piles up and we may want to clean up
