@@ -33,7 +33,7 @@ crontab -u deploy -e
 And we add:
 
 ```bash
-* * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/myapp && RACK_ENV=production bundle exec rake" event:process
+* * * * * PATH=$PATH:/usr/local/bin && bash -lc "cd /home/deploy/apps/myapp && RACK_ENV=production bundle exec rake event:process"
 ```
 
 Obviously the  `* * * * *` is a crontab scheduling syntax (run something every minute) and you can learn
