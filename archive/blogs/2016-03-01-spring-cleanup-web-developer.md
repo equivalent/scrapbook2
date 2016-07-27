@@ -161,6 +161,10 @@ So in order to remove this dead containers run this command:
 
 ```bash
 docker ps --filter status=dead --filter status=exited -aq | xargs docker rm -v
+
+# sudo version
+
+sudo docker ps --filter status=dead --filter status=exited -aq | xargs sudo docker rm -v
 ```
 
 I had a situation where I runned every command possible but still my
