@@ -293,7 +293,7 @@ end
 # * http://patshaughnessy.net/2013/4/3/ruby-2-0-works-hard-so-you-can-be-lazy
 
 
-puts "\n\n## Demonstrating Lazynes\n------------------\n"
+Article.h1 'Domain specific collectinion object respecting Lazynes'
 
 module MembershipCollectionV4
   module Base
@@ -366,68 +366,73 @@ data = [
   { type: 'paid', owner: nil },
 ]
 
-enumerator = data.to_enum # regullar collection (e.g. 100 rows from DB query)
-#<Enumerator: [{:type=>"free", :owner=>123}, .....]:each> 
+Article.example 'passing standard Enumerator to it' do
+  enumerator = data.to_enum # regullar collection (e.g. 100 rows from DB query)
+  #<Enumerator: [{:type=>"free", :owner=>123}, .....]:each>
 
-lazy_enum = data.lazy  # API stream from socket connection, or dictionary with 10_000_000 lines
-# => #<Enumerator::Lazy: [{:type=>"free", :owner=>123}, {:type=>"free", :owner=>nil}, {:type=>"paid", :owner=>nil}]> 
+  unassigned_1 =  MembershipCollectionV4::Constructor.new(enumerator).free.unassigned
+  result = unassigned_1.first(2)
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # AAAAA !!!
+  # BBBBB !!!
+  # BBBBB !!!
+  # BBBBB !!!
+  # BBBBB !!!
+  # BBBBB !!!
 
-puts "\n\n* Running Enumerator:\n"
-unassigned_1 =  MembershipCollectionV4::Constructor.new(enumerator).free.unassigned
-puts unassigned_1.first(2)
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# 0000 !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# AAAAA !!!
-# BBBBB !!!
-# BBBBB !!!
-# BBBBB !!!
-# BBBBB !!!
-# BBBBB !!!
-# I'm a Membership type=free and I'm unassigned
-# I'm a Membership type=free and I'm unassigned
+  puts "\nResult:"
+  puts result
+  # I'm a Membership type=free and I'm unassigned
+  # I'm a Membership type=free and I'm unassigned
+end
 
-puts "\n\n* Running Lazy Enumerator:\n"
-unassigned_2 =  MembershipCollectionV4::Constructor.new(lazy_enum).free.unassigned
+Article.example 'passing lazy Enumerator to it' do
+  lazy_enum = data.lazy  # API stream from socket connection, or dictionary with 10_000_000 lines
+  # => #<Enumerator::Lazy: [{:type=>"free", :owner=>123}, {:type=>"free", :owner=>nil}, {:type=>"paid", :owner=>nil}]> 
 
-puts unassigned_2.first(2)
-# 0000 !!!
-# AAAAA !!!
-# 0000 !!!
-# AAAAA !!!
-# 0000 !!!
-# AAAAA !!!
-# BBBBB !!!
-# 0000 !!!
-# AAAAA !!!
-# 0000 !!!
-# AAAAA !!!
-# BBBBB !!!
-# 0000 !!!
-# AAAAA !!!
-# BBBBB !!!
-# 0000 !!!
-# AAAAA !!!
-# BBBBB !!!
-# 0000 !!!
-# AAAAA !!!
-# BBBBB !!!
-# I'm a Membership type=free and I'm unassigned
-# I'm a Membership type=free and I'm unassigned
+  unassigned_2 =  MembershipCollectionV4::Constructor.new(lazy_enum).free.unassigned
+  result = unassigned_2.first(2)
+  # 0000 !!!
+  # AAAAA !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # BBBBB !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # BBBBB !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # BBBBB !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # BBBBB !!!
+  # 0000 !!!
+  # AAAAA !!!
+  # BBBBB !!!
 
-
+  puts "\nResult:"
+  puts result
+  # I'm a Membership type=free and I'm unassigned
+  # I'm a Membership type=free and I'm unassigned
+end
 
