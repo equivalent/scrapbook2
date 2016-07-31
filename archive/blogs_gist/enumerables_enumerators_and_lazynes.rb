@@ -85,6 +85,52 @@ Article.example('Simplest  implementation of custom Enumerator-alike object') do
   # zzz
 end
 
+# -------------------------------
+Article.h1('Enumerable basics')
+# -------------------------------
+
+class Foo
+  include Enumerable
+
+  def each
+    yield 'aaa'
+    yield 'bbb'
+    yield 'ccc'
+  end
+end
+
+foo = Foo.new
+
+Article.example 'foo.each' do
+  foo.each do |member|
+    puts member
+  end
+  # aaa
+  # bbb
+  # ccc
+end
+
+Article.example 'foo.count' do
+  puts foo.count
+  # => 3
+end
+
+Article.example 'foo.to_a' do
+  puts foo.to_a.inspect
+  # => ["aaa", "bbb", "ccc"]
+end
+
+Article.example 'foo.map(&:capitalize)' do
+  puts foo.map(&:capitalize).inspect
+  # => ["Aaa", "Bbb", "Ccc"] 
+end
+
+Article.example 'foo.to_enum.next_values' do
+  foo_enumerator = foo.to_enum
+
+  puts foo_enumerator.next_values.inspect
+  # => ["aaa"]
+end
 
 #---------------------------------------------
 Article.h1('Basic Enumerable colection class')
