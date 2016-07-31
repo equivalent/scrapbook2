@@ -1,5 +1,94 @@
-require 'pry'
-require 'forwardable'
+#require 'pry'
+require 'forwardable' # core ruby lib.
+
+module Article
+  def self.h1(title)
+    extended_title = "###### #{title} ######"
+    puts "\n\n\n#{extended_title}\n"
+    puts "=" * extended_title.length
+  end
+
+  def self.example(title)
+    puts "\n"
+    puts "# #{title}"
+    yield
+    puts "# ---"
+    puts "\n"
+  end
+end
+
+
+#------------------------------
+Article.h1('Enumerator basics')
+#------------------------------
+
+my_array = [1,2,3]
+
+Article.example('my_array.to_enum') do
+  puts my_array.to_enum
+  # => #<Enumerator: [1, 2, 3]:each>
+end
+
+Article.example('my_array.each') do
+  puts my_array.each
+  # => #<Enumerator: [1, 2, 3]:each>
+end
+
+
+Article.example('How Enumerator is popping values') do
+  e = my_array.to_enum
+
+  puts e.next_values
+  # => [1]
+  puts e.next_values
+  # # => [2]
+
+  puts e.next_values
+  # => [3]
+
+  begin
+    puts e.next_values
+    #   StopIteration: iteration reached an end
+    #   from (irb):20:in `next_values'
+    #   from (irb):20
+    #   lets display list of availible methods:
+  rescue => exeption
+    puts exeption.message
+  end
+
+  e.public_methods(false)
+  # # => [:each, :each_with_index, :each_with_object, :with_index,
+  # :with_object, :next_values, :peek_values, :next, :peek, :feed, :rewind,
+  # :inspect, :size]
+
+  e.rewind
+
+  puts e.next_values
+  #  => [1]
+end
+
+
+Article.example('Simplest  implementation of custom Enumerator-alike object') do
+  class Bar
+    def each
+      yield 'xxx'
+      yield 'yyy'
+      yield 'zzz'
+    end
+  end
+
+  Bar.new.each do |member|
+    puts member
+  end
+  # xxx
+  # yyy
+  # zzz
+end
+
+
+#---------------------------------------------
+Article.h1('Basic Enumerable colection class')
+#---------------------------------------------
 
 class Membership
   attr_accessor :type, :owner
@@ -26,12 +115,6 @@ mfu = Membership.new.tap { |m| m.type = 'free'; m.owner = nil }
 mfa = Membership.new.tap { |m| m.type = 'free'; m.owner = 123 }
 mpa = Membership.new.tap { |m| m.type = 'paid' }
 
-
-
-
-
-puts "\n\n* Basic Enumerable colection class:\n"
-
 class MembershipCollectionV1
   include Enumerable
 
@@ -56,35 +139,37 @@ class MembershipCollectionV1
   end
 end
 
-
-
 collection = MembershipCollectionV1.new(mfu, mfa, mpa)
 
-puts "\n#### collection: "
-puts collection.class
-# MembershipCollectionV1
-puts collection.to_a
-# I'm a Membership type=free and I'm unassigned
-# I'm a Membership type=free and I'm assigned
-# I'm a Membership type=paid and I'm unassigned
+Article.example 'Entire collection' do
+  puts collection.class
+  # MembershipCollectionV1
+  puts collection.to_a
+  # I'm a Membership type=free and I'm unassigned
+  # I'm a Membership type=free and I'm assigned
+  # I'm a Membership type=paid and I'm unassigned
+end
 
-puts "\n#### collection.free: "
-puts collection.free.class
-# MembershipCollectionV1
-puts collection.free.to_a
-# I'm a Membership type=free and I'm unassigned
-# I'm a Membership type=free and I'm assigned
+Article.example 'Free collection' do
+  puts collection.free.class
+  # MembershipCollectionV1
+  puts collection.free.to_a
+  # I'm a Membership type=free and I'm unassigned
+  # I'm a Membership type=free and I'm assigned
+end
 
-puts "\n#### collection.free.unassigned: "
-puts collection.free.unassigned.class
-# MembershipCollectionV1
-puts collection.free.unassigned.to_a
-# I'm a Membership type=free and I'm unassigned
+Article.example 'Free Unassigned collection' do
+  puts "\n#### collection.free.unassigned: "
+  puts collection.free.unassigned.class
+  # MembershipCollectionV1
+  puts collection.free.unassigned.to_a
+  # I'm a Membership type=free and I'm unassigned
+end
 
 
-
-
-puts "\n\n* Custom Collection classes mapping domain:\n"
+#---------------------------------------------
+Article.h1('Custom Collection classes mapping domain logic')
+#---------------------------------------------
 
 module MembershipCollectionV3
   module Base
@@ -122,57 +207,88 @@ end
 
 free_collection = MembershipCollectionV3::Free.new(mfu,mfa,mpa)
 
-puts "All members init"
-puts free_collection.members
-# => [I'm a Membership type=free and I'm unassigned, I'm a Membership type=free and I'm assigned, I'm a Membership type=paid and I'm unassigned]
-puts "\n"
+Article.example "All members" do
+  puts free_collection.members
+  # => [I'm a Membership type=free and I'm unassigned, I'm a Membership type=free and I'm assigned, I'm a Membership type=paid and I'm unassigned]
+end
 
-puts "collections upon Free enumeration"
-puts free_collection.to_a
-# => [I'm a Membership type=free and I'm unassigned, I'm a Membership type=free and I'm assigned]
-puts "\n"
+Article.example "collections upon Free enumeration" do
+  puts free_collection.to_a
+  # => [I'm a Membership type=free and I'm unassigned, I'm a Membership type=free and I'm assigned]
+end
 
-puts "collection upon Free  enumeration upon Unnassigned enumeration "
-puts free_collection.unassigned.to_a
-# => [I'm a Membership type=free and I'm unassigned]
-puts "\n"
-
-
-(1..10).to_a
-# => [1,2,3,4,5,6,7,8,9]
-(1..10).select {|x| x.odd?}
-# => [1,2,3,4,5,6,7,8,9] => [1, 3, 5, 7, 9]
-(1..10).select {|x| x.odd?}.select{|y| y > 5 }
-# => [1,2,3,4,5,6,7,8,9] => [1, 3, 5, 7, 9]  => [7, 9]
+Article.example "collection upon Free enumeration upon Unnassigned enumeration" do
+  puts free_collection.unassigned.to_a
+  # => [I'm a Membership type=free and I'm unassigned]
+end
 
 
-(1..10).lazy
-# => #<Enumerator::Lazy: 1..10>
-(1..10).select {|x| x.odd?}
-# #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select> :w
-(1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }
-#<Enumerator::Lazy: #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select>:select>
+# ----------------------------------
+Article.h1('What is Lazy Enumerator')
+# ----------------------------------
 
-(1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a
-# 1 => 1 => nope
-# 2 => nope
-# 3 => 3 => nope
-# 4 => nope
-# 5 => 5 => nope
-# 6 => nope
-# 7 => 7 => 7 => [7]
-# 8 => nope
-# 9 => 9 => 9 => [7,9]
-# 10 => nope
-#
-# end result => [7,9]
+Article.example 'Enumerator' do
+  puts '(1..10).to_a'
+  puts (1..10).to_a.inspect
+  # => [1,2,3,4,5,6,7,8,9]
 
-# http://ruby-doc.org/core-2.0.0/Enumerator/Lazy.html#method-i-lazy
+  puts ""
+  puts '(1..10).select {|x| x.odd?}'
+  puts (1..10).select {|x| x.odd?}.inspect
+  # => [1,2,3,4,5,6,7,8,9] => [1, 3, 5, 7, 9]
 
-(1..Float::INFINITY).lazy.select {|x| x.odd?}.select{|y| y > 5 }.first(8)
-# => [7, 9, 11, 13, 15, 17, 19, 21]
+  puts ""
+  puts '(1..10).select {|x| x.odd?}.select{|y| y > 5 }'
+  puts (1..10).select {|x| x.odd?}.select{|y| y > 5 }.inspect
+  # => [1,2,3,4,5,6,7,8,9] => [1, 3, 5, 7, 9]  => [7, 9]
+
+  # what's really happening:
+  # 1..10 -> select -> select
+end
 
 
+Article.example 'Lazy Enumerator' do
+  puts '(1..10).lazy'
+  puts (1..10).lazy.inspect
+  # => #<Enumerator::Lazy: 1..10>
+
+  puts ""
+  puts '(1..10).select {|x| x.odd?}'
+  puts (1..10).lazy.select {|x| x.odd?}.inspect
+  # #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select> :w
+
+  puts ""
+  puts '(1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }'
+  puts (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.inspect
+  #<Enumerator::Lazy: #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select>:select>
+
+  puts ""
+  puts '(1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a'
+  puts (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a.inspect
+  # 1 => 1 => nope
+  # 2 => nope
+  # 3 => 3 => nope
+  # 4 => nope
+  # 5 => 5 => nope
+  # 6 => nope
+  # 7 => 7 => 7 => [7]
+  # 8 => nope
+  # 9 => 9 => 9 => [7,9]
+  # 10 => nope
+  #
+  # end result => [7,9]
+
+  # what's really happening:
+  # 1..10 <- select <- select <- first(5)
+end
+
+
+Article.example 'Lazy Enumerator used in Infinity list' do
+  puts (1..Float::INFINITY).lazy.select {|x| x.odd?}.select{|y| y > 5 }.first(8).inspect
+  # => [7, 9, 11, 13, 15, 17, 19, 21]
+end
+
+# * http://ruby-doc.org/core-2.0.0/Enumerator/Lazy.html#method-i-lazy
 # * https://www.sitepoint.com/implementing-lazy-enumerables-in-ruby/
 # * http://patshaughnessy.net/2013/4/3/ruby-2-0-works-hard-so-you-can-be-lazy
 
