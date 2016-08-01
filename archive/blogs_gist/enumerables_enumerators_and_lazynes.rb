@@ -483,3 +483,218 @@ Article.example 'passing lazy Enumerator to it' do
   # I'm a Membership type=free and I'm unassigned
 end
 
+
+# ===============================================================================================
+# ============================================  OUPUT    ========================================
+# ===============================================================================================
+#
+# ###### Enumerator basics ######
+# ===============================
+#
+# # my_array.to_enum
+# #<Enumerator:0x00000003615370>
+# # ---
+#
+#
+# # my_array.each
+# #<Enumerator:0x00000003615118>
+# # ---
+#
+#
+# # How Enumerator is popping values
+# 1
+# 2
+# 3
+# iteration reached an end
+# 1
+# # ---
+#
+#
+# # Simplest  implementation of custom Enumerator-alike object
+# xxx
+# yyy
+# zzz
+# # ---
+#
+#
+#
+#
+# ###### Enumerable basics ######
+# ===============================
+#
+# # foo.each
+# aaa
+# bbb
+# ccc
+# # ---
+#
+#
+# # foo.count
+# 3
+# # ---
+#
+#
+# # foo.to_a
+# ["aaa", "bbb", "ccc"]
+# # ---
+#
+#
+# # foo.map(&:capitalize)
+# ["Aaa", "Bbb", "Ccc"]
+# # ---
+#
+#
+# # foo.to_enum.next_values
+# ["aaa"]
+# # ---
+#
+#
+#
+#
+# ###### Basic Enumerable colection class ######
+# ==============================================
+#
+# # Entire collection
+# MembershipCollectionV1
+# I'm a Membership type=free and I'm unassigned
+# I'm a Membership type=free and I'm assigned
+# I'm a Membership type=paid and I'm unassigned
+# # ---
+#
+#
+# # Free collection
+# MembershipCollectionV1
+# I'm a Membership type=free and I'm unassigned
+# I'm a Membership type=free and I'm assigned
+# # ---
+#
+#
+# # Free Unassigned collection
+#
+# #### collection.free.unassigned: 
+# MembershipCollectionV1
+# I'm a Membership type=free and I'm unassigned
+# # ---
+#
+#
+#
+#
+# ###### Custom Collection classes mapping domain logic ######
+# ============================================================
+#
+# # All members
+# [#<Membership:0x00000003612f58 @type="free", @owner=nil>, #<Membership:0x00000003612ee0 @type="free", @owner=123>, #<Membership:0x00000003612e90 @type="paid">]
+# # ---
+#
+#
+# # collections upon Free enumeration
+# [#<Membership:0x00000003612f58 @type="free", @owner=nil>, #<Membership:0x00000003612ee0 @type="free", @owner=123>]
+# # ---
+#
+#
+# # collection upon Free enumeration upon Unnassigned enumeration
+# [#<Membership:0x00000003612f58 @type="free", @owner=nil>]
+# # ---
+#
+#
+#
+#
+# ###### What is Lazy Enumerator ######
+# =====================================
+#
+# # Enumerator
+# (1..10).to_a
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#
+# (1..10).select {|x| x.odd?}
+# [1, 3, 5, 7, 9]
+#
+# (1..10).select {|x| x.odd?}.select{|y| y > 5 }
+# [7, 9]
+# # ---
+#
+#
+# # Lazy Enumerator
+# (1..10).lazy
+# #<Enumerator::Lazy: 1..10>
+#
+# (1..10).select {|x| x.odd?}
+# #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select>
+#
+# (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }
+# #<Enumerator::Lazy: #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select>:select>
+#
+# (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a
+# [7, 9]
+# # ---
+#
+#
+# # Lazy Enumerator used in Infinity list
+# [7, 9, 11, 13, 15, 17, 19, 21]
+# # ---
+#
+#
+#
+#
+# ###### Domain specific collectinion object respecting Lazynes ######
+# ====================================================================
+#
+# # passing standard Enumerator to it
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# 0000 !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# AAAAA !!!
+# BBBBB !!!
+# BBBBB !!!
+# BBBBB !!!
+# BBBBB !!!
+# BBBBB !!!
+#
+# Result:
+# I'm a Membership type=free and I'm unassigned
+# I'm a Membership type=free and I'm unassigned
+# # ---
+#
+#
+# # passing lazy Enumerator to it
+# 0000 !!!
+# AAAAA !!!
+# 0000 !!!
+# AAAAA !!!
+# 0000 !!!
+# AAAAA !!!
+# BBBBB !!!
+# 0000 !!!
+# AAAAA !!!
+# 0000 !!!
+# AAAAA !!!
+# BBBBB !!!
+# 0000 !!!
+# AAAAA !!!
+# BBBBB !!!
+# 0000 !!!
+# AAAAA !!!
+# BBBBB !!!
+# 0000 !!!
+# AAAAA !!!
+# BBBBB !!!
+#
+# Result:
+# I'm a Membership type=free and I'm unassigned
+# I'm a Membership type=free and I'm unassigned
+# # ---
+# a
