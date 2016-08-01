@@ -134,7 +134,7 @@ Article.example 'foo.to_enum.next_values' do
 end
 
 #---------------------------------------------
-Article.h1('Basic Enumerable colection class')
+Article.h1('Simple Enumerable colection class mapping domain')
 #---------------------------------------------
 
 class Membership
@@ -156,6 +156,7 @@ class Membership
   def to_s
     "I'm a Membership type=#{type} and I'm #{unassigned? ? 'unassigned' : 'assigned'}"
   end
+  alias inspect to_s
 end
 
 mfu = Membership.new.tap { |m| m.type = 'free'; m.owner = nil }
@@ -215,7 +216,7 @@ end
 
 
 #---------------------------------------------
-Article.h1('Custom Collection classes mapping domain logic')
+Article.h1('Custom Enumerator collection classes mapping domain logic')
 #---------------------------------------------
 
 module MembershipCollectionV3
@@ -234,7 +235,7 @@ module MembershipCollectionV3
     include Base
 
     def each
-      @members.each do |m| yield m if m.free? end
+      @members.each { |m| yield m if m.free? }
     end
 
     def unassigned
@@ -242,17 +243,26 @@ module MembershipCollectionV3
     end
   end
 
+  class Paid
+    include Base
+
+    def each
+      @members.each { |m| yield m if m.paid? }
+    end
+  end
+
   class Unassigned
     include Base
 
     def each
-      @members.each do |m|  yield m if m.unassigned? end
+      @members.each { |m|  yield m if m.unassigned? }
     end
   end
 end
 
 
 free_collection = MembershipCollectionV3::Free.new(mfu,mfa,mpa)
+paid_collection = MembershipCollectionV3::Paid.new(mfu,mfa,mpa)
 
 Article.example "All members" do
   puts free_collection.members.inspect
@@ -269,6 +279,18 @@ Article.example "collection upon Free enumeration upon Unnassigned enumeration" 
   # => [I'm a Membership type=free and I'm unassigned]
 end
 
+Article.example "collections upon Paid enumeration" do
+  puts paid_collection.to_a.inspect
+  # => [I'm a Membership type=free and I'm unassigned]
+end
+
+Article.example "collections upon Paid enumeration trying to call unassigned" do
+  begin
+    paid_collection.unassigned.to_a.inspect
+    # undefined method `unassigned' for #<MembershipCollectionV3::Paid:0x0000000281d4e8> (NoMethodError)
+  rescue NoMethodError
+  end
+end
 
 # ----------------------------------
 Article.h1('What is Lazy Enumerator')
@@ -340,7 +362,9 @@ end
 # * http://patshaughnessy.net/2013/4/3/ruby-2-0-works-hard-so-you-can-be-lazy
 
 
-Article.h1 'Domain specific collectinion object respecting Lazynes'
+# ----------------------------------------------------------------
+Article.h1 'Domain specific collection object respecting Lazynes'
+# ---------------------------------------------------------------
 
 module MembershipCollectionV4
   module Base
