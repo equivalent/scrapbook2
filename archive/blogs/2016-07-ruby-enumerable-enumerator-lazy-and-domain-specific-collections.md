@@ -7,7 +7,7 @@ module but mainly show some examples how to implement them in a real Application
 in order to get collection objects that maps your domain.
 
 The article is bit too long but I'm trying to squize in lot of
-information on a topic that is hard to explain in few sentences. The
+information on a topic that is hard to explain with few sentences. The
  goal was to write an Article I wish I had several years ago as a
 Ruby beginner, but also article that I with I had not too long
 ago when implementing complex API mapping to domain logic. Esencially I
@@ -17,7 +17,7 @@ asked about this topic in the future.
 ### Enumerator basics
 
 Before I'll get to the juicy part first lets remind ourself what are Enumerators.
-The easiest way to display this is with converting an Array to Enumerator:
+The easiest way to display this is to convert Array to Enumerator:
 
 ```ruby
 my_array = [1,2,3]
