@@ -561,15 +561,15 @@ interface around it.
 But we were ignoring the fact that enumerator is object of it's own
 right too. We can pass it to our collection and delegate other methods to it.
 
-> @todo
+> More on this topic from different angle http://blog.arkency.com/2014/01/ruby-to-enum-for-enumerator/
 
-Argue or agree, my opinion is that object composition is the most
+Whether you agree or disagree, my opinion is that object composition is the most
 cleanest and most flexible form of communication between objects and this is exactly
 how we going to make our collection objects to have both
 Lazy Enumerator capabilities and standard Enumerator capabilities.
 
 ```ruby
-require 'forwardable' # core ruby lib.
+require 'forwardable' # core Ruby lib.
 
 module MembershipCollectionV4
   module Base
@@ -631,10 +631,13 @@ module MembershipCollectionV4
 end
 ```
 
-As you can see we initialization method is expecting Enumerator
+As you can see initialization method is expecting Enumerator
 object and we are delegating methods like `#first`, `#to_a`, `#map` to it.
 
-Now imagine that we were receiving data we receive via API Gateway is
+In order to show the difference between Lazy and regular Enumerator I'm
+printing some text to output.
+
+Now imagine that we are receiving data via an API Gateway that is
 similar to this:
 
 ```ruby
@@ -728,14 +731,17 @@ As you can see results are the same only the output of our
 "sophisticated debugging" is different. It's the same logic as we were
 explaining before:
 
-Regular Enumerator evaluates all values on every
+* Regular Enumerator evaluates all values on every
 layer and passes those that meet criteria to next Enumerator layer.
-
-Lazy Enumerator tries to evaluates one value through out all layers of
+*  Lazy Enumerator tries to evaluates one value through out all layers of
 Enumerators one at a time unless it not meet condition of any of layers.
 
 Now this way of writing collection classes gives you flexibility of
 changing your decisions in a future with least amount of change.
+
+When to use Enumerator and when Lazy it's really up to you to decide.
+Benchmark tools and common sense are your best friend. I just wanted to show you
+tools now go build some pyramids!
 
 ## Conclusion
 
