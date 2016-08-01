@@ -3,26 +3,29 @@
 > Entire source code can be found here: https://gist.github.com/equivalent/70d82d228ca957b21a4d968353f367b8
 > mirror: https://github.com/equivalent/scrapbook2/blob/master/archive/blogs_gist/enumerables_enumerators_and_lazynes.rb
 
-In this article I'm trying to explain Ruby Eumerator objects, and Enumerable
-module and will show some examples how to implement them in real Application
-in order to get cool collection objects that maps your domain.
+In this article I'm trying to explain Ruby Eumerator, Lazy Enumerator and Enumerable
+module but mainly show some examples how to implement them in real Application
+in order to get collection objects that maps your domain.
 
-The article is bit too long but I'm trying to cover both basics and
-advanced topics, so if you know basics of Enumerators and Enumerable
-feel free to skip to section "Basic Enumerable colection class mapping
-domain".
+The article is bit too long but I'm trying to squize in lot of
+information on a topic that is hard to explain in few sentences. The
+fact is that I aimed to write an Article I wish I had several years ago when I
+was beginning with Ruby, but also article that I with I had not too long
+ago when I was trying to do complex API mapping with domain logic, and
+therefore this being singe entry I could point any Developer when I'm
+asked about this topic.
 
 ### Enumerator basics
 
 Before I'll get to the juicy part first lets remind ourself what are Enumerators.
-The easiest way to display this is with converting array to Enumerator:
+The easiest way to display this is with converting an Array to Enumerator:
 
 ```ruby
 my_array = [1,2,3]
 e = my_array.to_enum
 # => #<Enumerator: [1, 2, 3]:each>
 
-# lets display list of availible methods:
+# list of availible methods:
 e.public_methods(false)
 # => [:each, :each_with_index, :each_with_object, :with_index,
 :with_object, :next_values, :peek_values, :next, :peek, :feed, :rewind,
@@ -60,7 +63,7 @@ e.next_values
 # ... and so on
 ```
 
-Similar applied to hash:
+Similar can be done with Hash:
 
 ```ruby
 my_hash = {a: 'a', b: 'b'}
@@ -106,15 +109,16 @@ But guess what. Result of `#each` is an Enumerator !
 # => #<Enumerator: {}:each>
 ```
 
-So we could say that enumerators are objects that you can iterate
-through and hold a state of the next value, therefore objects like Array,
+So we could say that Enumerator are is an object that you can iterate
+through and it hold a state of the next value, therefore objects like Array,
 Hash uses Enumerator to do it's iterations.
 
 > Ruby Arrays are really complex topic for another article. In reality
-> Ruby uses `C` lang Array for it's speed behind the scene. For rest of the article think
-> about Array the Enumerator way.
+> Ruby uses `C` lang Array behind the scene for some operations. For rest of the article think
+> about Array purely the Enumerator way.
 
-I've read lot of complicated Enumerator articles explaining  they work, but I  didn't quite understand how they work until I seen this plain Ruby object example:
+I've read lot of complicated Enumerator articles explaining how they work,
+but I  didn't quite understand them till I've seen this plain Ruby object example:
 
 ```ruby
 class Bar
@@ -138,17 +142,17 @@ end
 
 So we could say that the secret of iteration in Ruby is really the `yield`.
 
-> Avdi Grim in his [Ruby Tapas](http://www.rubytapas.com/) screencast done some really detailed look
-> an Ruby Enumerable and Enumerator. I really recommend to subscribe to
-> his screencast, money well spent.
+> Avdi Grim in several of his [Ruby Tapas](http://www.rubytapas.com/) screencasts
+> done some really detailed look
+> on Ruby Enumerable and Enumerator. Definitely recommending to
+> subscribe to it. Some of his insights I'm forwarding
+> in this article.
 
 ### Enumerable
 
-* [`Eneumerable` module](http://api.rubyonrails.org/v4.2/classes/Enumerable.html)
-
 My definition of `Enumerable` is that it's a core Ruby module
 that lets you extend your objects with common Array-alike methods that
-are basing their functionality around object `#each` implementation.
+are building their functionality around object `#each` implementation.
 
 ...well that sentence sounds horrible, here is an example:
 
@@ -196,7 +200,7 @@ foo_enumerator.next_values
 > Too see list of all methods provided via `Enumerable` do
 > `foo.public_methods`
 
-### Simple Enumerable colection class mapping domain
+### Simple Enumerable colection class mapping your domain
 
 So far nothing valuable, lets do some real life
 usage example, and by real-life I mean I'll demonstrate actual
@@ -229,10 +233,8 @@ class Membership
 end
 ```
 
-We were doing some operations
-around collection of `Membership` objects so I've decided I'll just
-create collection object `MembershipCollection` via :
-
+We were doing several operations with the collection of `Membership` objects so We've decided to
+create collection object `MembershipCollection`:
 
 ```ruby
 class MembershipCollection
@@ -261,8 +263,8 @@ end
 ```
 
 > In this version of `MembershiCollection` I'm just delegating the `#each` method to `@members`
-> which is an Array, and returning it's Enumerator implementation.
-> This is just me being lazy  and we will refactor it soon !
+> which is an Array and returning it's Enumerator implementation.
+> This is just me being lazy  and we will refactor it soon!
 > But really this is ok, we don't need anything fancy right now.
 
 So This way we would be able to call:
@@ -349,7 +351,6 @@ collection.free.to_a
 
 collection.free.unassigned
 # => ["I'm a Membership type=free and I'm unassigned"]
-
 ```
 
 This works due to the fact that
@@ -364,12 +365,12 @@ collection.free.unassigned.class
 
 This example is good for small scope collections where you expect that
 anything can call anything. It's similar to Rails `where` scope like e.g.:
-`where(id: [1,2]).where(my_flag: true)` is the same thing as reversed
+`where(id: [1,2]).where(my_flag: true)` is the same thing as in reversed
 order `where(my_flag: true).where(id: [1,2])`.
 
 ### Custom Enumerator collection classes mapping domain logic
 
-Imagine a scenario that you're writing collection classe in which only
+Imagine a scenario that you're writing collection classes in which only
 certin collection can call another particular collection.
 
 For example business requirements are that only `free` memberships can
@@ -380,8 +381,8 @@ membershisps.free.unassigned # => [....]
 ```
 
 ...but this should never be called for `paid` memberships
- or they should return results based on completly different
-criteria !
+ or maybe they should return results based on completly different
+criteria!
 
 ```ruby
 membershisps.paid.unassigned # NoMethodError !
@@ -460,19 +461,20 @@ puts paid_collection.unassigned
 # undefined method `unassigned' for #<MembershipCollectionV3::Paid:0x0000000281d4e8> (NoMethodError)
 ```
 
-This is much more closly maping your Domain needs. It may seems like a
-bit overkill but trust me the benefits are sweet when it comes to
-larger API mapping or API that change on too often.
+This is closely maps our Domain needs. It may seems like an
+overkill but trust me the benefits are sweet when it comes to
+larger API mapping or API that change too often as you can move objects
+more easily.
 
-If your mapping small amount of posibilities in collection, then you may
+If you are mapping a small amount of possibilities in collection, then you may
 not need this approach.
 
-This all may seems cool and all but If any super Senior Rubyst are reading this article
-then I bet you guys are not really impressed. You see solutions so far
-works with finite set of data passed to iteration.
+This all may seems cool and all but any Senior Ruby dude reading this article
+may still not be impressed. You see solutions so far
+works with finite set of data passed to evaluation.
 
-This may work for API where you get back 100 records all the time, but
-what you just want to call API until you get exactly 5 records that
+This may work for API or database where you get back 100 records all the time, but
+what if you just want to call API until you get exactly 5 records that
 match your criteria. You don't want to make 100 call and after first 5
 discover that's all you need just to make 5 calls, just because your
 collection classes are expecting 100 records. (well this is a stupid
@@ -480,7 +482,8 @@ example but kinda brings the case up)
 
 # Lazy Enumerator
 
-Before I get to the implementation in our `MembershipCollection` Let me first explain is Lazy Enumerable.
+Before I get to the implementation in our `MembershipCollection` Let me first
+explain what is Lazy Enumerator.
 
 Our **regular Enumerator** works from left to right, meaning that every
 other part of the chain (part to the right) is called only after
@@ -531,7 +534,9 @@ puts (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a.inspect
 
 What's really happening: `1..10 <- select <- select <- first(5)`
 
-Therefore we are able to do this without worring we would consume all the memory
+Therefore we are able to do this only amount of time we need
+without worry we would consume all the memory:
+
 ```ruby
 (1..Float::INFINITY).lazy.select {|x| x.odd?}.select{|y| y > 5 }.first(8).inspect
 # => [7, 9, 11, 13, 15, 17, 19, 21]
@@ -541,7 +546,7 @@ Therefore we are able to do this without worring we would consume all the memory
 > evaluate. If you trying to initialize enumerator that takes 5 elements of enumeration
 > without forcing evaluation use `#take(5)`.
 
-I'm hoping that this gave you some overview how Lazy Enumerators work. I
+I'm hoping that this gave you some overview how Lazy Enumerator work. I
 wont go into more details as this article is way over limit, plus there
 are already good articles that covers this topic:
 
@@ -556,9 +561,9 @@ of `#each` and use Enumerable module to build common Array-alike
 interface around it.
 
 But we were ignoring the fact that enumerator is object of it's own
-right too. We can pass it to our collection and delegate other needed methods to it.
+right too. We can pass it to our collection and delegate other methods to it.
 
-> There is actually another article out there proposi
+> @todo
 
 Argue or agree, my opinion is that object composition is the most
 cleanest and most flexible form of communication between objects and this is exactly
@@ -648,7 +653,7 @@ data = [
 ]
 ```
 
-We have now options to initialize our collection class with old fasion
+We have now options to initialize our collection class with old fashion
 Enumerator:
 
 ```ruby
@@ -733,3 +738,12 @@ Enumerators one at a time unless it not meet condition of any of layers.
 
 Now this way of writing collection classes gives you flexibility of
 changing your decisions in a future with least amount of change.
+
+### Conclusion
+
+
+### Sources
+
+* [Enumerator]()
+* [Eneumerable module](http://api.rubyonrails.org/v4.2/classes/Enumerable.html)
+* [Ruby Tapas](http://www.rubytapas.com/) screencasts
