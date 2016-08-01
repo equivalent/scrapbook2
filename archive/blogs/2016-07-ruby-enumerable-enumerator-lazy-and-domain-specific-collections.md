@@ -533,7 +533,7 @@ puts (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a.inspect
 What's really happening: `1..10 <- select <- select <- first(5)`
 
 Therefore we are able to do this only amount of time we need
-without worrying we would consume all the memory:
+**without worrying we would consume all the memory**:
 
 ```ruby
 (1..Float::INFINITY).lazy.select {|x| x.odd?}.select{|y| y > 5 }.first(8).inspect
