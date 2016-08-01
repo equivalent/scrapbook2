@@ -9,7 +9,7 @@ in order to get collection objects that maps your domain.
 The article is bit too long but I'm trying to squize in lot of
 information on a topic that is hard to explain with few sentences. The
  goal was to write an Article I wish I had several years ago as a
-Ruby beginner, but also article that I with I had not too long
+Ruby beginner, but also article that I wish I had not too long
 ago when implementing complex API mapping to domain logic. Esencially I
 want this article to be a singe entry I could point any Ruby developer when I'm
 asked about this topic in the future.
