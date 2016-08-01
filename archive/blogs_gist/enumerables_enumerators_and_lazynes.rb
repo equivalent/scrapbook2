@@ -1,6 +1,7 @@
-#require 'pry'
+#require 'pry'        # pry gem for debugging
 require 'forwardable' # core ruby lib.
 
+# Don't mind this module, it's just for formating output of examples
 module Article
   def self.h1(title)
     extended_title = "###### #{title} ######"
@@ -122,7 +123,7 @@ end
 
 Article.example 'foo.map(&:capitalize)' do
   puts foo.map(&:capitalize).inspect
-  # => ["Aaa", "Bbb", "Ccc"] 
+  # => ["Aaa", "Bbb", "Ccc"]
 end
 
 Article.example 'foo.to_enum.next_values' do
@@ -254,17 +255,17 @@ end
 free_collection = MembershipCollectionV3::Free.new(mfu,mfa,mpa)
 
 Article.example "All members" do
-  puts free_collection.members
+  puts free_collection.members.inspect
   # => [I'm a Membership type=free and I'm unassigned, I'm a Membership type=free and I'm assigned, I'm a Membership type=paid and I'm unassigned]
 end
 
 Article.example "collections upon Free enumeration" do
-  puts free_collection.to_a
+  puts free_collection.to_a.inspect
   # => [I'm a Membership type=free and I'm unassigned, I'm a Membership type=free and I'm assigned]
 end
 
 Article.example "collection upon Free enumeration upon Unnassigned enumeration" do
-  puts free_collection.unassigned.to_a
+  puts free_collection.unassigned.to_a.inspect
   # => [I'm a Membership type=free and I'm unassigned]
 end
 
@@ -289,7 +290,7 @@ Article.example 'Enumerator' do
   # => [1,2,3,4,5,6,7,8,9] => [1, 3, 5, 7, 9]  => [7, 9]
 
   # what's really happening:
-  # 1..10 -> select -> select
+  # 1..10 -> to_a -> select -> select
 end
 
 
@@ -301,7 +302,7 @@ Article.example 'Lazy Enumerator' do
   puts ""
   puts '(1..10).select {|x| x.odd?}'
   puts (1..10).lazy.select {|x| x.odd?}.inspect
-  # #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select> :w
+  # #<Enumerator::Lazy: #<Enumerator::Lazy: 1..10>:select>
 
   puts ""
   puts '(1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }'
