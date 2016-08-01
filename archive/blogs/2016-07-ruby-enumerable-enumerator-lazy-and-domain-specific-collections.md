@@ -476,7 +476,7 @@ what if you just want to call API until you get exactly 5 records that
 match your criteria. You don't want to make 100 call and after first 5
 discover that's all you need just to make 5 calls, just because your
 collection classes are expecting 100 records. (well this is a stupid
-example there are other ways how to handle this, but kinda brings the case up)
+example. There are other ways how to handle this, but it kinda brings the case up)
 
 # Lazy Enumerator
 
@@ -533,7 +533,7 @@ puts (1..10).lazy.select {|x| x.odd?}.select{|y| y > 5 }.to_a.inspect
 What's really happening: `1..10 <- select <- select <- first(5)`
 
 Therefore we are able to do this only amount of time we need
-without worry we would consume all the memory:
+without worrying we would consume all the memory:
 
 ```ruby
 (1..Float::INFINITY).lazy.select {|x| x.odd?}.select{|y| y > 5 }.first(8).inspect
