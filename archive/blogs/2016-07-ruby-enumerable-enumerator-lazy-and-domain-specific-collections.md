@@ -478,7 +478,7 @@ discover that's all you need just to make 5 calls, just because your
 collection classes are expecting 100 records. (well this is a stupid
 example. There are other ways how to handle this, but it kinda brings the case up)
 
-# Lazy Enumerator
+## Lazy Enumerator
 
 Before I get to the implementation in our `MembershipCollection` Let me first
 explain what is Lazy Enumerator.
