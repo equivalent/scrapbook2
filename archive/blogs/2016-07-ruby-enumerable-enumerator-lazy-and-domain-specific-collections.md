@@ -44,9 +44,9 @@ e.next_values
 # => [3]
 
 e.next_values
-StopIteration: iteration reached an end
-from (irb):20:in `next_values'
-from (irb):20
+# StopIteration: iteration reached an end
+# from (irb):20:in `next_values'
+# from (irb):20
 ```
 
 We reached the end of Enumerator ! Lets rewind:
@@ -106,8 +106,8 @@ But guess what. Result of `#each` is an Enumerator !
 # => #<Enumerator: {}:each>
 ```
 
-So we could say that Enumerator are is an object that you can iterate
-through and it hold a state of the next value, therefore objects like Array,
+So we could say that Enumerator is an object that you can iterate
+through and it remembers a state of the next value, therefore objects like Array,
 Hash uses Enumerator to do it's iterations.
 
 > Ruby Arrays are really complex topic for another article. In reality
@@ -153,7 +153,7 @@ are building their functionality around object `#each` implementation.
 
 ...well that sentence sounds horrible, here is an example:
 
-```
+```ruby
 class Foo
   include Enumerable
 
