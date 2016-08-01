@@ -1,19 +1,18 @@
 # Ruby Enumerable, Enumerator, Lazy and domain specific collection objects
 
-> Entire source code can be found here: https://gist.github.com/equivalent/70d82d228ca957b21a4d968353f367b8
-> mirror: https://github.com/equivalent/scrapbook2/blob/master/archive/blogs_gist/enumerables_enumerators_and_lazynes.rb
+> Entire source code can be found here: https://gist.github.com/equivalent/70d82d228ca957b21a4d968353f367b8 ([mirror](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs_gist/enumerables_enumerators_and_lazynes.rb))
 
 In this article I'm trying to explain Ruby Eumerator, Lazy Enumerator and Enumerable
-module but mainly show some examples how to implement them in real Application
+module but mainly show some examples how to implement them in a real Application
 in order to get collection objects that maps your domain.
 
 The article is bit too long but I'm trying to squize in lot of
 information on a topic that is hard to explain in few sentences. The
-fact is that I aimed to write an Article I wish I had several years ago when I
-was beginning with Ruby, but also article that I with I had not too long
-ago when I was trying to do complex API mapping with domain logic, and
-therefore this being singe entry I could point any Developer when I'm
-asked about this topic.
+ goal was to write an Article I wish I had several years ago as a
+Ruby beginner, but also article that I with I had not too long
+ago when implementing complex API mapping to domain logic. Esencially I
+want this article to be a singe entry I could point any Ruby developer when I'm
+asked about this topic in the future.
 
 ### Enumerator basics
 
