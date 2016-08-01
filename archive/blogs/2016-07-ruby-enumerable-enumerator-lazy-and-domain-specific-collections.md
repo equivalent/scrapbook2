@@ -6,7 +6,7 @@ In this article I'm trying to explain Ruby Eumerator, Lazy Enumerator and Enumer
 module but mainly show some examples how to implement them in a real Application
 in order to get collection objects that maps your domain.
 
-The article is bit too long but I'm trying to squize in lot of
+The article is bit too long but I'm trying to squeeze in lot of
 information on a topic that is hard to explain with few sentences. The
  goal was to write an Article I wish I had several years ago as a
 Ruby beginner, but also article that I wish I had not too long
