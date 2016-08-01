@@ -743,9 +743,6 @@ When to use Enumerator and when Lazy it's really up to you to decide.
 Benchmark tools and common sense are your best friend. I just wanted to show you
 tools now go build some pyramids!
 
-## Conclusion
-
-
 ## Sources
 
 * [Enumerator](http://ruby-doc.org/core-2.2.0/Enumerator.html)
