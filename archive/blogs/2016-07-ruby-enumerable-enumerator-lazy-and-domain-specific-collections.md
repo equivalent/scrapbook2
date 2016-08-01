@@ -17,7 +17,7 @@ asked about this topic in the future.
 ### Enumerator basics
 
 Before I'll get to the juicy part first lets remind ourself what are Enumerators.
-The easiest way to display this is to convert Array to Enumerator:
+The easiest way to show this is to convert Array to Enumerator:
 
 ```ruby
 my_array = [1,2,3]
@@ -26,9 +26,7 @@ e = my_array.to_enum
 
 # list of availible methods:
 e.public_methods(false)
-# => [:each, :each_with_index, :each_with_object, :with_index,
-:with_object, :next_values, :peek_values, :next, :peek, :feed, :rewind,
-:inspect, :size]
+# => [:each, :each_with_index, :each_with_object, :with_index, :with_object, :next_values, :peek_values, :next, :peek, :feed, :rewind, :inspect, :size]
 ```
 
 So, as you can see Enumerator is an Object on which you can call methods
