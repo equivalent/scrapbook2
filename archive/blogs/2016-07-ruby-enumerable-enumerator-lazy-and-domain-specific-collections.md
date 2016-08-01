@@ -14,7 +14,7 @@ ago when implementing complex API mapping to domain logic. Esencially I
 want this article to be a singe entry I could point any Ruby developer when I'm
 asked about this topic in the future.
 
-### Enumerator basics
+## Enumerator basics
 
 Before I'll get to the juicy part first lets remind ourself what are Enumerators.
 The easiest way to show this is to convert Array to Enumerator:
@@ -145,7 +145,7 @@ So we could say that the secret of iteration in Ruby is really the `yield`.
 > subscribe to it. Some of his insights I'm forwarding
 > in this article.
 
-### Enumerable
+## Enumerable
 
 My definition of `Enumerable` is that it's a core Ruby module
 that lets you extend your objects with common Array-alike methods that
@@ -197,7 +197,7 @@ foo_enumerator.next_values
 > Too see list of all methods provided via `Enumerable` do
 > `foo.public_methods`
 
-### Simple Enumerable colection class mapping your domain
+## Simple Enumerable colection class mapping your domain
 
 So far nothing valuable, lets do some real life
 usage example, and by real-life I mean I'll demonstrate actual
@@ -365,7 +365,7 @@ anything can call anything. It's similar to Rails `where` scope like e.g.:
 `where(id: [1,2]).where(my_flag: true)` is the same thing as in reversed
 order `where(my_flag: true).where(id: [1,2])`.
 
-### Custom Enumerator collection classes mapping domain logic
+## Custom Enumerator collection classes mapping domain logic
 
 Imagine a scenario that you're writing collection classes in which only
 certin collection can call another particular collection.
@@ -458,7 +458,7 @@ puts paid_collection.unassigned
 # undefined method `unassigned' for #<MembershipCollectionV3::Paid:0x0000000281d4e8> (NoMethodError)
 ```
 
-This is closely maps our Domain needs. It may seems like an
+This closely maps our Domain needs. It may seems like an
 overkill but trust me the benefits are sweet when it comes to
 larger API mapping or API that change too often as you can move objects
 more easily.
@@ -551,7 +551,7 @@ are already good articles that covers this topic:
 * https://www.sitepoint.com/implementing-lazy-enumerables-in-ruby/
 * http://patshaughnessy.net/2013/4/3/ruby-2-0-works-hard-so-you-can-be-lazy
 
-### Domain specific collection object respecting Lazynes
+## Domain specific collection object respecting Lazynes
 
 Till this point we were trying to make our collection implement our own way
 of `#each` and use Enumerable module to build common Array-alike
@@ -736,11 +736,12 @@ Enumerators one at a time unless it not meet condition of any of layers.
 Now this way of writing collection classes gives you flexibility of
 changing your decisions in a future with least amount of change.
 
-### Conclusion
+## Conclusion
 
 
-### Sources
+## Sources
 
-* [Enumerator]()
+* [Enumerator](http://ruby-doc.org/core-2.2.0/Enumerator.html)
 * [Eneumerable module](http://api.rubyonrails.org/v4.2/classes/Enumerable.html)
+* [Lazy Enumerator](http://ruby-doc.org/core-2.0.0/Enumerator/Lazy.html#method-i-lazy)
 * [Ruby Tapas](http://www.rubytapas.com/) screencasts
