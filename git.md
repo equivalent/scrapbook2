@@ -1,5 +1,11 @@
 # Git scrapbook
 
+
+```
+# show commit difference between 2 branches
+git log master..DEVELOPMENT 
+```
+
 ```
 git log --decorate --graph
 git reflog
