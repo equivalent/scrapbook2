@@ -8,6 +8,43 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## join images to video (animation)
+
+**ffmpeg ubuntu  installation with libx264**
+
+(mkv) othervise default mp4 videos are crap !
+
+```
+cd /my/path/where/i/keep/compiled/stuff
+git clone http://source.ffmpeg.org/git/ffmpeg.git
+cd ffmpeg
+./configure --enable-gpl --enable-libx264
+make
+make install
+ldconfig
+```
+
+* https://trac.ffmpeg.org/wiki/How%20to%20quickly%20compile%20FFmpeg%20with%20libx264%20(x264,%20H.264)
+
+**how to convert**
+
+```
+# images must be in order like this:
+# a1.jpg
+# a2.jpg
+# ...
+# a709.jpg
+# ..
+ffmpeg -y -i "a%d.jpg" /tmp/output.m4v
+
+# for framerate use `-r 30` option (30 is fps)
+
+# or for lumion out Photo000001.jpg format
+ffmpeg -y -i "Photo%06d.jpg" /tmp/output.m4v
+```
+
+* http://superuser.com/questions/19899/mac-os-x-easiest-free-non-quicktime-pro-application-for-converting-numbered
+
 ## samba 
 
 source: http://askubuntu.com/questions/208013/how-can-i-set-up-samba-shares-to-only-be-accessed-by-certain-users
