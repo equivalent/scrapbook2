@@ -1,4 +1,4 @@
-# Different ways how to do Rails validations
+# Different ways how to do contextual Rails validations
 
 Last weeks I stumble upon a discussion on "[How to add validations to a
 specific instance of an active record object?][5]" and I was trying to
