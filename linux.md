@@ -8,6 +8,13 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## convert mp4 to flv
+
+`ffmpeg -i source.mp4 -c:v libx264 -ar 22050 -crf 28 destinationfile.flv`
+
+* http://stackoverflow.com/questions/8504923/how-to-convert-mp4-video-file-into-flv-format-using-ffmpeg
+
+
 ## join images to video (animation)
 
 **ffmpeg ubuntu  installation with libx264**
