@@ -2,8 +2,7 @@
 
 ...or: How to run a script after Elastic Beanstalk deployment finishes.
 
-In this article we will have a look on [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/) post/pre deployment configuration
-costum. and script running.
+In this article we will have a look on [AWS ElasticBeanstalk](https://aws.amazon.com/elasticbeanstalk/) post/pre deployment script running.
 
 I will assume you know how [`eb` CLI](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) works,
 I assume you know how to use  `eb deploy` to do  the deployment
