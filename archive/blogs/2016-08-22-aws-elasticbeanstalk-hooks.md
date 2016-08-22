@@ -96,30 +96,33 @@ So if you need something  after deployment is finished you won't be able to do t
 
 Related articles
 
-* http://stackoverflow.com/questions/28583737/aws-elastic-beanstalk-execute-ebextensions-commands-only-on-new-instance-or-m
 * http://stackoverflow.com/questions/14077095/aws-elastic-beanstalk-running-a-cronjob
 
 
 ## Execution only on one instance.
 
 Let say you have load balanced environment with 10 EC2 instances and you want to execute some script after deployment only on one of them.
-(e.g. cron job)
 
 `.ebextensions` provide `leader_only` option which means "run only on leader instance"
 
 
 ```bash
 container_commands:
-  01_some_cron_job:
-    command: "cat .ebextensions/some_cron_job.txt > /etc/cron.d/some_cron_job && chmod 644 /etc/cron.d/some_cron_job"
+  09_some_task_on_primary_instance_only:
+    command: "touch /tmp/abc"
     leader_only: true
 ```
+
+> Developer may be tempted to put a cron job into this task but (as it
+> was pointed out to me in [this post](https://www.reddit.com/r/aws/comments/4z0jff/aws_elasticbeanstalk_deployment_hooks/)) it's
+> considered bad practice to put cron jobs to loadbalanced environments as
+> the instance may die/is removed -> your essential task may not run
+> overnight. Check [AWS Lambda Scheduling](http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)
+> or [this](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features-managing-env-tiers.html) and [this](https://medium.com/@joelennon/running-cron-jobs-on-amazon-web-services-aws-elastic-beanstalk-a41d91d1c571#.7cywqjukt) article for how to do it with Worker instance.
 
 
 * http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/customize-containers-ec2.html  search for leader_only
 * http://stackoverflow.com/questions/14077095/aws-elastic-beanstalk-running-a-cronjob
-
-
 
 
 ## Example 1 - load SSL certificate from S3
