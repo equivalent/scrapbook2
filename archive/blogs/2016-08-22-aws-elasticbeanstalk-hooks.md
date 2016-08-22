@@ -102,7 +102,7 @@ Related articles
 
 ## Execution only on one instance.
 
-Let say you have load balanced environment wit 10 EC2 instances and you want to execute some script after deployment only on one of them.
+Let say you have load balanced environment with 10 EC2 instances and you want to execute some script after deployment only on one of them.
 (e.g. cron job)
 
 `.ebextensions` provide `leader_only` option which means "run only on leader instance"
@@ -122,18 +122,20 @@ container_commands:
 
 
 
-## Example 1 - load SSL certificate from S3 after deployment or new instance added
+## Example 1 - load SSL certificate from S3
+
+...after deployment or when new instance is added
 
 You probably have AWS load balancer and threfore you have your SSL certificates uploaded there.
- But let say you have `NginX` container running on you EC2 instance to proxy some routes/headers before going
-to actual web server (e.g. `AWS Load balancer` > `NginX` > `Unicorn/Puma server` > `Ruby on Rails app`
+ But let say you have `Nginx` container running on you EC2 instance to proxy some routes/headers before going
+to actual web server (e.g. `AWS Load balancer` > `Nginx` > `Unicorn/Puma server` > `Ruby on Rails app`
 
 Now you need to be able to use those ssl certificates in in your Docker containers.
 
 Solution:
 
 1. configure your Nginx `Docker.aws.json` so that you share common folder (e.g. Host `~/shared/certs/` to Container `/shared/certs/`)
-2. configure your Nginx to use ssl cert from folder `/shared/certs/ssl.crt` and key form `/shared/certs/ssl.key` ([how to do that](https://github.com/equivalent/scrapbook2/blob/master/nginx.md))
+2. configure your Nginx to use ssl cert from Docker container folder `/shared/certs/ssl.crt` and key form `/shared/certs/ssl.key` ([how to do that](https://github.com/equivalent/scrapbook2/blob/master/nginx.md))
 3. AWS EB  provides a AWS S3 Bucket that all your environment instances have
    access to download configuration files. Upload your SSL certificates to
    this this bucket (e.g. `s3://my-app-bucket.com.systems/ssl/production/my-app.crt`)
@@ -203,8 +205,8 @@ files:
 
 ```
 
-First we will fetch the container ID of ruby on rails instance and we
-will run demonized `rake reindex` command
+First we will fetch the container ID of Ruby on Rails instance and we
+will run demonized `rake reindex` command on that Docker container
 
 `rake reindex` have content:
 
