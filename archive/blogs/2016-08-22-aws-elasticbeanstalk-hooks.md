@@ -226,6 +226,7 @@ task reindex: :environment do
 end
 ```
 
-#### Other resources
+#### Related resources
 
-* http://www.eq8.eu/blogs/25-common-aws-elastic-beanstalk-docker-issues-and-solutions
+* [AWS Reddit discussion on this article](https://www.reddit.com/r/aws/comments/4z0jff/aws_elasticbeanstalk_deployment_hooks/)
+* [Common AWS Elastic Beanstalk Docker issues and solutions](http://www.eq8.eu/blogs/25-common-aws-elastic-beanstalk-docker-issues-and-solutions)
