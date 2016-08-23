@@ -37,7 +37,7 @@ Content of `.ebextensions/91_run_something_after_deploymnet.config`
 
 ```bash
 files:
-  "/opt/elasticbeanstalk/hooks/appdeploy/pre/91_run_something_after_deploymnet.sh":
+  "/opt/elasticbeanstalk/hooks/appdeploy/post/91_run_something_after_deploymnet.sh":
     mode: "000755"
     owner: root
     group: root
@@ -48,7 +48,7 @@ files:
 > note `.ebextension/*.config` are also executed in alphabetic order, it's considered good practice to name them `%d%d_name_of_script.config`
 
 
-Now each time you deploy or a new EC2 instance is introduced `/opt/elasticbeanstalk/hooks/appdeploy/pre/91_run_something_after_deploymnet.sh`
+Now each time you deploy or a new EC2 instance is introduced `/opt/elasticbeanstalk/hooks/appdeploy/post/91_run_something_after_deploymnet.sh`
 with this content will be created => you will have after hook script.
 
 **NOTE !!!** if you rename your hook file to something else in `.ebextensions`, or you remove it from `.ebextensions` be sure you write
@@ -151,7 +151,7 @@ Content of `.ebextensions/50_pull_ssl_certificates_files.config`
 
 ```bash
 files:
-  "/opt/elasticbeanstalk/hooks/appdeploy/pre/50_pull_ssl_certificate_files.sh":
+  "/opt/elasticbeanstalk/hooks/appdeploy/post/50_pull_ssl_certificate_files.sh":
     mode: "000755"
     owner: root
     group: root
