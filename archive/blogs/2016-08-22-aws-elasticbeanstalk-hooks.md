@@ -92,6 +92,11 @@ So if you need something  after deployment is finished you won't be able to do t
 > deprecated and it looks like they never will be as the entire AWS EB flow works is folder hooks. `commands` are just more recommended in some cases.
 > I honestly don't use commands anymore as `.ebextensions` scenarios that I'm dealing with require folder hooks, so if you find any error in
 > syntax above please let me know.
+>
+> **update** I don't have any link to  official AWS statment on this
+> as AWS documentation on this topic is minimal or not existing. The only reason I'm pretty sure this will not
+> be deprecated is if you watch /var/log/eb-activity.log you can see bunch
+> of hook folders being executed and most of them are AWS EB essential.
 
 
 Related articles
@@ -221,3 +226,6 @@ task reindex: :environment do
 end
 ```
 
+#### Other resources
+
+* http://www.eq8.eu/blogs/25-common-aws-elastic-beanstalk-docker-issues-and-solutions
