@@ -73,15 +73,15 @@ end
 So in the last `it` statement  we are evaluating single logical
 assertion whether response body is parsable  JSON format.
 `JSON.parse` will throw an exception if this is not true.
-The result of this is a parsed Hash that is saved `hash_body` that we
+The result of this is a parsed Hash  that we
 convert to Rails
 [HashWithIndifferentAccess](http://api.rubyonrails.org/classes/ActiveSupport/HashWithIndifferentAccess.html) and we store this to local
-variable.
+variable `hash_body`.
 
 > HashWithIndifferentAccess is typo of hash that in which symbol keys
 > and string keys are considered same ( key `:id` is == key `"id"`)
 
-Then we are using built in `RSpec` `#match` matcher that compares the
+Then we are using built in `RSpec` `match` matcher that compares the
 the hash elements. Unlike `eq` matcher you can pass other matchers as
 arguments.
 
@@ -120,7 +120,7 @@ def json_str_to_hash(str)
 end
 ```
 
-```
+```ruby
 # spec/support/custom_matchers/json_matchers.rb
 RSpec::Matchers.define :look_like_json do |expected|
   match do |actual|
