@@ -375,9 +375,9 @@ test philosophy is your team
 following. Do you like Stubbed Controller tests or Integration
 Controller tests?
 
-#### Controller spec as an Integration test version:
+#### "Controller spec as an Integration test" version:
 
-```rspec
+```ruby
 require 'rails_helper'
 
 RSpec.describe V2::ArticlesController do
@@ -426,7 +426,7 @@ called but we don't need to test every attribute returned by JSON Body. That is 
 We just want to be sure that correct Article JSON is rendered and we do
 that by checking the id.
 
-#### Stubbed Controller tests
+#### "Stubbed Controller internals test" version:
 
 If you are followers of Mockists test philosophy school. Your concern
 is not to call something that we know is already working.
