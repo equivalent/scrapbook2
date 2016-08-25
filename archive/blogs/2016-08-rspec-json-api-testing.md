@@ -486,25 +486,21 @@ API using Ruby you have many choices of gems how you going to test this.
 Now this is all true and it is all awesome, but with every gem
 introduced our application/team rely on it. With every gem we introduce
 there is a promise developers will never allow Application gem to get out-dated otherwise in few
-years hell starts.
-
-More gems you introduce more this promise is harder
+years hell starts. More gems you introduce more this promise is harder
 to keep up with. Each time a gem version decides to change DSL there is
 a pressure to refactore code/tests.
 
 Now this is not as that bad if you are maintaining 1 monolith
 application but more and more microservice architecture is becoming
 popular and you don't necessary want/need to introduce 50 gems you are using everywhere
-else.
-
-Or let say you are building a gem yourself for JSON API you not
+else. Or let say you are building a gem yourself for JSON API you not
 necessary need to install gem like Airbourne
 
 Airbourne gem is pretty good I'm not trying to trashtalk it I just want
 to show you that RSpec on it's own is providing quite robust tool set
-that can cover some common scenarios.
+that an cover some common scenarios.
 
 If you using Airbourne to test controllers that's fine, just consider
 using RSpec `match({})` testing for your serializer objects. The point
-is that try to split JSON structure to Serializer object and use
+is that try to split JSON structure logic to Serializer object and use
 whatever you like on controller.
