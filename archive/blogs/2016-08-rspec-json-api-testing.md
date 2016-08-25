@@ -460,13 +460,13 @@ RSpec.describe V2::ArticlesController do
 
         expect(serializer_double)
           .to receive(:as_json)
-          .and_return(article: 'stubbed hash by ArticleSerializer')
+          .and_return({ article: 'stubbed hash by ArticleSerializer'})
 
         trigger
       end
 
       it "uses ArticleSerializer to render body JSON" do
-        expect(body_as_json).to match(article: 'stubbed hash by ArticleSerializer')
+        expect(body_as_json).to match({article: 'stubbed hash by ArticleSerializer'})
       end
     end
   end
@@ -487,7 +487,7 @@ API using Ruby you have many choices of gems how you going to test this.
 
 Now this is all true and it is all awesome, but with every gem
 introduced our application/team rely on it. With every gem we introduce
-there is a promise developers will never allow Application gem to get out-dated otherwise in few
+there is a promise developers will never allow gem to get out-dated in your application, otherwise in few
 years hell starts. More gems you introduce more this promise is harder
 to keep up with. Each time a gem version decides to change DSL there is
 a pressure to refactore code/tests.
