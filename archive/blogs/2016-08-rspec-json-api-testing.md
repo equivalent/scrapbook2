@@ -160,17 +160,18 @@ Now you can write:
 > Are you asking yourself: "Shouldn't `expect(body).to look_like_json` and `expect(body_as_json).to match` be in separate `it` blocks?".
 > Well yes and no, we are testing two things (that's true) but both
 > are there to ensure **one logical assertion**: "Is the body expected JSON ?"
-> The `look_like_json` is just a safety check for in case that the
+> The `look_like_json` is just a safety check for the case when
 > `response.body` changes to some "non-json" (e.g. someone changes the
 > `render :json` with `render :html`, this give you meaningful message
 > what went wrong  before the comparison of JSON body even starts.
 >
-> If you want to learn more on this I'm recommending Bob Martins
+> If you want to learn more on this Test practices I'm recommending Bob Martins
 > [Clean Code: Advanced TDD](https://cleancoders.com/videos)
 
 
-Now this may be enough for small JSON APIs in small applications where
- controllers specs acts as a integration or smoke test.
+This is enough for a basic JSON APIs in a small applications with
+tiny API usage or in application where
+controllers specs test every scenario.
 
 ## Going Plain Ruby - Serializer Objects
 
@@ -266,7 +267,7 @@ class ArticleSerializer
 end
 ```
 
-When we run our "serializer" specs everything passes. That's pretty boring let's introduce a
+When we run our "serializers" specs everything passes. That's pretty boring let's introduce a
 typo to our Article Serializer. Instead of `type: "articles"` lets return `type: "events"` and rerun our tests
 
 ```bash
@@ -328,9 +329,18 @@ a kind of String)}
 levels) in <top (required)>'
 ```
 
+The point of serializer objects is to make sure you deal with all the
+various scenarious in this test layer:
+
+* maybe some attributes are lovercase is some scenarios
+* maybe the serializer includes some nested resources (like Authors)
+* maybe you can pass Article-alike object to serializer (Duck-type)
+  "BlogPost" and you want to test the output behavior.
+
+
 ## Hooking Serializer to Controller
 
-So far Serializer is just Ruby object that is not doing anything useful
+So far Serializer is just a Ruby object that is not doing anything useful
 from application point of view. Lets tell our Controller to use it:
 
 
@@ -359,7 +369,7 @@ and pass it to `render json: ...`
 
 
 Production code is the easy part, but in order to test this you need to ask yourself what
-test philosophy is your team 
+test philosophy is your team
 following. Do you like Stubbed Controller tests or Integration
 Controller tests?
 
@@ -461,20 +471,40 @@ RSpec.describe V2::ArticlesController do
 end
 ```
 
+> if you are hardcore Mockist you would probably want to do
+> `expect(controlller).to receive(:render).with(json:
+> serialization_hash_double)`.
+
 ## Why ?
+
+Why even bother, why not to use JSON API testing gem like [Airbourne](https://github.com/brooklynDev/airborne) ?
 
 One of the benefits of Ruby on Rails community is the endless source of
 libraries for various usecases and test cases. When you're building JSON
 API using Ruby you have many choices of gems how you going to test this.
 
-I'm just puzzled by the amount of gems Rails developer installs
-by default in order to do simple application. In some cases some gems
-make perfect sense but in lot cases they are just unecesary owerload and
-once they used your Application relies on them.
+Now this is all true and it is all awesome, but with every gem
+introduced our application/team rely on it. With every gem we introduce
+there is a promise developers will never allow Application gem to get out-dated otherwise in few
+years hell starts.
 
-RSpec is was is probably best test library in the world, no language
-has better tool (in my opinion) it's just lot of time Rails Developers
-don't try to understand it and variety of use cases it covers and they
-automatically jump to random other test gem.
+More gems you introduce more this promise is harder
+to keep up with. Each time a gem version decides to change DSL there is
+a pressure to refactore code/tests.
 
+Now this is not as that bad if you are maintaining 1 monolith
+application but more and more microservice architecture is becoming
+popular and you don't necessary want/need to introduce 50 gems you are using everywhere
+else.
 
+Or let say you are building a gem yourself for JSON API you not
+necessary need to install gem like Airbourne
+
+Airbourne gem is pretty good I'm not trying to trashtalk it I just want
+to show you that RSpec on it's own is providing quite robust tool set
+that can cover some common scenarios.
+
+If you using Airbourne to test controllers that's fine, just consider
+using RSpec `match({})` testing for your serializer objects. The point
+is that try to split JSON structure to Serializer object and use
+whatever you like on controller.
