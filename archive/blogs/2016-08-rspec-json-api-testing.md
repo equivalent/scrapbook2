@@ -1,4 +1,4 @@
-# Native RSpec JSON API testing
+# Pure RSpec JSON API testing
 
 In this article we will have a look how to test JSON API in Ruby on
 Rails or in plain Ruby application with nothing
@@ -84,6 +84,8 @@ variable `hash_body`.
 Then we are using built in `RSpec` `match` matcher that compares the
 the hash elements. Unlike `eq` matcher you can pass other matchers as
 arguments.
+
+> This is also true to custom matchers you define ! [Custom RSpec Matchers]( https://www.relishapp.com/rspec/rspec-expectations/v/3-3/docs/custom-matchers/define-matcher)
 
 ```ruby
       # ...
@@ -332,7 +334,7 @@ levels) in <top (required)>'
 The point of serializer objects is to make sure you deal with all the
 various scenarious in this test layer:
 
-* maybe some attributes are lovercase is some scenarios
+* maybe some attributes are lowercase is some scenarios
 * maybe the serializer includes some nested resources (like Authors)
 * maybe you can pass Article-alike object to serializer (Duck-type)
   "BlogPost" and you want to test the output behavior.
