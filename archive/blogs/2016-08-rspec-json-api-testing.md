@@ -477,6 +477,32 @@ end
 > `expect(controlller).to receive(:render).with(json:
 > serialization_hash_double)`.
 
+## Request test vs Controller specs
+
+RSpec Rails provides [Request Specs](https://www.relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec) which are really great as they hit the actual endpoint all way through router as if you were
+hitting real server (unlike Controller specs that are just ensuring
+given route is defined in `config/routes` and you are just testing
+Controller / request / response object)
+
+So as user `bascule` pointed out in [Reddit discussion](https://www.reddit.com/r/ruby/comments/4zhhfx/pure_rspec_json_api_testing/) for this article,
+some developers may prefer them over Controller tests.
+
+I fully agree. It's really up to you which one you choose. Same rules
+apply for evaluating rendered body JSON.
+
+Way how I understand it that main purpose of Controller specs should just help you do during
+your TDD session, and  you can mock anything you want there
+(current_user, DB calls, Serializer calls,... for various scenarios).
+
+Request spec should be the real "smoke test" / full integration test and you not necessary want many of them as they are slow and when errors are raised from Request test they are harder to track down
+as the error output is not that straight forward.
+
+Therefore I personally recommending both but it's really up to your team to decide how do you do
+the tests. Some teams don't have time to write both or mock stuff in
+Controllers and therefore rather do the Integration testing in
+Controllers. I agree that "Good test practices fairies" are crying at that point but
+stuff needs to be pushed and deployed.
+
 ## Why ?
 
 Why even bother, why not to use JSON API testing gem like [Airbourne](https://github.com/brooklynDev/airborne) ?
