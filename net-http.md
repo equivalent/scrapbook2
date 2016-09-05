@@ -1,5 +1,53 @@
 best cheat sheet ever http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
 
+# Net https POST
+
+http://stackoverflow.com/a/39328503/473040
+
+```
+require 'uri'
+require 'net/https'
+require 'json'
+
+class MakeHttpsRequest
+  def call(url, hash_json)
+    uri = URI.parse(url)
+    req = Net::HTTP::Post.new(uri.to_s)
+    req.body = hash_json.to_json
+    req['Content-Type'] = 'application/json'
+    # ... set more request headers 
+
+    response = https(uri).request(req)
+
+    response.body
+  end
+
+  private
+
+  def https(uri)
+    Net::HTTP.new(uri.host, uri.port).tap do |http|
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    end
+  end
+end
+
+project_id = 'yyyyyy'
+project_key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+url =
+"https://airbrake.io/api/v4/projects/#{project_id}/deploys?key=#{project_key}"
+body_hash = {
+  "environment":"production",
+  "username":"tomas",
+  "repository":"https://github.com/equivalent/scrapbook2",
+  "revision":"live-20160905_0001",
+  "version":"v2.0"
+}
+
+puts MakeHttpsRequest.new.call(url, body_hash)
+
+```
+
 # net http timeout
 
 ```ruby
