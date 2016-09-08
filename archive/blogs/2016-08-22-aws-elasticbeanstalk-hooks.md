@@ -129,6 +129,15 @@ container_commands:
 * http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/customize-containers-ec2.html  search for leader_only
 * http://stackoverflow.com/questions/14077095/aws-elastic-beanstalk-running-a-cronjob
 
+## Many possible hooks
+
+As user  [Froyoforever](https://www.reddit.com/user/Froyoforever) kindly pointed out in [this Reddit Discussion](https://www.reddit.com/r/aws/comments/4z0jff/aws_elasticbeanstalk_deployment_hooks/d6tb57j), one danger here is that different hook directories get called for different events. There's `appdeploy`, `configdeploy`, `restartappserver`, `postinit`, `preinit`, etc.
+
+> Just do `ls /opt/elasticbeanstalk/hooks/` to list them all
+
+Unfortunately I can only speak for `appdeploy` as it's the only one that I've used.
+I'll let you figure out what is what if you need them.
+
 
 ## Example 1 - load SSL certificate from S3
 
