@@ -41,8 +41,8 @@ In order to load Rails server with the enviroment variable you can
 
  `ADMIN_PASS=bar ADMIN_USERNAME=foo RAILS_ENV=development rails server`
 
-Or you can use tool like [direnv](http://direnv.net/) or gem [Figaro](https://github.com/laserlemon/figaro) to set local ENV variables.0
-variables
+Or you can use tool like [direnv](http://direnv.net/) or gem [Figaro](https://github.com/laserlemon/figaro) to set local ENV
+variables.
 
 > If you want to learn more why storing sensitive data in ENV variable
 > is so crucial I'm recommending this article  https://12factor.net/config
@@ -59,7 +59,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    sleep 2
+    # sleep 2 # you can add sleep here  if you want to  slow down brute force attack
+              # for normal application this is bad idea but for one
+              # user login no-one care
+
     site_user_params = params.require(:site_user)
 
     @site_user = SiteUser.new
@@ -214,7 +217,7 @@ Rails.application.routes.draw do
   # ...
   resources :sessions, only: [:create, :new] do
     collection do
-      get :loggout
+      get :logout
     end
   end
   # ...
