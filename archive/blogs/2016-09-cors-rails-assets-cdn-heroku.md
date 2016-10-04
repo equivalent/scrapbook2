@@ -173,9 +173,10 @@ end
 
 ## Enable Access-Control-Allow-Origin header on S3 bucket / CDN
 
-> This part is written as a collaborative work of [Anas Alaoui](https://github.com/nenesitooo) and [Me](http://www.eq8.eu)
+> This part is written as a result of collaborative work of [Anas Alaoui](https://github.com/nenesitooo) and [Me](http://www.eq8.eu)
 
-Another scenario that happened to me and my college was that one JS lib was loading image from Cloudfront CDN as a css background image. CDN was loading and caching images from S3 bucket. Browsers (Firefox, Chrome) were refusing the image due to `Access-Control-Allow-Origin` header not being present in the CDN and S3 response.
+Another scenario that happened to me and my college was that one JS lib based on canvas was loading image from Cloudfront CDN by Ajax. CDN was loading and caching images from S3 bucket. Browsers (Firefox, Chrome) were refusing the image due to `Access-Control-Allow-Origin` header not being present in the CDN and S3 response.
+
 
 > One really important thing to point out is that S3 GET CORS were set to `*` (wildcard, allow any origin). As we've learned (after several hours of research) from [this SO Answer](http://stackoverflow.com/a/35278803/473040) **AWS S3 will not expose header Access-Control-Allow-Origin if it's wildcard** !
 
