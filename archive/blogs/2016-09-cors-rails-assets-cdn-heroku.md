@@ -1,14 +1,14 @@
 # Various CORS issues related (not only to) Ruby on Rails
 
 I'm writing this article after week full of CORS issues that I've
-stumbled upon. Truth is that topic of CORS was well documented it's just
-googling the right answers was painful process with lot of misleading
-detours.
+stumbled upon. Truth is that topic of CORS is well documented, it's just
+that googling and trying out misleading
+detours was too painful.
 
-That's why I'm grouping
-collection of issue-solution topics related to CORS and AWS S3, CORS and Ruby on Rails framework.
+That's why I'm crating a
+collection of issue-solution topics related to CORS along with Ruby on Rails framework.
 
-Hope they will help you and future me as I'm pretty sure I will have to deal with them in the future.
+Hope they will help you (and myself as I'm pretty sure I will have to deal with them in the future).
 
 ## Quick explanation what is CORS
 
@@ -22,11 +22,11 @@ I'll just borrow this explanation from the article:
 
 > Imagine the site alice.com has some data that the site bob.com wants to access. This type of request traditionally wouldn’t be allowed under the browser’s same origin policy. However, by supporting CORS requests, alice.com can add a few special response headers that allows bob.com to access the data.
 
-So simplified version: if you are on website `bob.com` you want some data from
+So here is mine version of the same: If you are on website `bob.com` and website wants some data from
 `alice.com`, **your browser** will send request to `alice.com` **including
 header** `origin=bob.com`. Website `alice.com` (may or may not) responds with data.
 This response includes header `Access-Control-Allow-Origin`. If the
-value matches `bob.com` your browser allow to serve that data. If not you **browser**
+value matches `bob.com` your browser allow to serve that data. If not your **browser**
 refuse to serve the data from `alice.com` and your browser console will display error:
 
 Firefox:
@@ -55,7 +55,7 @@ Rails.application.configure do
 end
 ```
 
-Now your website will point compiled stuff in `app/assets/` folder to CDN.
+Now your website will point compiled `css`, `js` and images in `app/assets/` folder to CDN.
 So instead of `http://mywebsite.com/assets/funny-cat-xxxxxxxx.jpg` you
 will have link `https://xxxxxxxxxxxxxx.cloudfront.net/assets/funny-cat-xxxxxxxx.jpg`
 
@@ -83,15 +83,17 @@ server**. Therefore if you want your CDN to respond with proper CORS
 header (`Access-Control-Allow-Origin`) you need make sure your server
 responds with that header.
 
-> You can test any of the solutions bellow with `curl -X GET  -iH "Origin: test" https://xxxxxxxxxxxxxx.cloudfront.net/assets/funny-cat-xxxxxxxx.jpg` Look for `Access-Control-Allow-Origin` header.
+> You can test any of the solutions bellow with `curl -X GET  -iH "Origin: test" https://xxxxxxxxxxxxxx.cloudfront.net/assets/funny-cat-xxxxxxxx.jpg` Look for `Access-Control-Allow-Origin` header. If there isn't any, you configured something wrong.
 
 #### Nginx Solution
 
 If you are running server on some VM (like Digital Ocean, EC2 AWS, ...)
-and you are using NginX you have not much to worry about.
+and you are using NginX (or Apache) you have not much to worry about.
 
 Official Rails Asset Pipeline pretty much recommends to set custom
-headers on Nginx level ([source](http://guides.rubyonrails.org/asset_pipeline.html#far-future-expires-header)). Doesn't matter what version of Rails you're using.
+headers on Nginx level ([source](http://guides.rubyonrails.org/asset_pipeline.html#far-future-expires-header)).
+
+> Doesn't matter what version of Rails you're using.
 
 
 ```
@@ -116,7 +118,7 @@ Here are some other references if you need more complex Nginx examples
 
 #### Heroku Solution Rails 5
 
-If you're dealing with Rails 5 application, then great. Set this is your
+If you're dealing with Rails 5 application with Heroku server, then great. Set this is your
 `production.rb`
 
 ```ruby
@@ -137,12 +139,12 @@ More info: http://blog.bigbinary.com/2015/10/31/rails-5-allows-setting-custom-ht
 
 #### Heroku Solution Rails 4 and lower
 
-If you are dealing with Rails 4 and lower you will hate me. I have no
+If you are dealing with Rails 4 and lower under Heroku you will hate me. I have no
 solution that I'm sure will work. Please read article [Rails 5 allows setting custom HTTP Headers for assets](http://blog.bigbinary.com/2015/10/31/rails-5-allows-setting-custom-http-headers-for-assets.html) or [this PR](https://github.com/rails/rails/pull/19135)
 and you will understand why.
 
-I'll try to point you out to some solutions, but none of them really
-worked for me:
+I'll try to point you out to some solutions, but **none of them really
+worked for me**:
 
 ##### Rack CORS
 
@@ -175,7 +177,7 @@ end
 
 Another scenario that happened to me and my college was that one JS lib was loading image from Cloudfront CDN as a css background image. CDN was loading and caching images from S3 bucket. Browsers (Firefox, Chrome) were refusing the image due to `Access-Control-Allow-Origin` header not being present in the CDN and S3 response.
 
-> One really important thing to point out is that S3 GET CORS were set to `*` (wildcard, allow any origin). As we've learned (after several hours of research) from [this SO Answer](http://stackoverflow.com/a/35278803/473040) **AWS S3 will not expose header Access-Control-Allow-Origin if it's wildcard**
+> One really important thing to point out is that S3 GET CORS were set to `*` (wildcard, allow any origin). As we've learned (after several hours of research) from [this SO Answer](http://stackoverflow.com/a/35278803/473040) **AWS S3 will not expose header Access-Control-Allow-Origin if it's wildcard** !
 
 Step by step solution:
 
@@ -239,47 +241,44 @@ to wait a bit, or invalidate the cache in CDN to see the result)
 * http://stackoverflow.com/questions/17533888/s3-access-control-allow-origin-header
 * http://stackoverflow.com/a/35278803/473040
 
+## Wildcards
+
+The CORS spec is all-or-nothing. It only supports:
+
+* `*` - from everywhere
+* `null` - none
+* or the exact match `xxxxxxxxxxxxxx.cloudfront.net`
+
+> note: you cannot do `*.cloudfront.net`
+
+You may feel tempted to leave your setup at `*` (What harm could it do ?)
+Well please don't !
+
+Use `*` only for debugging. Once you prove concept, ensure that you set
+correct full `subdomain.domain.tld` setup.
+
+To read more why: https://www.viget.com/articles/cors-youre-doing-it-wrong
 
 
-# wildcards
+## Alternative definition of CORS
 
-The CORS spec is all-or-nothing. It only supports *, null or the exact
+stolen from  http://stackoverflow.com/a/17570351
+
+> CORS provides a mechanism for servers to tell the browser it is OK for
+> requesting domain A to read data coming from domain B. It is done by
+> including a new Access-Control-Allow-Origin HTTP header in the response.
+> If you remember the error message of the introduction, this is exactly
+> what the browser is trying to tell you. When a browser receives a
+> response from a Cross-Origin source, it will check for CORS headers. If
+> the origin specified in the response header matches the current origin,
+> it allows read access to the response. Otherwise, you get the nasty
+> error message
+
+
+## Unsorted resources:
 
 * https://www.w3.org/TR/cors/#access-control-allow-origin-response-header
 * http://stackoverflow.com/questions/14003332/access-control-allow-origin-wildcard-subdomains-ports-and-protocols
-
-
-## AJax
-
-
-
-## NginX
-
-
-
-
-
-CORS provides a mechanism for servers to tell the browser it is OK for
-requesting domain A to read data coming from domain B. It is done by
-including a new Access-Control-Allow-Origin HTTP header in the response.
-If you remember the error message of the introduction, this is exactly
-what the browser is trying to tell you. When a browser receives a
-response from a Cross-Origin source, it will check for CORS headers. If
-the origin specified in the response header matches the current origin,
-it allows read access to the response. Otherwise, you get the nasty
-error message.```
-
-http://stackoverflow.com/a/17570351
-
-
-
-
-
-
-
-Access-Control-Allow-Origin
-
-
 * https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
 * http://blog.bigbinary.com/2015/10/31/rails-5-allows-setting-custom-http-headers-for-assets.html
 * https://github.com/rails/rails/pull/19135
@@ -292,3 +291,5 @@ Access-Control-Allow-Origin
 * https://www.w3.org/TR/cors/#access-control-allow-origin-response-header
 * https://aws.amazon.com/blogs/aws/amazon-s3-cross-origin-resource-sharing/
 * http://stackoverflow.com/questions/20518524/no-access-control-allow-origin-header-is-present-on-the-requested-resource-or#comment30675068_20518524
+* http://stackoverflow.com/a/17570351
+
