@@ -20,4 +20,14 @@ modify, and then Add/Edit the name servers there.
 > [Oblio](http://serverfault.com/users/133223/oblio) ! 
 
 
+![step 1](https://github.com/equivalent/scrapbook2/blob/master/assets/images/2016/cloudflare-aws-route-54_1.png)
 
+![step 2](https://github.com/equivalent/scrapbook2/blob/master/assets/images/2016/cloudflare-aws-route-54_2.png)
+
+![step 3](https://github.com/equivalent/scrapbook2/blob/master/assets/images/2016/cloudflare-aws-route-54_3.png)
+
+![step 4](https://github.com/equivalent/scrapbook2/blob/master/assets/images/2016/cloudflare-aws-route-54_4.png)
+
+![step 5](https://github.com/equivalent/scrapbook2/blob/master/assets/images/2016/cloudflare-aws-route-54_5.png)
+
+![step 6](https://github.com/equivalent/scrapbook2/blob/master/assets/images/2016/cloudflare-aws-route-54_6.png)
