@@ -12,6 +12,13 @@ Topics not included/moved:
 
 Topics:
 
+## Detecting if object is part of object space
+
+```ruby
+(ObjectSpace.each_object(Class).to_a - [Object, BasicObject]).
+  detect{|c| c === ariel.widgets}
+# => ActiveRecord::Associations::CollectionProxy
+```
 
 ## execute something in dir
 
