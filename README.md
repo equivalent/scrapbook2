@@ -1,4 +1,5 @@
 ![Gitten](http://gittens.r15.railsrumble.com//badge/koudelka/visualixir)
+[![Open Thanks](https://thawing-falls-79026.herokuapp.com/images/thanks-1.svg)](https://thawing-falls-79026.herokuapp.com/r/nwgohkil)
 
 Scrapbook2
 ==============
