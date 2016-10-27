@@ -454,7 +454,7 @@ end
 class IdentityUpdater
   include ActiveModel::Validations
 
-  attr_accessor :submitted_identity, :identity_id
+  attr_accessor :submitted_email, :identity_id
 
   validates_presence_of :submitted_email
   validates_format_of   :submitted_email, with: EMAIL_REXP
@@ -492,7 +492,7 @@ end
 # app/controllers/identities_controller.rb
 class IdentitiesController
   def update
-    @service = OauthIdentityCreator.new.tap do |service|
+    @service = IdentityUpdater.new.tap do |service|
       service.submitted_email = params[:auth][:submitted_email]
       service.identity_id     = params[:id]
     end
