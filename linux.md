@@ -8,13 +8,22 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## change hostname on server
+
+```
+sudo vim /etc/hostname
+sudo vim /etc/hosts
+sudo service hostname restart
+```
+
+* http://askubuntu.com/questions/9540/how-do-i-change-the-computer-name
+
+
 ## what services / ports the server is using
 
 ```
 sudo netstat -tulpn
 ```
-
-
 
 ## convert mp4 to flv
 
