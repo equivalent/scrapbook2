@@ -693,7 +693,7 @@ keys: postfix, sendmail , mail rubymail, linux, send email from command line
     sed  -i 's/what/with_what/g' app/*/*.rb
     sed  -i 's/lambda/->/g' app/*/*.rb
     
-    
+
 ## Changing (spoof) mac address
 
 in Ubuntu
