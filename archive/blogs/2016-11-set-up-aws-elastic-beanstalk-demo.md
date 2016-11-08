@@ -20,6 +20,9 @@ can SSH to them.
 ![Generate ssh key via Key Pair tool 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-1200.png)
 ![Generate ssh key via Key Pair tool 3](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-1300.png)
 
+Be sure to save the ssh private key (`Puppies.pem`) to a sefe place. You
+will need it in a futer to ssh to the servers.
+
 ## Step 2 - Step 2 - Testing Security Group
 
 This step is optional if you know what you are doing.
@@ -37,30 +40,96 @@ We will create a Dummy Testing Security Group called "test-liberal" to allow all
 
 Now we will set up our PostgreSQL database via AWS RDS product.
 
-![RDS settup 1](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3100.png)
-![RDS settup 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3200.png)
-![RDS settup 3](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3400.png)
+![RDS setup 1](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3100.png)
+![RDS setup 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3200.png)
+![RDS setup 3](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3400.png)
+
+Choos database username, password and instance type.
+
+We are choosing micro instance as it's cheaper, but if you are doing
+this for a real product I would recommend `m3.medium` for medium size
+project.
+
+You can read about diferent types of instances here https://aws.amazon.com/ec2/instance-types/
+
 ![RDS settup 4](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3500.png)
+
+Be sure to use our `test-liberal` security group.
+
 ![RDS settup 5](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3600.png)
 ![RDS settup 6](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3700.png)
 
 Later on we will use this "Endpoint URL"  via Enviroment
 Variables `ENV['REL_DATABASE_HOST']` in our Rails app.
 
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-4100.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-4200.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-4400.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5100.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5200.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5300.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5400.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5500.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5600.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5650.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5700.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5800.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5900.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5910.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5920.png)
-![ ](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5930.png)
+## Step 4 - Create ElasticCache Redis cluster
+
+Same as in RDS setup be sure to use our `test-liberal` security group
+and we will use the endpoint url as `ENV['REDIS_HOST']`.
+
+![ES setup 1](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-4100.png)
+![ES setup 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-4200.png)
+![ES setup 3](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-4400.png)
+
+## Step 5 - Create ElasticBeanstalk Environment
+
+![AWS EB setup 01](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5100.png)
+![AWS EB setup 02](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5200.png)
+
+We want to use WebServer Environment.
+
+> In our demo app even the BG worker
+> Docker container will be running as part of it. Feel free to extract BG
+> worker to own enviroment if you choose so.
+
+![AWS EB setup 03](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5300.png)
+
+We want to demonstrate the loadbalanced enviroment -> we can introduce
+more EC2 instances if load is higher.
+
+![AWS EB setup 04](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5400.png)
+
+You can use "Sample Application" which is just a Dummy Application from
+AWS EleasticBeanstalk. But you can choose to upload the `Dockerrun.aws.json` to it
+which will basicaly deploy or [demmo application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app)
+
+![AWS EB setup 05](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5500.png)
+
+In future you can point your real domain (e.g. www.pupies.com) to this
+elastic beanstalk URL via CNAME rule.
+
+![AWS EB setup 06](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5600.png)
+
+You don't need to create RDS, we just done it in prev. step.
+
+![AWS EB setup 07](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5650.png)
+
+Choose our key pair from step 1. ElasitcBeanstalk will configure EC2
+instances so that all current and even newly introduced will have our
+SSH Key.
+
+Health Check is also important. Be sure to pint it to url that responds
+with non error status code (so something that responds 200). this is
+needed as LoadBalancer will not direct responses to your EC2 instance if
+they are not "healthy" (if they don't respond to healthcheck endpoint
+requests)
+
+![AWS EB setup 08](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5700.png)
+
+Tags are just for you. No need to fill them.
+![AWS EB setup 09](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5800.png)
+
+You can leave the Permissions on whatever EB sets by default.
+![AWS EB setup 10](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5900.png)
+
+So one more time check if your setup is correct. As we can see we are
+introducing Multicontainer Docker, EC2 instances in load balanced enviroment.
+
+![AWS EB setup 11](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5910.png)
+
+Environment creation will take some time
+![AWS EB setup 12](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5920.png)
+
+But once done our application should be accessible from Elasticbeanstalk URL
+![AWS EB setup 13](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5930.png)
 
