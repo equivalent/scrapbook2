@@ -749,3 +749,8 @@ tools now go build some pyramids!
 * [Eneumerable module](http://api.rubyonrails.org/v4.2/classes/Enumerable.html)
 * [Lazy Enumerator](http://ruby-doc.org/core-2.0.0/Enumerator/Lazy.html#method-i-lazy)
 * [Ruby Tapas](http://www.rubytapas.com/) screencasts
+
+## Related
+
+* [Extending Enumerable so it comply with Rails](https://gist.github.com/equivalent/9a97dff5a8a24bf84868d913a512add7)
+* unfinished article on [Enumerable to comply with Rails conventions](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2016-07-rails-and-enumerable.md) - not finished
