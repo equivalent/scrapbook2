@@ -50,14 +50,14 @@ We are choosing micro instance as it's cheaper, but if you are doing
 this for a real product I would recommend `m3.medium` for medium size
 project.
 
-You can read about diferent types of instances here https://aws.amazon.com/ec2/instance-types/
+You can read about different types of instances here https://aws.amazon.com/ec2/instance-types/
 
-![RDS settup 4](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3500.png)
+![RDS setup 4](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3500.png)
 
-Be sure to use our `test-liberal` security group.
+Be sure o use our `test-liberal` security group.
 
-![RDS settup 5](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3600.png)
-![RDS settup 6](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3700.png)
+![RDS setup 5](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3600.png)
+![RDS setup 6](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-3700.png)
 
 Later on we will use this "Endpoint URL"  via Enviroment
 Variables `ENV['REL_DATABASE_HOST']` in our Rails app.
@@ -80,7 +80,7 @@ We want to use WebServer Environment.
 
 > In our demo app even the BG worker
 > Docker container will be running as part of it. Feel free to extract BG
-> worker to own enviroment if you choose so.
+> worker to own environment if you choose so.
 
 ![AWS EB setup 03](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5300.png)
 
@@ -91,7 +91,7 @@ more EC2 instances if load is higher.
 
 You can use "Sample Application" which is just a Dummy Application from
 AWS EleasticBeanstalk. But you can choose to upload the `Dockerrun.aws.json` to it
-which will basicaly deploy or [demmo application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app)
+which will basically deploy or [demmo application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app)
 
 ![AWS EB setup 05](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5500.png)
 
@@ -133,3 +133,9 @@ Environment creation will take some time
 But once done our application should be accessible from Elasticbeanstalk URL
 ![AWS EB setup 13](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5930.png)
 
+
+
+## Related Articles
+
+* http://www.eq8.eu/blogs/25-common-aws-elastic-beanstalk-docker-issues-and-solutions
+* http://www.eq8.eu/blogs/29-aws-elasticbeanstalk-deployment-hooks
