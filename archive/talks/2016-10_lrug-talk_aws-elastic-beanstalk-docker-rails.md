@@ -11,7 +11,7 @@ We will also look at various some Docker Deployment philosophy.
 
 ## Talk assets:
 
-* [How to create new ElasticBeanstalk environment](@todo) ([MIRROR source](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2016-11-set-up-aws-elastic-beanstalk-demo.md))
+* [How to create new ElasticBeanstalk environment](http://www.eq8.eu/blogs/34-set-up-aws-elastic-beanstalk) ([MIRROR source](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2016-11-set-up-aws-elastic-beanstalk-demo.md))
 * [How to create new ElasticBeanstalk environment SLIDES](https://docs.google.com/presentation/d/1cMx3SL6cfQy-oKDgxLprpgPTBjOG4gN-F8AXDgP-3Tc/edit?usp=sharing)
 
 
