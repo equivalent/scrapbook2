@@ -114,6 +114,9 @@ needed as LoadBalancer will not direct responses to your EC2 instance if
 they are not "healthy" (if they don't respond to healthcheck endpoint
 requests)
 
+> For the demo application be sure you choose at least m3.medium or t2.medium instance,
+> otherwise you may not have enough memory on your instance.
+
 ![AWS EB setup 08](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/eb-demo/eb-demo-5700.png)
 
 Tags are just for you. No need to fill them.
