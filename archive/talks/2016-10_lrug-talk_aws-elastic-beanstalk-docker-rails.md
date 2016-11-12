@@ -26,9 +26,11 @@ you can replicate the steps with any language.
 
 ##### Shorter Mirror links
 
-| Talk             | [bit.ly://aws-eb](bit.ly://aws-eb) |
-| Talk Slides      | [bit.ly://aws-eb-slides](bit.ly://aws-eb-slides) |
-| Demo Application | [bit.ly://aws-eb-source](bit.ly://aws-eb-source) |
+Subject          |  Link |
+-----------------|-----------------------------------------|
+Talk             | [bit.ly://aws-eb](bit.ly://aws-eb) |
+Talk Slides      | [bit.ly://aws-eb-slides](bit.ly://aws-eb-slides) |
+Demo Application | [bit.ly://aws-eb-source](bit.ly://aws-eb-source) |
 
 http://bit.ly/aws-eb-app
 
