@@ -20,8 +20,8 @@ you can replicate the steps with any language.
 ## Talk assets:
 
 
-* [Talk Slides](https://docs.google.com/presentation/d/14XwwfX4348fj6mglEo4gksioSDHW00MFN4iB9_-H4KY/edit#slide=id.gffdf33b32_1_60) (mirror: bit.ly://aws-eb-slides)
-* [Demo Application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app) - source code, `docker-composer.yml`, `Dockerrun.aws.json conf`, ... (mirror: bit.ly://aws-eb-source)
+* [Talk Slides](https://docs.google.com/presentation/d/14XwwfX4348fj6mglEo4gksioSDHW00MFN4iB9_-H4KY/edit#slide=id.gffdf33b32_1_60) (mirror: [bit.ly://aws-eb-slides](bit.ly://aws-eb-slides))
+* [Demo Application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app) - source code, `docker-composer.yml`, `Dockerrun.aws.json conf`, ... (mirror: [bit.ly://aws-eb-source](bit.ly://aws-eb-source))
 
 
 http://bit.ly/aws-eb-app
