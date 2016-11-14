@@ -1,6 +1,6 @@
 # Set up AWS Elastic Beanstalk
 
-This article is related to talk I gave 15th of November 2016 at LRUG
+This article is related to [talk](http://www.eq8.eu/talks/2-aws-elastic-beanstalk-docker-for-rails-developers) I gave 15th of November 2016 at LRUG
 (CodeNode Skills Matters London)
 
 It will show you how to set up AWS products for demo application which
