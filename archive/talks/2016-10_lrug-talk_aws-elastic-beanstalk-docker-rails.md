@@ -38,12 +38,13 @@ you can replicate the steps with any language.
 
 ##### Shorter Mirror links
 
-Subject          |  Link |
------------------|-----------------------------------------|
-Talk             | [bit.ly://aws-eb](bit.ly://aws-eb) |
-Talk Slides      | [bit.ly://aws-eb-slides](bit.ly://aws-eb-slides) |
-Demo Application | [bit.ly://aws-eb-app](bit.ly://aws-eb-app) |
-
+```
+| Subject          | Link                  |
+|------------------|------------------------|
+| Talk             | bit.ly://aws-eb        |
+| Talk Slides      | bit.ly://aws-eb-slides |
+| Demo Application | bit.ly://aws-eb-app    |
+```
 
 ## Other Resources
 
