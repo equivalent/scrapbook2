@@ -19,13 +19,16 @@ you can replicate the steps with any language.
 
 ## Talk assets:
 
-
 * [Talk Slides](https://docs.google.com/presentation/d/14XwwfX4348fj6mglEo4gksioSDHW00MFN4iB9_-H4KY/edit#slide=id.gffdf33b32_1_60)
 * [Demo Application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app) - source code, `docker-composer.yml`, `Dockerrun.aws.json conf`, ...
 
 * [How to create new ElasticBeanstalk environment Blog](http://www.eq8.eu/blogs/34-set-up-aws-elastic-beanstalk) ([MIRROR source](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2016-11-set-up-aws-elastic-beanstalk-demo.md))
 * [How to create new ElasticBeanstalk environment SLIDES](https://docs.google.com/presentation/d/1cMx3SL6cfQy-oKDgxLprpgPTBjOG4gN-F8AXDgP-3Tc/edit?usp=sharing)
 
+Pre-built application (puppies app) Docker images:
+
+* https://hub.docker.com/r/equivalent/eb-demo-rails/
+* https://hub.docker.com/r/equivalent/eb-demo-nginx/
 
 
 ##### Shorter Mirror links
@@ -37,8 +40,9 @@ Talk Slides      | [bit.ly://aws-eb-slides](bit.ly://aws-eb-slides) |
 Demo Application | [bit.ly://aws-eb-source](bit.ly://aws-eb-app) |
 
 
+## Other Resources
 
+* http://www.eq8.eu/blogs/25-common-aws-elastic-beanstalk-docker-issues-and-solutions
+* http://www.eq8.eu/blogs/29-aws-elasticbeanstalk-deployment-hooks
 
-
-
-http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
+* http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
