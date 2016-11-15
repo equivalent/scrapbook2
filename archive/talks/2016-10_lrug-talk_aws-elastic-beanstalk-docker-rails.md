@@ -50,5 +50,6 @@ you can replicate the steps with any language.
 
 * [Eq8 BLOG - Common AWS Elastic Beanstalk Docker issues and solutions](http://www.eq8.eu/blogs/25-common-aws-elastic-beanstalk-docker-issues-and-solutions)
 * [Eq8 BLOG - Elastic Beanstalk deployment hooks](http://www.eq8.eu/blogs/29-aws-elasticbeanstalk-deployment-hooks)
+* [Build Docker images on your machine or in the cloud ?](http://www.eq8.eu/blogs/17-build-docker-images-on-your-machine-or-in-the-cloud)
 * http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
 * [Youtube - AWS Elastic Beanstalk and Docker by Evan Brown (AWS)](https://www.youtube.com/watch?v=OzLXj2W2Rss)
