@@ -20,7 +20,7 @@ you can replicate the steps with any language.
 
 ## Talk assets:
 
-* >>> Talk Video <<<  ... in progress. Link will be updated as soon as
+* **>>> [Talk Video](https://skillsmatter.com/skillscasts/9280-aws-elastic-beanstalk-and-docker-for-rails-developers) <<<**
   it's online
 * [Talk Slides](https://docs.google.com/presentation/d/14XwwfX4348fj6mglEo4gksioSDHW00MFN4iB9_-H4KY/edit#slide=id.gffdf33b32_1_60)
 * [Demo Application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app) - source code, `docker-composer.yml`, `Dockerrun.aws.json conf`, ...
@@ -39,11 +39,12 @@ you can replicate the steps with any language.
 ##### Shorter Mirror links
 
 ```
-| Subject          | Link                  |
-|------------------|------------------------|
-| Talk             | bit.ly://aws-eb        |
-| Talk Slides      | bit.ly://aws-eb-slides |
-| Demo Application | bit.ly://aws-eb-app    |
+| Subject          | Link                        |
+|------------------|-----------------------------|
+| root page        | http://bit.ly/aws-eb        |
+| Talk Video       | http://bit.ly/aws-eb-talk   |
+| Talk Slides      | http://bit.ly/aws-eb-slides |
+| Demo Application | http://bit.ly/aws-eb-app    |
 ```
 
 ## Other Resources
