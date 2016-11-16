@@ -13,8 +13,8 @@ keywords:
 
 ## Talk assets:
 
+* **>>> [SkillsMatter Skillscast (Talk Video)](https://skillsmatter.com/skillscasts/7455-web-developer-life-hacks) <<<**
 * [Slides / Presentation'](https://docs.google.com/presentation/d/1dsb-Gl45_abRkqF9J38D6JrOmS0JWpwA5PEWyOcQAbc/edit?usp=sharing)
-* [SkillsMatter Skillscast (Talk Video)](https://skillsmatter.com/skillscasts/7455-web-developer-life-hacks)
 * [LRUG Agenda](http://lrug.org/meetings/2016/february/)
 * [Lanyrd](http://lanyrd.com/2016/lrug-february/sdxymt/)
 
