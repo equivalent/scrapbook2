@@ -31,6 +31,7 @@ iptables -I INPUT -i eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 # Optional - allow port 80 to everywhere
 # iptables -A INPUT -p tcp -s 0.0.0.0/0 --dport 80 -j ACCEPT
+# iptables -A INPUT -p tcp -s 0.0.0.0/0 --dport 443 -j ACCEPT
 
 ## Resouces
 #
