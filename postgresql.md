@@ -1,5 +1,13 @@
 # PostgreSQL
 
+
+```
+$ sudo -u postgres dropdb development_app
+$ sudo -u postgres createdb development_app
+$ sudo -u postgres pg_restore  --dbname=development_app  dump.dump 
+```
+
+
 * [upsert feature](http://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=168d5805e4c08bed7b95d351bf097cff7c07dd65)  (INSERT ... ON CONFLICT  UPDATE)
 
 
