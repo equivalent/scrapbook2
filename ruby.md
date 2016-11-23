@@ -12,6 +12,16 @@ Topics not included/moved:
 
 Topics:
 
+## apply lambda on variable
+
+
+```
+phone = "1(234)567-89-01"
+lambda = -> { gsub(/[^0-9]/, '') }
+phone.instance_exec &lambda
+#=> "12345678901"
+```
+
 ## Detecting if object is part of object space
 
 ```ruby
