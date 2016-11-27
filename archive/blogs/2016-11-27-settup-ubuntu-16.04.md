@@ -1,4 +1,4 @@
-# Setting up Ubuntu 16.04 for Ruby on Rails app
+# Setting up Ubuntu 16.04 for Ruby on Rails app (Cheatsheet)
 
 Let say you want to quickly set up fresh install **Ubuntu 16.04** for [Ruby on Rails](http://rubyonrails.org/)
 application that uses Redis, Elasticache and Postgres.
