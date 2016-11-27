@@ -71,3 +71,8 @@ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distrib
 sudo dpkg -i elasticsearch-2.3.1.deb
 sudo systemctl enable elasticsearch.service
 ```
+
+
+## Note
+
+Something missing? Create a Pull Request for this article.
