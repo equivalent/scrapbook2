@@ -34,6 +34,32 @@ psql --version
 # psql (PostgreSQL) 9.5.5
 ```
 
+### setup Postgres user
+
+https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
+
+```sh
+# bash
+psql -u postgres
+```
+
+```sql
+# inside psql
+
+CREATE USER myuser WITH PASSWORD 'myPassword';
+
+# if you want him to be superuser
+ALTER USER myuser WITH SUPERUSER;
+
+# if you just want him to be able to create DB
+ALTER USER myuser WITH CREATEDB;
+```
+
+
+be sure to set credentials in `config/database.yml` inside your Rails
+project and now you can run `rake db:create` or `rake db:migrate`
+
+
 
 ## Install Redis
 
@@ -57,21 +83,42 @@ redis-server --version
 # Redis server v=3.0.7 sha=00000000:0 malloc=jemalloc-3.6.0 bits=64 build=6a943c0b5bf37fa1
 ```
 
+connection should be accepted at `127.0.0.1:6379` (localhost + default
+Redis port)
+
 ## Install Elasticache
 
 > e.g.: if you need [Elasticsearch](https://www.elastic.co/) for search
 > indexation [Elasticsearch Rails](https://github.com/elastic/elasticsearch-rails)
 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-16-04
+https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
 
 ```
 sudo apt-get update
+
+# install java
+sudo apt-get install default-jre
+sudo apt-get install default-jdk
+
+# install elasticache
 cd /tmp
 wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.1/elasticsearch-2.3.1.deb
 sudo dpkg -i elasticsearch-2.3.1.deb
 sudo systemctl enable elasticsearch.service
 ```
 
+connection should be accepted at `127.0.0.1:9200` (localhost + default elasticache port)
+
+```
+curl 127.0.0.1:9200
+```
+
+```bash
+sudo systemctl status elasticsearch.service  # status
+sudo systemctl start elasticsearch.service   # start server
+sudo systemctl stop elasticsearch.service    # stop server
+```
 
 ## Note
 
