@@ -23,10 +23,10 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgres
 
 ```sh
 sudo apt-get update
-sudo apt-get install postgresql postgresql-contrib
 ```
+sudo apt-get install postgresql-contrib postgresql-9.5 libpq-dev
 
-2016-11-27 you should end up with `postgres` and `postgresql-client` version `9.5`
+2016-11-27 you should end up with `postgres` version `9.5`
 installed
 
 ```sh
@@ -119,6 +119,58 @@ sudo systemctl status elasticsearch.service  # status
 sudo systemctl start elasticsearch.service   # start server
 sudo systemctl stop elasticsearch.service    # stop server
 ```
+
+## Imagemagic
+
+> if you need image processing inside your Rails app with gems like
+> [Carrierwave](https://github.com/carrierwaveuploader/carrierwave),
+> [Paperclip](https://github.com/thoughtbot/paperclip) or
+> [Dragonfly](https://github.com/markevans/dragonfly)
+
+
+```
+sudo apt-get install  imagemagick libmagickcore-dev libxslt-dev libmagickwand-dev
+```
+
+## Some common dependancy issues:
+
+#### Qmake
+
+if you get:
+
+```sh
+qmake: could not exec '/usr/lib/x86_64-linux-gnu/qt4/bin/qmake': No such
+file or directory
+*** extconf.rb failed ***
+```
+
+do:
+
+```sh
+sudo apt-get install qt4-qmake libqt4-dev
+```
+
+[source](http://stackoverflow.com/questions/23703864/cmake-not-working-could-not-exec-qmake)
+
+#### capybara webkit
+
+if you get:
+
+```sh
+cd src/ && make -f Makefile.webkit_server 
+# ...
+An error occurred while installing capybara-webkit (1.7.1), and Bundler
+cannot continue.
+Make sure that `gem install capybara-webkit -v '1.7.1'` succeeds before
+bundling.
+```
+
+do:
+
+```sh
+sudo apt-get install libqtwebkit-dev 
+```
+
 
 ## Note
 
