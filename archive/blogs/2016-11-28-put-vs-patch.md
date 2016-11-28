@@ -12,7 +12,7 @@ story related to this topic.
 > because they are made by people.
 
 
-#### PATCH vs PUT Ruby on Rails
+## PATCH vs PUT Ruby on Rails
 
 ![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/put-or-patch.jpg)
 
@@ -128,10 +128,12 @@ doesn't fully comply with RFC but like I said, check the arguments in
 the [Don't PATCH like an idiot discussion](http://williamdurand.fr/2014/02/14/please-do-not-patch-like-an-idiot/#disqus_thread)
 
 
-#### the story
+## The story of Firewall
 
-Several weeks ago we received a bug report that several of our clients
-are not able to do updates. We tested several browsers from several
+> This part of an article is reflecting collective effort of [Pobble Devel team](https://github.com/Pobble) 
+
+Several weeks ago we received a bug report that one of our clients
+is not able to do updates. We tested several browsers from several
 different locations around the world via VPN and all was working from
 everywhere.
 
@@ -182,6 +184,9 @@ idempotency ends up there.
 So therefore chill, Rails way of doing PATCH is fine. At least you can
 use PATCH ! :)
 
+
+
+#### Other resources
 
 http://www.checkupdown.com/status/E405.html
 https://www.asp.net/web-api/overview/testing-and-debugging/troubleshooting-http-405-errors-after-publishing-web-api-applications
