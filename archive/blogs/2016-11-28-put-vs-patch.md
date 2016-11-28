@@ -21,9 +21,10 @@ from [Rails PATCH Pull Request proposal](https://github.com/rails/rails/pull/505
 
 > PATCH and PUT have different semantics. PUT means create/replace and it is idempotent. PATCH means update (full or partial) and it is not idempotent. ([source](https://github.com/rails/rails/pull/505#issuecomment-3225622), author: [@fxn](https://github.com/fxn))
 
-So what does this mean? 
+So what does this mean?
 
-I will borrow definition of **Idempotency** from [www.restapitutorial.com](http://www.restapitutorial.com/lessons/idempotency.html).
+I will borrow definition of **Idempotency** from [www.restapitutorial.com](http://www.restapitutorial.com/lessons/idempotency.html):
+
 You own a cow, you want to have more cows. So you hire sire service to impregnate your cow.
 Now that the cow is pregnant but you want event more cows should you re-hire sire service to re-impregnate your cow
 even more ?
@@ -64,7 +65,7 @@ I've also seen a [version](http://softwareengineering.stackexchange.com/question
 
 ```json
 PATCH /users/123
-{ change: 'email' from: 'benjamin@franklin.com' to: 'new.email@example.org' }
+{ "change": "email", "from": "benjamin@franklin.com", "to": "new.email@example.org" }
 ```
 
 Quote from the article:
