@@ -40,7 +40,7 @@ https://github.com/equivalent/scrapbook2/blob/master/postgresql.md
 
 ```sh
 # bash
-psql -u postgres
+sudo -u postgres psql 
 ```
 
 ```sql
