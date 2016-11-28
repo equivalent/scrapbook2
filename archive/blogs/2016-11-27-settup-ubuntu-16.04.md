@@ -23,8 +23,8 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgres
 
 ```sh
 sudo apt-get update
-```
 sudo apt-get install postgresql-contrib postgresql-9.5 libpq-dev
+```
 
 2016-11-27 you should end up with `postgres` version `9.5`
 installed
