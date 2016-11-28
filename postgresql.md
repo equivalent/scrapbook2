@@ -371,3 +371,61 @@ source:
 
 * http://www.whiteboardcoder.com/2012/04/change-postgres-datadirectory-folder.html
 * http://askubuntu.com/questions/25713/how-to-stop-postgres-from-autostarting-during-start-up
+
+### pure Postgres JSON API
+
+http://blog.redpanthers.co/create-json-response-using-postgresql-instead-rails/
+
+```sql
+select row_to_json(users) from users where id = 1;
+```
+
+```json
+
+{"id":1,"email":"hsps@redpanthers.co","encrypted_password":"iwillbecrazytodisplaythat",
+"reset_password_token":null,"reset_password_sent_at":null,
+"remember_created_at":"2016-11-06T08:39:47.983222",
+"sign_in_count":11,"current_sign_in_at":"2016-11-18T11:47:01.946542",
+"last_sign_in_at":"2016-11-16T20:46:31.110257",
+"current_sign_in_ip":"::1","last_sign_in_ip":"::1",
+"created_at":"2016-11-06T08:38:46.193417",
+"updated_at":"2016-11-18T11:47:01.956152",
+"first_name":"Super","last_name":"Admin","role":3}
+```
+
+specific fields:
+
+```sql
+select row_to_json(results)
+from (
+  select id, email from users
+) as results
+```
+
+```json
+{"id":1,"email":"hsps@redpanthers.co"}
+```
+
+more advanced
+
+```sql
+select row_to_json(result)
+from (
+  select id, email,
+    (
+      select array_to_json(array_agg(row_to_json(user_projects)))
+      from (
+        select id, name
+        from projects
+        where user_id=users.id
+        order by created_at asc
+      ) user_projects
+    ) as projects
+  from users
+  where id = 1
+) result
+```
+
+```json
+{"id":1,"email":"hsps@redpanthers.co", "project":["id": 3, "name":"CSnipp"]}
+```
