@@ -14,6 +14,8 @@ story related to this topic.
 
 #### PATCH vs PUT Ruby on Rails
 
+![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/put-or-patch.png)
+
 Probably best summarization of the difference I've ever seen is this comment
 from [Rails PATCH Pull Request proposal](https://github.com/rails/rails/pull/505):
 
@@ -34,7 +36,7 @@ When it comes to REST API
 * POST is non-idempotent
 * PATCH is non-idempotent
 
-![Idempotency table](/put-patch-idempotance-table.png) 
+![Idempotency table](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/put-patch-idempotance-table.png) 
 
 > Idempotency table from https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
 
