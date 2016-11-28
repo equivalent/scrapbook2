@@ -39,7 +39,7 @@ When it comes to REST API
 
 ![Idempotency table](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/put-patch-idempotance-table.png) 
 
-> Idempotency table from https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol with extra thanks to my collegue [Matt](https://github.com/orgs/Pobble/people/MatthijsHovelynck) for pinting it out `;)`
+> Idempotency table from https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol with extra thanks to my collegue [Matt](https://github.com/orgs/Pobble/people/MatthijsHovelynck) for pointing it out `;)`
 
 Funky stuff! Does that mean that with PATCH we can get multiple
 resources ?
