@@ -1,8 +1,12 @@
-## PATCH vs PUT
+## PATCH vs PUT and the PATCH JSON syntax war
 
 There are several articles/discussions on parallels of PUT vs PATCH and
-when to  use one before other. I've decided to spam the internet with one more opinionated
-article on this topic.
+when to use one before other.
+Also the main struggle recent years seems to be how to translate the RFC proposal
+for PATCH JSON format.
+I've decided to spam the internet with one more opinionated article on this topic
+trying to explain everything one more time.
+
 
 > First of all I'm a [Ruby on Rails](http://rubyonrails.org/) developer so I will reference some
 > sources from RoR world, but everything I say in this article apply to any programming language / web-app
