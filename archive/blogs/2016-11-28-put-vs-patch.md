@@ -1,4 +1,4 @@
-## PATCH vs PUT and the PATCH JSON syntax war
+# PATCH vs PUT and the PATCH JSON syntax war
 
 There are several articles/discussions on parallels of PUT vs PATCH and
 when to use one before other.
@@ -146,7 +146,7 @@ PATCH is for update.
 ## Conclusion
 
 So that doesn't solve the fact that some developer will say that this
-`{"user":{ "email": "new.email@example.org" }} PATCH style is wrong.
+`{"user":{ "email": "new.email@example.org" }}` PATCH style is wrong.
 
 My opinion is that this is not really a problem. Lets be pragmatic, most of the time your
 applications don't deal with such large number of request that suddenly
