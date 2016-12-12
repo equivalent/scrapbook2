@@ -161,6 +161,11 @@ therefore second request would still point to the old version,
 therefore this request would be non-idempotent even with that JSON syntax.
 
 ```ruby
+# PATCH /users/123
+{"user":{ "email": "new.email@example.org" }, "version":"v1" }
+```
+
+```ruby
 #  request_sent_at     | version   | to        | response
 #  2016-12-11 23:43:02 | v1        | foo@me.me | 200/204(Success)
 #  2016-12-11 23:43:03 | v1        | bar@me.me | 422 (Unprocessable Entity)
