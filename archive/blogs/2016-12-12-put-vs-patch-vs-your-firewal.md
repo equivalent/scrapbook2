@@ -13,7 +13,7 @@ story related to the topic.
 > The term "500-mile problem" refers
 > to a hilarious article [The case of the 500-mile email](https://www.ibiblio.org/harris/500milemail.html).
 > It's a story of how sys-admin received a bug report that *"emails are not
-> being deliverd over 500 miles"* and it's probably the best example of how non-deterministic computers really are
+> being delivered over 500 miles"* and it's probably the best example of how non-deterministic computers really are
 > because they are made by people.
 
 ## The story
@@ -64,8 +64,8 @@ Long story short we changed the API endpoint from PATCH to PUT in order
 to not loose the clients.
 
 Luckily for us Rails is treating `update`
-action both `PUT` and 'PATCH` if the `config/routes` is defined via `resources`.
-Therfore the transition was super easy and painless
+action both `PUT` and `PATCH` if the `config/routes` is defined via `resources`.
+Therefore the transition was super easy and painless
 
 > This does not apply for `member do patch :custom_update; end` but when
 > following Rails best practices there are not many of those.
