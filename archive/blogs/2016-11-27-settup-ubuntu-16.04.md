@@ -132,6 +132,34 @@ sudo systemctl stop elasticsearch.service    # stop server
 sudo apt-get install  imagemagick libmagickcore-dev libxslt-dev libmagickwand-dev
 ```
 
+## Docker
+
+https://docs.docker.com/engine/installation/linux/ubuntulinux/
+
+**note:** this is for ubuntu 16.04, for different version you will need diferent Docker source
+
+```bash
+# preparation
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt-get update
+sudo apt-get install linux-image-extra-$(uname -r)
+linux-image-extra-virtual
+
+# docker install
+sudo apt-get update
+sudo apt-get install docker-engine
+sudo service docker start
+
+# add your user to docker user group (so you don't have to sudo all the
+time)
+sudo groupadd docker
+sudo usermod -aG docker $USER
+# ...now log out and log back in
+```
+
 ## Some common dependancy issues:
 
 #### Qmake
