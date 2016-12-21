@@ -196,6 +196,16 @@ try `sudo docker ps`
 
 If it worked, you've just ignored the instruction "log out and log back in". Do it and you should be fine
 
+## Docker Compose (docker-compose)
+
+https://docs.docker.com/compose/install/
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo  chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
+
 ## Some common dependancy issues:
 
 #### Qmake
