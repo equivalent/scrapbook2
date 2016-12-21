@@ -145,20 +145,56 @@ sudo apt-get install apt-transport-https ca-certificates
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 sudo apt-get update
-sudo apt-get install linux-image-extra-$(uname -r)
-linux-image-extra-virtual
+sudo apt-get install -y linux-image-extra-$(uname -r) jblinux-image-extra-virtual
 
 # docker install
 sudo apt-get update
 sudo apt-get install docker-engine
 sudo service docker start
 
-# add your user to docker user group (so you don't have to sudo all the
-time)
+# add your user to docker user group (so you don't have to sudo all the time)
 sudo groupadd docker
 sudo usermod -aG docker $USER
 # ...now log out and log back in
 ```
+
+#### common error 1 - first time docker engine not starting
+
+```
+Setting up docker-engine (1.12.5-0~ubuntu-xenial) ...
+Job for docker.service failed because the control process exited with
+error code. See "systemctl status docker.service" and "journalctl -xe"
+for details.
+invoke-rc.d: initscript docker, action "start" failed.
+dpkg: error processing package docker-engine (--configure):
+ subprocess installed post-installation script returned error exit
+status 1
+Errors were encountered while processing:
+ docker-engine
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+```
+
+**solution**: this is due to docker not able to modify your networking
+setup in host (your laptop). To me this was  happening due to fact that
+I was connected to VPN and OpenVPN refused to terminate (as
+docker-engine was trying to modify network setup). Solution for me was
+just to kill OpenVPN for this one ocassion.
+
+But some people reported this bug when they have some custom IPv6 setup, some when Firewal is to
+strict...
+
+#### common error 2 - docker daemon not running
+
+when you lunch docker command like `docker ps` you may get:
+
+```
+Cannot connect to the Docker daemon. Is the docker daemon running on
+this host?
+```
+
+try `sudo docker ps`
+
+If it worked, you've just ignored the instruction "log out and log back in". Do it and you should be fine
 
 ## Some common dependancy issues:
 
