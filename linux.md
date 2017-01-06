@@ -561,6 +561,14 @@ which nginx
 # /usr/sbin/nginx
 ```
 
+## convert video to gif
+
+```
+ffmpeg -i small.mp4 small.gif
+```
+
+https://davidwalsh.name/convert-video-gif
+
 ## Extract tar.gz compresed file
 
 ```bash

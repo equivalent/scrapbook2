@@ -12,6 +12,15 @@ Topics not included/moved:
 
 Topics:
 
+## check for upcase in DB
+
+```
+ e = User.pluck(:email).select { |x| /[[:upper:]]/.match(x) } 
+   (29.3ms)  SELECT "users"."email" FROM "users"
+ => [] 
+
+```
+
 ## apply lambda on variable
 
 
