@@ -35,6 +35,8 @@ information")
 
 you can use cloud API solutions like [Scanii](https://scanii.com/) which can directly pull from S3, or implement solution where you would have antivirus VM that would pull list of files from app and then pull files from S3 and POST to your app resoult
 
+**update**  I wrote:  https://github.com/equivalent/witch_doctor and https://github.com/equivalent/virus_scan_service to deal with this issue. Basically you set up separate windows VM with antivirus (like Casperski) and you just add Which Doctor gem as a gateway to your Rails app to schedule scans.
+
 # concurent login
 
 * ability to login with 2 devices at the same time 
