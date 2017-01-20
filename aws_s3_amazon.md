@@ -27,6 +27,44 @@ aws s3 ls
 ```
 
 
+## s3 policy example (2017-01-20)
+
+for the new carrierawave gem 
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListAllMyBuckets"
+            ],
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::o365-v2"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::o365-v2/*"
+            ]
+        }
+    ]
+}
+```
+
+
 ## s3 policy example
 
 ```
@@ -66,6 +104,7 @@ aws s3 ls
 ```
 
 
+```
 ## s3 policy example 2 
 
 {
@@ -101,3 +140,4 @@ aws s3 ls
         }
     ]
 }
+```
