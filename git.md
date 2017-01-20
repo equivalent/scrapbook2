@@ -1,5 +1,10 @@
 # Git scrapbook
 
+```
+# show  file lists changed been modified between 2 branches
+git diff --name-status DEVELOPMENT...feature/2420_part2
+```
+
 
 ```
 # show commit difference between 2 branches
