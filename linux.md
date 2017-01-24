@@ -590,6 +590,17 @@ gzip -d /tmp/backup.gz
 tar -zcvf prog-1-jan-2005.tar.gz /home/jerry/prog
 ```
 
+## compress with 7zip
+
+```
+#  sudo apt install p7zip-full
+7z a -p git.7z /path/to/git
+
+# extract
+7z x git.7z
+
+``
+
 ## copmpress with aes password
 
 
