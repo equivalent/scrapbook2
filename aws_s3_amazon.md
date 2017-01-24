@@ -1,3 +1,19 @@
+## CORS permissions on s3 bucket
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+        <AllowedOrigin>http://www.myapp.com</AllowedOrigin>
+        <AllowedOrigin>https://www.myapp.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>HEAD</AllowedMethod>
+    </CORSRule>
+</CORSConfiguration>
+
+```
+
+
 ## browser upload
 
 http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html
