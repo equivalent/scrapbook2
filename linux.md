@@ -197,6 +197,14 @@ http://hgdev.co/optimize-battery-life-on-ubuntu/
 palm detection :
 
 ```
+# to unable palm detection
+synclient PalmDetect=1
+```
+
+or :
+
+
+```
 sudo vim /usr/share/X11/xorg.conf.d/10-evdev.conf
 ```
 
