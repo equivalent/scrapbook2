@@ -228,9 +228,11 @@ To test this:
 > One more thing, Origin header must be present othervise AWS S3 will not
 > respond with Access-Control-Allow-Origin
 
-Again CDN like Cloudfront will just cache whatever header S3 will return
+Again **CDN like Cloudfront will just cache whatever header S3 will return
 with the assets. So if S3 returns the header, CDN will to (you may need
-to wait a bit, or invalidate the cache in CDN to see the result)
+to wait a bit, or invalidate the cache in CDN to see the result)**
+
+> To invalidate Cloudfront cache, go to `AWS Console Web interface > Cloudfront > pick your CDN > Distribution Settings > Invalidations > Create invalidation`. Then specify what to invalidate in CDN. To invalidate everything just save `*`. To invalidate just a portion of assets `uploads/puctures/*`. Depending how many items are in CDN the invalidation may take several hours/days to apply so make sure you invalidate something for debugging first and then invalidate all to fix everything.
 
 ##### Common issues:
 
@@ -241,6 +243,62 @@ to wait a bit, or invalidate the cache in CDN to see the result)
 
 * http://stackoverflow.com/questions/17533888/s3-access-control-allow-origin-header
 * http://stackoverflow.com/a/35278803/473040
+
+
+## CORS on uploaded files via Paperclip gem
+
+First of all if your website is under `https://` make sure your
+paperclip CDN configuration points to `https://` version of CDN as well.
+If you wont do this some browsers will refuse to serve "Mixed content"
+(meaning serving http assets on https web-app)
+
+> the https principle apply to Carriewave and Dragonfly too
+
+Example:
+
+```ruby
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_region => 'eu-west-1',
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    },
+    :s3_protocol => 'https',                                 # <- serve via https not http
+    :s3_host_alias => 'xxxxxxxxxxxxxx.cloudfront.net',       # <- your CDN host
+    :url => ':s3_alias_url', 
+    :path => "media/files/:id_partition/:style/:filename"    # <- set it up as you want
+  }
+```
+
+so you want your assets point to `https://xxxxxxxxxxxxxx.cloudfront.net/uploads/something.jpg` not `http`
+
+Now that you have https in place you want to be sure you have the CORS
+accessible on your S3 bucket (set the CORS as described above in section
+`Enable Access-Control-Allow-Origin header on S3 bucket / CDN`)
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+        <AllowedOrigin>http://www.myapp.com</AllowedOrigin>
+        <AllowedOrigin>https://www.myapp.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>HEAD</AllowedMethod>
+    </CORSRule>
+</CORSConfiguration>
+```
+
+> if you have other options feel free to add them, these are just the
+> minimum one you'll need, but be aware not to use the wildcard `*` as described
+> in above in this article.
+
+
+And now invalidate any existing assets in your CDN 
+
+Now it should all work.
+
 
 ## Wildcards
 
