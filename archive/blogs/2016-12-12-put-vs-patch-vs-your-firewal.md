@@ -1,5 +1,6 @@
 # POST != Create and PUT != Update
 
+
 Recently I wrote an article [PATCH vs PUT and the PATCH JSON syntax war](http://www.eq8.eu/blogs/36-patch-vs-put-and-the-patch-json-syntax-war) in which I wrote about PATCH vs PUT HTTP methods and wide argument on
 the JSON syntax. Quite lot of developers read it (thank you for that),
 but truth is there was lot of content that I wanted to include but due
@@ -7,8 +8,14 @@ to size I skipped. So therefore here is follow-up.
 
 In this Article I will cover more taboo topic aspect of PUT, PATCH and overall REST approach of web-frameworks.
 
-In the previous article I wanted to strongly fight for my point
-while this article is more chilled version.
+> If this article is too long for you and you don't want to read it all,
+> the main point I want to present is that
+> Ruby on Rails developers tend to think that HTTP method POST
+> represents Create and PUT means Update. Well, not really. The CRUD
+> mapping of modern web-frameworks just limits the scope  of these HTTP methods for
+> sake of simplicity in code design.
+
+Let me point out that in the previous article I strongly argue for my opinion, while this article is more chilled version.
 I just want to extend reader's point of view around REST.
 I don't want to change anything, I don't want to criticise anything,
 I just want to give web-developers something to think about over the weekend.
