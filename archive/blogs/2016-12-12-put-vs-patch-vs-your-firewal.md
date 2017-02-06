@@ -182,8 +182,8 @@ use `PUT` unless you specifically matching the "replace" context.
 So back to my story of the PATCH not working. What would be the best
 practice to solve it from the *intermediary* device perspective ?
 
-So PATCH is idempotent. We should not replace it with PUT as that is
-non-idempotent. The only other HTTP method that is there from the beginning and is idempotent
+So PATCH is non-idempotent. We should not replace it with PUT as that is
+idempotent. The only other HTTP method that is there from the beginning and is non-idempotent
 is `POST`.
 
 So answer is: I should use `POST` !
