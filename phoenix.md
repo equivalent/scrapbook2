@@ -1,3 +1,29 @@
+
+## IEx and phoenix
+
+
+```
+cd ./my-phoenix-project
+iex -S mix
+alias MyPhoenixProject.Categorory  # model
+alias MyPhoenixProject.Repo
+Repo.all(Category)
+
+```
+
+## debugging pry
+
+```
+iex -S mix phoenix.server
+
+require IEx
+
+IEx.pry
+
+```
+
+------------------------------------------------------------
+
 ```
 #  first steps (install phoenix)
 

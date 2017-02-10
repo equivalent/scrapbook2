@@ -1,5 +1,9 @@
 # RSpec performance improvements with before all
 
+> Be aware that this is considered anti-pattern in many cases. Really
+> depends on what type of testing environment you are trying to achive
+> more in "warning" section bellow
+
 When it comes to RSpec every developer heavily uses `before(:each)` or
 `after(:each)` hooks and kinda knows that something like
 `before(:all)` exist but is not used often. Well why should it be ?
@@ -221,4 +225,27 @@ After things settled down I've manage to find some time and do the refactoring t
 
 I'm not introducing any other code / specs changes, just the `before(:all)` change
 
+## Warning
+
+One note here. I'm fully aware that this approach violates the principles of
+isolated tests. I fully respect that ideology but problem is that
+sometimes you are dealing with test environment where test isolation is
+already dead and you are trying to speed the tests without spending
+month refactoring entire test suite.
+
+For example you may want to run your tests in Parallel. Then this
+solution would not work as you need isolated tests for that.
+
+But think about this solution as something you would run after your isolated tests are finished:
+
+```bash
+rspec --tag=~non-isolated-tests  #run isolated tests, skip "non-isolated" test
+rspec --tag=non-isolated-tests   #now run all tests that are not isolated
+```
+
+https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option
+
+I Do recommend to watch entire [Martin Fowler talk](https://www.youtube.com/watch?v=B_KIAmFZJz) to understand bottlenecks of bad test design.
+
 Keywords: Rails 4, Ruby 2, RSpec, before all, after all, test-suite, TDD
+
