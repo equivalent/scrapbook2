@@ -221,7 +221,7 @@ I'm  triggering just 4 - 6 create queries per test.
 
 After things settled down I've manage to find some time and do the refactoring to `before(:all)` test suite was like: 
 
-![screenshot of screen afer refactore - 21s](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/2015-08-20-rspec-before-all_before-improvement.png)
+![screenshot of screen afer refactore - 21s](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2015/2015-08-20-rspec-before-all_after-improvement.png)
 
 I'm not introducing any other code / specs changes, just the `before(:all)` change
 
