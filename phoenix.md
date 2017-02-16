@@ -1,3 +1,40 @@
+## phoenix generate migation
+
+```
+mix ecto.gen.migration "create_user"
+```
+
+## phoenix helpers
+
+```
+Phoenix.HTML.Link.link("Home", to: "/")
+Phoenix.HTML.Link.link("Delete", to: "/", method: "delete")
+
+# user = Rumbl.Repo.get(Rumbl.User, "1")
+# Phoenix.HTML.Link.link("View", to: Rumbl.Router.user_path(@conn, :show, user.id))
+# link "View", to: user_path(@conn, :show, user.id)
+```
+
+## phoenix structs
+
+```
+defmodule Rumbl.User do
+  defstruct [:id, :name, :username, :password]
+end
+
+alias Rumbl.User
+
+user = %{usernmae: "jose", password: "elixir"}
+user.username
+# ** (KeyError) key :username not found in: %{password: "elixir",
+usernmae: "jose"}
+
+jose = %User{name: "Jose Valim"}
+jose.name # "Jose Valim"
+
+chris = %User{nmae: "chris"}
+#** (CompileError) iex:3: unknown key :nmae for struct User
+```
 
 ## IEx and phoenix
 
