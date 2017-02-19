@@ -8,6 +8,12 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
 
+## Espeaker
+
+```bash
+espeak -s 250
+```
+
 ## change hostname on server
 
 ```
