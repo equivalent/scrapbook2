@@ -1,3 +1,9 @@
+## phoenix changeset
+
+```
+ ch = User.registration_changeset(%User{}, %{username: "max", name: "Max", password: "123"})
+```
+
 ## phoenix generate migation
 
 ```
