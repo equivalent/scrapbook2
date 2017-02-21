@@ -3,6 +3,14 @@
 Let say you want to quickly set up fresh install **Ubuntu 16.04** for [Ruby on Rails](http://rubyonrails.org/)
 application that uses Redis, Elasticache and Postgres.
 
+## Generate ssh key
+
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+* https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+
 ## Install RVM + Ruby
 
 https://rvm.io/rvm/install
