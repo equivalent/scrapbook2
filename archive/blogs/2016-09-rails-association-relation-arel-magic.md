@@ -108,7 +108,7 @@ bmth_olivers = olivers.where("users.last_name = ?", 'Sykes')
 # User::ActiveRecord_Relation
 bmth_olivers.to_a
 # =>  []
-...
+```
 
 > If you are trying similar syntax in a console on your project you may be
 > confused why I'm saying that return value
@@ -157,28 +157,100 @@ Comment.with_owner_ids_or_global(User, 1,2,3,4)
 > sorry I cannot provide SQL output as the application no longer exist.
 
 
-##### using different model scopes
+##### merging different model scopes
+
+
+Let say User can be accesed via a [Public uid](https://github.com/equivalent/public_uid)
 
 ```ruby
-class CriteriumDecision < ActiveRecord::Base
+class User < ActiveRecord::Base
   has_many :articles
-  scope :for_url_slugs, ->(url_slugs) { where(url_slug: url_slugs) }
+  scope :for_public_uid, ->(uids) { where(id: uids) }
 end
+
+
+User.for_public_uid('abcd1234')
+# SELECT "users".* FROM "users" WHERE "users"."public_uid" = $1  [["public_uid", 'abcd1234']]
+=> #<ActiveRecord::Relation []>
+
+User.for_public_uid(['abcd1234', 'xyzff235'])
+# SELECT "users".* FROM "users" WHERE "users"."public_uid" IN ('abcd1234', 'xyzff235')
+=> #<ActiveRecord::Relation []>
+
 ```
+
+Now we want to implement scope on associated user articles for that user ID. We could explicitly replicate the
+logic but much easier and cleaner way is to  `merge` the associated model scope:
 
 
 ```ruby
-class DecisionDiscussionItem < ActiveRecord::Base
-  scope :for_criterium_decision_url_slugs, ->(url_slugs) do
-    joins(:criterium_decision).merge(CriteriumDecision.for_url_slugs(url_slugs))
-  end
+class Article < ActiveRecord::Base
+  belongs_to :user
+  scope :for_user_public_uid, ->(user_public_uids) { joins(:criterium_decision).merge(CriteriumDecision.for_public_uid(user_public_uids)) }+
 end
+
+
+Article.for_user_public_uid('1234')
+
+# SELECT "articles".* FROM "articles"
+#  INNER JOIN "users" ON "users"."id" = "article"."user_id"
+#  WHERE "users"."public_uid" = '1234'
+
+Article.for_user_public_uid(['xyz12345', 'eeee4444'])
+
+# SELECT  "articles".* FROM "articles"
+#  INNER  JOIN "users" ON "users"."id" = "articles"."user_id"
+#  WHERE  "users"."pubic_uid" IN ('xyz12345', 'eeee4444')
+# => #<ActiveRecord::Relation []>
 ```
 
+##### composing scope under a conditioning
+
+Often developers are in a situation where their #index controller action
+should return all records but only limited part of that scope when
+certain param is sent (pagination, limit endpoint for M:M API, ...)
+
+Way too often I see developers replicate the same code whene really they
+can took adventage of the fact that `ActiveRecord::Relation` is
+composable like a lego blocks (as we demonstrated in the beginer section)
+
+We will use the `Article` and `User` relation from previous example:
+
+```ruby
+# app/controllers/articles_controller.rb
+class ArticlesController < ApplicationController
+
+  # /articles or /articles?user_ids[]=x1y2&user_ids[]=p4b3
+  def index
+    articles = Articles.all
+
+    # `articles` holds lazy `ActiveRecord::Relation` therefore the SQL was not yet triggerd
+
+    if limited_user_ids = params[:user_ids]  # if we are limiting scope to only certain articles
+       articles = artices.for_user_public_uid(limited_article_ids)
+    end
+
+    # again, `articles` is still lazy `ActiveRecord::Relation`, we can add more complexicity to it
+
+    articles = articles.order(:created_at)
+
+    render json: articles.as_json # now the SQL is executed !
+  end
+```
+
+> **Note**: `.all` returns an `ActiveRecord::Relation` only for Rails 4
+> and up. Rails 3 will retun array. In Rails 3 you need to use
+> `Article.scoped`
 
 
+```sql
+SELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" ASC
+```
 
-
+```sql
+SELECT "articles".* FROM "articles" INNER JOIN "users" ON "users"."id" = "articles"."user_id"
+   WHERE "users"."url_slug" IN ('x1y2', 'p4b3')  ORDER BY "articles"."created_at" ASC
+```
 
 
 
@@ -204,31 +276,6 @@ puts User.where(id: nil)
 ============================================================================================================================
 
 
-
-```ruby
-        ddis = AssessmentFile
-          .find_param(params[:assessment_file_id])
-          .decision_discussion_items
-
-        if criterium_decision_url_slugs =
-params[:criterium_decision_ids]
-          ddis =
-ddis.for_criterium_decision_url_slugs(criterium_decision_url_slugs)
-        end
-
-        ddis = ddis.order(:created_at)
-```ruby
-
-
-
-
-```sql
-SELECT "decision_discussion_items".* FROM "decision_discussion_items" WHERE "decision_discussion_items"."assessment_file_id" = 1  ORDER BY "decision_discussion_items"."created_at" ASC
-```
-
-```sql
-.SELECT "decision_discussion_items".* FROM "decision_discussion_items" INNER JOIN "criterium_decisions" ON "criterium_decisions"."id" = "decision_discussion_items"."criterium_decision_id" WHERE "decision_discussion_items"."assessment_file_id" = 3 AND "criterium_decisions"."url_slug" IN ('ed16de83', 'non-existing')  ORDER BY "decision_discussion_items"."created_at" ASC
-```
 
 
 # Sources
