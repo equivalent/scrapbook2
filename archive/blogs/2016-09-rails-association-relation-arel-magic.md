@@ -264,10 +264,10 @@ Sometimes you need your Rails scope to perform muliple SQL calls.
 class User < ActiveRecord::Base
   # ...
 
-  scope :friend_comments, -> {
-    friend_ids = User.where(friend: true).pluck(:id).uniq
-    ex_girlfriend_ids = User.where(ex: true).pluck(:id).uniq
-    Comment.where(user_id: friend_ids).where.not(ex_girlfriend_ids)
+  scope :premium_comments, -> {
+    banned_user_ids = User.where(banned: true).pluck(:id).uniq
+    premium_user_ids = User.where(ex: true).pluck(:id).uniq
+    Comment.where(user_id: premium_user_ids).where.not(banned_user_ids)
   }
 end
 ```
@@ -282,21 +282,45 @@ Query objects :)
 ##### Model caching Query ids
 
 
-Simlar to  previous example
+Simlar to previous example, let say that `banned_user_ids` and
+`premium_user_ids` are comming from expensive query, Redis DB or some
+microservice.
+
+We can cache these IDs:
 
 ```ruby
 class User < ActiveRecord::Base
   # ...
 
-  scope :friend_comments, -> {
-    friend_ids = User.where(friend: true).pluck(:id).uniq
-    ex_girlfriend_ids = User.where(ex: true).pluck(:id).uniq
-    Comment.where(user_id: friend_ids).where.not(ex_girlfriend_ids)
+  def self.banned_user_ids
+    Rails.cache.fetch 'app_banned_user_ids', expires_in: 24.hours do
+      # expensive query or Redis DB
+    end
+  end
+
+  def self.premium_user_ids
+    Rails.cache.fetch 'app_premium_user_ids', expires_in: 5.minutes do
+      # microservice call
+    end
+  end
+
+  scope :premium_comments, -> {
+    Comment.where(user_id: premium_user_ids).where.not(banned_user_ids)
   }
 end
 ```
 
+Now I'm just demonstrating the potential of caching here I don't have
+time to explain how to do caching properly. In brief: to use
+`expires_in` for cache is not the best approach. Rather drop the cache
+on some revlevant event, like some Redis event flasg  (or if you really lazy e.g. `Rails.cache.fetch "app_#{User.maximum(:updated_at)}banned_user_ids"`)
 
+Just rememmber to cache simple data (strings, integers) not marshaled objects!
+
+More on caching:
+
+* http://guides.rubyonrails.org/caching_with_rails.html
+* https://www.youtube.com/watch?v=q8ausBZTrxU
 
 ##### how to do OR
 
