@@ -286,6 +286,10 @@ one Rails model scope. Arguably better practice would be to write 3 scopes but t
 situations where you need this to be in single one (e.g. you are just
 performance refactoring scopes and don't want to introduce extra scopes)
 
+> ok maybe the same solution could be achieved with `.joins` or `.includes` but let say that would kill
+> your performance on 1M records. Think about this as a [Dependancy Inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+>  that you can perform on a SQL query.
+
 In expert section we will demonstrate how to do this even better with
 Query objects.
 
@@ -565,6 +569,10 @@ object in order to avoid replicating code, or to avoid including intermediary
 Ruby module / Rails concern. My advice is be pragmatic about it. Also don't prematurely
 extract Rails scopes to query objects. The day will come when it feels
 right.
+
+> I've avoided Query Objects that do `.joins` or `.includes` as they are
+> harder to explain, but that doesn't mean they don't exist. You can do
+> same things you would normally do with scopes.
 
 more sources:
 
