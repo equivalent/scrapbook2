@@ -135,7 +135,7 @@ bmth_olivers.to_a
 
 ## Advanced
 
-So lets take the composition of the ability of Rails ActiveRecord Relations to practice:
+So lets take composition ability of Rails ActiveRecord Relations to practice:
 
 
 #### Merge different model scopes
@@ -308,7 +308,7 @@ class User < ActiveRecord::Base
 
   def self.banned_user_ids
     Rails.cache.fetch 'app_banned_user_ids', expires_in: 24.hours do
-      # expensive SQL query or Redis DB
+      # expensive SQL query ...or other type of DB
     end
   end
 
@@ -649,16 +649,16 @@ Therefore lot of developers will argue "Do a full integration test".
 
 Well if your controller #index action has 50 different scenarios and for
 each controller action test you need to create 10 to 20 records just to prove if they pass,
-even with medium size project your test suite will run 20 - 60 minutes
-pretty soon. Plus you need to test if correct html/json is rendered, if
-you have proper status, ...
+even with medium size project your test suite will run 20min - 60min.
+Plus you need to test if correct html/json is rendered and
+wheather you have proper status, authorization/authentication ...
 
 So how to test them ?
 
 Look, the thing is that neither Controller neither Query object/ model scope is place
 for this kind of responsibility.
 
-We are missing one level of abstraction. I like to call them "Query
+We are missing one level of abstraction. I like to call it "Query
 inteface" but in reality they are just a class method / separate module
 method that calls the composed query.
 
@@ -678,7 +678,7 @@ To put this in code:
 
 ```ruby
 module AdminQueryInterface
-  def self.comments_including_for_approval(organization)
+  def self.comments_including_for_approval(organization:)
     comments = Comment.where(organization_id: organization.id)
     comments = SomeQueryObject.new(comments).call
     comments = comments.some_scope.where(approved: true)
@@ -686,6 +686,7 @@ module AdminQueryInterface
   end
 
   # ....
+  # many more Query Interfaces of similar context
 end
 
 
@@ -713,7 +714,7 @@ class CommetsController  < ApplicationController
 end
 ```
 
-Then all I need to do is to test the interfaces with data from test DB and just
+Then all I need to do is to test the query interfaces with data from test DB and just
 ensure that the correct methods get called in the controller:
 
 ```ruby
@@ -791,7 +792,7 @@ end
 > imploved around this test such as extracting the common `let!` into
 > [shared context](https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-context)
 > so that we are sure the test stays relevant for both cases if one test
-> gets updated. I'm preparin article on this topic too and will publish
+> gets updated. I'm preparing article on this topic too and will publish
 > it till summer.
 
 
@@ -831,6 +832,43 @@ query interface test and throw the original test away.
 The point is: Don't rely on Query object / Rails model scope tests as on
 Lego blocks that will "just work" once you join them. Once you start
 combining them there is a lot that could go wrong in complex solution.
+
+**NOTE:**
+
+Bottom point of Query Interface is that you don't call any other
+relation after it!
+
+So no:
+
+```ruby
+# DONT
+class MyController < ApplicationController
+  # ...
+  def index
+    # ...
+    c = AdminQueryInterface
+      .comments_including_for_approval(organization: organization)
+      .limit(10) # DONT!
+    # ...
+  end
+  # ...
+end
+```
+
+If you need "similar" example with just one altertaion then just define new Query Interface method and
+use that one and test it separatly:
+
+```ruby
+module AdminQueryInterface 
+  # ...
+  def comments_including_for_approval_paginated(organization:, limit: )
+    comments_including_for_approval(organization: organization).limit(limit)
+  end
+end
+```
+
+You need to be sure your test represent the end product that is used to
+produce the SQL call.
 
 ## Conclusion 
 
