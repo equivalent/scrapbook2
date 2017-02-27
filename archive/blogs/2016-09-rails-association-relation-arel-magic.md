@@ -1,4 +1,4 @@
-# Rails Associaton Relation (Arel) Magic
+# Rails ActiveRecord Relation (Arel)  and composition
 
 Given `User` `has_many :articles` in Ruby on Rails you can write something
 like:
@@ -128,6 +128,9 @@ bmth_olivers.to_a
 > In reality Rails build a object that gets evaluated when it's needed
 > e.g. when you tell that you want results in a Array `.to_a` or when you
 > say `.first`
+
+* more on "Lazy" evaluation http://www.eq8.eu/blogs/28-ruby-enumerable-enumerator-lazy-and-domain-specific-collection-objects
+* more on [simple design](https://www.youtube.com/watch?v=rI8tNMsozo0)
 
 
 ## Advanced
@@ -398,6 +401,12 @@ Event.where(Event.arel_table[:start_at].lt(Time.now))
 
 ...and yes this works with is `gt` too.
 
+#### Order by DESC
+
+```ruby
+Comment.order(Comment.arel_table['created_at'].desc)
+```
+
 #### Arel - give me records that have empty / no associations
 
 ```
@@ -439,6 +448,7 @@ class CommentsController < ApplicationController
     @comments = BannedSourcesQuery.new(@comments).call
     @comments = ActiveCommentsQuery.new(@comments).call
     @comments = CommentPolicy::Scope.new(@comments, current_user).viewable_comments
+    @comments = @comments.order(Comment.arel_table['created_at'].desc)
     # ...
   end
 
@@ -506,28 +516,56 @@ end
 So in this example we are already showing 3 types of Query objects:
 
 `BannedSourcesQuery` is reusable query object that may be called on any
-type of scope (not only for Comments). So it's sort of [duck
+type of scope (not only for Comments).
+As long as the relevant model has `flagged` and `user_id` fields.
+So it's sort of [duck
 type](https://en.wikipedia.org/wiki/Duck_typing) composble query object
 that can be reused trough out the application to remove "blacklist"
 users from any scope e.g.: `BannedSourcesQuery.new(Document.all).call`
 
-`ActiveCommentsQuery`
+`ActiveCommentsQuery` is non reusable query object specific to a
+particular model (in this case Comment). The beauty is that you are
+ensuring `comments.` fields are called. This has nice side effect that
+you can do something like this:
 
-More on query objects
+```ruby
+q = Document.joins(:comments)
+q = ActiveCommentsQuery.new(q).call
+
+documents_with_active_comments = q.order('documents.id')
+```
+
+> Now the reusability of query objects if optional. I just want to
+> demonstrate that you can make your code design more flexible with query
+> objects not more complex or more difficult to understand as many are afraid.
+
+Last Query object is so called policy scope query object.
+
+I don't have time to explain what are policy objects (and I'm already preparing separate article on that topic)
+but think about policy objects as objects where you pass
+a record object and current session user and you just ask if given user has permission to do
+something with the object (e.g. `CommentPolicy.new(Comment.last, current_user).can_view?`)
+if you want to learn more you can check [pundit](https://github.com/elabs/pundit) gem or
+
+Similar way works the "policy scope query objects". You pass scope and
+`current_user` and expect the object to return you limited scope that
+user can perform given action (`.viewable`, `.editable`)
+
+more sources:
 
 * http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
-  (`4. Extract Query Objects` section)
+  (`4. Extract Query Objects` & `6. Extract Policy` section)
 
 
 
-## Debugging 
+## Debugging
 
 #### Show what SQL will get executed
 
 on any `ActiveRecord::Relation` object you can call `to_sql` to see what
 SQL command will be executed
 
-```
+```ruby
 puts User.all.to_sql
 # SELECT "users".* FROM "users"
 # => nil
@@ -537,40 +575,6 @@ puts User.where(id: nil)
 # => nil
 ```
 
+## Testing
 
 
-## Dump of more examples:
-
-#### complex scope example
-
-```ruby
-class Document
-  scope :with_latest_super_owner, lambda{ |o|
-    raise "must be client or user instance" unless [User, Client].include?(o.class)
-    joins(:document_versions, document_creator: :document_creator_ownerships).
-    where(document_creator_ownerships: {owner_type: o.class.model_name, owner_id: o.id}).
-    where(document_versions: {latest: true}).group('documents.id')
-  }
-end
-```
-
-```ruby
-scope :visible, -> { where("hidden != ?", true) }
-scope :published, -> { where("published_at <= ?", Time.zone.now) }
-scope :recent, -> { visible.published.order("published_at desc") }
-scope :desc_order, ->{ order(created_at: :desc) }
-
-#bad
-has_one :custom_form, -> { order('created_at DESC') }, class_name: CustomForm
-# SELECT ORDER BY created_at DESC LIMIT 
-
-#good
-has_one :custom_form, -> { order(created_at: :desc) }, class_name: CustomForm
-# SELECT .... ORDER BY "custom_forms"."created_at" DESC LIMIT 1
-```
-
-
-## Sources
-
-* more on "Lazy" evaluation http://www.eq8.eu/blogs/28-ruby-enumerable-enumerator-lazy-and-domain-specific-collection-objects
-* more on [simple design](https://www.youtube.com/watch?v=rI8tNMsozo0)
