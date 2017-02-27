@@ -551,11 +551,25 @@ Similar way works the "policy scope query objects". You pass scope and
 `current_user` and expect the object to return you limited scope that
 user can perform given action (`.viewable`, `.editable`)
 
+Last line in our controller is just implementing order DESC by
+`comments.created_at`. This is to demonstrate that it's ok to mix model
+scopes and query objects.
+
+Now again, query objects come in many flavors. Other Rails developers
+may agree or disagree with the use I've presented. It's really up to you
+and your team to figure out what approach will work for you. Just be
+careful not to repeat same query object in multiple files. Lot of time having
+just single `.call` method on a query object is required to enforce single responsibility but lot
+of time it makes more sense to have multiple public methods on query
+object in order to avoid replicating code, or including intermediary
+Ruby module. My advice is be pragmatic about it. Also don't prematurely
+extract Rails scopes to query objects. The day will come when it feels
+right.
+
 more sources:
 
 * http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
   (`4. Extract Query Objects` & `6. Extract Policy` section)
-
 
 
 ## Debugging
