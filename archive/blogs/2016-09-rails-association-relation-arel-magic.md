@@ -1,4 +1,4 @@
-# Rails ActiveRecord Relation (Arel)  and composition
+# Rails ActiveRecord Relation (Arel), composition and Query Objects
 
 Given `User` `has_many :articles` in Ruby on Rails you can write something
 like:
@@ -545,7 +545,7 @@ I don't have time to explain what are policy objects (and I'm already preparing 
 but think about policy objects as objects where you pass
 a record object and current session user and you just ask if given user has permission to do
 something with the object (e.g. `CommentPolicy.new(Comment.last, current_user).can_view?`)
-if you want to learn more you can check [pundit](https://github.com/elabs/pundit) gem or
+if you want to learn more you can check [pundit](https://github.com/elabs/pundit) gem.
 
 Similar way works the "policy scope query objects". You pass scope and
 `current_user` and expect the object to return you limited scope that
@@ -561,8 +561,8 @@ and your team to figure out what approach will work for you. Just be
 careful not to repeat same query object in multiple files. Lot of time having
 just single `.call` method on a query object is required to enforce single responsibility but lot
 of time it makes more sense to have multiple public methods on query
-object in order to avoid replicating code, or including intermediary
-Ruby module. My advice is be pragmatic about it. Also don't prematurely
+object in order to avoid replicating code, or to avoid including intermediary
+Ruby module / Rails concern. My advice is be pragmatic about it. Also don't prematurely
 extract Rails scopes to query objects. The day will come when it feels
 right.
 
@@ -590,5 +590,230 @@ puts User.where(id: nil)
 ```
 
 ## Testing
+
+So in my opinion biggest problem is "how would you test this" ?
+
+Many would say that Rails is well tested all we need to test if correct
+scopes are called in order and they will write test like this:
+
+```ruby
+RSpec.describe CommentsController do
+  # ...
+  it do
+    # ...
+    expect(Comment)
+      .to receive_message_chain(:pending, :where, :where, :order)
+      .and_return comments_double
+    # ...
+  end
+end
+```
+
+Honestly if you do this it's just matter of "when" that you'll receive phone call at 3am to "fix this".
+Think about this use of `receive_message_chain` just as a "interface
+test" not really proving anything just ensuring if stuff gets called. 
+
+It's way to easy to make a mistake in SQL with Arel (especially if you use `.includes` or `.joins')
+Even if you are the best SQL programer in your country you still cannot
+prevent that junior developer will edit the `where` clouse incorrectly
+and your test will have no idea about this.
+
+So some will test individual "query objects" and scopes with real
+records. And just ensure those scopes/objects get's called with correct
+arguments. Well honestly you are doing the similar mistake just slowing
+down your test suite.
+
+Therefore lot of developers will argue "Do a full integration test". 
+
+Well if your controller #index action has 50 different scenarios and for
+each controller action test you need to create 10 to 20 records just to prove if they pass,
+even with medium size project your test suite will run 20 - 60 minutes
+pretty soon. Plus you need to test if correct html/json is rendered, if
+you have proper status, ...
+
+So how to test them ?
+
+Look, the thing is that neither Controller neither Query object/ model scope is place
+for this kind of responsibility.
+
+We are missing one level of abstraction. I like to call them "Query
+inteface" but in reality they are just class methods / separate module
+methods that call the composed query.
+
+``` ruby
+# From this:
+#    controller1 >  scope where Query.object scope scope order
+#    controller2 >  scope Query.object Query.object  scope order
+#    controller3 >  scope where where where order
+#
+# To this:
+#    controller1 > QueryInterface 1  > scope where Query.object scope scope order
+#    controller2 > QueryInterface 2  > scope Query.object Query.object  scope order
+#    controller3 > QueryInterface 3  > scope where where where order
+```
+
+```
+module AdminQueryInterface
+  def self.comments_including_for_approval(organization)
+    comments = Comment.where(organization_id: organization.id)
+    comments = SomeQueryObject.new(comments).call
+    comments = comments.some_scope.where(approved: true)
+    commets
+  end
+end
+
+
+class CommetsController  < ApplicationController
+  def self.whitelisted_comments(current_user:)
+    comments = current_user.comments
+    comments = SomeQueryObject.new(comments).call
+    comments = comments.some_scope.where(approved: true)
+    comments = comments.order("commets.id DESC")
+    comments
+  end
+
+  # ...
+  def index
+    if admin?
+      organization = Organization.find(param[:org_id]
+      comments = AdminQueryInterface
+         .comments_including_for_approval(organization: organization)
+    else
+      comments = CommetsController.whitelisted_comments(current_user: current_user)
+    end
+
+    render json: comments.as_json
+  end
+end
+```
+
+Then all I need to do is to test the interfaces with real data and just
+ensure that the correct methods get called in controller and test the
+"real data" gets returned in interface query test:
+
+
+```ruby
+
+RSpec.describe 'CommetsController' do
+  describe 'GET #index' do
+    # ...
+    context "admin" do
+      # ...
+      it do
+        xyz_org = Organization.last
+
+        expect(AdminQueryInterface)
+          .to receive(:comments_including_for_approval)
+          .with(organization: xyz_org)
+          .and_return([instance_double(Comment)])
+        # ...
+        get :index
+        expect(response.status).to eq 200
+        expect(JSON.parse(body)).to match({.....})
+      end
+    end
+
+    context "user" do
+      # ...
+      it do
+        expect(CommetsController)
+          .to receive(:whitelisted_comments)
+          .with(current_user: current_user)
+          .and_return([instance_double(Comment)])
+        # ...
+        get :index
+        expect(response.status).to eq 200
+        expect(JSON.parse(body)).to match({.....})
+      end
+    end
+  end
+
+  describe '.whitelisted_comments', slow_test: true do
+    # ...
+    let(:user) { create :user, organization: my_org)
+    let!(comment1) { create :comment, :naughty, organization: my_org }
+    let!(comment2) { create :comment, :nice, organization: my_org }
+    let!(comment3) { create :comment, :nice, organization: different_org }
+    # ...
+
+    let(:result) { CommentsController.whitelisted_comments(current_user: user) }
+
+    it do
+      expect(result).to eq([comment2])
+    end
+  end
+end
+
+RSpec.describe AdminQueryInterface do
+  describe '.comments_including_for_approval', slow_test: true do
+    # ...
+    let!(comment1) { create :comment, :naughty, organization: my_org }
+    let!(comment2) { create :comment, :nice, organization: my_org }
+    let!(comment3) { create :comment, :nice, organization: different_org }
+    # ...
+
+    let(:result) { CommentsController.whitelisted_comments(organization: my_org) }
+
+    it do
+      expect(result).to eq([comment2, comment1])
+    end
+  end
+end
+```
+
+
+
+> Again, this test is just for demonstration there is still lot that can be
+> imploved around this test such as extracting the common `let!` into
+> [shared context](https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-context)
+> so that we are sure the test stays relevant for both cases if one test
+> gets updated. I'm preparin article on this topic too and will publish
+> it till summer.
+
+
+So this way we can test multiple scenarios with our data and if you are
+still concern of the speed of test, we are implementing the [RSpec tag](https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option)
+`slow_test` so therefore we can configure our CI to run slow test at the
+end:
+
+```bash
+bundle exec rspec spec --tag ~slow_test  #skip slow tests
+bundle exec rspec spec --tag slow_test   #run just slow tests
+```
+
+The point is that our controller test (that should test just responses,
+correct execution, and maybe [JSON API test](http://www.eq8.eu/blogs/30-native-rspec-json-api-testing))
+will still run relatively fast.
+
+Now you may be against this and say that implementing such a Query
+Interface  for every simple controller is a waste of effort if you have just single scope or
+single Query object in your controller and to test . Well yes it
+is, sort of.
+
+I write test for every query object  I create or Rails model `scope` 
+similar `let!(...) {..}; let!(...) {..}; expect(result).to  ...` way,
+but I do so so I have some TDD
+flavor to my approach. But in reality I see it just as a temporary test
+that I'm ready to throw away once I implement this Query interface test
+if stuff gets bigger. Sure sometimes the project is really small and I keep this kind of
+query/scope test in place for couple of weeks/months. But when the day
+comes (and it comes) I extract out valuable parts of the tests to
+query interface test and throw the original test away.
+
+The point is: Don't rely on Query object / Rails model scope tests as on
+Lego blocks that will "just work" once you join them. Once you start
+combining them there is a lot that could go wrong in complex solution.
+
+## Conclusion 
+
+Sorry for the long post. But I hope you understand that this needed some
+level of explanation. I will keep this blog post updated each time I come up with a new trick.
+
+The thing is Arel is really dynamic tool and allow developer to do the
+same thing many many ways. But once your project becomes corporate level
+size you will struggle to survive unless you establish common process
+for your team. I hope this article will inspire you with some practices
+but don't stop here and try to come up with those that fits you and your
+team.
 
 
