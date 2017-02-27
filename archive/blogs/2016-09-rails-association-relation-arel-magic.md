@@ -599,7 +599,7 @@ puts User.where(id: nil)
 
 ## Testing
 
-So in my opinion biggest problem is "how would you test this" ?
+In my opinion biggest problem is "how would you test this" ?
 
 Many would say that Rails is well tested all we need to test if correct
 scopes are called in order and they will write test like this:
@@ -617,13 +617,13 @@ RSpec.describe CommentsController do
 end
 ```
 
-Honestly if you do this it's just matter of "when" that you'll receive phone call at 3am to "fix this".
+Honestly if you do this it's just matter of "when" that you'll receive phone call at 3am from your boss to fix a critical security bug.
 Think about this use of `receive_message_chain` just as a "interface
 test" not really proving anything just ensuring if stuff gets called. 
 
-It's way to easy to make a mistake in SQL with Arel (especially if you use `.includes` or `.joins')
+It's way to easy to make a mistake in SQL with Arel (especially if you use `.includes` or `.joins`)
 Even if you are the best SQL programer in your country you still cannot
-prevent that junior developer will edit the `where` clouse incorrectly
+prevent that a junior developer will edit the `where` clause incorrectly
 and your test will have no idea about this.
 
 So some will test individual "query objects" and scopes with real
@@ -645,10 +645,10 @@ Look, the thing is that neither Controller neither Query object/ model scope is 
 for this kind of responsibility.
 
 We are missing one level of abstraction. I like to call them "Query
-inteface" but in reality they are just class methods / separate module
-methods that call the composed query.
+inteface" but in reality they are just a class method / separate module
+method that calls the composed query.
 
-``` ruby
+```ruby
 # From this:
 #    controller1 >  scope where Query.object scope scope order
 #    controller2 >  scope Query.object Query.object  scope order
@@ -660,7 +660,9 @@ methods that call the composed query.
 #    controller3 > QueryInterface 3  > scope where where where order
 ```
 
-```
+To put this in code:
+
+```ruby
 module AdminQueryInterface
   def self.comments_including_for_approval(organization)
     comments = Comment.where(organization_id: organization.id)
@@ -668,6 +670,8 @@ module AdminQueryInterface
     comments = comments.some_scope.where(approved: true)
     commets
   end
+
+  # ....
 end
 
 
@@ -695,10 +699,8 @@ class CommetsController  < ApplicationController
 end
 ```
 
-Then all I need to do is to test the interfaces with real data and just
-ensure that the correct methods get called in controller and test the
-"real data" gets returned in interface query test:
-
+Then all I need to do is to test the interfaces with data from test DB and just
+ensure that the correct methods get called in the controller:
 
 ```ruby
 
@@ -780,7 +782,7 @@ end
 
 
 So this way we can test multiple scenarios with our data and if you are
-still concern of the speed of test, we are implementing the [RSpec tag](https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option)
+still concern about the speed of test, we are implementing the [RSpec tag](https://www.relishapp.com/rspec/rspec-core/v/2-4/docs/command-line/tag-option)
 `slow_test` so therefore we can configure our CI to run slow test at the
 end:
 
@@ -790,22 +792,26 @@ bundle exec rspec spec --tag slow_test   #run just slow tests
 ```
 
 The point is that our controller test (that should test just responses,
-correct execution, and maybe [JSON API test](http://www.eq8.eu/blogs/30-native-rspec-json-api-testing))
+correct objects gets called, and maybe [JSON API test](http://www.eq8.eu/blogs/30-native-rspec-json-api-testing))
 will still run relatively fast.
+
+> If you are still nervous you've missed something you can still implement one or two "smoke"
+> tests (like with Selenium interface test or [RSpec request test](https://www.relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec))
+> but the point is you wont have to do it for every possibility.
 
 Now you may be against this and say that implementing such a Query
 Interface  for every simple controller is a waste of effort if you have just single scope or
-single Query object in your controller and to test . Well yes it
+single Query object in your controller . Well yes it
 is, sort of.
 
-I write test for every query object  I create or Rails model `scope` 
-similar `let!(...) {..}; let!(...) {..}; expect(result).to  ...` way,
-but I do so so I have some TDD
-flavor to my approach. But in reality I see it just as a temporary test
+Usually first I write test for every query object  or Rails model `scope` I write (
+similar `let!(...) {..}; let!(...) {..}; expect(result).to  ...` way),
+but I do it so I have some TDD
+flavor to my coding. But in reality I see it just as a temporary test
 that I'm ready to throw away once I implement this Query interface test
 if stuff gets bigger. Sure sometimes the project is really small and I keep this kind of
 query/scope test in place for couple of weeks/months. But when the day
-comes (and it comes) I extract out valuable parts of the tests to
+comes  I extract out valuable parts of the tests to
 query interface test and throw the original test away.
 
 The point is: Don't rely on Query object / Rails model scope tests as on
