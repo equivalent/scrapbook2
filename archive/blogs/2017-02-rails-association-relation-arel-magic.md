@@ -13,7 +13,7 @@ User
 
 This is possible thanks to `ActiveRecord::Relation`. This use to be
 separate project known as [Arel](https://github.com/rails/arel) but
-since Rails 4 it was adopted by Rails core ([Rails Associations](http://guides.rubyonrails.org/association_basics.html)).
+since Rails 3 it was adopted by Rails core ([Rails Associations](http://guides.rubyonrails.org/association_basics.html)).
 
 In this article we will have a look on some of my favorite tricks in
 Arel / `ActiveRecord::Relation`.
@@ -584,7 +584,8 @@ more sources:
 
 #### Show what SQL will get executed
 
-on any `ActiveRecord::Relation` object you can call `to_sql` to see what
+on any `ActiveRecord::Relation` object you can call `#to_sql` or
+`#explain` to see what
 SQL command will be executed
 
 ```ruby
@@ -592,9 +593,22 @@ puts User.all.to_sql
 # SELECT "users".* FROM "users"
 # => nil
 
-puts User.where(id: nil)
+puts User.where(id: nil).to_sql
 # SELECT "users".* FROM "users" WHERE "users"."id" IS NULL
 # => nil
+
+
+User.where(id: 1).explain
+#   User Load (1.6ms)  SELECT "users".* FROM "users" WHERE "users"."id" =
+# $1  [["id", 1]]
+#  => EXPLAIN for: SELECT "users".* FROM "users" WHERE "users"."id" = $1
+# [["id", 1]]
+#                                 QUERY PLAN
+# --------------------------------------------------------------------------
+#  Index Scan using users_pkey on users  (cost=0.29..8.31 rows=1
+# width=648)
+#    Index Cond: (id = 1)
+# (2 rows)
 ```
 
 ## Testing
@@ -823,7 +837,7 @@ combining them there is a lot that could go wrong in complex solution.
 Sorry for the long post. But I hope you understand that this needed some
 level of explanation. I will keep this blog post updated each time I come up with a new trick.
 
-The thing is Arel is really dynamic tool and allow developer to do the
+The thing is Arel is really dynamic tool and allows developers to do the
 same thing many many ways. But once your project becomes corporate level
 size you will struggle to survive unless you establish common process
 for your team. I hope this article will inspire you with some practices
