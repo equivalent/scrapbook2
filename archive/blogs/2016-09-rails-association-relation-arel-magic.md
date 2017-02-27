@@ -16,16 +16,20 @@ separate project known as [Arel](https://github.com/rails/arel) but
 since Rails 4 it was adopted by Rails core ([Rails Associations](http://guides.rubyonrails.org/association_basics.html)).
 
 In this article we will have a look on some of my favorite tricks in
-Arel / ActiveRecord::Relation.
+Arel / `ActiveRecord::Relation`.
 
 > I've collected  these tricks over years in my
 > [scrapbook](https://github.com/equivalent/scrapbook2/blob/master/rails_active_record.md),
 > so therefore for some examples I wont be able to provide SQL output
+> Each time I stumble upon new example I'll add it here (suggestions
+> welcome, you can PR this article).
 
-## Basics
+## Beginner
 
+> This artile may be too long, therefore
+> Advanced Rails developers may want to skip the Beginer part.
 
-##### Conditions passed with question mark interpolation
+#### Conditions passed with question mark interpolation
 
 ```
 User.where("users.first_name = ? and users.last_name = ?", 'Oliver', 'Sykes')
@@ -53,7 +57,7 @@ User.where("users.first_name = '#{name}'") # NEVER DO THIS !!!
 > The question mark syntax is being sanitized therefore it's safe.
 > Direct string interpolation is not.
 
-##### Arel with Ruby syntax
+#### Arel with Ruby syntax
 
 But we are Ruby developers, we like Ruby syntax so let's use it in our
 example:
@@ -64,7 +68,7 @@ User.where(first_name: 'Oliver', last_name: 'Sykes')
 # => [] # User::ActiveRecord_Relation 
 ```
 
-##### Arel Composition
+#### ActiveRecord::Relation Composition
 
 Now biggest problem of previous two sections using single where scope approach is that developers are missing out biggest benefit
 of ActiveRecord Relations and that is the composability: 
@@ -131,7 +135,7 @@ bmth_olivers.to_a
 So lets take the composition of the ability of Rails ActiveRecord Relations to practice:
 
 
-##### Merge different model scopes
+#### Merge different model scopes
 
 
 Let say User can be accesed via a [public uid](https://github.com/equivalent/public_uid)
@@ -192,15 +196,15 @@ end
 Document.order_by_latest
 ```
 
-##### composing scope under a conditioning
+#### Composing scope under a conditioning
 
 Often developers are in a situation where their `#index` controller action
 should return all records but only limited part of that scope when
 certain param is sent (pagination, limit endpoint for M:M API, ...)
 
-Way too often I see developers replicate the same code whene really they
-can took adventage of the fact that `ActiveRecord::Relation` is
-composable like a lego blocks (as we demonstrated in the beginer section)
+Way too often I see developers replicate the same code when really they
+can took advantage of the fact that `ActiveRecord::Relation` is
+composable like a lego blocks (as we demonstrated in the beginner section)
 
 We will use the `Article` and `User` relation from previous example:
 
@@ -232,15 +236,17 @@ class ArticlesController < ApplicationController
 
 
 ```sql
+# /articles
 SELECT "articles".* FROM "articles" ORDER BY "articles"."created_at" ASC
 ```
 
 ```sql
+# /articles?user_ids[]=x1y2&user_ids[]=p4b3
 SELECT "articles".* FROM "articles" INNER JOIN "users" ON "users"."id" = "articles"."user_id"
    WHERE "users"."url_slug" IN ('x1y2', 'p4b3')  ORDER BY "articles"."created_at" ASC
 ```
 
-##### IS NOT NULL
+#### IS NOT NULL
 
 ```ruby
 Foo.where.not(id: nil)
@@ -256,9 +262,9 @@ Foo.includes(:bars).where('bars.id IS NOT NULL')
 Foo.includes(:bars).where(Bar.arel_table[:id].not_eq(nil))
 ```
 
-##### multiple query ActiveRecord::Scopes
+#### Multiple SQL query in single ActiveRecord scope
 
-Sometimes you need your Rails scope to perform muliple SQL calls.
+Sometimes you need your Rails scope to perform multiple SQL calls.
 
 ```ruby
 class User < ActiveRecord::Base
@@ -273,17 +279,18 @@ end
 ```
 
 Now this is stupid example, but you get the point. We do 3 SQL calls for
-one Rails scope. Arguably this could be 3 scopes but there are
-situations where you need this to be in single one.
+one Rails model scope. Arguably better practice would be to write 3 scopes but there are
+situations where you need this to be in single one (e.g. you are just
+performance refactoring scopes and don't want to introduce extra scopes)
 
-In expert section we will deponstrate how to do this even better with
-Query objects :)
+In expert section we will demonstrate how to do this even better with
+Query objects.
 
-##### Model caching Query ids
+#### Model caching Query ids
 
 
-Simlar to previous example, let say that `banned_user_ids` and
-`premium_user_ids` are comming from expensive query, Redis DB or some
+Similar to previous example: let say that `banned_user_ids` and
+`premium_user_ids` are coming from expensive query, Redis DB or some
 microservice.
 
 We can cache these IDs:
@@ -294,7 +301,7 @@ class User < ActiveRecord::Base
 
   def self.banned_user_ids
     Rails.cache.fetch 'app_banned_user_ids', expires_in: 24.hours do
-      # expensive query or Redis DB
+      # expensive SQL query or Redis DB
     end
   end
 
@@ -313,16 +320,17 @@ end
 Now I'm just demonstrating the potential of caching here I don't have
 time to explain how to do caching properly. In brief: to use
 `expires_in` for cache is not the best approach. Rather drop the cache
-on some revlevant event, like some Redis event flasg  (or if you really lazy e.g. `Rails.cache.fetch "app_#{User.maximum(:updated_at)}banned_user_ids"`)
+on some relevant event, like some Redis event flag, Rails [touch association](http://apidock.com/rails/ActiveRecord/Persistence/touch)
+(or if you are really lazy at least: `Rails.cache.fetch "app_#{User.maximum(:updated_at)}banned_user_ids"`)
 
-Just rememmber to cache simple data (strings, integers) not marshaled objects!
+Just remember to cache simple data (array of strings or integers) not marshaled objects!
 
 More on caching:
 
 * http://guides.rubyonrails.org/caching_with_rails.html
 * https://www.youtube.com/watch?v=q8ausBZTrxU
 
-##### how to do OR
+#### How to do OR
 
 ```ruby
 # | type                        | owner_id | owner_type|
@@ -351,7 +359,7 @@ Comment.with_owner_ids_or_global(User, 1,2,3,4)
 > sorry I cannot provide SQL output as the application no longer exist.
 
 
-##### Multiple OR with bracket separation
+#### Multiple OR with bracket separation
 
 ...basically just more complex SQL query with OR statement where brackets will
 separate the desired domain context:
@@ -379,32 +387,142 @@ Candy.for_user_or_global(User.last)
 #=> SELECT `candies`.* FROM `candies` INNER JOIN `candy_ownerships` ON `candy_ownerships`.`candy_id` = `candies`.`id` WHERE (`candies`.`deleted_at` IS NULL) AND (((`candies`.`type` = 'WorldwideCandies' OR (`candies`.`type` = 'ClientCandies' AND `candy_ownerships`.`owner_id` = 19 AND `candy_ownerships`.`owner_type` = 'Client')) OR (`candies`.`type` = 'UserCandies' AND `candy_ownerships`.`owner_id` = 121 AND `candy_ownerships`.`owner_type` = 'User')))
 ```
 
-
-
-
-##### Lower than
+#### Lower than
 
 ```irb
 Event.arel_table[:start_at].lt(Time.now).to_sql
-=> "`events`.`start_at` < '2013-03-05 10:38:22'"
+# => "`events`.`start_at` < '2013-03-05 10:38:22'"
+
+Event.where(Event.arel_table[:start_at].lt(Time.now))
 ```
 
 ...and yes this works with is `gt` too.
 
-##### Arel give me records that have empty / no associations
-
-
-So this is trying to say: "Give me all users which has no permissions"
+#### Arel - give me records that have empty / no associations
 
 ```
 User
   .joins('FULL OUTER JOIN permissions on permissions.user_id = users.id')
-  .where(permissions: {user_id:nil})
+  .where(permissions: { user_id: nil } )
 ```
+
+So this is trying to say: "Give me all users which has no permissions"
+
+
+## Expert
+
+#### Query objects
+
+If you ever worked on a project where first 200 lines of `User` model
+are just association definition and scope definition you probably
+understand the pain of scope maintenance. One way to deal with this is
+to extract out the scope logic to separate composable  objects.
+
+Now the thing is that every developer has his own way how to define
+Query objects and I've never seen a "bad" approach example (as long as
+you leave the query object result to return `ActiveRecord::Relation`. It's purely
+matter of taste. Therefore I'll provide you example how I implement them
+and feel free to come up with a way that will benefit your team.
+
+
+Now I'm going to create an example from top of my head so it may not be
+100% without errors. I just want to demonstrate the potential:
+
+```ruby
+class CommentsController < ApplicationController
+  # ...
+  def index
+    # ...
+
+    @organization = Organization.find[:ordanization_id]
+    @comments = @organization.comments
+    @comments = BannedSourcesQuery.new(@comments).call
+    @comments = ActiveCommentsQuery.new(@comments).call
+    @comments = CommentPolicy::Scope.new(@comments, current_user).viewable_comments
+    # ...
+  end
+
+end
+```
+
+```ruby
+class BannedSourcesQuery
+  attr_reader :scope
+
+  def initialize(scope)
+    @scope = scope
+  end
+
+  def call
+    scope
+      .where.not(user_id: banned_user_ids)
+      .where.not(flagged: true)
+  end
+
+  private
+    def banned_user_ids
+       # this can be:
+       User.where(banned: true).pluck(:id)
+
+       # or:
+       Rails.cache.fetch 'app_banned_user_ids' do
+          # ... API call or expensive SQL
+       end
+    end
+end
+
+class ActiveCommentsQuery
+  attr_reader :scope
+
+  def initialize(scope)
+    @scope = scope
+  end
+
+  def call
+    scope
+      .where(Comment.arel_table["active"].eq true)
+      .where(Comment.arel_table[:publish_day].gt(Time.now))
+  end
+end
+
+class CommentPolicy::Scope
+  attr_reader :scope, current_user
+
+  def initialize(scope, current_user)
+    @scope = scope = scope
+    @current_user = current_user
+  end
+
+  def viewable_comments
+    scope
+      .where(organization_id: current_user.organization_id)
+  end
+
+  # ...
+end
+```
+
+
+So in this example we are already showing 3 types of Query objects:
+
+`BannedSourcesQuery` is reusable query object that may be called on any
+type of scope (not only for Comments). So it's sort of [duck
+type](https://en.wikipedia.org/wiki/Duck_typing) composble query object
+that can be reused trough out the application to remove "blacklist"
+users from any scope e.g.: `BannedSourcesQuery.new(Document.all).call`
+
+`ActiveCommentsQuery`
+
+More on query objects
+
+* http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
+  (`4. Extract Query Objects` section)
+
+
 
 ## Debugging 
 
-##### Show what SQL will get executed
+#### Show what SQL will get executed
 
 on any `ActiveRecord::Relation` object you can call `to_sql` to see what
 SQL command will be executed
@@ -423,7 +541,7 @@ puts User.where(id: nil)
 
 ## Dump of more examples:
 
-##### complex scope example
+#### complex scope example
 
 ```ruby
 class Document
