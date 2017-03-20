@@ -1,5 +1,17 @@
 
 ```
+
+    it 'assigns message' do
+      doc = Nokogiri::HTML(mail.body.encoded)
+
+      expect(doc.xpath(".//li[1]").text).to eql('Teacher role: Literacy coordinator')
+      expect(doc.xpath(".//li[2]").text).to eql('User name: Tomas Talent')
+    end
+```
+
+
+
+```
 within( all('tr').last ) { click_icon_link title: 'Validation Types'
 
 execute_script("$('.btn.btn-default.form-control.ui-select-toggle').first().click()")
