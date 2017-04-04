@@ -7,6 +7,12 @@ old stuff can be found on
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/ubuntu_linux
 * https://github.com/equivalent/scrapbook/blob/master/wisdom_inside/scraps/mint-mate
 
+# run command in background /daemon like
+
+```
+nohup command &
+```
+
 
 ## Espeaker
 
