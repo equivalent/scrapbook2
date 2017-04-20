@@ -1,3 +1,10 @@
+# rasberian camera
+
+to enaxle camera `sudo raspi-conig` and enable camera. Finish & reboot
+
+
+* https://www.raspberrypi.org/documentation/usage/camera/README.md
+* https://www.raspberrypi.org/documentation/usage/camera/raspicam/raspistill.md
 
 # resizing Ubuntu Mate 
 

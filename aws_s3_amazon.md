@@ -1,3 +1,18 @@
+# s3 permissions:
+
+http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html
+
+```
+s3:PutObject
+s3:GetObject
+s3:PutObjectAcl
+#...
+
+```
+
+
+
+
 ## CORS permissions on s3 bucket
 
 ```
