@@ -60,7 +60,6 @@ class Package < ActiveRecord::Base
     owner.company?
   end
 end
-```
 
 class Company < ActiveRecord::Base
   # ...
@@ -75,6 +74,7 @@ class User < ActiveRecord::Base
     false
   end
 end
+```
 
 Now how would you write test for method `Package#company_owned?` ?
 
@@ -506,10 +506,7 @@ As from this article please take this advices:
 * tests are important part of code base, keep them clean and expressive
 * you should be able to read descriptions and contexts as a story book,
   not just put entire definition of the test to `it` definition
-* keep test dry
+* keep tests dry
 * use `subject` and `describe_class` or anything that save you time
   renaming class/method name, but at the same time try not to overkill
   it (e.g. some metaprogramning woodoo is rarely helpful in a test).
-:w
-
-visual
