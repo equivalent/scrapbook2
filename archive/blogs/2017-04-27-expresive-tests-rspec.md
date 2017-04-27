@@ -1,20 +1,20 @@
 # Expressive tests with RSpec - part 1: Describe your tests properly
 
-Ruby gem RSpec is powerful library for testing. Reason why many
+Ruby gem [RSpec](http://rspec.info/) is powerful library for testing. Reason why many
 developers choose it over other testing tools is it's expressiveness.
 
 Now the thing is that many Ruby developers that are using RSpec on daily base
-care just about ensuring the test represents logical values but don't quite bother
-with how tests they write express their intention. This apply for both those that
+care just about ensuring the test represent logical proof of code but don't quite bother
+with how tests express their intention. This apply for both those that
 don't bother doing TDD/BDD but even for those that do; for junior
-developer but also developers using the library several years.
+developer but also developers using RSpec several years.
 
 I've decided to create series of articles titled "Expressive tests with RSpec"
 where I will try to show you how you can make your tests much cleaner,
 better to read and most importantly better to maintain.
 
-> Tests better to maintain ? Why ? ...tests, like any other code needs
-> to be kept clean and maintained otherwise (paradoxically) developers spend more time
+> Tests better to "maintain" ? Why ? ...tests, like any other code needs
+> to be kept clean and maintained otherwise (paradoxically) developers will spend more time
 > fixing them. Tests are like kitchen equipment. Although you care just
 > about preparing the delicious food, if you don't clean your equipment on regular
 > bases, preparing next meal will be harder and final product will stink after old
