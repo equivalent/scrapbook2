@@ -17,7 +17,7 @@ of course we've started to get "no permission to repository" from bundler when b
 
 One way how this would be possible to fix  is to copy ssh keys to Docker container. But this is a big security no-no as anyone who will get
 a hand on that docker image can retrieve the ssh private key. This apply even if you delete the key in next line, as Docker image layers
-consist of root-file system changes => the key will still be retrievable from different layer of the docker image.
+consist of root-file system changes => the key will still be retrievable from previous layer of the docker image.
 
 So do yourself a favor and don't do this !
 
@@ -42,14 +42,16 @@ You can pass build argument to docker build In Dockerfile, then  you can pass en
 
 
 ```bash
+# build script on the build box
 docker build -t=live-20170502 --build-arg github_token=xxxxxxxgeneratedxxxxxtokenxxxxxxxxx .
 ```
 
 ```Dockerfile
+# Dockerfile
 
 # ...
 ARG github_token
-RUN GITUBTOKEN=$gitub_token bundle install
+RUN GITHUB_TOKEN=$gitub_token bundle install
 # ...
 ```
 
@@ -86,10 +88,12 @@ bundle config  github.com myuser:xxxxxxxgeneratedxxxxxtokenxxxxxxxxx
 As for the production docker build would look like this:
 
 ```bash
+# build script on the build box
 docker build -t=live-20170502 --build-arg github_token=xxxxxxxgeneratedxxxxxtokenxxxxxxxxx .
 ```
 
 ```Dockerfile
+#Dockerfile
 
 # ...
 ARG github_token
