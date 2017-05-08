@@ -7,14 +7,14 @@ and you are good to go.
 
 When it comes to authorization (verifying if current_user has permission
 to do stuff he/she is requesting to) it's a different topic. Yes there
-are several solutions out there that works well on small project ([CanCanCan](@todo), [Rolify](https://github.com/RolifyCommunity/rolify),
+are several solutions out there that works well on small project ([CanCanCan](https://github.com/CanCanCommunity/cancancan), [Rolify](https://github.com/RolifyCommunity/rolify),
 ...) but once your project grows to medium to large scale then these
 generic solutions may become a burden.
 
 In this article I will show you how you can do your Authorization with
 policy classes.
 
-> Note: there is a gem [pundit](@todo) that is really nice plain Ruby
+> Note: there is a gem [pundit](https://github.com/elabs/pundit) that is really nice plain Ruby
 > policy object solution. But in this article we will work with a
 > solution from a scratch. But if you look for gem with established convention and community I recommend checking Pundit.
 
@@ -99,11 +99,15 @@ Clients Name: <%= @client.name %>
 <% end %>
 ```
 
-## Refactoring to policy helpers
-
 Now lets stop here and review. We have a code duplication in our
 controller and our view for checking `current_user` role in this
 scenario.
+
+If business requirements change developers will have to change this in
+multiple places.
+
+
+## Refactoring to policy helpers
 
 It's crucial to keep your policy definitions in common place so that
 other developers will have to change just one file in case the
@@ -295,7 +299,7 @@ RSpec.describe ClientsController do
 
 
     context 'not logged in' do
-      it 'should not 'access this page' do
+      it 'should not access this page' do
         trigger
         expect(response.status).to eq 401 # not authenticated, e.g.: Devise restriction
       end
