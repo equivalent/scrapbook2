@@ -598,6 +598,7 @@ The point is BE Policy objecs can really make your team life better.
 mine:
 
 * http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects
+* http://www.eq8.eu/blogs/31-simple-authentication-for-one-user-in-rails
 * http://www.eq8.eu/blogs/39-expressive-tests-with-rspec-part-1-describe-your-tests-properly
 * http://www.eq8.eu/blogs/31-simple-authentication-for-one-user-in-rails
 * http://www.eq8.eu/blogs/30-pure-rspec-json-api-testing
