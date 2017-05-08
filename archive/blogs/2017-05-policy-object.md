@@ -526,7 +526,7 @@ end
 Next interesting thing is `#public_client_ids` method. We are using
 adventage of [Rails model caching](http://guides.rubyonrails.org/caching_with_rails.html). Now 
 for this particular case it may seem unecessary, but let say we are
-doing some really complex sql to fetch the client ids or we call
+doing some really complex SQL to fetch the client ids or we call
 microservice:
 
 
@@ -543,15 +543,15 @@ class ClientPolicy
 end
 ```
 
-As you can see Policy Object can take care of this too.
+As you can see Policy Object can take care of external policy calls too.
 
 Last this I want to show you is the `#as_json` method
 
 Imagine you have Frontend framework that is supose to display button if
 given user is able to do particular action. I've seen many times that
 BE will just pass flags as `user.admin==true` or
-`user.moderator_for=[1,2,3]` to Frontend and they have to replicate
-exactly same policy logic.
+`user.moderator_for=[1,2,3]` to Frontend and developers have to replicate
+exactly same policy logic with FE framework.
 
 What you can do instead is create current user endpoint where you
 already evaluate this logic for Frontend:
@@ -592,3 +592,17 @@ end
 client data.
 
 The point is BE Policy objecs can really make your team life better.
+
+## Related articles
+
+mine:
+
+* http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects
+* http://www.eq8.eu/blogs/39-expressive-tests-with-rspec-part-1-describe-your-tests-properly
+* http://www.eq8.eu/blogs/31-simple-authentication-for-one-user-in-rails
+* http://www.eq8.eu/blogs/30-pure-rspec-json-api-testing
+
+external:
+
+* http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
+* https://github.com/elabs/pundit
