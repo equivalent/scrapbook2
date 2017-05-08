@@ -441,6 +441,9 @@ RSpec.describe UserPolicy do
 end
 ```
 
+> to learn more on Policy Objects you can read my article [Policy  Objects in Ruby on  Rails](http://www.eq8.eu/blogs/41-policy-objects-in-ruby-on-rails)
+
+
 Now in this case you can see that it make sense not to describe method
 by method base but rather contextual situations. This is due to nature
 of policy object responsibility: you ask it a
@@ -510,3 +513,8 @@ As from this article please take this advices:
 * use `subject` and `describe_class` or anything that save you time
   renaming class/method name, but at the same time try not to overkill
   it (e.g. some metaprogramning woodoo is rarely helpful in a test).
+
+
+## Related Articles
+
+* http://www.eq8.eu/blogs/41-policy-objects-in-ruby-on-rails

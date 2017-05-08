@@ -516,6 +516,8 @@ class CommentPolicy::Scope
 end
 ```
 
+> to learn more on Policy Objects you can read my article [Policy Objects in Ruby on Rails](http://www.eq8.eu/blogs/41-policy-objects-in-ruby-on-rails)
+
 
 So in this example we are already showing 3 types of Query objects:
 
@@ -883,3 +885,6 @@ but don't stop here and try to come up with those that fits you and your
 team.
 
 
+## Related Articles
+
+* http://www.eq8.eu/blogs/41-policy-objects-in-ruby-on-rails
