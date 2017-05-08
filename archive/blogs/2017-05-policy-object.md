@@ -12,7 +12,7 @@ are several solutions out there that works well on small project ([CanCanCan](ht
 generic solutions may become a burden.
 
 In this article I will show you how you can do your Authorization with
-policy classes.
+policy object.
 
 > Note: there is a gem [pundit](https://github.com/elabs/pundit) that has really nice plain Ruby
 > policy object solution. But in this article we will write plain object
@@ -557,3 +557,7 @@ external:
 
 * http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
 * https://github.com/elabs/pundit
+
+Reddit discussion on article:
+
+* https://www.reddit.com/r/ruby/comments/6a0qzz/policy_objects_in_ruby_on_rails/
