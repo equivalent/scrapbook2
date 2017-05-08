@@ -342,8 +342,82 @@ RSpec.describe ClientsController do
 end
 ```
 
-## Geting complex
+## Scopes
+
+Ok let say we have a requirement that on our `#index` page we can only list clients that
+have `public` flag or that current_user can moderate.
+
+If we put all the logic in controller the code may look like this:
+
+```ruby
+# app/controllers/clients_controllers.rb
+class ClientsController < ApplicationController
+  # ...
+
+  def index
+    if current_user.admin?
+      @clients = Client.all
+    elsif current_user.clients.any?
+      @clients = current_user.clients
+    else
+      @clients = Client.where(public: true)
+    end
+  end
+
+  # ...
+end
+```
+
+Let's introduce Policy Scope:
 
 
+```ruby
+# app/policy/client_policy.rb
+class ClientPolicy
+  class Scope
+    attr_reader :current_user, :scope
+
+    def initialize(current_user:, scope:)
+      @current_user = current_user
+      @scope = scope
+    end
+
+    def displayable
+      return scope if current_user.admin?
+
+      if current_user.clients.any?
+        scope.where(id: current_user.clients.pluck(:id))
+      else
+        scope.where(public: true)
+      end
+    end
+  end
+
+  # ...
+end
+```
+
+```ruby
+# app/controllers/clients_controllers.rb
+class ClientsController < ApplicationController
+  # ...
+
+  def index
+    @clients = Client.all
+    @clients = ClientPolicy::Scope
+                 .new(current_user: current_user, scope: @clients)
+                 .displayable
+
+    # you can implement more scopes e.g. @clients.order(:created_at)
+    # or @clients pagination
+
+    # ...
+  end
+
+  # ...
+end
+```
+
+> This kind of objects are called Query Policy Objects. To learn more what they are and how to test them  I recommend my article  [Rails scopes composition and query objects](http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects)
 
 
