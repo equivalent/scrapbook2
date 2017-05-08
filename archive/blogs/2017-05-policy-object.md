@@ -14,9 +14,9 @@ generic solutions may become a burden.
 In this article I will show you how you can do your Authorization with
 policy classes.
 
-> Note: there is a gem [pundit](https://github.com/elabs/pundit) that is really nice plain Ruby
-> policy object solution. But in this article we will work with a
-> solution from a scratch. But if you look for gem with established convention and community I recommend checking Pundit.
+> Note: there is a gem [pundit](https://github.com/elabs/pundit) that has really nice plain Ruby
+> policy object solution. But in this article we will write plain object
+> solution for policies from scratch. If you're looking for a gem with established convention and community I recommend checking Pundit.
 
 ## Example
 
@@ -69,7 +69,7 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    if current_user.admin? || moderator_for(@client)
+    if current_user.admin? || moderator_for?(@client)
       render :edit
     else
       render text: 'Not Authorized', status: 403
@@ -89,7 +89,7 @@ end
 And in view
 
 
-```ruby
+```erb
 # app/views/clients/show.html.erb
 
 Clients Name: <%= @client.name %>
@@ -104,65 +104,15 @@ controller and our view for checking `current_user` role in this
 scenario.
 
 If business requirements change developers will have to change this in
-multiple places.
+multiple places. This is dangerous as he/she may skip a file and
+introducing security vulnerability.
 
-
-## Refactoring to policy helpers
+## Policy Object
 
 It's crucial to keep your policy definitions in common place so that
 other developers will have to change just one file in case the
 requirement changes.
 
-We may refactor this to Rails `helper_method`:
-
-```ruby
-# app/controllers/clients_controllers.rb
-
-class ClientsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :set_client
-
-  def show
-  end
-
-  def edit
-    if can_moderate_client?
-      render :edit
-    else
-      render text: 'Not Authorized', status: 403
-    end
-  end
-
-  # ...
-
-  private
-
-  def set_client
-    @client = Client.find(params[:id])
-  end
-
-  def can_moderate_client?
-    current_user.admin? || current_user.moderator_for(@client)
-  end
-  helper_method :can_moderate_client?
-end
-```
-
-```ruby
-# app/views/clients/show.html.erb
-
-Clients Name: <%= @client.name %>
-
-<% if can_moderate_client? %>
-  Clients contact: <%= @client.email %>
-<% end %>
-```
-
-This will work just fine for small projects. But once you're dealing
-with large project policy helpers will get messy with other helpers.
-Let's introduce something more sophisticated.
-
-## Policy Object
 
 Let's enable new autoload path `app/policy/` in Rails:
 
@@ -228,11 +178,9 @@ class ClientsController < ApplicationController
 end
 ```
 
-And our view like:
+And our view `app/views/clients/show.html.erb` like:
 
-```ruby
-# app/views/clients/show.html.erb
-
+```erb
 Clients Name: <%= @client.name %>
 
 <% if client_policy.able_to_moderate? %>
@@ -281,6 +229,8 @@ RSpec.describe ClientPolicy do
   end
 end
 ```
+
+> more on this style of test in article  [expressive rspec - part 1](http://www.eq8.eu/blogs/39-expressive-tests-with-rspec-part-1-describe-your-tests-properly)
 
 As we are testing various Authorization scenarios in our policy object
 test, all we need to test in our controller is that policy object
@@ -599,6 +549,7 @@ mine:
 
 * http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects
 * http://www.eq8.eu/blogs/31-simple-authentication-for-one-user-in-rails
+* http://www.eq8.eu/blogs/39-expressive-tests-with-rspec-part-1-describe-your-tests-properly
 * http://www.eq8.eu/blogs/39-expressive-tests-with-rspec-part-1-describe-your-tests-properly
 * http://www.eq8.eu/blogs/31-simple-authentication-for-one-user-in-rails
 * http://www.eq8.eu/blogs/30-pure-rspec-json-api-testing
