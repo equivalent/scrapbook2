@@ -421,3 +421,174 @@ end
 > This kind of objects are called Query Policy Objects. To learn more what they are and how to test them  I recommend my article  [Rails scopes composition and query objects](http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects)
 
 
+## Getting complex
+
+Here is an example of real world complex policy object:
+
+```ruby
+# app/policy/client_policy.rb
+class ClientPolicy
+  attr_reader :current_user, :resource
+
+  def initialize(current_user:, resource:)
+    @current_user = current_user
+    @resource = resource
+  end
+
+  def able_to_view?
+    resource.id.in?(public_client_ids) || internal_user
+  end
+
+  def able_to_update?
+    moderator?
+  end
+
+  def able_to_delete?
+    moderator?
+  end
+
+  def as_json
+    {
+      view: able_to_view?,
+      edit: able_to_edit?,
+      delete: able_to_delete?
+    }
+  end
+
+  private
+
+  def admin?
+    current_user.has_role(:admin)  # in this case we use Rolify style to determin admin
+                                   # just to demonstrate the flexibility
+  end
+
+  def internal_user
+    admin? || current_user.clients.any?
+  end
+
+  def moderator?
+    current_user.admin? || current_user.moderator_for(resource)
+  end
+
+  def public_client_ids
+    Rails.cache.fetch('client_policy_public_clients', expires_in: 10.minutes) do
+      Client.all.pluck(:id)
+    end
+  end
+end
+```
+
+There is lot happening here. First we have methods that fully represent
+CRUD actions on our controller `able_to_view?`, `able_to_update?`,
+`able_to_delete?`. 
+
+so our controller could look like:
+
+
+```
+class ClientsController < ApplicationController
+  NotAuthorized = Class.new(StandardError)
+
+  rescue_from NotAuthorized do |e|
+    render json: {errors: [message: "403 Not Authorized"]}, status: 403
+  end
+
+  # ...
+  def show
+    raise NotAuthorized policy.able_to_view?
+    # ...
+  end
+
+  def edit
+    raise NotAuthorized policy.able_to_update?
+    # ...
+  end
+
+  def update
+    raise NotAuthorized policy.able_to_update?
+    # ...
+  end
+
+  def delete
+    raise NotAuthorized policy.able_to_delete?
+    # ...
+  end
+  # ...
+end
+```
+
+> Dont mind that we have duplicate code in our Policy. `able_to_update?`
+> and `able_to_delete?` are doing the same but it's the business
+> representation that is valuable to us. If our requirements change that
+> only admin can delete records we change only policy class not the
+> controller.
+
+Next interesting thing is `#public_client_ids` method. We are using
+adventage of [Rails model caching](http://guides.rubyonrails.org/caching_with_rails.html). Now 
+for this particular case it may seem unecessary, but let say we are
+doing some really complex sql to fetch the client ids or we call
+microservice:
+
+
+```ruby
+class ClientPolicy
+  # ...
+  def public_client_ids
+    Rails.cache.fetch('client_policy_public_clients', expires_in: 10.minutes) do
+      body = HTTParty.get('http://my-micro-service.com/api/v1/public_cliets.json')
+      JSON.parse(body)
+    end
+  end
+  # ...
+end
+```
+
+As you can see Policy Object can take care of this too.
+
+Last this I want to show you is the `#as_json` method
+
+Imagine you have Frontend framework that is supose to display button if
+given user is able to do particular action. I've seen many times that
+BE will just pass flags as `user.admin==true` or
+`user.moderator_for=[1,2,3]` to Frontend and they have to replicate
+exactly same policy logic.
+
+What you can do instead is create current user endpoint where you
+already evaluate this logic for Frontend:
+
+```
+# app/controller/current_user_controller.rb
+class CurrentUser < ApplicationController
+  def index
+    roles = {}
+    roles.merge(client_policy_json) if client
+    reles.merge(some_other_roles)
+    render json: roles
+  end
+
+  private
+
+  def client_policy_json
+    ClientPolicy
+      .new(current_user: current_user, resource: client)
+      .as_json
+  end
+
+  def client
+    if params[:client_id]
+      Client.find(params[:client_id])
+    end
+  end
+
+  def some_other_roles
+    { can_display_admin_link: false }
+  end
+end
+```
+
+`GET /current_user?client_id=1234`
+
+...or you can just include this roles in same call as when you retriving
+client data.
+
+The point is BE Policy objecs can really make your team life better.
