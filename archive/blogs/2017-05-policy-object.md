@@ -485,7 +485,7 @@ CRUD actions on our controller `able_to_view?`, `able_to_update?`,
 so our controller could look like:
 
 
-```
+```ruby
 class ClientsController < ApplicationController
   NotAuthorized = Class.new(StandardError)
 
@@ -556,7 +556,7 @@ exactly same policy logic.
 What you can do instead is create current user endpoint where you
 already evaluate this logic for Frontend:
 
-```
+```ruby
 # app/controller/current_user_controller.rb
 class CurrentUser < ApplicationController
   def index
