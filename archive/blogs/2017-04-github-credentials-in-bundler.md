@@ -75,7 +75,7 @@ Now the prev. approach is repetitive and messy for development environment. That
 
 Therefore all that developers in their development machines need to do is:
 
-1. create [personal Github access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+1. create [personal Github access token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) and set [permissions to read repo](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/generating-personal-key-github.png)
 
 2. run this:
 
@@ -120,3 +120,4 @@ It's similar to `RUN apt-get update && apt-get install -y imagemagick  && rm -rf
 * http://bundler.io/man/gemfile.5.html#CREDENTIALS-credentials-
 * https://gist.github.com/masonforest/4048732
 * https://gist.github.com/hone/b0c0093374097313ab7f
+* https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2016/generating-personal-key-github.png
