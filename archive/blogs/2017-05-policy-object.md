@@ -94,7 +94,7 @@ And in view
 
 Clients Name: <%= @client.name %>
 
-<% if current_user.admin? || current_user.moderator_for(@client) %>
+<% if current_user.admin? || current_user.moderator_for?(@client) %>
   Clients contact: <%= @client.email %>
 <% end %>
 ```
@@ -139,7 +139,7 @@ class ClientPolicy
   end
 
   def able_to_moderate?
-    current_user.admin? || current_user.moderator_for(resource)
+    current_user.admin? || current_user.moderator_for?(resource)
   end
 end
 ```
@@ -417,7 +417,7 @@ class ClientPolicy
   end
 
   def moderator?
-    current_user.admin? || current_user.moderator_for(resource)
+    current_user.admin? || current_user.moderator_for?(resource)
   end
 
   def public_client_ids
@@ -467,7 +467,7 @@ class ClientsController < ApplicationController
 end
 ```
 
-> Dont mind that we have duplicate code in our Policy. `able_to_update?`
+> Don't mind that we have duplicate code in our Policy. `able_to_update?`
 > and `able_to_delete?` are doing the same but it's the business
 > representation that is valuable to us. If our requirements change that
 > only admin can delete records we change only policy class not the
@@ -511,8 +511,8 @@ already evaluate this logic for Frontend:
 class CurrentUser < ApplicationController
   def index
     roles = {}
-    roles.merge(client_policy_json) if client
-    reles.merge(some_other_roles)
+    roles.merge!(client_policy_json) if client
+    reles.merge!(some_other_roles)
     render json: roles
   end
 
