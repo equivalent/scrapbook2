@@ -22,15 +22,11 @@ Updates:
 
 * 2017-05-09 added section "Policy Objects as Model Value Objects"
 * 2017-05-09 in section "Getting Complex" I've added `ClientsController#index` example + policy
-
-> **Update:** I've received feedback that I didn't explain why I think
-> Plain Object solution is better that CanCanCan or just sticking roles
-> directly to `User` model. I've also didn't quite well explain the transition from
-> model policy to separate object policy. That's true. In the past I've received lot
-> of feedback that my articles are too long till they get to the point, that's why I've decided to
-> skip explaining reasons and just show you how to do advanced stuff.
->
-> I'm preparing more detailed step by step article where I'll explain my reasons more.
+* 2017-05-09 I've received feedback that I didn't explain why I think  Plain Object solution is better that CanCanCan or just sticking roles
+  directly to `User` model. That's true. In the past I've received lot
+  of feedback that my articles are too long till they get to the point, that's why I've decided to
+  skip explaining reasons and just show you how to do advanced stuff.
+   I'm preparing more detailed step by step article where I'll explain my reasons more.
 
 ## Example
 
