@@ -18,16 +18,6 @@ policy object.
 > policy object solution. But in this article we will write plain object
 > solution for policies from scratch. If you're looking for a gem with established convention and community I recommend checking Pundit.
 
-Updates: 
-
-* 2017-05-09 added section "Policy Objects as Model Value Objects"
-* 2017-05-09 in section "Getting Complex" I've added `ClientsController#index` example + policy
-* 2017-05-09 I've received feedback that I didn't explain why I think  Plain Object solution is better that CanCanCan or just sticking roles
-  directly to `User` model. That's true. In the past I've received lot
-  of feedback that my articles are too long till they get to the point, that's why I've decided to
-  skip explaining reasons and just show you how to do advanced stuff.
-   I'm preparing more detailed step by step article where I'll explain my reasons more.
-
 ## Example
 
 Let say in our application user can be:
@@ -666,3 +656,16 @@ external:
 Reddit discussion on article:
 
 * https://www.reddit.com/r/ruby/comments/6a0qzz/policy_objects_in_ruby_on_rails/
+
+
+## Updates:
+
+* 2017-05-09 added section "Policy Objects as Model Value Objects"
+* 2017-05-09 in section "Getting Complex" I've added `ClientsController#index` example + policy
+* 2017-05-09 I've received feedback that I didn't explain why I think  Plain Object solution is better that CanCanCan or just sticking roles
+  directly to `User` model. That's true. In the past I've received lot
+  of feedback that my articles are too long till they get to the point, that's why I've decided to
+  skip explaining reasons and just show you how to do advanced stuff.
+   I'm preparing more detailed step by step article where I'll explain my reasons more.
+
+
