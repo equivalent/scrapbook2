@@ -18,6 +18,15 @@ policy object.
 > policy object solution. But in this article we will write plain object
 > solution for policies from scratch. If you're looking for a gem with established convention and community I recommend checking Pundit.
 
+> **Update:** I've received feedback that I didn't explain why I think
+> Plain Object solution is better that CanCanCan or just sticking roles
+> directly to `User` model. I've also didn't quite well explain the transition from
+> model policy to separate object policy. That's true. In the past I've received lot
+> of feedback that my articles are too long till they get to the point, that's why I've decided to
+> skip explaining reasons and just show you how to do advanced stuff.
+>
+> I'm preparing more detailed step by step article where I'll explain my reasons more.
+
 ## Example
 
 Let say in our application user can be:
@@ -380,6 +389,10 @@ Here is an example of real world complex policy object:
 class ClientPolicy
   attr_reader :current_user, :resource
 
+  def self.able_to_list?(current_user)
+    current_user.approved?
+  end
+
   def initialize(current_user:, resource:)
     @current_user = current_user
     @resource = resource
@@ -443,6 +456,14 @@ class ClientsController < ApplicationController
     render json: {errors: [message: "403 Not Authorized"]}, status: 403
   end
 
+  def index
+    raise NotAuthorized unless ClientPolicy.able_to_list?(current_user)
+    @clients = Client.all
+    @clients = ClientPolicy::Scope.new(scope: @clients, current_user: current_user)
+    @clients # .order,  .per_page, ...
+    # ...
+  end
+
   # ...
   def show
     raise NotAuthorized policy.able_to_view?
@@ -472,6 +493,42 @@ end
 > representation that is valuable to us. If our requirements change that
 > only admin can delete records we change only policy class not the
 > controller.
+
+As for `#index` action there is no particular one resource we can do
+Authorization on. In this case we have a requirement that only
+`activated` users can list clients. So we can call class method policy
+where we just pass `current_user`.
+
+When it comes to deciding which `@clients` can `current_user` actually see
+we will use Policy Scope Object as we described in section above.
+
+But let say if the policy would say "only **internal users** can list
+clients" ...you can just initialize policy without passing resource and call
+non-resource based methods:
+
+```ruby
+# app/controllers/clients_controller.rb
+# ...
+
+  def index
+    index_policy = ClientPolicy.new(current_user: current_user)  # no resource is passed to initialivation, this is ok in this case.
+    raise NotAuthorized unless index_policy.able_to_list?
+  # ...
+# ...
+
+# app/policy/client_policy.rb
+class ClientPolicy
+  # ...
+  able_to_list?
+    internal_user
+  end
+  # ...
+```
+
+...you are initializing "incomplete object" but that's ok, as you are
+aware that for that one interface call you don't need resource.
+
+Moving on to another point.
 
 Next interesting thing is `#public_client_ids` method. We are using
 adventage of [Rails model caching](http://guides.rubyonrails.org/caching_with_rails.html). Now 
@@ -543,6 +600,52 @@ client data.
 
 The point is BE Policy objecs can really make your team life better.
 
+## Experimental - Policy Objects as Models Values Objects
+
+Some developers may hate the fact that they need to initialize new
+instance of policy object in controller. If that's so there is a different flavor of
+Policy Objects.
+
+```ruby
+# app/model/appreciation.rb
+class Appreciation < ApplicationRecord::Base
+  # ...
+
+  def policy
+    @policy ||= AppreciationPolicy.new.tap { |ap| ap.resource = self }
+  end
+end
+
+# app/policy/appreciation_policy.rb
+class AppreciationPolicy
+  attr_accessor :resource
+
+  def can_be_destroyed?(by: )
+    by && resource.user == by
+  end
+end
+
+
+# app/controllers/appreciations_controller.rb
+class AppreciationsController < ApplicationController
+  # ...
+  def destroy
+    @appreciation = Appreciation.find(params[:id])
+    raise NotAuthorized unless @appreciation.policy.can_be_destroyed?(by: current_user)
+    # ...
+  end
+end
+```
+
+I don't have much experience with this style as I've played with them just in my [Ruby Rampage entry project](https://github.com/crazy-monkey-woodoo-priest/open-thanks) but
+they feel quite ok. I like the fact that the code style is more
+functional and explicit.
+
+I'm just worried about caching and memoization of
+related data. Where in Policy Objects it's easy to cache anything (as
+you pass current user to object) with Policy Object as Value Object you
+need to be careful not to cache data for only one user.
+
 ## Related articles
 
 mine:
@@ -552,6 +655,7 @@ mine:
 * http://www.eq8.eu/blogs/39-expressive-tests-with-rspec-part-1-describe-your-tests-properly
 * http://www.eq8.eu/blogs/31-simple-authentication-for-one-user-in-rails
 * http://www.eq8.eu/blogs/30-pure-rspec-json-api-testing
+* example project using Policy Objects as model Value Objects https://github.com/crazy-monkey-woodoo-priest/open-thanks
 
 external:
 
