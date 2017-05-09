@@ -637,6 +637,68 @@ related data. Where in Policy Objects it's easy to cache anything (as
 you pass current user to object) with Policy Object as Value Object you
 need to be careful not to cache data for only one user.
 
+## Domain logic not CRUD
+
+Ok so far it may sound like policy objects are all about CRUD and
+you will need policy object for every model/controller. Well that's not true.
+
+The only reason why I've chose to demonstrate policy objects from CRUD
+controller perspective is because it's easier to understand them coming from other
+solutions like CanCanCan. In reality you may write methods in policy
+objects that has nothing to do with controller actions.
+
+Policy objects are all about your domain logic not CURD:
+
+```ruby
+class ArticlePolicy
+  attr_reader :current_user, :resource
+
+  def initialize(current_user:, resource:)
+    @current_user = current_user
+    @resource = resource
+  end
+
+  # ...
+  def able_to_view?
+    resource.published? || current_user.admin?
+  end
+
+  def able_to_comment?
+    able_to_view?
+  end
+end
+```
+
+```ruby
+class CommentsController < ApplicationController
+  # ...
+  def create
+    @article = Article.find(:article_id)
+    raise NotAuthorized unless ArticlePolicy.new(current_user: current_user, resource: @article).can_comment?
+    @article.create(article_params)
+  end
+  # ...
+end
+```
+
+```
+POST /articles/123/comments
+```
+
+You see, it may sense to create own `CommentPolicy` but if you don't
+have enough requirements it may be just part of `ArticlePolicy`. When
+time comes you can refactor it out to own class.
+
+Be aware to not go too overboard with sticking too many responsibilities
+to one policy object. The largest I ever had had maybe 7 public methods.
+
+Generic rule is:
+
+*Policy Objects (when done right) don't force your application to map a solution.
+They map your application requirements and your domain language. When your
+requirements change they must be super easy to change as well, otherwise
+you missed something and you are doing it wrong.*
+
 ## Related articles
 
 mine:
@@ -660,6 +722,7 @@ Reddit discussion on article:
 
 ## Updates:
 
+* 2017-05-09 added section "Domain logic not CRUD"
 * 2017-05-09 added section "Policy Objects as Model Value Objects"
 * 2017-05-09 in section "Getting Complex" I've added `ClientsController#index` example + policy
 * 2017-05-09 I've received feedback that I didn't explain why I think  Plain Object solution is better that CanCanCan or just sticking roles
