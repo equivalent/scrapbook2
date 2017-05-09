@@ -18,6 +18,11 @@ policy object.
 > policy object solution. But in this article we will write plain object
 > solution for policies from scratch. If you're looking for a gem with established convention and community I recommend checking Pundit.
 
+Updates: 
+
+* 2017-05-09 added section "Policy Objects as Model Value Objects"
+* 2017-05-09 in section "Getting Complex" I've added `ClientsController#index` example + policy
+
 > **Update:** I've received feedback that I didn't explain why I think
 > Plain Object solution is better that CanCanCan or just sticking roles
 > directly to `User` model. I've also didn't quite well explain the transition from
