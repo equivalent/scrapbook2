@@ -112,18 +112,23 @@ It's crucial to keep your policy definitions in common place so that
 other developers will have to change just one file in case the
 requirement changes.
 
+We will place our policy objects into folder `app/policy/`.
 
-Let's enable new autoload path `app/policy/` in Rails:
-
-```ruby
-module Pobble
-  class Application < Rails::Application
-    # ...
-    config.autoload_paths << Rails.root.join('app', 'policy')
-    # ...
-  end
-end
-```
+> Newer versions of Rails automaticly loads all `app/` subdirectories (ref:
+> [1](http://guides.rubyonrails.org/autoloading_and_reloading_constants.html#autoload-paths) [2](https://github.com/equivalent/scrapbook2/pull/9#issue-229402335))
+>
+> Older versions of Rails will have to manually enable this directory like
+> this:
+>
+> ```ruby
+> module Pobble
+>   class Application < Rails::Application
+>     # ...
+>     config.autoload_paths << Rails.root.join('app', 'policy')
+>     # ...
+>   end
+> end
+> ```
 
 And write our policy class:
 
