@@ -121,7 +121,7 @@ We will place our policy objects into folder `app/policy/`.
 > this:
 >
 > ```ruby
-> module Pobble
+> module MyAppp
 >   class Application < Rails::Application
 >     # ...
 >     config.autoload_paths << Rails.root.join('app', 'policy')
