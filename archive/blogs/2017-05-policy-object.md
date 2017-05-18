@@ -64,7 +64,6 @@ class ClientsController < ApplicationController
   before_filter :authenticate_user! # Devise check if current user is sign_in or not (is he/she authenticated)
   before_filter :set_client
 
-
   def show
   end
 
@@ -533,7 +532,7 @@ class ClientPolicy
   # ...
   def public_client_ids
     Rails.cache.fetch('client_policy_public_clients', expires_in: 10.minutes) do
-      body = HTTParty.get('http://my-micro-service.com/api/v1/public_cliets.json')
+      body = HTTParty.get('http://my-micro-service.com/api/v1/public_clients.json')
       JSON.parse(body)
     end
   end
@@ -560,7 +559,7 @@ class CurrentUser < ApplicationController
   def index
     roles = {}
     roles.merge!(client_policy_json) if client
-    reles.merge!(some_other_roles)
+    roles.merge!(some_other_roles)
     render json: roles
   end
 
