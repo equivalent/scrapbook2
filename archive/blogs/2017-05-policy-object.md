@@ -114,8 +114,8 @@ requirement changes.
 
 We will place our policy objects into folder `app/policy/`.
 
-> Newer versions of Rails automaticly loads all `app/` subdirectories (ref:
-> [1](http://guides.rubyonrails.org/autoloading_and_reloading_constants.html#autoload-paths) [2](https://github.com/equivalent/scrapbook2/pull/9#issue-229402335))
+> Newer versions of Rails automaticly loads all `app/` subdirectories (
+> [ref. 1](http://guides.rubyonrails.org/autoloading_and_reloading_constants.html#autoload-paths), [ref. 2](https://github.com/equivalent/scrapbook2/pull/9#issue-229402335))
 >
 > Older versions of Rails will have to manually enable this directory like
 > this:
