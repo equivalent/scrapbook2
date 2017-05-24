@@ -696,6 +696,36 @@ time comes you can refactor it out to own class.
 Be aware to not go too overboard with sticking too many responsibilities
 to one policy object. The largest I ever had had maybe 7 public methods.
 
+
+> **Update:** Recently we had code requirement change that we allow
+> `document` to be deleted from a controller (as previously this was not
+> possible). Before the change policy object had method
+> `document_policy.able_to_delete_resorce?` with meaning that you can delete `resource`
+> associations on a `document`.
+>
+> Colleague used this method in the
+> for the `DocumentController` deletion action. Now the code was by coincident doing
+> the thing he needed form the policy so implementation on security
+> level was ok. But here is the thing: Now you have
+> `document.resource.destroy if document_policy.able_to_delete_resorce?` and `document.destroy if document_policy.able_to_delete_resorce?`
+> Imagine a Junior developer not aware of this comes and change to new
+> requirement that "any user" can remove `document.resource` in the
+> `DocumentPolicy`. Now any user can remove any document.
+>
+> My argument was that we need a new method in `document_policy` object
+> called `able_to_delete? so that we end up with:
+> `document.resource.destroy if document_policy.able_to_delete_resorce?` and `document.destroy if document_policy.able_to_delete?`
+>
+> The methods inside the `DocumentPolicy` can be alias to each other
+> until we decide to refactor them. The point that both methods represent
+> different business requirement question on a policy object.
+>
+> Don't think about policy objects as just logic holders. During
+> implementation in controller always ask them a human question. In this
+> case: "Can I delete resorce of that document ?", "Can I delete a Document?" and if there is a method matching
+> that question in policy object implement it otherwise it's missing and
+> you need to implement it.
+
 Generic rule is:
 
 *Policy Objects (when done right) don't force your application to map a solution.
@@ -734,5 +764,6 @@ Reddit discussion on article:
   of feedback that my articles are too long till they get to the point, that's why I've decided to
   skip explaining reasons and just show you how to do advanced stuff.
    I'm preparing more detailed step by step article where I'll explain my reasons more.
+* 2017-05-24 added an `able_to_delete?` and `able_to_delete_resource?` to  "Domain logic not CRUD" section
 
 
