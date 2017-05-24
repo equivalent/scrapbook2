@@ -710,6 +710,13 @@ source: http://www.chriswpage.com/2009/05/setup-an-advanced-webcam-security-syst
 
     setxkbmap -layout us
 
+## send email with file attachement via mutt command (centos, aws instance)
+
+   yum install mutt
+
+   echo "mail body" | mutt -a stats.tar.gz -s "files" -- tomas@eeeeeeeeeeee.com
+
+
 ## CentOS send mail with attachement
 
     yum install mail
