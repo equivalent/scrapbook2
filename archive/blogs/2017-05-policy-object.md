@@ -703,17 +703,17 @@ to one policy object. The largest I ever had had maybe 7 public methods.
 > `document_policy.able_to_delete_resorce?` with meaning that you can delete `resource`
 > associations on a `document`.
 >
-> Colleague used this method in the
+> Colleague used this method
 > for the `DocumentController` deletion action. Now the code was by coincident doing
 > the thing he needed form the policy so implementation on security
 > level was ok. But here is the thing: Now you have
 > `document.resource.destroy if document_policy.able_to_delete_resorce?` and `document.destroy if document_policy.able_to_delete_resorce?`
 > Imagine a Junior developer not aware of this comes and change to new
 > requirement that "any user" can remove `document.resource` in the
-> `DocumentPolicy`. Now any user can remove any document.
+> `DocumentPolicy` ...Now due to code design any user can remove any document.
 >
 > My argument was that we need a new method in `document_policy` object
-> called `able_to_delete? so that we end up with:
+> called `able_to_delete?` so that we would end up with:
 > `document.resource.destroy if document_policy.able_to_delete_resorce?` and `document.destroy if document_policy.able_to_delete?`
 >
 > The methods inside the `DocumentPolicy` can be alias to each other
@@ -722,7 +722,7 @@ to one policy object. The largest I ever had had maybe 7 public methods.
 >
 > Don't think about policy objects as just logic holders. During
 > implementation in controller always ask them a human question. In this
-> case: "Can I delete resorce of that document ?", "Can I delete a Document?" and if there is a method matching
+> case: "Can I delete resorce of that document ?", "Can I delete a document?" and if there is a method matching
 > that question in policy object implement it otherwise it's missing and
 > you need to implement it.
 
