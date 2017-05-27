@@ -16,11 +16,11 @@ If you're getting:
 
 Then you need to exit your `test/test_helper.exs`:
 
-{% highlight elixir %}
+```elixir
 ExUnit.configure(timeout: :infinity)  # add this
 ExUnit.start
 # ...
-{% endhighlight %}
+```
 
 #### Ecto / Repo / Postgres timeout:
 
@@ -32,7 +32,7 @@ If you're getting:
 Then you need to add timeout to your `config/test.exs` repo config:
 
 
-{% highlight elixir %}
+```elixir
 # ...
 config :myapp, MyApp.Repo,
   adapter: Ecto.Adapters.Postgres,     # not important
@@ -42,7 +42,7 @@ config :myapp, MyApp.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,     # not important
   #ownership_timeout: 999999           # important - increse timeout
 # ...
-{% endhighlight %}
+```
 
 source: [https://github.com/elixir-ecto/ecto/blob/master/lib/ecto/adapters/sql/sandbox.ex](https://github.com/elixir-ecto/ecto/blob/master/lib/ecto/adapters/sql/sandbox.ex)
 

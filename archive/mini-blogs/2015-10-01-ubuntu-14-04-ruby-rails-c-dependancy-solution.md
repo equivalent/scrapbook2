@@ -1,3 +1,5 @@
+# Ubuntu 14.04 Ruby Rails C dependancy solution
+
 Given you are running Ubuntu 14.04 and you are installing/upgrading some Ruby gems
 (let sey Rails 4.2.4 gem, or RSpec, ...) and you get this error:
 

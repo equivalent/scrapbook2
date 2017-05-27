@@ -1,4 +1,4 @@
-
+# Make private method public in Subclass in Ruby
 
 ```ruby
 class Foo
