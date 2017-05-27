@@ -1,6 +1,6 @@
 # AWS S3 SNS datetime fromat to ecto databse datetime
 
-When you fetch metadata of S3 file with [ExAws[(https://github.com/CargoSense/ex_aws)  `ExAws.S3.head_object2`
+When you fetch metadata of S3 file with [ExAws](https://github.com/CargoSense/ex_aws)  `ExAws.S3.head_object2`
 you will get something like this:
 
 ```elixir
