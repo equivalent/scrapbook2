@@ -31,4 +31,4 @@ directly from the terminal where you run the server.
 
 ## Relevant Blogs
 
-*  [Phoenix increase timeout when debugging with IEx.pry in ExUnit]({% post_url 2017-05-26-phoenix-increase-timeout-when-debugging-with-iexpry-in-exunit %})
+*  [Phoenix increase timeout when debugging with IEx.pry in ExUnit](http://www.eq8.eu/tils/25-phoenix-increase-timeout-when-debugging-with-iex-pry-in-exunit)

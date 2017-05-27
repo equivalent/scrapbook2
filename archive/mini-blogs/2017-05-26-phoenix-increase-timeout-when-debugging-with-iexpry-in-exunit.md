@@ -4,7 +4,7 @@ Phoenix, Ecto and ExUnit have some
 default timeouts. So once you start debugging you have maybe 10 or 15
 seconds before you are kicked out from the process.
 
-> If you don't know how to debug Elixir / Phoenix check [How to debug Phoenix / Elixir application]({% post_url 2017-05-26-how-to-debug-phoenix-elixir-application %})
+> If you don't know how to debug Elixir / Phoenix check [How to debug Phoenix / Elixir application](http://www.eq8.eu/tils/24-how-to-debug-phoenix-elixir-application)
 
 ## How to avoid timeout
 
@@ -48,7 +48,7 @@ source: [https://github.com/elixir-ecto/ecto/blob/master/lib/ecto/adapters/sql/s
 
 ## Relevant Blogs
 
-* [How to debug Phoenix / Elixir application]({% post_url 2017-05-26-how-to-debug-phoenix-elixir-application %})
-* [ExUnit - Wait for Genserver cast in test]({% post_url 2017-05-23-exunit-wait-for-genserver-cast %})
+* [How to debug Phoenix / Elixir application](http://www.eq8.eu/tils/24-how-to-debug-phoenix-elixir-application)
+* [ExUnit - Wait for Genserver cast in test](http://www.eq8.eu/tils/19-exunit-wait-for-genserver-cast-in-test)
 
 
