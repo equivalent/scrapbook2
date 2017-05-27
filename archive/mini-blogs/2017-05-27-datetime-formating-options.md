@@ -3,7 +3,7 @@
 * Options for Ruby `strftime` https://apidock.com/ruby/DateTime/strftime
 * elixir `timex` https://github.com/bitwalker/timex
 
-from: https://apidock.com/ruby/DateTime/strftime#307-Formatting-options
+from: https://apidock.com/ruby/DateTime/strftime#864-Complete-Formatting-Codes
 
 ```
 %a - The abbreviated weekday name (“Sun”)
@@ -16,7 +16,17 @@ from: https://apidock.com/ruby/DateTime/strftime#307-Formatting-options
 
 %c - The preferred local date and time representation
 
+%C - Century (20 in 2009)
+
 %d - Day of the month (01..31)
+
+%D - Date (%m/%d/%y)
+
+%e - Day of the month, blank-padded ( 1..31)
+
+%F - Equivalent to %Y-%m-%d (the ISO 8601 date format)
+
+%h - Equivalent to %b
 
 %H - Hour of the day, 24-hour clock (00..23)
 
@@ -24,16 +34,50 @@ from: https://apidock.com/ruby/DateTime/strftime#307-Formatting-options
 
 %j - Day of the year (001..366)
 
+%k - hour, 24-hour clock, blank-padded ( 0..23)
+
+%l - hour, 12-hour clock, blank-padded ( 0..12)
+
+%L - Millisecond of the second (000..999)
+
 %m - Month of the year (01..12)
 
 %M - Minute of the hour (00..59)
 
+%n - Newline (n)
+
+%N - Fractional seconds digits, default is 9 digits (nanosecond)
+
+%3N millisecond (3 digits)
+
+%6N microsecond (6 digits)
+
+%9N nanosecond (9 digits)
+
 %p - Meridian indicator (“AM” or “PM”)
+
+%P - Meridian indicator (“am” or “pm”)
+
+%r - time, 12-hour (same as %I:%M:%S %p)
+
+%R - time, 24-hour (%H:%M)
+
+%s - Number of seconds since 1970-01-01 00:00:00 UTC.
 
 %S - Second of the minute (00..60)
 
+%t - Tab character (t)
+
+%T - time, 24-hour (%H:%M:%S)
+
+%u - Day of the week as a decimal, Monday being 1. (1..7)
+
 %U - Week number of the current year, starting with the first Sunday as
 the first day of the first week (00..53)
+
+%v - VMS date (%e-%b-%Y)
+
+%V - Week number of year according to ISO 8601 (01..53)
 
 %W - Week number of the current year, starting with the first Monday as
 the first day of the first week (00..53)
@@ -48,7 +92,13 @@ the first day of the first week (00..53)
 
 %Y - Year with century
 
-%Z - Time zone name %% - Literal “%’’ character t = Time.now
-t.strftime(“Printed on %m/%d/%Y”) #=> “Printed on 04/09/2003”
-t.strftime(“at %I:%M%p”) #=> “at 08:56AM”
+%z - Time zone as hour offset from UTC (e.g. +0900)
+
+%Z - Time zone name
+
+%% - Literal “%” character
+
+t = Time.now                        #=> 2007-11-19 08:37:48 -0600
+t.strftime("Printed on %m/%d/%Y")   #=> "Printed on 11/19/2007"
+t.strftime("at %I:%M%p")            #=> "at 08:37AM"
 ```
