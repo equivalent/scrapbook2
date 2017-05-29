@@ -42,7 +42,7 @@ document = %{}Document
 # ...
 ```
 
-But that does feel kinda repetetive and waste of time as especially if you have long List of tuples.
+But that does feel kinda repetitive and waste of time as especially if you have long List of tuples.
 
 #### Convert list of touples to map
 
@@ -62,4 +62,6 @@ document = %{}Document
 
 #### Source
 
-https://stackoverflow.com/questions/44220937/selecting-value-from-list-of-tuples-elixir
+* https://stackoverflow.com/questions/44220937/selecting-value-from-list-of-tuples-elixir
+
+Special thank you to S. Pallen 
