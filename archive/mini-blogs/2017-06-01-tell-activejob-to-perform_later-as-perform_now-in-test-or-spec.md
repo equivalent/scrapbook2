@@ -32,6 +32,9 @@ Even if you set the queuing adapter to be`ActiveJob::Base.queue_adapter = :test`
 the second call may not be executed as ActiveJob is holding second call
 for assertion tests
 
+> note: there is alse `ActiveJob::Base.queue_adapter = :inline` that may
+> solve the issue
+
 What you can do is wrap the call in build in `ActiveJob::TestHelper` module
 method `perform_enqueued_jobs` block:
 
