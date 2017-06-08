@@ -129,7 +129,7 @@ Load balancer example:
 
 AWS Lambda > New Function > Blank Blueprint > 
 
-![configure lamda](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/configure-lamda.png)
+![configure lamda](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/configure-lambda.png)
 
 > notice that cloudfrant is trigering this every 1 hour
 
