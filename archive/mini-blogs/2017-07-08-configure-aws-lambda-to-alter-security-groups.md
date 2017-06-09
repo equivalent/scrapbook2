@@ -29,12 +29,19 @@ SecurityGroup
 
 > in [Reddit](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
 > discussion it was pointed out that this is "not secure". Yes it's not
-> it depends how much you want your server hidden. If you want to create
-> super secret government project that not even CSS can get away to public, then this equals a bad idea.
+> it depends how much you want your server hidden and how you configure
+> your CloudFront distribution.
+>
+> You need to be sure your CF CDN is pointing origin only to assets
+> folder (`/assets` or `/js` or `/css`) and not entire `/` as then the
+> attacker can call your website via CDN
+>
+> If you want to create
+> super secret government project that not even CSS can get away to public, then yes this is not a solution for you.
 >
 > But this solution (I'm using) is just for a staging server of a public service. I just want to hide the
-> staging server so that it's not accessed by real users sending us emails
-> "my password is not working" , yet I want to keep the CloudFront
+> staging server so that it's not accessed by real users sending me emails
+> "my password is not working", yet I want to keep the CloudFront
 > configuration so that I can test similar production setup. I reccomend
 > to read the [Reddit discussion](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
 >
