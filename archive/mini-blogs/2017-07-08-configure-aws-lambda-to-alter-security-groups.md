@@ -18,20 +18,6 @@ assets (JS,CSS) can be public, the only way to enable the CloudFront CDN
 access to your server is to add IP addresses to your instance/LB Security Group
 
 
-> in [Reddit](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
-> discussion it was pointed out that this is "not secure". Yes it's not
-> it depends how much you want your server hidden. If you want to create
-> super secret government project this equals a bad idea
->
-> But this solution (I'm using) is just for a staging server of a public service. I just want to hide the
-> staging server so that it's not accessed by real users sending us emails
-> "my password is not working" , yet I want to keep the CloudFront
-> configuration so that I can test similar production setup. I reccomend
-> to read the [Reddit discussion](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
->
-> Think about business / security aspects before you copy paste
-
-
 Now if that sound like crazy idea here is source:
 
 * https://forums.aws.amazon.com/thread.jspa?threadID=218019
@@ -40,6 +26,19 @@ Now if that sound like crazy idea here is source:
 So one solution is to configure AWS Lambda scheduled periodically by
 AWS CloudWatch to pull list of AWS IPs (from [here](https://ip-ranges.amazonaws.com/ip-ranges.json)) and add them to EC2/LB
 SecurityGroup
+
+> in [Reddit](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
+> discussion it was pointed out that this is "not secure". Yes it's not
+> it depends how much you want your server hidden. If you want to create
+> super secret government project that not even CSS can get away to public, then this equals a bad idea.
+>
+> But this solution (I'm using) is just for a staging server of a public service. I just want to hide the
+> staging server so that it's not accessed by real users sending us emails
+> "my password is not working" , yet I want to keep the CloudFront
+> configuration so that I can test similar production setup. I reccomend
+> to read the [Reddit discussion](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
+>
+> Think about business / security aspects before you copy paste
 
 There is already good blog on how to do this:
 
