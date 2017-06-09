@@ -17,6 +17,21 @@ So if you are in a situation you have hidden EC2 instance / LB but the
 assets (JS,CSS) can be public, the only way to enable the CloudFront CDN
 access to your server is to add IP addresses to your instance/LB Security Group
 
+
+> in [Reddit](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
+> discussion it was pointed out that this is "not secure". Yes it's not
+> it depends how much you want your server hidden. If you want to create
+> super secret government project this equals a bad idea
+>
+> But this solution (I'm using) is just for a staging server of a public service. I just want to hide the
+> staging server so that it's not accessed by real users sending us emails
+> "my password is not working" , yet I want to keep the CloudFront
+> configuration so that I can test similar production setup. I reccomend
+> to read the [Reddit discussion](https://www.reddit.com/r/aws/comments/6g4dm5/aws_lambda_to_configure_ec2_security_group_for/)
+>
+> Think about business / security aspects before you copy paste
+
+
 Now if that sound like crazy idea here is source:
 
 * https://forums.aws.amazon.com/thread.jspa?threadID=218019
@@ -42,11 +57,9 @@ import json, urllib2, boto3
 
 
 def lambda_handler(event, context):
-    response =
-urllib2.urlopen('https://ip-ranges.amazonaws.com/ip-ranges.json')
+    response = urllib2.urlopen('https://ip-ranges.amazonaws.com/ip-ranges.json')
     json_data = json.loads(response.read())
-    new_ip_ranges = [ x['ip_prefix'] for x in json_data['prefixes'] if
-x['service'] == 'CLOUDFRONT' ]
+    new_ip_ranges = [ x['ip_prefix'] for x in json_data['prefixes'] if x['service'] == 'CLOUDFRONT' ]
     #print(new_ip_ranges)
 
     ec2 = boto3.resource('ec2')
@@ -55,8 +68,7 @@ x['service'] == 'CLOUDFRONT' ]
     if len(current_ips) == 0:
         current_ip_ranges = []
     else:
-        current_ip_ranges = [ x['cidrip'] for x in
-current_ips[0]['ipranges'] ]
+        current_ip_ranges = [ x['cidrip'] for x in current_ips[0]['ipranges'] ]
    
     print(current_ip_ranges)
 
