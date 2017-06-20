@@ -127,6 +127,50 @@ eb ssh
 sudo shutdown -r now
 ```
 
+## Application log files
+
+I recommend to read
+[this](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html#create_deploy_docker_v2config_dockerrun)
+article as it fully explain **how you can aggregate logs from your
+containers**
+
+The bottom point is that AWS EB is aggregating logs to host VM
+`/var/log/containers/containername`
+
+So if your container name is `"name": "nginx-proxy"` then it will be `/var/log/containers/nginx-proxy`. That being said, this only works if you set standard EB
+log mount point matching `awseb-logs-containername`:
+
+```json
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "nginx-proxy",
+      "image": "nginx",
+      # ...
+      "mountPoints": [
+        # ...
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
+        }
+      ]
+    }
+  ]
+}
+```
+
+Like I said read the
+[mountPoints](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_v2config.html#create_deploy_docker_v2config_dockerrun)
+section of EB documentation if you want full details.
+
+The point is that this way EB will collect container logs so that they
+are "accessible" with eb logs download feature 
+
+> Note: EB is already aggregating your Docker containers STDIO to
+> `/var/log/containers/`
+
+
 ## Common server issues when docker is not starting
 
 Let say for no good reason (or after deployment) docker containers seems
