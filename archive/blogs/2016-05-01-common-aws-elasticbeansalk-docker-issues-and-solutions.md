@@ -197,6 +197,8 @@ you need to remove old Application versions. To do that go to enviroment
 application versions and select all versions and unselect some of the
 latest versions that are active (you need to have those versions presents in case Load Balancer introduce new instances -> that application version zip file will be called)
 
+![remove old application versions step 1](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/remove-application-versions-1.png)
+![remove old application versions step 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/remove-application-versions-2.png)
 
 
 #### Server run out of space
