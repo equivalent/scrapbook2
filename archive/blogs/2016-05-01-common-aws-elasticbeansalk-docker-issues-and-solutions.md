@@ -127,6 +127,21 @@ eb ssh
 sudo shutdown -r now
 ```
 
+## 500 Application Versions limit reached
+
+if you get error:
+
+> ERROR: You cannot have more than 500 Application Versions. Either
+> remove some Application Versions or request a limit increase.
+
+you need to remove old Application versions. To do that go to enviroment
+application versions and select all versions and unselect some of the
+latest versions that are active (you need to have those versions presents in case Load Balancer introduce new instances -> that application version zip file will be called)
+
+![remove old application versions step 1](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/remove-application-versions-1.png)
+![remove old application versions step 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/remove-application-versions-2.png)
+
+
 ## Application log files
 
 I recommend to read
@@ -185,21 +200,6 @@ tail -f -n 333 /var/log/docker-events.log
 # 2016-05-12T00:51:48.000000000Zddbde24a9b7dbf5156f1e74cd0d5f0e7463e49f3435c5b9423a5fba0969f3735: (fromequivalent/my_docker_app) start
 # 2016-05-12T00:51:49.000000000Zddbde24a9b7dbf5156f1e74cd0d5f0e7463e49f3435c5b9423a5fba0969f3735: (fromequivalent/my_docker_app) die
 ```
-
-#### 500 Application Versions limit reached
-
-if you get error:
-
-> ERROR: You cannot have more than 500 Application Versions. Either
-> remove some Application Versions or request a limit increase.
-
-you need to remove old Application versions. To do that go to enviroment
-application versions and select all versions and unselect some of the
-latest versions that are active (you need to have those versions presents in case Load Balancer introduce new instances -> that application version zip file will be called)
-
-![remove old application versions step 1](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/remove-application-versions-1.png)
-![remove old application versions step 2](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/remove-application-versions-2.png)
-
 
 #### Server run out of space
 
