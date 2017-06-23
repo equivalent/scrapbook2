@@ -696,9 +696,13 @@ whatever your log directory is, empty it and then use a `ramisk` for that folder
 
     sudo apt-get install motion
     sudo chmod 755 /etc/motion/motion.conf
+    sudo chown pi:pi /var/run/motion/motion.pid
     vim /etc/motion/motion.conf
        #  change the target_dir  to /home/user/Dropbox/motion
     
+    ## if you get "Failed to open video device /dev/video0: No such file or directory"
+    # sudo modprobe bcm2835-v4l2
+
     # to start run    
     motion
 
