@@ -172,7 +172,7 @@ If you really need multiple custom environments then only way I can come up with
 docker image via some string interpolation template:
 
 
-```bash
+```erb
 # templates/Dockerfile.erb
 FROM ruby:2.4.1
 
@@ -185,7 +185,7 @@ FROM ruby:2.4.1
 CMD bundle exec puma -C config/puma.rb
 ```
 
-```
+```ruby
 # my_build_script.rb
 
 @environments = ['qa', 'staging', 'production', 'custom-1', 'custom-2'] # you can pass arguments from command line by ARGV
