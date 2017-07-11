@@ -14,7 +14,7 @@ The easiest way to join the protest is put this widget to our website:
 
 https://github.com/fightforthefuture/battleforthenet-widget
 
-The thing is it's really hard to presveide your boss that even though
+The thing is it's really hard to convince your boss that even though
 his is happening in USA every company should join the protest. 
 
 It may be worth stroke a deal with your boss to display this "call to action" modal
@@ -24,7 +24,7 @@ I will quickly show you 2 solutions that you may implement on your Ruby
 on Rails application:
 
 
-## Pull geo IP locations
+## Pull Geo IP locations
 
 If you are able to pull [GeoIP database](http://dev.maxmind.com/geoip/) (e.g. you run your own VM)
 
@@ -35,7 +35,6 @@ cd ./tmp/
 wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 gunzip GeoLiteCity.dat.gz
 ```
-
 
 Then add gem https://github.com/cjheath/geoip
 
@@ -84,7 +83,7 @@ If your website is under [Cloudflare](https://www.cloudflare.com/) CDN
 you are able to access location of current visitor location thanks to
 [Cloudflare Geo IP](https://support.cloudflare.com/hc/en-us/articles/200168236-What-does-Cloudflare-IP-Geolocation-do-)
 
-So your domain under Cloudflare DNS will pass header `HTTP_CF_IPCOUNTRY`
+So your domain under CloudFlare DNS will pass header `HTTP_CF_IPCOUNTRY`
 to your Rails app
 
 
