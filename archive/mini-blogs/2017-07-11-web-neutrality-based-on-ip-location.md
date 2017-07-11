@@ -17,7 +17,7 @@ https://github.com/fightforthefuture/battleforthenet-widget
 The thing is it's really hard to presveide your boss that even though
 his is happening in USA every company should join the protest. 
 
-It may be worth stroke a deal to display this "call to action" modal
+It may be worth stroke a deal with your boss to display this "call to action" modal
 only to USA IP addresses.
 
 I will quickly show you 2 solutions that you may implement on your Ruby
@@ -156,3 +156,6 @@ act.
 
 If a startup will get push to pay ISP just to appear on ISP's whitelist
 then it's the end of the internet as we know it.
+
+I know that displaying this only for USA IPs is not enough, but it's
+better then don't display at all.
