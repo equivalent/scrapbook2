@@ -1,4 +1,4 @@
-# Web neutrality based on USA IP location
+# Web neutrality modal displayable only to USA IP addresses
 
 As you all may have heard USA ISP giants Comcast & Verizon want to end
 net neutrality and gain full control. This may end up in future that any websites will
@@ -26,7 +26,8 @@ on Rails application:
 
 ## Pull geo IP locations
 
-If you are able to pull [GeoIP database](https://www.maxmind.com/en/home) (e.g. you run your own VM)
+If you are able to pull [GeoIP database](http://dev.maxmind.com/geoip/) (e.g. you run your own VM)
+
 
 ```bash
 # put this you your deployment script / Dockerfile 
@@ -35,36 +36,14 @@ wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 gunzip GeoLiteCity.dat.gz
 ```
 
+
+Then add gem https://github.com/cjheath/geoip
+
 ```ruby
-# lib/geo_location.rb
-class GeoLocation
-  GeoLocationNotResponding = Class.new(StandardError)
+# Gemfile
+# ...
+gem 'geoip'
 
-  attr_reader :ip_address
-
-  def initialize(ip_address)
-    @ip_address = ip_address
-  end
-
-  def load_geo_data
-    data = GeoIP.new(Rails.root.join('tmp','GeoLiteCity.dat').to_s).city(ip_address)
-    geo_data_hash(data)
-  end
-
-  def geo_data_hash(data)
-    { ip: ip_address,
-      country_code: data.country_code2,
-      country_name: data.country_name,
-      region_code: data.region_name,
-      region_name: data.real_region_name,
-      city: data.city_name,
-      zip_code: data.postal_code,
-      time_zone: data.timezone,
-      latitude: data.latitude,
-      longitude: data.longitude,
-      metro_code: data.area_code }
-  end
-end
 ```
 
 ```ruby
@@ -74,7 +53,11 @@ module ApplicationHelper
   # ...
 
   def net_neutrality
-    if GeoLocation.new(request.remote_ip).load_geo_data.try(:[],:country_code) == "US"
+     country_code = GeoIP.new(Rails.root.join('tmp','GeoLiteCity.dat').to_s)
+       .city(request.remote_ip)
+       .try(:country_code2)
+
+    if country_code == "US"
       javascript_include_tag('https://widget.battleforthenet.com/widget.js', async: "async")
     end
   end
@@ -158,4 +141,4 @@ If a startup will get push to pay ISP just to appear on ISP's whitelist
 then it's the end of the internet as we know it.
 
 I know that displaying this only for USA IPs is not enough, but it's
-better then don't display at all.
+better then don't display nothing  at all.
