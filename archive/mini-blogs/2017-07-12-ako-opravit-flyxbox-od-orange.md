@@ -1,10 +1,10 @@
-# Ako opravit Flyxbox od Orange
+# Ako opravit Flybox od Orange
 
 > This TIL blog I'm writing in Slovak language as it affects internet
 > service only in Slovakia
 
 
-Ak ste si zobrali 4G internet Flyxbox od Orange isto casom spozorujete
+Ak ste si zobrali 4G internet Flybox od Orange isto casom spozorujete
 ze sa Vam neda pripojit na router / internet,  alebo Vas mobilny telefon
 vyzaduje "prihlasenie do siete" (Sign in to network)
 
@@ -13,7 +13,7 @@ Tu je riesenie. Treba zmenit DNS zaznamy pre router.
 
 Neni to nic zlozite.
 
-1. Pripojte sa na router (navstivte `http://flyxbox.home` alebo `http://192.168.1.1`) 
+1. Pripojte sa na router (navstivte `http://flybox.home` alebo `http://192.168.1.1`) 
 2. prihlaste sa ako admin (user: `admin` heslo: `admin` (ak ste si ho nezmenili))
 3. Po prihlaseni kliknite na `Advanced` a prejdite na `Network > LAN Setings`
 4. Tu v sekci `DHCP Server` zmente zaznam (staci kliknut a pisat):
