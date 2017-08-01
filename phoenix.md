@@ -1,3 +1,14 @@
+
+def last_record_ordered do
+ Repo.one(from x in SQSMessage, order_by: [desc: x.id], limit: 1)
+end
+
+def all_records_ordered do
+  Repo.all(from msg in SQSMessage, order_by: msg.id)
+end
+
+
+
 ## phoenix changeset
 
 ```
