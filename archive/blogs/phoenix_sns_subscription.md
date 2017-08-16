@@ -1,3 +1,35 @@
+
+#
+
+
+Generate model SNSNotification (optional, this can be anything you want really)
+
+```bash
+mix phoenix.gen.model SNSNotification sns_notifications message:text
+mix ecto.migrate
+```
+
+
+
+
+
+
+# mix task
+
+```ex
+# lib/mix/tasks/eq8.sns_subscribe.ex 
+
+
+```
+
+```bash
+mix compile              # comiple your mix file
+
+mix help | grep sns
+# mix myapp.sns_subscribe    # subscribes your app to SNS topic
+```
+
+
 # phoenix sns subscription
 
 * https://github.com/CargoSense/ex_aws
