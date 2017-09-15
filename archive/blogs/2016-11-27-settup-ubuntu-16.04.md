@@ -111,6 +111,14 @@ sudo apt-get install default-jdk
 
 # install elasticache
 cd /tmp
+
+
+# for elasticseach 5.x
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-5.x.list
+sudo apt-get update && sudo apt-get install elasticsearch
+sudo systemctl enable elasticsearch.service
+
+# for elasticsearch 2.3.1 (old one)
 wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.1/elasticsearch-2.3.1.deb
 sudo dpkg -i elasticsearch-2.3.1.deb
 sudo systemctl enable elasticsearch.service
