@@ -1,0 +1,78 @@
+
+according to [Docker daemon docs](https://docs.docker.com/engine/reference/commandline/daemon/)
+
+> To run the daemon with debug output, use `docker daemon -D`
+
+--log-level=debug **wont work** !!!
+
+
+sudo vim /etc/sysconfig/docker
+
+should be something like this
+
+```bash
+# Additional startup options for the Docker daemon, for example:
+# OPTIONS="--ip-forward=true --iptables=true"
+OPTIONS=
+# Elastic Beanstalk
+if [ -f /etc/elasticbeanstalk/set-ulimit.sh ]; then
+        . /etc/elasticbeanstalk/set-ulimit.sh
+fi
+```
+
+change it to 
+
+```bash
+# Additional startup options for the Docker daemon, for example:
+# OPTIONS="--ip-forward=true --iptables=true"
+# OPTIONS=   # defoult
+OPTIONS="-D "
+# Elastic Beanstalk
+if [ -f /etc/elasticbeanstalk/set-ulimit.sh ]; then
+        . /etc/elasticbeanstalk/set-ulimit.sh
+fi
+```
+
+
+
+http://stackoverflow.com/questions/25968771/specifying-docker-daemon-host-in-elastic-beanstalk
+
+
+
+
+# ecs log level
+
+* http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html
+* http://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html
+* https://github.com/aws/amazon-ecs-agent/issues/191
+* https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/
+
+
+
+add this line to the bottom of the file `ECS_LOGLEVEL=debug`
+
+```
+ECS_LOGLEVEL=debug
+```
+
+log rotation on ecs-agent is really brittle, make sure you tail the log file for "today" and the correct
+number
+
+```
+tail -f /var/log/ecs/ecs-agent.log.2016-01-22-11
+```
+
+
+## signals
+
+https://www.ctl.io/developers/blog/post/gracefully-stopping-docker-containers/
+
+```
+docker stop ----time=30 ed555ac26db6
+docker inspect -f '{{.State.ExitCode}}' ed555ac26db6
+```
+
+## ECS tasks troubleshooting
+
+http://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html#stopped-task-errors
+http://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html#stopped-task-errors
