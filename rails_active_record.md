@@ -1,5 +1,37 @@
 # Rails Active Record Scrapbook
 
+# Solve duplicate entries that should be uniq entries
+
+
+let say we want to detect all rails models that has non uniq entries
+that suppose to be uniq
+```rub
+
+Rails.application.eager_load!
+
+ActiveRecord::Base
+  .descendants
+  .select {|f| f.attribute_names.include?("url_slug") }
+  .each do |model|
+    p model.to_s
+    res = ActiveRecord::Base
+      .connection
+      .execute("SELECT url_slug FROM #{model.table_name} GROUP BY
+url_slug HAVING COUNT(url_slug) > 1;")
+    scope = model.where(url_slug: res.to_a.map { |h|
+h.fetch("url_slug") })
+
+    begin
+      scope = scope.with_deleted   # if the model is using act_as_paranoid / paranoia gem
+    rescue NoMethodError
+    end
+
+    p scope.count
+    p "\n"
+  end
+```
+
+
 # rails concerns
 
 ```
