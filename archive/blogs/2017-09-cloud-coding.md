@@ -12,7 +12,8 @@ take on this.
 
 Given that I'm a web-developer I'll talk mainly about fullstack web-application development but to some extend this article may apply to other software development too.
 
-> Some sub-topics like [Security](@todo) were extracted out to separet sub-articles.
+> Some sub-topics like [Security, Pricing and Power](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)) were extracted out to separate
+> sub-article you can find [here](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md) if interested
 
 ## What is Cloud coding
 
@@ -333,7 +334,7 @@ and wherever you travel is 4G mobile broadband.
 But as soon as you are introducing more fragile parts to your connection
 with server (e.g. VPN connection for extra WiFi security, reasonable SSH
 connection terminotion, and other goodies I'm talking about in [Security
-Section](@todo)) you may find it's becoming harder to keep up.
+Section](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)) you may find it's becoming harder to keep up.
 
 > Last 7 years I've moved 10 times (not kidding). Everywhere I moved was DSL internet
 > And not even the good modern DSL, nope. My last DSL was 8Mbit/s.
@@ -365,10 +366,14 @@ discussion around Single Page Websites several years ago. Everyone was
 first and now they pretty much took over the world :)
 
 
+### Related articles
 
-### F.A.Q.
+* [Deep dive to Cloud coding Part 2](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)
+* [Chromebook for web-developers](http://www.eq8.eu/blogs/18-chromebook-for-web-developers)
 
-#### What is Virtual Machine (VM)
+#### F.A.Q.
+
+##### What is Virtual Machine (VM)
 
 [Virtual Machine](https://en.wikipedia.org/wiki/Virtual_machine)
 is a running instance emulating computer system (such as linux server)
