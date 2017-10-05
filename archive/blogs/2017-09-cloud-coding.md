@@ -122,7 +122,7 @@ Positives:
 
 Negatives:
 
-* security concerns (I'll talk about that in own section)
+* security concerns (I'll talk about that in own section [here](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md))
 * if you are a Vim person the Editor is not the best thing for you. You
   can lunch Vim in terminal session but in practice sometimes the key
   binding you use to in Vim may not work. But I didn't try this
