@@ -1,4 +1,4 @@
-# Deep dive to Cloud coding
+# Deep dive into Cloud coding
 
 These days you don't need an excellent laptop to write a software. All you need
 is to connect to a remote development server and write code there.
