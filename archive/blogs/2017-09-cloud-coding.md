@@ -344,10 +344,10 @@ and wherever you travel is a 4G mobile broadband.
 
 But as soon as you are introducing more fragile parts to your connection
 with server (e.g. VPN connection for extra WiFi security, reasonable SSH
-connection terminotion, and other goodies (I'm talking about this more in [Security
+connection termination, and other goodies (I'm talking about this more in [Security
 Section](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)) you may find it's becoming harder to keep up.
 
-> Last 7 years I've moved 10 times (not kidding). Everywhere I moved was a DSL internet
+> Last 7 years I've moved flat 10 times (not kidding). Everywhere I moved was a DSL internet
 > nd not even the good "high speed"  DSL. Nope. My last DSL was 8Mbit/s.
 > I was living in quite modern cities like Prague, London & now Nitra. I just have terrible luck that
 > the flats I like usually have terrible Broadband options :(
