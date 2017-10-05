@@ -12,8 +12,8 @@ take on this.
 
 Given that I'm a web-developer I'll talk mainly about fullstack web-application development but to some extend this article may apply to other software development too.
 
-> Some sub-topics like [Security, Pricing and Power](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)) were extracted out to separate
-> sub-article you can find [here](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md) if interested
+> Some sub-topics like [Security, Pricing and Power](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md) were extracted out to separate
+> sub-article you can find them in part 2 [here](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)
 
 ## What is Cloud coding
 
@@ -30,7 +30,7 @@ called (e.g. Paypal sandbox, Stripe, Facebook API) they are sent form your lapto
 **Cloud Coding is  ideology in which you do your software development on a remote development server using your computer/laptop as a client device.**
 
 That means your language
-environment, test DB, development Db, source control, ... everything is on a VM (Virtual Machine) or dedicated server. Also all the related
+environment, test DB, development DB, source control, ... everything is on a VM (Virtual Machine) or dedicated server. Also all the related
 external API calls (PayPal, Facebook API, ...)  is set up on a remote VM. All you need to do is connect to that VM.
 
 > If you don't know what VM is please have a look at the bottom of the article for F.A.Q.
@@ -41,7 +41,8 @@ external API calls (PayPal, Facebook API, ...)  is set up on a remote VM. All yo
 > development in your
 > laptop. No code, no Database no GIT repo, no you don't even run tests or development server.
 > Everything is on a remote VM and you run it from there.
-> You write your code via text editor pluged to this VM (more on that leter)
+> You write your code via text editor pluged to this VM (more on that
+> later)
 >
 > Ever heard of immutable/discardable servers ? Ok, now imagine immutable/discardable laptops. Literally!
 > You should be able to come to work with new laptop every day without
@@ -50,9 +51,9 @@ external API calls (PayPal, Facebook API, ...)  is set up on a remote VM. All yo
 > experience should be the same.
 
 Usually with this style of coding every
-developer has their own VM to work on the problem. From there whey are
-able to lunch their tests, web-server, do development operations, deployments,...
-but in theory there is no problem if multiple developer work on same
+developer has his own VM to work on. From there whey are
+able to lunch his tests, web-server, do development operations,
+deployments,... But in theory there is no problem if multiple developer work on same
 VM as long as they have different databases configured.
 
 > Some cloud IDE providers don't refer to VM but to something like
@@ -63,7 +64,8 @@ VM as long as they have different databases configured.
 
 In the past I wrote article [Chromebook for Web Developers](http://www.eq8.eu/blogs/18-chromebook-for-web-developers)
 where I was pretty much explaining in depth the "how to" side of things. In
-this article I want to mainly focus on other aspects of things. So if you
+this article I want to mainly focus on benefits, downsides, [security
+and cost](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md). So if you
 are still not sure what I'm talking about after finishing this section then please read the [article](http://www.eq8.eu/blogs/18-chromebook-for-web-developers).
 
 So in brief: There are several ways how to write code in the cloud:
@@ -72,10 +74,10 @@ So in brief: There are several ways how to write code in the cloud:
 
 Most easiest way is just use Cloud IDE provider which is usually browser based IDE client
 on top of Linux virtual machine with some "goodies" like preconfigured
-ftp, ssh, language environment, ... (it depends on provider really)
+FTP, SSH, language environment, ... (it depends on provider really)
 
 Or some Cloud IDEs let you plug your own VM and they just provide the
-browser Text editor interface and terminal client.
+browser text editor interface and terminal client.
 
 There are several of them on the market (just google "Cloud IDE"). In the past I've personally tried:
 
@@ -100,9 +102,9 @@ directly in VM, lunch server and connect to public url of the VM, ...
 > Since last time I've used Cloud IDEs some of them changed their market
 > approach and are focusing on different style of a product. For example my
 > favorite use to be koding.com as it was cheapest for the size of VM provided to single developer. Now
-> they are more focusing on entire team collaborating rather individual
+> they are more focusing on entire team collaborating rather than individual
 > price. So as I'm a cheap bastard I'm sometimes using "Codeanywhere" as
-> there is possibility to connect your own VM for free ($0 per month).
+> there is a possibility to connect your own VM for free ($0 per month).
 >
 > B.T.W. nope I'm not paid by anyone to write this. Just my experiences
 > and recommendations. But I encourage you to try several of them
@@ -114,7 +116,7 @@ Positives:
 * easy if you are Junior developer or developer that don't know much about VMs or Linux
 * browser based - this is super important as you can open inner
   tabs(terminal, editor, run tests) within same browser tab. You don't
-  get this luxury with direct ssh connection (unless you use Tmux).
+  get this luxury with direct SSH connection (unless you use Tmux).
 * you are usually able to plug your own VM if you are not happy with
   preconfigured one.
 
@@ -129,7 +131,7 @@ Negatives:
 ### SSH to VM approach
 
 Another way is just to lunch VM and SSH to the VM and do code editing
-via CLI editor like [Vim](https://vim.sourceforge.io)
+via command line editor like [Vim](https://vim.sourceforge.io)
 
 This is my favorit way of cloud coding. But this is because I've spent
 30% of my 10 year web-developer life as DevOps SSHd to server several
@@ -138,18 +140,18 @@ really up to you if you want to go that path. I personally have nothing
 against Cloude IDE solutions.
 
 > For Vim users I recommend to check out [Janus Vim](https://github.com/carlhuda/janus) it's a Vim Framework that has lot of well
-> tested plugins that makes Vim feel like modern IDE while still keeping
+> done plugins that makes Vim feel like modern IDE while still keeping
 > command line editor nature.
 
-It may be bit inconvinient that you will have to ssh to the VM several
+It may be bit inconvinient that you will have to SSH to the VM several
 times (e.g. one connection for Vim, one for running tests, one for
 running server / logs, ...) so I recommend you to check out
 [Tmux](https://github.com/tmux/tmux/wiki) This way you can emulate
 multiple windows in one SSH connection.
 
-Personally I use several ssh sessions.
+Personally I use several SSH sessions.
 
-One annoying bit about this is that if your ssh connection is dropped
+One annoying bit about this is that if your SSH connection is dropped
 (your ISP generates new IP, your VPN connection drops and new IP is
 generated) you may need to start over SSHing all over again. It takes
 some practice before you get this right.
@@ -164,7 +166,7 @@ Positives:
 
 Negatives
 
-* May be too hardcore for folks not using Vim and Terminal on daily
+* May be too hardcore for folks not using Vim and terminal on daily
   base.
 * When session expires/drops you need to reconnect and start over.
 * Bit more configuration required to make this approach feels more
@@ -181,7 +183,7 @@ I didn't try it but if you try it out please let me know how it is https://atom.
 
 ### Remote Workspaces
 
-Have you ever VCN connect to your colleague or Mom computer to solve an issue
+Have you ever VCN connect to your colleague's or Mom's computer to solve an issue
 ? Cool then you know what I'm talking about. 
 
 Basically VCN [Virtual Network Computing](https://en.wikipedia.org/wiki/Virtual_Network_Computing) is like streaming
@@ -211,13 +213,24 @@ Most obvious ones:
 * If you are on holiday and you need to hotfix something you can
   actually do it from your Smartphone (yes I've done this several times,
   it is not super productive but it works !)
-* Database dumps (if you need to do them) are faster transferable
-  to development environment +
-  more secure (as long as your VM is secure)
 
 Points that need more attention:
 
-#### more closer prod replication
+#### Same region transfers
+
+For example if your production VM and development VM is in the same AWS 
+region and zone (like `us-east-1 a`) then you don't pay data transfers
+if you move large files. Plus is super fast.
+
+Further example: let say you need to create DB dump and transfer it to
+development machine to debug some critical data bug. This way it's
+faster &
+more secure that copy dump to laptop (as long as your VM is secure. Honestly who can swear that
+that 100% of his colleagues has encrypted hard drive it his/her laptop ?)
+
+> For example larger scale projects in Ruby on Rails is a hell to run on Windows machine.
+
+#### Development environment is closer to prod replication
 
 Assuming your production server is Linux then it's easy to replicate same
 environment on your development machine (the VM) as on different os
@@ -251,11 +264,9 @@ connection to their API.
 But biggest argument is when you are dealing
 with webhook calls from 3rd party solution (calls to your
 development server when event occurs on 3rd party server - e.g.: Bank
-Payment was accepted they will call your endpoint)
-
-When you are dealing
+Payment was accepted they will call your endpoint). When you are dealing
 with laptop localhost development you need to set up proxy endpoint
-that will then allow your localhost receive this call (e.g.
+that will then allow your localhost to receive this call (e.g.
 [ngrok](https://ngrok.com)) or queue mechanism on remote server/cloud
 solution.
 
@@ -269,17 +280,17 @@ Yes you can Dockerize the
 environment to some extend and run all the services in your localhost,
 however if you are dealing with too many services you will run out of
 memory pretty quickly (some companies operates like 150 services in
-their prod, try to replicate that!). Even 8 GB Ram laptops are not
-enough.
+their prod, try to replicate that! Even 8 GB Ram laptops are not
+enough)
 
-> Usually what is done when you have so many services  is that you lunch on your machine only
-> microservices you really need to work on (one or two) and you let them
-> communicate with remote staging/QA services. Or if your company has a
-> clever DevOps team you spawn fresh  new
-> VM instances replicating those other missing services just for
-> development purpose and you tell your
-> localhost microservices to communicate with them. Once you are done
-> you kill these development replicas.
+Usually what is done when you have so many services  is that you lunch on your machine only
+microservices you really need to work on (one or two) and you let them
+communicate with remote staging/QA services. Or if your company has a
+clever DevOps team they can set up for you server orchestration task to spawn fresh  new
+VM instances replicating those other missing services just for
+development purpose and you tell your
+localhost microservices to communicate with them. Once you are done
+you kill these development replicas.
 
 The point is that in all these cases you need to have internet
 connection and usually you need to have secured endpoint pointing to
@@ -293,7 +304,7 @@ Now days we are already way too bound to Cloud.
 
 We have:
 
-* solutions like [Github](https://github.com) for code reviews, code colaboration
+* solutions like Github for code reviews, code collaboration
 * Continues Integration & Continues Delivery cloud solutions for
   tests/deployments like CodeShip, TravisCI, CircleCI, ...
 * document sharing solutions like Dropbox, Google Drive
@@ -305,14 +316,14 @@ development environments.
 #### Paircoidng
 
 You can paircode more easily. Usually you can add your colleagues SSH key
-to your VM / Allow access to your Cloud IDE profile and two of you can pair code on same VM. Depending on what
+to your VM / allow access to your Cloud IDE profile and two of you can pair code on same VM. Depending on what
 tools you choose you may not have live code changes streamed in real
 time but it's still a really good experience. **Especially if you work remotely.**
 
 > What I tend to do when teaching Junior develapers is that I'll spawn AWS
 > EC2 instance VM, configure Codeanywhere Cloude IDE access to it for Junior
 > developer (as it's free). He then works on this VM via Cloud IDE the entire time and when he needs to
-> paircode with me I'll just ssh to the
+> paircode with me I'll just SSH to the
 > instance and lunch Vim and help him solve the issue.
 >
 > He usually see what I'm doing from google hangout screen share  and I
@@ -329,41 +340,48 @@ anything on your laptop and internet connection is not issue?
 
 Well theory is correct if in your office/home you have optic internet,
 or you are connected to your laptop via Ethernet cable
-and wherever you travel is 4G mobile broadband.
+and wherever you travel is a 4G mobile broadband.
 
 But as soon as you are introducing more fragile parts to your connection
 with server (e.g. VPN connection for extra WiFi security, reasonable SSH
-connection terminotion, and other goodies I'm talking about in [Security
+connection terminotion, and other goodies (I'm talking about this more in [Security
 Section](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)) you may find it's becoming harder to keep up.
 
-> Last 7 years I've moved 10 times (not kidding). Everywhere I moved was DSL internet
-> And not even the good modern DSL, nope. My last DSL was 8Mbit/s.
-> I was living in quite modern cities like Prague, London & now Nitra. I just have terrible luck
-> to find flats I like with terrible Broadband options :(
+> Last 7 years I've moved 10 times (not kidding). Everywhere I moved was a DSL internet
+> nd not even the good "high speed"  DSL. Nope. My last DSL was 8Mbit/s.
+> I was living in quite modern cities like Prague, London & now Nitra. I just have terrible luck that
+> the flats I like usually have terrible Broadband options :(
 >
 > Now don't get me wrong DSL is more than enough for several dozen SSH connections. I just wanted to give you example that not all of us live in the "Optic internet" age.
 
-So in practice I do have project cloned on my laptop (the horror, I know) but I just
-I just write TDD / BDD tests around parts of application that don't need
+So in practice I do have project cloned on my laptop (the horror, I know) but 
+I just  for test environment to write TDD / BDD code around parts of application that don't need
 connection to internet (deep monolith stuff).
 
 I have cloud coding VM set up and whenever I need to develop something
-related to external calls I'm using it.
+related to external calls or actually to lunch development server then I
+ssh to it. I would say it's  50:50 time spent relation.
+
 
 ## Conclusion
 
 Programming languages are tools, databases (relational or NoSQL, ..) are tools, Editors are tools.
-Same applies to Cloud coding it's a Tool
+Same applies to Cloud coding: it's a Tool.
+
+There is no silver bullet.
 
 There are developers that will curse it, there are developers that will
 praise it to the sky. I give you best arguments for it I could. Now it's up
 to you to try it yourself.
 
-Just one thing. Please take seriously and respect developers that chose this style of
+Just two things:
+
+1. Please take seriously and respect developers that chose this style of
 coding. This style of software development can be compared to Frontend
 discussion around Single Page Websites several years ago. Everyone was
- laughting at developers propagating them at
-first and now they pretty much took over the world :)
+ laughing at developers propagating them and now single page apps pretty much took over the world :)
+2. Before you clone your company repo to VM, read upon a security !!!
+   [here](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md)
 
 
 ### Related articles
