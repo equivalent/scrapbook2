@@ -400,4 +400,3 @@ So for example you have virtual Ubuntu server without the need to buy
 a Server Computer and plug it into a Internet and pay electricity and
 internet bill. You just pay the cloud provider.
 
-
