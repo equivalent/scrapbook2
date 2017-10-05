@@ -369,3 +369,5 @@ how new contracts are, they expect miracles from you the first day, that's
 why I switch to environment I'm familiar several years and I am the most
 productive (Ubuntu Linux).
 
+**UPDATE** New article on this released http://www.eq8.eu/blogs/43-deep-dive-to-cloud-coding
+
