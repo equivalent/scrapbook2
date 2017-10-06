@@ -57,7 +57,7 @@ when you not working on it and spin it back up when you need it, then
 the costs should  should be fine.
 
 I use personal [AWS EC2](https://aws.amazon.com/ec2/) [T2 small instance](https://aws.amazon.com/ec2/instance-types/).
- I lunch it in the morning with AWS CLI `aws ec2
+ I launch it in the morning with AWS CLI `aws ec2
 start-instances --instance-ids i-04xxxxxxxxxxxxxxx` and shut it down
 in the evening with `aws ec2 stop-instances --instance-ids i-04xxxxxxxxxxxxxxx`
 
@@ -188,7 +188,7 @@ you are an idiot.
 
 ## I like going security nuts
 
-So personally I rather prefer SSH to VM and lunch Vim or Tmux there and
+So personally I rather prefer SSH to VM and launch Vim or Tmux there and
 not to use Cloud IDE. I'm also connected to a VPN for extra level of
 security when I'm on WiFi. It's highly improbable but not impossible to
 break SSL only connection (Again I'm nuts in these things)

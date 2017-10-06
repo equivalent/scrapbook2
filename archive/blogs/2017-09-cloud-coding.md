@@ -21,7 +21,7 @@ Normally when you are developing software you configure your programming
 Language environment, web-server, test, development DB, test DB, source
 control and other stuff in your laptop. When you want to
 test your application before sending it to production/staging server you
-lunch `localhost` development server and you point your browser to
+launch `localhost` development server and you point your browser to
 `http://localhost` (or similar). If any 3rd party APIs need to be
 called (e.g. Paypal sandbox, Stripe, Facebook API) they are sent form your laptop.
 
@@ -52,7 +52,7 @@ external API calls (PayPal, Facebook API, ...)  is set up on a remote VM. All yo
 
 Usually with this style of coding every
 developer has his own VM to work on. From there whey are
-able to lunch his tests, web-server, do development operations,
+able to launch his tests, web-server, do development operations,
 deployments,... But in theory there is no problem if multiple developer work on same
 VM as long as they have different databases configured.
 
@@ -95,9 +95,9 @@ Honestly if you are looking for a review of them then this is not the
 article. You will have to try them yourself as last 1.5 - 2 years I'm
 using another approach of cloud coding that I'll talk in the next section.
 
-But in brief: you Lunch browser, you open/login to cloud IDE and form
-there you can open Editor tab, Terminal tab, you can lunch tests
-directly in VM, lunch server and connect to public url of the VM, ...
+But in brief: you launch browser, you open/login to cloud IDE and form
+there you can open Editor tab, Terminal tab, you can launch tests
+directly in VM, launch server and connect to public url of the VM, ...
 
 > Since last time I've used Cloud IDEs some of them changed their market
 > approach and are focusing on different style of a product. For example my
@@ -124,13 +124,13 @@ Negatives:
 
 * security concerns (I'll talk about that in own section [here](https://github.com/equivalent/scrapbook2/blob/master/archive/blogs/2017-09-cloud-coding-security.md))
 * if you are a Vim person the Editor is not the best thing for you. You
-  can lunch Vim in terminal session but in practice sometimes the key
+  can launch Vim in terminal session but in practice sometimes the key
   binding you use to in Vim may not work. But I didn't try this
   recently. This may be fixed now days.
 
 ### SSH to VM approach
 
-Another way is just to lunch VM and SSH to the VM and do code editing
+Another way is just to launch VM and SSH to the VM and do code editing
 via command line editor like [Vim](https://vim.sourceforge.io)
 
 This is my favorit way of cloud coding. But this is because I've spent
@@ -187,12 +187,12 @@ Have you ever VCN connect to your colleague's or Mom's computer to solve an issu
 ? Cool then you know what I'm talking about. 
 
 Basically VCN [Virtual Network Computing](https://en.wikipedia.org/wiki/Virtual_Network_Computing) is like streaming
-remote computer on your screen. Something similar as when you lunch
+remote computer on your screen. Something similar as when you launch
 VirtualBox but this is actual remote computer.
 
 Now I'm not saying you should VCN to your Desktop installation based VM in your server-room
 (although that could work too) but
-Amazon Web Services Lunched product [AWS Workspaces](https://aws.amazon.com/workspaces/) which suppose to be a product
+Amazon Web Services launched product [AWS Workspaces](https://aws.amazon.com/workspaces/) which suppose to be a product
 for something similar that VCN is doing. I didn't try it out as last
 time I've checked there were only Windows instances available.
 
@@ -283,7 +283,7 @@ memory pretty quickly (some companies operates like 150 services in
 their prod, try to replicate that! Even 8 GB Ram laptops are not
 enough)
 
-Usually what is done when you have so many services  is that you lunch on your machine only
+Usually what is done when you have so many services  is that you launch on your machine only
 microservices you really need to work on (one or two) and you let them
 communicate with remote staging/QA services. Or if your company has a
 clever DevOps team they can set up for you server orchestration task to spawn fresh  new
@@ -324,7 +324,7 @@ time but it's still a really good experience. **Especially if you work remotely.
 > EC2 instance VM, configure Codeanywhere Cloude IDE access to it for Junior
 > developer (as it's free). He then works on this VM via Cloud IDE the entire time and when he needs to
 > paircode with me I'll just SSH to the
-> instance and lunch Vim and help him solve the issue.
+> instance and launch Vim and help him solve the issue.
 >
 > He usually see what I'm doing from google hangout screen share  and I
 > see his code.
@@ -359,7 +359,7 @@ I just  for test environment to write TDD / BDD code around parts of application
 connection to internet (deep monolith stuff).
 
 I have cloud coding VM set up and whenever I need to develop something
-related to external calls or actually to lunch development server then I
+related to external calls or actually to launch development server then I
 ssh to it. I would say it's  50:50 time spent relation.
 
 
