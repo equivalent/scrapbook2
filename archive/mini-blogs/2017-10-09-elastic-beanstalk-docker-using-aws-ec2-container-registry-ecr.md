@@ -193,7 +193,7 @@ this will run aws cli command to get and execute the command as a user `ubuntu` 
 
 ## FAQ & related articles
 
-* [AWS Elastic Beanstalk  Docker Rails](http://www.eq8.eu/talks/2-aws-elastic-beanstalk-docker-for-rails-developers) example
+* [AWS Elastic Beanstalk  Docker Rails](https://www.youtube.com/watch?v=xhEyUYTuSQw&t=42s) example
 * [How does the Dockerrun.aws.json look like](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app/blob/master/aws_elastic_beanstalk/Dockerrun.aws.json)
 
 * [AWS EC2 Container Registry  (ECR)](https://aws.amazon.com/ecr/)
