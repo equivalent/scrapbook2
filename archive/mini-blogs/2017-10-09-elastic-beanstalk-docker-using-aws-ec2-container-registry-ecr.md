@@ -18,8 +18,8 @@ provide the S3 bucket (`bucket`) from which the EB agent pull a file (`key`) dur
 {
   "AWSEBDockerrunVersion": 2,
   "authentication": {
-    "bucket": "pobble.com.systems",
-    "key": "dockercfg-pobblebot"
+    "bucket": "mybucketfullofsecrets",
+    "key": "dockercfg-myawesomeapp"
   },
   "containerDefinitions": [
      {
@@ -42,9 +42,10 @@ be in same region as EB.
 > http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.container.console.html#docker-images-private
 
 
-Credential file looks something like this:
+Credential file `dockercfg-myawesomeapp` looks something like this:
 
 ```
+
 {
   "auths" :
   {
