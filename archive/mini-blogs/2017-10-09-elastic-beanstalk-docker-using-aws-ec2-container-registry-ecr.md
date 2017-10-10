@@ -5,6 +5,9 @@ This T.I.L. note deals with topic of  Docker Registry credentials/authorization 
 
 ### 3rd party Docker registry provider
 
+> I'm placing this here just to show difference of setup between 3rd
+> party Docker Registry and native AWS Docker Registry (ECR)
+
 If you use Dockerhub or Quay.io as your Docker registry you need to
 place "authentication" block in your Dockerrun.aws.json. Inside that you
 provide the S3 bucket (`bucket`) from which the EB agent pull a file (`key`) during deployment.
@@ -28,12 +31,15 @@ provide the S3 bucket (`bucket`) from which the EB agent pull a file (`key`) dur
 }
 ```
 
-You need to make sure that EB instance can access to the bucket able to
-pull the credential file (`Grant permissions for the s3:GetObject
+You need to make sure that EB instance can access to the bucket, and
+instance is able to
+download the credential file (`Grant permissions for the s3:GetObject
 operation to the IAM role in the instance profile`) and bucket needs to
-be in same region as EB. This is out of the scope for this T.I.L. note
-Further information can be found here:
-http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.container.console.html#docker-images-private
+be in same region as EB.
+
+> Full steps are out of the scope for this T.I.L. note
+> Further information can be found here:
+> http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.container.console.html#docker-images-private
 
 
 Credential file looks something like this:
@@ -75,7 +81,7 @@ bucket.
   "containerDefinitions": [
      {
        "name": "rails",
-       "image": ""666666666666.dkr.ecr.eu-west-1.amazonaws.com/myawesomesecretproject:latest",
+       "image": "666666666666.dkr.ecr.eu-west-1.amazonaws.com/myawesomesecretproject:latest",
        # ...
      }
    ]
@@ -88,7 +94,7 @@ Only thing you need to do is to allow your EB "instance profile role" to has
 Steps:
 
 
-##### 0  Create AWS ECR docker Registry 
+##### step 1 -  Create AWS ECR docker Registry 
 
 ```
 AWS Web console > EC2 Container Service (ECS) > Repositories > Create repository
@@ -96,7 +102,7 @@ AWS Web console > EC2 Container Service (ECS) > Repositories > Create repository
 
 Note: you need to create it in same AWS region as EB
 
-##### 1 To find out What is "instance profile role" for my EB Environment
+##### step 2 - To find out What is "instance profile role" for my EB Environment
 
 ```
 AWS Web console > Elastic Beanstalk > Your environment > Configuration > Instances > Instance profile (that's the value)
@@ -105,7 +111,7 @@ AWS Web console > Elastic Beanstalk > Your environment > Configuration > Instanc
 e.g.: aws-elasticbeanstalk-ec2-role
 ```
 
-##### 2 To add AmazonEC2ContainerRegistryReadOnly policy
+##### step 3 - To add AmazonEC2ContainerRegistryReadOnly policy
 
 
 ```
@@ -113,7 +119,7 @@ AWS Web console > IAM > Roles > Role (e.g. aws-elasticbeanstalk-ec2-role) > Atta
 ```
 
 
-##### 3 Add access inside the ECR
+##### step 4 - Add access inside the ECR
 
 Although the official EB ECR is not saying this, you may need to "allow"
 the instance profile on the ECR side too
