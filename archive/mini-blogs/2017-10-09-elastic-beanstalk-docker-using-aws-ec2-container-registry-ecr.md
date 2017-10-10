@@ -9,10 +9,9 @@ If you use Dockerhub or Quay.io as your Docker registry you need to
 place "authentication" block in your Dockerrun.aws.json. Inside that you
 provide the S3 bucket (`bucket`) from which the EB agent pull a file (`key`) during deployment.
 
-> This file is similar to your local `./docker/config.json`
-
 
 ```json
+# Dockerrun.aws.json
 {
   "AWSEBDockerrunVersion": 2,
   "authentication": {
@@ -54,6 +53,8 @@ Credential file looks something like this:
   }
 }
 ```
+
+> This file is similar to your local `./docker/config.json`
 
 
 ### AWS EC2 Container Registry
