@@ -1,5 +1,7 @@
 # CSRF protection on single page app API
 
+![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/csrf-protection-like-hell-it-is.jpg)
+
 Let's first define our terms:
 
 We are talking about Single Page apps as applications that will render
