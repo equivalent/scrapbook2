@@ -87,7 +87,7 @@ AvrvVtCdQ==" />
 But when dealing with single-page app that means you will have  fresh csrf-token only upon first render.
 
 I seen people pointing to a solution where they configure backend to
-store CSRF token to a cookie, and then FrontEnd framework (Angular,
+store CSRF token to a cookie and then FrontEnd framework (Angular,
 React) will pick up the fresh value from the cookie.
 
 > e.g. set CSRF token value to cookie named `XSRF-TOKEN` and then
@@ -96,7 +96,7 @@ React) will pick up the fresh value from the cookie.
 
 So this way any malicious request to `DELETE http://www.webapp.com/project/1` will be without `CSRF-TOKEN` header => will not execute.
 
-> Reason why  there is no way that malicious website can reed value
+> Reason why  there is no way that malicious website can read value
 > of a cookie is that  cookies are bound to domain origin. That
 > means `http://www.malicious-website-attacking-webapp.com` from where we
 > will send request to `DELETE http://www.webapp.com/project/1` cannot
