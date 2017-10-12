@@ -46,21 +46,22 @@ DELETE request this way. The point is that **it's easy to make users browser
 session, cookie).
 
 Usually you see CSRF attack protection mentioned in context of
-"submitting Forms from your static website". I was recently reading more on CSRF protection related to API calls
+"submitting forms from  static website". I was recently reading more on CSRF protection related to API calls
 and it's way too common that you see web-developers from various
 technologies say: `you don't need CSRF attack protection on API`.
 
 Let's put that to context. Usually they are talking about applications
-in which API is expected to  be used by other client technologies than just  browser (e.g.: Android, iPhone, your smart fridge)`.
+in which API is expected to  be used by other client technologies than just  browser (e.g.: Android, iPhone, your smart fridge).
 But usually with this context you don't use browser sessions.
 
-> For example Serverless singe page applications sending requests to AWS
+> For example serverless single page applications communicating requests to AWS
 > Amazon API Gateway presign the request on Client side (in browser via
 > JS) before sent via internet => no traditional browser sessions are
-> used !
+> used ! (To learn more look up [AWS Cognito](http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html) or check [this book on serverless s.p.a.](https://pragprog.com/book/brapps/serverless-single-page-apps)
 
 But if you are deailng with application that uses browser sessions (e.g.
-Ruby on Rails developers using Devise Gem) and then that application is
+Ruby on Rails developers using
+[Devise](https://github.complataformatec/devise) Gem) and then that application is
 comunicating with API you need CSRF protection !
 
 
