@@ -58,6 +58,9 @@ But usually with this context you don't use browser sessions.
 > Amazon API Gateway presign the request on Client side (in browser via
 > JS) before sent via internet => no traditional browser sessions are
 > used ! (To learn more look up [AWS Cognito](http://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html) or check [this book on serverless s.p.a.](https://pragprog.com/book/brapps/serverless-single-page-apps)
+>
+> Or some device has generated API Token that is included as header with every
+> request via https://
 
 But if you are deailng with application that uses browser sessions (e.g.
 Ruby on Rails developers using
