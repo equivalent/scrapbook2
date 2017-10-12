@@ -116,4 +116,7 @@ I'm not going to write step by step tutorial as there are already good sources e
 One note doh. CSRF protection in Rails will not apply on GET & HEAD
 requests. So if you by any chance have destructive action like `GET http://www.webapp.com/project/1/destroy` you will be screwed.
 
+>  GET/HEAD requests should never mutate application state, so CSRF
+>  prevention on them is pointless unless you are using Http verbs
+>  incorrectly (Thx [Reddit user horses_arent_friends](https://www.reddit.com/r/elixir/comments/75yqdm/csrf_protection_on_single_page_app_api/doa1gjg/) for remminding me that this would be good idea to explain)
 
