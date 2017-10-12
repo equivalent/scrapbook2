@@ -11,7 +11,7 @@ build in Ruby on Rails, Elixir Phoenix)
 
 CSRF attack  protection as protection against  3rd party forcing users
 browser to send
-requests to a server where your user is authenticated with active session.
+requests to a server where your user is authenticated with an active session.
 Let me quote example
 from [Ruby on Rails security guideline](http://guides.rubyonrails.org/security.html#cross-site-request-forgery-csrf)
 
@@ -39,8 +39,8 @@ from [Ruby on Rails security guideline](http://guides.rubyonrails.org/security.h
 > project number one is gone.
 
 
-Now yes this example uses GET request for delete but as is stated further down
-in the guideline explained it's not that hard to make it send POST or
+Now yes this example uses GET request for delete action but as is stated further down
+in the [guideline link](http://guides.rubyonrails.org/security.html#cross-site-request-forgery-csrf)  it's not that hard to make it send POST or
 DELETE request. The point is that **it's easy to make users browser
  trigger malicious actions** event without session hijacking (stealing
 session, cookie).
