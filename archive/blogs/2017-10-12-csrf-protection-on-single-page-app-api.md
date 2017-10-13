@@ -65,7 +65,13 @@ But usually with this context you don't use browser sessions.
 But if you are deailng with application that uses browser sessions (e.g.
 Ruby on Rails developers using
 [Devise](https://github.complataformatec/devise) Gem) and then that application is
-comunicating with API you need CSRF protection !
+communicating with API you need CSRF protection !
+
+##### Conclusion
+
+If application uses sessions/cookies you need CSRF protection. If other
+form of authentication (like described AWS signed requests via Cognito)
+then you don't need CSRF protection
 
 
 ## How to deal with CSRF API in Ruby on Rails web framework
