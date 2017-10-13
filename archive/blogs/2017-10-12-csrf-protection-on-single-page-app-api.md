@@ -67,7 +67,7 @@ Ruby on Rails developers using
 [Devise](https://github.complataformatec/devise) Gem) and then that application is
 communicating with API you need CSRF protection !
 
-##### Conclusion
+#### Conclusion
 
 If application uses sessions/cookies you need CSRF protection. If other
 form of authentication (like described AWS signed requests via Cognito)
