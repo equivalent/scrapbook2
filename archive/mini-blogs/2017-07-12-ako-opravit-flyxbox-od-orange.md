@@ -4,6 +4,49 @@
 > service only in Slovakia
 
 
+**UPDATE 23.10.2017** Tento clanok som pisal v July 2017 ked router pre Flybox od
+Orange mal v firmwary bug ktory sposoboval nefukcnost internetu.
+Odvtedy uz vysiel update a malo by vsetko fungovat. Avsak ma to hacik:
+
+Totizto vzdy ked zrestartujete router (vypnete router z prudu, vybije Vam
+poistky) Flybox ocakava ze nacitate ako prvu stranku
+`http://flybox.home/` a az potom povoli ostatne stranky.
+
+To znamena ze ak nacitate `https://google.com` urobi to redirect na
+`http://flybox.home` a az po prvom nacitani povoli znova navstivit
+`https://google.com`
+
+Problem je ze v niektorych browseroch `http://flybox.home`
+koli cache problemom so zlym redirectom uz nepojde nacitat a uvidite len krutiace sa kolecko.
+Jedine riesenie je  nacitat `http://192.168.1.1`. Ak Vam ani to nepojde,
+skuste tu IP adresu nacitat cez "inkognito window".
+
+Ano viem, je to cele zle ! Skusal som kadeco ale neda sa to vypnut.
+Predpokladam ze Orange chce "donutit" ludi aby si aspon z casu na cas
+precitali SMS ktore do SIM karty na routery chodia.
+
+> este horsie je to ked chcete na orange router pripojit vlastny router
+> (napriklad s lepsim vykonom)
+> beziaci na inej podsieti. Na to uz tobôz nemam riesenie.
+
+Takze nic sa neda robit, musite vzdy po restartovati Routera nacitat IP
+adresu routera (`http://192.168.1.1` , pokial ste to nezmenili na nieco ine)
+
+Pokial mate babku pouzivajucu internet ktora fakt nevie o co sa jedna,
+tak jej nastavte ze ked spusti browser, otvori jej to hompage (alebo prvu
+kartu) na tejto adrese.
+
+> Ak ste technicky skusenejsi, mozete nastavit Raspberi PI ktory spusti
+> cron task po restarte na `curl 192.168.1.1`. A potom pripojite Raspberi
+> PI do USB routeru, takze vzdy ked sa router zapne, Raspberi vysle
+> request.
+
+Dakujeme Orange za nezmyselne business technical decissions `O_o` !
+
+
+## Stary clanok a postup:
+
+
 Ak ste si zobrali 4G internet Flybox od Orange isto casom spozorujete
 ze sa Vam neda pripojit na router / internet,  alebo Vas mobilny telefon
 vyzaduje "prihlasenie do siete" (Sign in to network)
@@ -47,7 +90,7 @@ A ano, budete musiet menit poradie zakazdym co vypnete router.
 
 To by malo byt vsetko.
 
-## Ako to Funguje
+### Ako to Funguje
 
 Som povolanim programator nie sietovy technik ale pokusim sa vysvetlit co
 sa deje najlepsie ako viem.
