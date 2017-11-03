@@ -1,6 +1,118 @@
 # Moores Law and simple solution
 
 
+
+Transistor is a semiconductor device that serves as a switch
+in electrotechnics. This is done by controlling flow of electricity by opening a socalled  "gate". 
+
+now this represents on / off, true /false, 0/1. We call this infromation 
+a "bit"
+
+The speed in which you open and close the 
+gate is called "Frequency" or 'clock speed'
+
+
+Put eight transistors (or bits) to gether and you are able to do
+"Byte operations" and construct letters.
+
+Now put bilion transistors together and you have a computer processor
+(central processing unit)
+Think about processor as a brain inside comupter. The bilion of transistors
+connect to eachother like neurons in human branis.
+
+Now in order to place so many transistors on a processor chip manufacturers
+use element silicon. Now this is not like silicon found in Sand but 
+really really pure silicon like 99.99999 pure silicon
+
+
+That's it for basic theory, here comes the punch line
+
+
+in 1965 Gordon E moore published an article in which he predicted that
+"number of transistors that can fit on a single chip will double 
+every year"
+
+10 years later he was cofounder of chip company Intel. Later executive
+of intel David House restated this clame that "performance of processors
+would doubel every 18 moths"
+
+now this prophesy went on for serveral decades and became knows as
+Moorse Law. So it's not a law like gravity but technology trend
+prediction.
+
+
+Now since then everyone used different factor to show moores law.
+Some were using clock speed per year, some number of transistors per year, some overal performance per year.
+
+The thing is that some of the data is poninting to the fact that we 
+are not getting faster and therefore "Moores Law ending"
+
+No mather what data we use for this conclusion the fact is that
+we are getting close to the peak of phisical capability of Silicon.
+
+We are nearly at atom level and if manufacturers make the transistor
+gates even smaller then we would be dealing with quantum physics issues
+( electron may jump)  therefore our transistors wont be able to 
+guarantee 0 or 1. 
+
+This may be a big deal if you want to transfer
+money via internet banking.  Maybe it will arrive to correct person
+maybe they wont.
+
+Another issue is heat. If we increase the clock speed beyound
+current limints to push the
+processing capabilities our computers may melt.
+
+
+Now reason why I'm making this talk is that recently I was watchinch
+quite interesting video on this topic that was trying to cover the
+solution. And it I presenting new technologies like 
+* "graphene processors"
+* "molecular transistors" (so basically entire trasistor is one molecule
+* "photon tranisistors" ( where beam of light is controlling the gate)
+* "protein processors"
+* "DNA based computers" 
+
+
+
+
+
+notes from https://www.youtube.com/watch?v=UTVEVvfGOIw&t=4s
+
+* in 1965 Gordon E Moore wrote an article where he predicted the number
+  of transistors that can fit on a single chip will double evry year, 10
+years later he was one of co-founders of intel. He predicted this will
+happen every 2 years So technically the performance of processor would double every
+18 months
+
+
+* reasons for slowdown 
+  * heat => more processing more heat generated
+  * size => we are nearly at atom level and if manufacturers make the
+    gates even smaller then we would be dealing with quantom phisics
+issues  (quantom tunneling). =>basically for transistor to function it
+needs to be totaly on or totally off.
+
+
+* Graphin processors
+* molecular transistors (single molecule that controls the gate) 
+* photon transistors
+  * transistor that uses beam of light to do the on/off switch instead of electron
+* protein processor
+* dna computers 
+  * ther is a posibility to store pentabytes of data in DNA buildingblocks
+  * there are some experiments with dna gates
+
+* quantom comupters
+
+
+
+
+hyperthreading 
+
+https://www.youtube.com/watch?v=wnS50lJicXc
+
+
 There are two components when we talk about computers limitation: Hardware and
 Software. Hardware being the computing processors,  memory, disk space, and so on
 And then there is Software. These are programs we are executing. You know our
