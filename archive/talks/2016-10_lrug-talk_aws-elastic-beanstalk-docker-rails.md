@@ -23,6 +23,7 @@ you can replicate the steps with any language.
 * **>>> [Talk Video](https://skillsmatter.com/skillscasts/9280-aws-elastic-beanstalk-and-docker-for-rails-developers) <<<**
 * [Talk Slides](https://docs.google.com/presentation/d/14XwwfX4348fj6mglEo4gksioSDHW00MFN4iB9_-H4KY/edit#slide=id.gffdf33b32_1_60)
 * [Demo Application](https://github.com/equivalent/docker_rails_aws_elasticbeanstalk_demmo_app) - source code, `docker-composer.yml`, `Dockerrun.aws.json conf`, ...
+* Mirror Video source [Archive.org](https://archive.org/details/AWSElasticBeanstalkDockerRubyOnRailsTalk)
 
 ##### Set up new AWS EB environment:
 
