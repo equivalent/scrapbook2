@@ -12,8 +12,9 @@ my_lambda.call('Tomas', '555-012-123')
 # Hi Tomas your phone-number is 555-012-123
 ```
 
-Now the true value of Lambdas is  they get passed around as command
-objects without polluting your business object with logic that is not a object
+Now the true value of Lambdas is that they can get passed around as command
+objects without polluting your business object with logic that is not
+its
 concern. For example if you have to print/log something from within an
 object yet you don't see a reason why that object should be responsible
 for holding print/log logic implementation:
@@ -90,7 +91,7 @@ end
 
 my_framework = MyFramework.new
 my_framework.log('Hello World', 'whatever', 'foo')
-Logger received: Hello World, whatever, foo
+# Logger received: Hello World, whatever, foo
 ```
 
 How would you pass it to logger ?
@@ -139,20 +140,20 @@ my_logger.call('August', 'burns', 'red')
 # Derp received: August, burns, red
 
 user_with_framework_logger = User.new(logger: my_logger)
-user_with_framework_logger.name = "Atrey"
+user_with_framework_logger.name = "Atreyu"
 user_with_framework_logger.add_contact("555-012-123")
-# Derp received: Atrey, 555-012-123
+# Derp received: Atreyu, 555-012-123
 ```
 
 > I bet there was a time when some senior Ruby dude was trying to sell
 > you on Ruby with sentence: "Ruby is awesome because everything is an Object".
-> Yes, he probably was showing you that a String is an object not just a
+> Yes, he was probably showing you that a String is an object not just a
 > type. But literally in Ruby nearly everything is an object! Methods
 > are objects, Class is an object, ...think about it.
 
 
 Now imagine that this generic logger is to simple and you want to pass a
-custom class object. Well all you need to do is ensure the object
+custom object. Well all you need to do is ensure the object
 contains *common interface* method `#call`
 
 ```ruby
@@ -287,10 +288,24 @@ Call is everywhere in Ruby.
 # => 3
 ```
 
-And it's considered a common interface method name for small single responsibility
-class objects.
+And it's considered a common interface method name for small single method 
+ objects.
+
+Maybe you are writing an object that has now just one method (e.g.: `Account#add`) and you know
+that it will grow into more method object (e.g.: `Account#remove`).
+Fine, that's a good argument to use `#add`
+
+Maybe that's not the case but there is still a really good reason to name that method `#run` or
+`#execute` or `#calculate` or `#fetch` then fine go for it. But be
+honest with yourself and your teammates and speak the name of the class and the method name out load before you commit your code
+(just to see if it's really the case).
+
+But if you literally named it this
+way just because nothing else popped to your mind the please name the
+method `#call`
 
 
 > This article is heavily inspired by Avdi Grimm's Ruby Tapas episode
 > [callable](https://www.rubytapas.com/2012/12/12/episode--callable/).
 > I recommend to check it out for further information.
+
