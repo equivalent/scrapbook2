@@ -263,8 +263,8 @@ list
 # => []
 ```
 
-Plus this way we automatically enable our objects to be able to be
-passed to other objects:
+Plus this way we can pass our objects to other objects with more common
+protocol:
 
 ```
 Puppy = Struct.new(:age)
