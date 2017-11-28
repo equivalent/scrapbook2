@@ -284,7 +284,7 @@ everyone.map(&:call).sum
 Call is everywhere in Ruby.
 
 ```ruby
-:age.to_proc.cal(max)
+:age.to_proc.call(max)
 # => 3
 ```
 
