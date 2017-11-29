@@ -3,8 +3,8 @@
 I'm a Ruby developer since early 2010 and big fan of Object Oriented
 Programming (OOP) always extending my knowledge around it and I'm not planing to end that any day soon.
 But as a part of this growth it's required to play around with new
-ideas and see whey they take you. And that's what I was doing past 2
-years with [Elixir](https://elixir-lang.org) (a functional programming
+concepts and ideas and see where they take you. And that's what I was doing past 2
+years in free time with [Elixir](https://elixir-lang.org) (a functional programming
 language).
 
 Recent years there is quite a rumble around functional programming
