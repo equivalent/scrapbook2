@@ -1,8 +1,8 @@
 # Lesson learned after trying functional programming (as a Ruby developer)
 
 I'm a Ruby developer since early 2010 and big fan of Object Oriented
-Programming (OOP) always extending my knowledge around it and I'm not planing to end that any day soon.
-But as a part of this growth it's required to play around with new
+Programming (OOP) always extending my knowledge around it.
+But as a part of OO growth it's required to play around with new
 concepts and ideas and see where they take you. And that's what I was doing past 2
 years in free time with [Elixir](https://elixir-lang.org) (a functional programming
 language).
@@ -47,22 +47,24 @@ want to process them with `Account#withdraw` in all our 128 cores then
 and then do some calculation on how much money left your Bank
 all together you need to plan how you synchronize  your objects "state" in different threads.
 
-> Plus there is an annoying fact that in MRI Ruby you can have many threads running concurrently with MRI,
-> but only one thread will ever be running at any moment in time.
+> Plus there is an annoying fact that in MRI Ruby you can have many threads running concurrently,
+> but only one thread will ever be running at any moment in time do to
+> GIL.
 > I'm not going to explain why as there are already good
-> resources out there (e.g.: [Fluentz - parallelism with Ruby](https://blog.fluentz.io/learn-how-to-achieve-parallelism-with-ruby-i-o-bound-threads-a29c92aff58c))
+> resources out there (e.g.: [Fluentz - parallelism with Ruby](https://blog.fluentz.io/learn-how-to-achieve-parallelism-with-ruby-i-o-bound-threads-a29c92aff58c)
 
 Now functional programming languages clearly separate the "behavior" and
 the "state". In fact the state is trying to be "immutable" = non changing.
 
 There is no such thing as an instance variable, or objects. There are
 just values and functions. Functions modify values to create new values
-but they never modify the state.
+but they never modify the state (...or even better is to pass the modified
+state without creating value)
 
 > This way synchronizing of state with Functional Programming
 > Language is much easier in multi core environment.
 
-Here is the same example written in Elixir
+Here is the same Account example written in Elixir:
 
 ```elixir
 defmodule AccountOperations do
@@ -131,7 +133,8 @@ DoMyTask.perform_now(document_id: document.id)    # perform now
 DoMyTask.perform_later(document_id: document.id)  # schedule BG worker to process it later
 ```
 
-The reason why we are passing `document_id` instead of `document` object  is because to scheduled jobs we want to
+The reason why we are passing `document_id` instead of `document` object is because we need to temporary store the data
+in temporary storage.  So to schedule a job we want to
 give the most primitive data that we need to recover the information. In
 this case just the integer `id` of the `Document` so we can retrieve it
 from the database:
@@ -343,6 +346,216 @@ invoice.can_delete?(user: moderator_without_delete_permission)
 > When I say "more functional way" I don't mean abolish all object and state.
 > Just keep it where it's relevant.
 
+### Data Piping example
+
+Imagine you are pulling data from an API and you just want to store
+relevant bits and pieces to different models
+
+```json
+{
+  "user": {
+    "name": "Tomas"
+    "favorite_bands":[
+      { "name": "Bring Me The Horizon" },
+      { "name": "Machine Head" }
+    ]
+   "favorite_foods": [...]
+  }
+}
+```
+
+So how would you organize you class to do this ?
+Would you do something like this:
+
+
+```ruby
+class ProcessUserFavoritBands
+  attr_reader :data, :user
+
+  def initialize(data:, user)
+    @data = data
+    @user = user
+  end
+
+  def call
+    user.name = api_name
+    add_band_names
+    user.save
+  end
+
+  private
+    def user_data; data["user"] end
+    def api_name; user_data['name'] end
+
+    def api_band_names
+      user_data['favorite_bands'].map { |b| b['name'] }
+    end
+
+    def add_band_names
+      band_names.each { |name| user.bands <<  name }
+    end
+end
+```
+
+Don't get me wrong this is quite fine approach. It's a nice pretty
+Service object.
+
+But let's think about the state here. What is the reason behind setting instance variable with `@data`.
+Let say that the argument would be that we want to memmoize the nodes so
+that we don't need to extract data from the scratch. This is useful when
+you have a huge API result.
+
+```ruby
+  # ...
+  def user_data; @user_data ||= data["user"] end
+  # ...
+```
+
+So what's the reason why we are initializing the Service object with
+`@user` ?
+
+Well you may say that we want to do memoization around `@user` relations
+so we don't call SQL calls multiple times. That's a good reason.
+
+But did you really asked yourself these questions when you were writing
+the `initialize` method ? Or were you just telling yourself: *hmm I have
+a User and a Data hash, let's just throw them to initialization*
+
+Now imagine that we didn't have a good reason to build object like this
+yet we did. One day you want to refactor out the shared logic of the
+API data so you can process "favorite_foods"  in a different class that
+also uses `@data` value.
+
+
+```ruby
+module APIDataConcern
+  def user_data; data["user"] end
+  def api_name; user_data['name'] end
+
+  def api_band_names
+    user_data['favorite_bands'].map { |b| b['name'] }
+  end
+
+  def api_favorit_food
+    user_data['favorite_food'].map { .... }
+  end
+end
+
+class ProcessFood
+  include APIDataConcern
+
+  def initialize(data:)
+    @data = data
+  end
+
+  def call
+    api_favorit_food.each { ... }
+  end
+end
+
+class ProcessUserFavoritBands
+  include APIDataConcern
+  attr_reader :data, :user
+
+  def initialize(data:, user)
+    @data = data
+    @user = user
+  end
+
+  def call
+     # not changed
+  end
+  # ...
+end
+```
+
+Then you need to introduce this another class but there you don't have
+`@data` but direct method call, or you just want to execute and see what
+the values are directly in the console.
+
+```ruby
+class DifferentClass
+
+  def call(data)
+    # ...  ??
+  end
+end
+```
+
+Like I've explained in previous example you don't want to create
+temporary instance variable just so you can include your module
+
+```ruby
+class DifferentClass
+  include APIDataConcern
+
+  def call(data)
+    @data = data  # this smells like trouble
+    # ...
+  end
+end
+```
+
+So lets rewind and allow me it to do same code it more simple way.
+
+```ruby
+module APIDataCommons
+  extend self
+
+  def band_names(data)
+    user_data(data)
+      .fetch('favorite_bands')
+      .map { |b| b['name'] }
+  end
+
+  def name(data)
+    user_data(data).fetch('name')
+  end
+
+  private
+    def user_data(data)
+      data.fetch("user")
+    end
+end
+
+class ProcessUserFavoritBands
+  attr_reader :user
+
+  def initialize(user)
+    @user = user
+  end
+
+  def call(data)
+    user.name = APIDataCommons.name(data)
+    add_band_names(data)
+    user.save
+  end
+
+  private
+    def add_band_names(data)
+      APIDataCommons.band_names(data).each { |name| user.bands <<  name }
+    end
+end
+
+# and in the problematic example:
+
+class DifferentClass
+  def call(data)
+    APIDataCommons.name(data)
+  end
+end
+```
+
+The point is not everything must be an object. Data transformation is
+really good example. Functional languages are one of the best candidates
+when you need to process some data from one state to another. Yes Ruby
+may not be as well optimized for these operations as those languages are
+but the point is that you can still benefit from this simple approach
+from code organization and code maintenance point of view.
+
+> Sometimes the simplest solution gives you the most options
+> [Simplicity Matters by Rich Hickey](https://www.youtube.com/watch?v=rI8tNMsozo0)
+
 
 ### Conclusion
 
@@ -396,8 +609,6 @@ I recommend [Elixir](https://elixir-lang.org) and if you are Rails
 developer try [Phoenix](http://phoenixframework.org)
 
 ### Other recommended resources & notes
-
-* [Simplicity Matters by Rich Hickey](https://www.youtube.com/watch?v=rI8tNMsozo0)
 
 Christmas is coming so I recommend books for you:
 
