@@ -1,9 +1,11 @@
-# Lesson learned after trying Elixir (as a Ruby developer)
+# Lesson learned after trying functional programming (as a Ruby developer)
 
 I'm a Ruby developer since early 2010 and big fan of Object Oriented
 Programming (OOP) always extending my knowledge around it and I'm not planing to end that any day soon.
 But as a part of this growth it's required to play around with new
-ideas and see whey they take you.
+ideas and see whey they take you. And that's what I was doing past 2
+years with [Elixir](https://elixir-lang.org) (a functional programming
+language).
 
 Recent years there is quite a rumble around functional programming
 languages especially due to fact that Moore's law may reach it's peak
@@ -60,8 +62,7 @@ but they never modify the state.
 > This way synchronizing of state with Functional Programming
 > Language is much easier in multi core environment.
 
-Here is the same example written in [Elixir](https://elixir-lang.org) (a functional programming
-language)
+Here is the same example written in Elixir
 
 ```elixir
 defmodule AccountOperations do
@@ -100,7 +101,7 @@ this way of coding some bids of modification logic.
 
 ![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/rly.jpg)
 
-You may be asking is this really all?
+You may be asking: "Is this really all you wanted to show me?"
 
 Well there is more to it. Let's dive do Rails example:
 
@@ -158,7 +159,7 @@ maybe even schedule other Jobs).
 
 There are two ways to pass the `document` object around.
 
-One is way is to pass the object as a function argument:
+One is way is to pass the object as a method argument:
 
 
 ```ruby
@@ -259,7 +260,7 @@ Mixing multiple responsibilities for methods.
 
 Imagine this scenario:
 
-```
+```ruby
 class Invoice < ActiveRecord::Base
   attr_accessor :user
 
@@ -295,11 +296,12 @@ that this piece of logic should go to different object. But the core
 point I want to demonstrate here is that we introduced a security bug thanks to introduction of
 state that is not part of responsibility of the object.
 
-Developer who implemented `process_data` method and uses the `@user`
-instance variable is not aware of another developer introduced
+The developer who implemented `process_data` method is using the `@user`
+instance variable and he/she is not aware that  another developer introduced
 `attr_accessor :user` (which sets and reads `@user` internally) for security checking.
 
-Now when we try to process an invoice of a Admin user, regular moderator
+Now when we try to process an invoice of a Admin user, regular Moderator
+user
 will suddenly have delete permission by end of the execution. Now yes
 this is hypothetical issue that would be probably discovered thanks to
 code reviews but the point is that it doesn't ever have to be concern if it was
@@ -338,10 +340,8 @@ invoice.can_delete?(user: moderator_without_delete_permission)
 > Yes, we are still working with object User, but the code behind
 > `#can_delete?` and `#process_data` is written in functional way.
 >
-> When I say "functional way" I don't mean abolish all object and state.
+> When I say "more functional way" I don't mean abolish all object and state.
 > Just keep it where it's relevant.
-
-Another example would be if the data was co
 
 
 ### Conclusion
