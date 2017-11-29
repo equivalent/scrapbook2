@@ -15,6 +15,10 @@ pretty soon.
 > 128 CPU cores in our laptops, but biggest problem is that everyone still writes software for a
 > single core CPU, so 127 CPU cores wasted.
 
+> But I'm not planing to talk about how to do Multithread in Ruby I just want
+> to bring some background why state is such different concept with
+> functional programming
+
 You see OOP languages are all about state + behavior. Account knows how to
 withdraw money but also has a balance:
 
@@ -94,17 +98,11 @@ You pass "state", "modifier state" and result is new state.
 And that's it. The most important lesson I've learned form Elixir is
 this way of coding some bids of modification logic.
 
-"Does this mean I will be able to write multithread code in MRI Ruby ?"
-No, nooooo!  You still have the same limitation with current version. I just
-wanted to show you how beautiful this style of code is.
-
 ![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/rly.jpg)
 
-Well at this point you may be regretting that you waste your time on
-this article. "Is this really what you wanted to show me?"
+You may be asking is this really all?
 
-
-Well there is more to it.
+Well there is more to it. Let's dive do Rails example:
 
 ### Backgroud worker example
 
