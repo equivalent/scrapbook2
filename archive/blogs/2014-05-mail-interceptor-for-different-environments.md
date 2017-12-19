@@ -1,248 +1,145 @@
 # Mail interceptor for different Rails environments
 
-Current application I'm working on have requirements for several staging
-servers that must look like production server as much as possible. One
-server is for presenting existing features to potential clients 
-(Staging server) and the other one is for presenting new features to 
-existing clients (Beta server)
+> If you are not interested in this more complex solution and just googling for quick way how to
+> do Rails mailer interceptor then in the "Copy Paste solution" at the
+> bottom of this article you will find what you looking for.
 
-Other requirement is that the these two servers should never ever send
-email to real address, rather send all the emails to address of the
-product manager that is doing the presentations.
+Imagine you are configuring several Rails environments.
 
-In this article I will show you my approach to this problem.
+* production should send emails as usual
+* staging should never ever send emails to real address, but to
+  product-manager email address
+* devel should never deliver email
+* test should never deliver email
 
-### Existing solutions
+There is already good examples out there how you can create mail
+interceptors (e.g.: [RailsCasts no 206.](http://railscasts.com/episodes/206-action-mailer-in-rails-3))
 
-Many of you may remember the mail interceptor proposed in 
-[RailsCasts no 206.](http://railscasts.com/episodes/206-action-mailer-in-rails-3) :
+But in this article I will show you how to configure mail interceptor
+while inheriting from production environment as proposed in [Beyond the default Rails environments](http://signalvnoise.com/posts/3535-beyond-the-default-rails-environments) article.
 
-```ruby
-# config/initializers/setup_mail.rb
+> The core of the article is that all your Rails environments on servers
+> should be as close to production as they can be, therefore you should
+> inherit all server configurations from production and just configure
+> minor differences.
 
-# ...
-
-if %w[staging development].include?(Rails.env)
-  require "#{Rails.root.to_s}/lib/#{Rails.env}_mail_interceptor"
-  ActionMailer::Base.register_interceptor("#{Rails.env.to_s.classify}MailInterceptor".constantize)
-end
-```
-
-```ruby
-# lib/staging_mail_interceptor.rb
-class StagingMailInterceptor
-  def self.delivering_email(message)
-    email = 'test.dev@my_app.com'
-
-    Rails.logger.warn "Emails are sent to #{email} email account from #{Rails.env} env"
-
-    development_information =  "[ TO: #{message.to} ]"
-    development_information << " [ CC: #{message.cc} ]" if message.cc
-    development_information << " [ BCC: #{message.bcc} ]" if message.bcc
-
-    message.to = email
-    message.cc = nil
-    message.bcc = nil
-    message.subject = "[Test] #{message.subject}
-#{development_information}"
-  end
-end
-
-# lib/development_mail_interceptor.rb
-class DevelopmentMailInterceptor
-  def self.delivering_email(message)
-    # ...something similar to StagingMailInterceptor
-  end
-end
-```
-
-Yes this is bit altered version of Ryan Bytes code but basically it's
-doing the same thing. Initializer will check the enviroment if it's
-Staging ENV it will load the staging interceptor. if Development ENV it
-will load development mail interceptor. Production ENV will send emails
-without intercepting and Test ENV don't need interceptor as it's
-using the `config.action_mailer.delivery_method = :test` in
-`config/enviroments/test.rb`
-
-### My solution
-
-I generally don't like how the `config/initializers/setup_mail.rb` is
-checking environments from strict array. This way when we introduce the
-`beta` environment it will not catch the change. 
-
-Of course we can alter the file to add beta to `setup_mail` initializer: 
-
-```ruby
-# config/initializers/setup_mail.rb
-# ...
-if %w[staging development beta].include?(Rails.env)`
-# ...
-```
-
-...however this wont comply with Open Closed Principle (one of SOLID
-software development principles) and we will have the same issue if we
-introduce another environment (e.g.: QA testing environment)
-
-Also like I said in the beginning of the article I want my server
-environments as close to Production ENV as possible.
-
-I really like the idea of  Rails environment configuration for testing / beta /
-staging servers inherited from production environment proposed by
-article  [Beyond the default Rails environments](http://signalvnoise.com/posts/3535-beyond-the-default-rails-environments)
+##### Production environment
 
 ```ruby
 # config/environments/production.rb
+
 MyApp::Application.configure do
-
-  # ... 100 lines of real production ENV configuration
- 
+  # ...
   config.action_mailer.default_url_options = { :protocol => 'https', :host => 'my-app.com' }
-
-  # Custom config option specific for this Application
-  config.mail_interceptor = nil # don't intercept mails, send them
-                                # as they are
-
+  config.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'smtp.mandrillapp.com', ....  } # production SMTP settings
   # ...
 end
 ```
+
+Production is using real SMTP settings that deliver real emails:
+
+##### Staging & Demo environment:
+
+... or any other server based environment, like QA, beta-server, demo-server, ...
 
 ```ruby
 # config/environments/staging.rb
 
 # Based on production defaults
-require Rails.root.join("config/environments/production")
+require Rails.root.join('config/environments/production')
+require Rails.root.join('lib/server_mail_interceptor') # unless you are autoloading lib folder
 
 Validations::Application.configure do
   config.action_mailer.default_url_options = { :protocol => 'https', :host => 'my-staging-app.com' }
 
-  # Custom config option specific for this Application
-  config.mail_interceptor = 'ServerMailInterceptor' # Intercept emails
+  ActionMailer::Base.register_interceptor(ServerMailInterceptor) # Intercepts emails
 end
 ```
+
+```ruby
+# config/environments/demo.rb
+
+# Based on production defaults
+require Rails.root.join('config/environments/production')
+require Rails.root.join('lib/server_mail_interceptor') # unless you are autoloading lib folder
+
+Validations::Application.configure do
+  config.action_mailer.default_url_options = { :protocol => 'https', :host => 'my-demo-app.com' }
+
+  ActionMailer::Base.register_interceptor(ServerMailInterceptor) # Intercepts emails
+end
+```
+
+Now please pay attention how the staging and demo config is not setting
+`delivery_method` or `smtp_settings` ...those are already set in
+`production` config that we are loading with `require`. We are only
+overwriting configuration values that are relevant.
+
+##### Development environment:
 
 ```ruby
 # config/environments/development.rb
 
+require Rails.root.join('lib/development_mail_interceptor') # unless you are autoloading lib folder
+
 Validations::Application.configure do
-
-  # ... 100 lines of real development ENV configuration
-
+  # ...
   config.action_mailer.default_url_options = { :host => '0.0.0.0:3000' }
+  config.delivery_method = :smtp
+  config.action_mailer.smtp_settings =  { :address => '127.0.0.1', :port => 1025 } # development smtp settings
+  # ...
 
-  # Custom config option specific for this Application
-  config.mail_interceptor = 'DevelopmentMailInterceptor' # Intercept emails
-
+  ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) # Intercept emails
   # ...
 ```
+
+For development we don't want to use production environment settings. We don't
+want to pollute production delivery logs with every developer junk.
+
+So for testing in our development we don't load configuration from production, but
+we use configuration from scratch where we specify custom delivery SMTP settings.
+
+I really like [Mailcatcher gem](https://github.com/sj26/mailcatcher).
+It's local SMTP server where you can send and inspect your developer emails.
+
+But if you want to use something like Gmail, or custom cloud smtp
+solution like Sendgird,
+Mailchimp, ... you are free to do it.
+
+##### Test environment:
 
 ```ruby
 # config/environments/test.rb
-
-  config.action_mailer.delivery_method = :test  
-
-  # ... 100 other lines of real test ENV configuration
-
-  # mails are not intercepted by mail interceptor, but the option:                   
-  #
-  #    config.action_mailer.delivery_method = :test                                 
-  #
-  # configured above will stop them beeing delivered                                                     
-  #
-  config.mail_interceptor = nil    
-
+Rails.application.configure do
   # ...
-```
-
-
-```ruby
-# config/initializers/setup_mail.rb
-
-# ...
-
-if interceptor = Rails.configuration.mail_interceptor
-  require "#{Rails.root.to_s}/lib/#{interceptor.underscore}"
-  ActionMailer::Base.register_interceptor(interceptor.constantize)
+  config.action_mailer.delivery_method = :test
+  # ...
 end
 ```
 
+Config option `delivery_method = :test` will stop emails being
+delivered, therefore in test environment you don't need to set up smtp
+server or mail interceptor details
+
+Same as in Development environment we don't load production settings.
+
+
+##### Interceptor files
+
 ```ruby
 # lib/server_mail_interceptor.rb
+
 class ServerMailInterceptor
   def self.delivering_email(message)
-    # ...
-    # same as staging_mail_interceptor.rb above
+    message.to = 'intercepting-email@my-app.com'
     # ...
   end
 end
 ```
 
-So this not exactly a rocket science. We tell what interceptor will
-environment use inside environment configuration. Setting up own
-option inside configuration block is provided by Rails 4 without any
-additional monkey-patching or extending Rails. I  don't know about
-lover versions of Rails as I have all my applications updated to latest
-version. 
-
-Production environment uses no interceptor and send mails directly.
-
-Development environment uses own `DevelopmentMailInterceptor` as
-originally described in Rails cast.
-
-Staging environment file is basically loads all Production environment
-settings and overriding environment based differences, including mail
-interceptor option pointing to `ServerMailInterceptor``
-
-This way when we add new environment (yes the `beta` environment)
-everything would work just so nice avoiding headaches.
-
-```ruby
-# config/environments/beta.rb
-
-# Based on production defaults
-require Rails.root.join("config/environments/production")
-
-Validations::Application.configure do
-  config.action_mailer.default_url_options = { :protocol => 'https', :host => 'my-beta-app.com' }
-
-  # Custom config option specific for this Application
-  config.mail_interceptor = 'ServerMailInterceptor' # Intercept emails
-end
-```
-
-**Note:** Not Many developers know that you can actually specify your own
-environment configuration variable this way. The are actually cool for
-other things as well,  e.q.: specify different CarrierWave gem storage
-options for different environments:
-
-```ruby
-# config/environments/production.rb
-MyApp::Application.configure do
-  #...
-  config.carrierwave_storage_type = :fog
-  #...
-end
-```
-
-```ruby
-# config/environments/development.rb
-MyApp::Application.configure do
-  #...
-  config.carrierwave_storage_type = :file
-  #...
-end
-```
-
-```ruby
-# app/uploaders/branding_uploader.rb
-class BrandingUploader < CarrierWave::Uploader::Base
-  # ...
-  storage(Rails.configuration.carrierwave_storage_type)  
-  # ...
-end
-```
-
-...this way when you introduce new environment you don't have to worry
-about details whether the right storage option is selected.
+> If you want to see more complex interceptor, in the "Copy Paste
+> solution" section of this article you can find more options
 
 ### Check if interceptor is registered
 
@@ -274,21 +171,21 @@ the interceptors are registered into class variable
 It's cool to use this to make sure if we set interceptors correctly, it's
 not cool to directly access it in production code.
 
-### Copy Paste solution:
+### Copy Paste solution
 
 This article is quite high when you google for [Rails Mail interceptor](http://www.eq8.eu/blogs/9-mail-interceptor-for-different-rails-environments).
 
-If you are just looking for quick easy copy-paste solution for Email Interceptor that just works and you are not interested in all that stuf I said previously: 
+If you are just looking for quick easy copy-paste solution for Email Interceptor that just works and you are not interested in all that stuff I said previously:
 
 
 ```ruby
 # confix/environments/staging.rb
 
 # ...
-config.action_mailer.default_url_options = ...   # whatever
-config.action_mailer.delivery_method = :smtp     # whatever
-config.action_mailer.smtp_settings = { ... }     # whatever
-config.mail_interceptor = SandboxMailInterceptor # <<< this line !
+config.action_mailer.default_url_options = ...     # whatever
+config.action_mailer.delivery_method = :smtp       # whatever
+config.action_mailer.smtp_settings = { ... }       # whatever
+config.mail_interceptor = 'SandboxMailInterceptor' # <<< this line ! String value, not class !
 # ...
 
 ```
