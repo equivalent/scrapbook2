@@ -206,19 +206,18 @@ ActionMailer::Base::Mail.class_variable_get(:@@delivery_interceptors)
 # => [DevelopmentMailInterceptor]
 ```
 
-Warning message is due to fact that `Mail` is not publicly accessible
-constant. It's required by 
-[ActionMailer::Base](https://github.com/rails/rails/blob/48ea0899074629203d84e2aea02593e893b5a2a4/actionmailer/lib/action_mailer/base.rb)
-(Rails 4) as a part of [mail gem](https://github.com/mikel/mail) where
-the interceptors are registered into class variable
-`@@delivery_interceptors`.
-
-It's cool to use this to make sure if we set interceptors correctly, it's
-not cool to directly access it in production code.
+> Warning message is due to fact that `Mail` is not publicly accessible
+> constant. It's required by 
+> [ActionMailer::Base](https://github.com/rails/rails/blob/48ea0899074629203d84e2aea02593e893b5a2a4/actionmailer/lib/action_mailer/base.rb)
+> (Rails 4) as a part of [mail gem](https://github.com/mikel/mail) where
+> the interceptors are registered into class variable
+> `@@delivery_interceptors`.
+> It's cool to use this to make sure if we set interceptors correctly, it's
+> not cool to directly access it in production code.
 
 ### Copy Paste solution
 
-This article is quite high when you google for [Rails Mail interceptor](http://www.eq8.eu/blogs/9-mail-interceptor-for-different-rails-environments).
+This article is quite high when you google for term "[Rails Mail interceptor](http://www.eq8.eu/blogs/9-mail-interceptor-for-different-rails-environments)".
 
 If you are just looking for quick easy copy-paste solution for Email Interceptor that just works and you are not interested in all that stuff I said previously:
 
@@ -234,7 +233,7 @@ config.mail_interceptor = 'SandboxMailInterceptor' # <<< this line ! String valu
 
 ```
 
-> Or you you prefer to have `config/initializers` file configuration you can crate file in it with content:
+> Or you prefer to have `config/initializers` file configuration you can crate file in it with content:
 > `ActionMailer::Base.register_interceptor(SandboxMailInterceptor) if Rails.env.staging?`
 
 
@@ -242,14 +241,14 @@ config.mail_interceptor = 'SandboxMailInterceptor' # <<< this line ! String valu
 # lix/sandbox_mail_interceptor.rb
 module SandboxMailInterceptor
   def self.delivering_email(message)
-    test_email_destination = 'email-test@pobble.com'
+    test_email_destination = 'email-test@my-app.com'
 
     development_information =  "TO: #{message.to.inspect}"
     development_information << " CC: #{message.cc.inspect}"   if message.cc.try(:any?)
     development_information << " BCC: #{message.bcc.inspect}" if message.bcc.try(:any?)
 
-    if pobble_email = message.to.to_a.select { |e| e.to_s.match(/pobble\.com/) }.first
-      message.to = [test_email_destination, pobble_email]
+    if app_domain_email = message.to.to_a.select { |e| e.to_s.match(/my-app\.com/) }.first
+      message.to = [test_email_destination, app_domain_email]
     else
       message.to = [test_email_destination]
     end
@@ -315,6 +314,12 @@ RSpec.describe SandboxMailInterceptor do
 end
 ```
 
+This interceptor ensures you don't send emails outside the domain
+`*my-app.com`. All emails are also send to collection box
+'email-test@my-app.com'.
+
+This is example of live code used in one application once, feel free to alter
+it any way you want
 
 ### Meta
 
