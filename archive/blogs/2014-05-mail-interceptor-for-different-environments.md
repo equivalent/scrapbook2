@@ -327,3 +327,5 @@ Source: http://guides.rubyonrails.org/action_mailer_basics.html
 
 Keywords: Rails 4.0.2, Ruby 2.1.1, own environment configuration, mail 
 interceptor, stop mails in staging
+
+Article updated: 2017-12-19
