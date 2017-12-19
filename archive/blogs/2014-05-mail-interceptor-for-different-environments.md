@@ -274,5 +274,110 @@ the interceptors are registered into class variable
 It's cool to use this to make sure if we set interceptors correctly, it's
 not cool to directly access it in production code.
 
+### Copy Paste solution:
+
+This article is quite high when you google for [Rails Mail interceptor](http://www.eq8.eu/blogs/9-mail-interceptor-for-different-rails-environments).
+
+If you are just looking for quick easy copy-paste solution for Email Interceptor that just works and you are not interested in all that stuf I said previously: 
+
+
+```ruby
+# confix/environments/staging.rb
+
+# ...
+config.action_mailer.default_url_options = ...   # whatever
+config.action_mailer.delivery_method = :smtp     # whatever
+config.action_mailer.smtp_settings = { ... }     # whatever
+config.mail_interceptor = SandboxMailInterceptor # <<< this line !
+# ...
+
+```
+
+> Or you you prefer to have `config/initializers` file cofiguration you can crate file in it with content:
+> `ActionMailer::Base.register_interceptor(SandboxMailInterceptor) if Rails.env.staging?`
+
+
+```ruby
+# lix/sandbox_mail_interceptor.rb
+module SandboxMailInterceptor
+  def self.delivering_email(message)
+    test_email_destination = 'email-test@pobble.com'
+
+    development_information =  "TO: #{message.to.inspect}"
+    development_information << " CC: #{message.cc.inspect}"   if message.cc.try(:any?)
+    development_information << " BCC: #{message.bcc.inspect}" if message.bcc.try(:any?)
+
+    if pobble_email = message.to.to_a.select { |e| e.to_s.match(/pobble\.com/) }.first
+      message.to = [test_email_destination, pobble_email]
+    else
+      message.to = [test_email_destination]
+    end
+    message.cc = nil
+    message.bcc = nil
+
+    message.subject = "#{message.subject} | #{development_information}"
+  end
+end
+```
+
+
+```ruby
+# spec/lib/sandbox_mail_interceptor_spec.rb
+require 'rails_helper'
+RSpec.describe SandboxMailInterceptor do
+  def trigger
+    described_class.delivering_email(message)
+  end
+
+  let(:cc) { nil }
+  let(:bcc) { nil }
+  let(:message) do
+    OpenStruct.new(to: [email], cc: cc, bcc: bcc, subject: 'Bla bla')
+  end
+
+  context 'when real email' do
+    let(:email) { 'test@foobar.com' }
+
+    it 'intecrept the email' do
+      trigger
+      expect(message.to).to eq ['email-test@my-app.com']
+      expect(message.cc).to eq nil
+      expect(message.bcc).to eq nil
+      expect(message.subject).to eq('Bla bla | TO: ["test@foobar.com"]')
+    end
+
+    context 'when bcc & cc' do
+      let(:cc) { ['foo@bar'] }
+      let(:bcc) { ['car@dar'] }
+
+      it do
+        trigger
+        expect(message.to).to eq ['email-test@my-app.com']
+        expect(message.cc).to eq nil
+        expect(message.bcc).to eq nil
+        expect(message.subject).to eq('Bla bla | TO: ["test@foobar.com"] CC: ["foo@bar"] BCC: ["car@dar"]')
+      end
+    end
+  end
+
+  context 'when my-app.com email' do
+    let(:email) { 'tomas@my-app.com' }
+
+    it 'intecrept the email' do
+      trigger
+      expect(message.to).to eq ['email-test@my-app.com', 'tomas@my-app.com']
+      expect(message.cc).to eq nil
+      expect(message.bcc).to eq nil
+      expect(message.subject).to eq('Bla bla | TO: ["tomas@my-app.com"]')
+    end
+  end
+end
+```
+
+
+### Meta
+
+Source: http://guides.rubyonrails.org/action_mailer_basics.html
+
 Keywords: Rails 4.0.2, Ruby 2.1.1, own environment configuration, mail 
 interceptor, stop mails in staging
