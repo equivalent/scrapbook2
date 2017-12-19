@@ -316,7 +316,7 @@ end
 
 This interceptor ensures you don't send emails outside the domain
 `*my-app.com`. All emails are also send to collection box
-'email-test@my-app.com'.
+`email-test@my-app.com`.
 
 This is example of live code used in one application once, feel free to alter
 it any way you want
