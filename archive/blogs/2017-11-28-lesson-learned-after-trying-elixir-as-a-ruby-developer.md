@@ -621,6 +621,12 @@ Christmas is coming so I recommend books for you:
 *  [Programming  Phoenix](https://pragprog.com/book/phoenix/programming-phoenix)
 
 
+Reddit discussion on article:
+
+* https://www.reddit.com/r/ruby/comments/7ksynh/lesson_learned_after_trying_functional/
+* https://www.reddit.com/r/rails/comments/7ksz3k/lesson_learned_after_trying_functional/
+* https://www.reddit.com/r/elixir/comments/7kt1r6/lesson_learned_after_trying_elixir_as_a_ruby/
+
 One note on MRI GLI lock:
 
 Issue with single thread execution this will not be forever this way. Matz in
