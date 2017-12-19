@@ -329,3 +329,5 @@ Keywords: Rails 4.0.2, Ruby 2.1.1, own environment configuration, mail
 interceptor, stop mails in staging
 
 Article updated: 2017-12-19
+
+Reddit discussion: https://www.reddit.com/r/ruby/comments/7kstz4/mail_interceptor_for_different_rails_environments/
