@@ -4,14 +4,6 @@
 > do Rails mailer interceptor then in the "Copy Paste solution" at the
 > bottom of this article you will find what you looking for.
 
-Imagine you are configuring several Rails environments.
-
-* production should send emails as usual
-* staging should never ever send emails to real address, but to
-  product-manager email address
-* devel should never deliver email
-* test should never deliver email
-
 There is already good examples out there how you can create mail
 interceptors (e.g.: [RailsCasts no 206.](http://railscasts.com/episodes/206-action-mailer-in-rails-3))
 
@@ -22,6 +14,16 @@ while inheriting from production environment as proposed in [Beyond the default 
 > should be as close to production as they can be, therefore you should
 > inherit all server configurations from production and just configure
 > minor differences.
+
+Imagine you are configuring several Rails environments.
+
+* production should send emails as usual
+* staging should never ever send emails to real address, but to
+  product-manager email address
+* demo server should never ever send emails to real address, but to
+  product-manager email address
+* devel should never deliver email
+* test should never deliver email
 
 ##### Production environment
 
