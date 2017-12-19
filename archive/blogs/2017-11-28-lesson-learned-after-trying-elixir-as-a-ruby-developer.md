@@ -556,6 +556,11 @@ from code organization and code maintenance point of view.
 > Sometimes the simplest solution gives you the most options
 > [Simplicity Matters by Rich Hickey](https://www.youtube.com/watch?v=rI8tNMsozo0)
 
+### Sidenotes
+
+* Maybe sometimes if your object feels weird it's not a sign that you need
+to refactor it to be more "functional", maybe it's a sign of it's doing
+too many things and needs to be split to multiple objects.
 
 ### Conclusion
 
