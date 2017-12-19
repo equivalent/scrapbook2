@@ -2,7 +2,7 @@
 
 > If you are not interested in this more complex solution and just googling for quick way how to
 > do Rails mailer interceptor then in the "Copy Paste solution" at the
-> bottom of this article you will find what you looking for.
+> bottom of this article you will find what you are looking for.
 
 There is already good examples out there how you can create mail
 interceptors (e.g.: [RailsCasts no 206.](http://railscasts.com/episodes/206-action-mailer-in-rails-3))
@@ -43,7 +43,7 @@ Production is using real SMTP settings that deliver real emails:
 
 ##### Staging & Demo environment:
 
-... or any other server based environment, like QA, beta-server, demo-server, ...
+... or any other server based environment, like staging, UAT, QA, beta-server, demo-server, ...
 
 ```ruby
 # config/environments/staging.rb
@@ -104,7 +104,6 @@ we use configuration from scratch where we specify custom delivery SMTP settings
 
 I really like [Mailcatcher gem](https://github.com/sj26/mailcatcher).
 It's local SMTP server where you can send and inspect your developer emails.
-
 But if you want to use something like Gmail, or custom cloud smtp
 solution like Sendgird,
 Mailchimp, ... you are free to do it.
@@ -143,6 +142,50 @@ end
 > If you want to see more complex interceptor, in the "Copy Paste
 > solution" section of this article you can find more options
 
+```ruby
+# lib/development_mail_interceptor.rb
+
+class ServerMailInterceptor
+  def self.delivering_email(message)
+    message.subject = "#{message.subject} | TO: #{message.to}"
+  end
+end
+```
+
+As you can see the "interceptor" is not only about intercepting emails.
+The can be used to place debugging information in them too. More on that
+in section "Enhanced production interceptor" in this article
+
+### Enhanced production interceptor
+
+Let say you want your  emails
+delivered as usual but every copy should be bcc'd to "archive" email address.
+
+Mail interceptors can do that for you too:
+
+```ruby
+# config/environments/production.rb
+require Rails.root.join('lib/archive_copy_mail_interceptor') # unless you are autoloading lib folder
+Validations::Application.configure do
+  # ...
+  ActionMailer::Base.register_interceptor(ServerMailInterceptor)
+  # ...
+end
+```
+
+```ruby
+# lib/archive_copy_mail_interceptor.rb
+
+class ArchiveCopyMailInterceptor
+  def self.delivering_email(message)
+    message.bcc = 'archive@my-app.com'
+  end
+end
+```
+
+We are not changing the `message.to` just adding the bcc part to email
+that will tell smtp server to send hidden copy to `archive@my-app.com`
+
 ### Check if interceptor is registered
 
 Lunch rails console for each environment:
@@ -179,7 +222,6 @@ This article is quite high when you google for [Rails Mail interceptor](http://w
 
 If you are just looking for quick easy copy-paste solution for Email Interceptor that just works and you are not interested in all that stuff I said previously:
 
-
 ```ruby
 # confix/environments/staging.rb
 
@@ -192,7 +234,7 @@ config.mail_interceptor = 'SandboxMailInterceptor' # <<< this line ! String valu
 
 ```
 
-> Or you you prefer to have `config/initializers` file cofiguration you can crate file in it with content:
+> Or you you prefer to have `config/initializers` file configuration you can crate file in it with content:
 > `ActionMailer::Base.register_interceptor(SandboxMailInterceptor) if Rails.env.staging?`
 
 
