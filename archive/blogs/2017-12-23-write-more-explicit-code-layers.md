@@ -1,6 +1,6 @@
 # Write more explicit code layers !
 
-> I'll give here Ruby on Rails examples, but the rules really apply to
+> I'll demonstrate a Ruby on Rails example here, but the rules really apply to
 > any programming language and any web framework.
 
 Imagine you have a Rails controller that is creating a Book record
@@ -17,10 +17,11 @@ end
 ```
 
 Tell me from looking at this code what data will be saved?
+
 Well obviously it's a `Book` model so it will be some data related to
 book right ?
 
-But a `book` may mean different things in different applications.
+But a `book` may mean different things in different applications:
 
 * are we saving comprehensive book details (like in library)?
 * are we saving some book price ? (like in book store?)
@@ -48,13 +49,13 @@ migrations definition or to look at **web interface**
 
 Ok no big deal let's just have a look at `app/views/books/create.html.erb`
 
-> If you don't know Ruby on Rails, this is where the HTML code is stored. So
+> If you never worked with Ruby on Rails, this is where the HTML code is stored. So
 > we are trying to look at the HTML form definition and data that the
 > form is sending.
 
 Oh! I've forgot to tell you this RoR application is just an JSON API
 and the Frontend code interface definition is not rendered with this
-Rails app, but rather separate codebase NodeJS single page app.
+Rails app, but rather separate codebase NodeJS single page app (SPA).
 
 > Yes Rails can render the single page frontend. But some companies
 > likes to split into FE and BE teams working on separate codebase & separate technologies so that 
@@ -75,14 +76,12 @@ or the app is a microservice.
 **The point is that in these scenarios the Rails application is a separate
 layer, an isolated bubble. There is a brick wall between your BE app
 and something else. You cannot just throw garbage of values wrapped in a plastic bag
-called `params` and shout it directly to ActiveRecord to save to DB.**
-
-There needs to be an Explicit Interface defined!
+called `params` and push it directly to [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) to save in DB. There needs to be an Explicit Interface defined!**
 
 So, did you spotted a security smell in my code?  And yes the solution for
 this security smell will solve the explicit interface issue: I need to restrict permitted
 parameters for this resource otherwise someone may set undesired values
-(E.g. `book['author']['admin'] = true`) :
+(E.g. `book['author']['admin']=true`) :
 
 ```ruby
 # app/controllers/book_controller.rb
@@ -103,9 +102,9 @@ This way we are allowing only to set `book.title`, `book.author_id` and
 `book.price` and from this we can determine what the Book model is
 really about.
 
-
 Cool, we have an existing solution for this. But imagine you are
-building complex search solution that is too big to be in controller.
+building complex search solution that is too big to be in a controller.
+
 You can search `term` and apply several filters like:
 
 * search `term`:  e.g. "ruby" as in "Programming Ruby"
@@ -118,7 +117,7 @@ e.g:
 
 `GET localhost:3000/books?term=ruby&publisher=pragprog&favorite=true&format=ebook`
 
-So you decide to use Service object (or Procedure):
+So you decide to use Service object (or Procedure Module):
 
 
 ```ruby
@@ -134,12 +133,12 @@ end
 ```
 
 
-Similar to previous example, tell me from this code what the BookSearcher
+Similar to previous example, tell me from this code what the `BookSearcher`
 is searching for ? You don't know do you ? Why because that
 responsibility is passed to Searcher. Let's investigate that.
 
 
-> We will use `ActiveRecord` example but the  BookSearcher search can be on ElasticSearch, DynamoDB. That's why we don't convert it to [Rails Query Object](http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects)
+> We will use `ActiveRecord` example but the  BookSearcher search can be on ElasticSearch, DynamoDB, ... That's why we don't convert it to [Rails Query Object](http://www.eq8.eu/blogs/38-rails-activerecord-relation-arel-composition-and-query-objects)
 > ...
 
 
@@ -178,10 +177,10 @@ end
 So the way how this works is that `BooksController` will just pass all
 the `params` to `BookSearcher.find(params)` depending on the values of
 `params` we construct various SQL conditions directly on `Book` model
-ActiveRecord scope
+`ActiveRecord::Relation` scope
 but when we need to do some search on `Publisher` keyword we just pass
 the `params` to `PublisherSearch` which then takes value of
-`params[:publisher]` do do some generic search used is some other place.
+`params[:publisher]` to do some generic search used is some other place.
 
 Let's just assume that `PublisherSearch` is used in some other controller
 and we just want to reuse it.
@@ -189,11 +188,11 @@ and we just want to reuse it.
 
 > Wait a minute, `BookSearcher` is not a service object !
 >
-> Recently Avdi Grim published article [Enough with service objects](https://avdi.codes/service-objects/) where he argues that Object existence needs
+> Recently Avdi Grimm published article [Enough with service objects](https://avdi.codes/service-objects/) where he argues that Object existence needs
 > needs to be justified with receiver of message.
 >
-> I have problem with unjustified objects (and therefore service objects) as well but in terms
-> of unnecessary state holding that I've highlited 
+> I have problem with unjustified objects  as well (and therefore service objects) but in terms
+> of unnecessary state holding that I've explained 
 in my article [Lesson learned after trying functional programming](http://www.eq8.eu/blogs/46-lesson-learned-after-trying-functional-programming-as-a-ruby-developer)
 >
 > Normally I would just write Service object example as developers are
@@ -406,5 +405,46 @@ class BookSearchRequest
     params[:term] unless params[:term].blank?
   end
 
+  # ....
+
+  def publisher
+    PublisherRequest.new(params)
+  end
 end
 
+# app/request_models/book_searcher_request.rb
+class PublisherSearchRequest
+  attr_reader :params
+
+  def initialize(params)
+    @params = params
+  end
+
+  def publisher_keyword
+    params[:publisher]
+  end
+end
+
+#app/service/publisher_search
+class PublisherSearch
+  extend :self
+
+  def find(request_models)
+    publisher_keyword = request_models.publisher_keyword
+    # ....
+  end
+end
+```
+
+Plus  you need to write tests on when you pass given request model to
+various Procedure modules and cross-test various request models so that
+they are contract and any change to them is explicit to every aspect of
+application where they are used.
+
+This way no longer the Controller is explicit definition of your
+endpoint but Request model.
+
+Let me just highlight that Request Models are really rare in my code. I
+need to deal with really complex request (e.g. bulk update) to implement
+them. I rather prefer explicit controller passing of arguments as
+dynamic nature of Request Models comes with price of overcomplication.
