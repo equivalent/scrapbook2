@@ -109,13 +109,13 @@ You can search `term` and apply several filters like:
 
 * search `term`:  e.g. "ruby" as in "Programming Ruby"
 * `publisher`:  e.g.: The Pragmatic Bookshelf => 'pragprog'
-* `format`: `paper`, `hard` or `ebook`
+* `book_format`: `paper`, `hard` or `ebook`
 * `favorite`: `true/false`
 * ...and many more
 
 e.g:
 
-`GET localhost:3000/books?term=ruby&publisher=pragprog&favorite=true&format=ebook`
+`GET localhost:3000/books?term=ruby&publisher=pragprog&favorite=true&book_format=ebook`
 
 So you decide to use Service object (or Procedure Module):
 
@@ -150,7 +150,7 @@ module BookSearcher
   def find(params)
     scope = Book.all
     scope = scope.where("books.title LIKE ?", "%#{params['term']}%") if params['term']
-    scope = scope.where('? = ANY (book_format)', params['format']) if params['format']
+    scope = scope.where('? = ANY (book_format)', params['book_format']) if params['book_format']
 
     if params['publisher'] && publisher = PublisherSearch.find(params)
       # do some search on publisher keyword and add condition to `scope`
@@ -173,6 +173,8 @@ module BookSearcher
 end
 ```
 
+Let's just assume that `PublisherSearch` is used in some other controller
+and we just want to reuse it.
 
 So the way how this works is that `BooksController` will just pass all
 the `params` to `BookSearcher.find(params)` depending on the values of
@@ -181,9 +183,6 @@ the `params` to `BookSearcher.find(params)` depending on the values of
 but when we need to do some search on `Publisher` keyword we just pass
 the `params` to `PublisherSearch` which then takes value of
 `params[:publisher]` to do some generic search used is some other place.
-
-Let's just assume that `PublisherSearch` is used in some other controller
-and we just want to reuse it.
 
 
 > Wait a minute, `BookSearcher` is not a service object !
@@ -212,7 +211,7 @@ class BookController < ApplicationController
     # ...
     @results = BookSearcher.find({
       term: params[:term].blank? ? nil : params[:term],
-      format: params[:format],
+      book_format: params[:book_format],
       publisher_keyword: params[:publisher]
       # ...
     })
@@ -226,7 +225,7 @@ this controller code what the `BookSearcher` could be searching for ?
 
 Much easier isn't it ?
 
-I'm passing a `term`, `format`, `publisher_keyword`, I can see which
+I'm passing a `term`, `book_format`, `publisher_keyword`, I can see which
 arguments comes from `params` and therefore what the FE expects BE to
 respond to.
 
@@ -235,13 +234,14 @@ respond to.
 module BookSearcher
   extend self
 
-  def find(term:, format:, publisher_keyword: )
+  def find(term:, book_format:, publisher_keyword: )
     scope = Book.all
     scope = scope.where("books.title LIKE ?", "%#{term}%") if term
-    scope = scope.where('? = ANY (book_format)', format) if format
+    scope = scope.where('? = ANY (book_format)', book_format) if
+book_format
 
     if publisher_keyword && publisher = PublisherSearch.find(publisher_keyword: publisher_keyword)
-      # do some search on publisher keyword and add condition to `scope`
+      # ...
     end
 
     # ...
@@ -262,12 +262,12 @@ end
 
 It may not seems much but the difference is huge !
 
-You don't pass `params` wildly to rest of your application, you clearly
+You don't pass `params` wildly to the rest of your application. It's clearly
 define what you will pass to rest of your code layers.
 
 By being more explicit we clearly distinguish
-or controller to be a layer that holds responsibility of forwarding
-well defined values.
+our controller to be a layer that holds responsibility of translating
+values from `params`, forwarding values to appropriate place in our Service object / Procedure module
 
 ### Service example
 
@@ -276,7 +276,7 @@ One scenario could be that you created platform where multiple companies
 can host their online book store.
 
 This way the service object is initialized based on `current_store`
-(current client) and search options `filters` serves as modifiers:
+(current client) and search options "filters" serves as attr_accessor object modifiers:
 
 
 ```ruby
@@ -291,7 +291,7 @@ class BookController < ApplicationController
       .new(store: current_store)
       .tap do |s|
         s.term   = params[:term]   unless params[:term].blank?
-        s.format = params[:format]
+        s.book_format = params[:book_format]
         # ...
     })
     # ...
@@ -307,7 +307,7 @@ what the search logic will be from here.
 class BookSearcher
   attr_reader :store
   attr_accessor :term:, :publisher_keyword
-  attr_writter :format
+  attr_writter :book_format
 
   def initialize(store)
     @store
@@ -316,14 +316,15 @@ class BookSearcher
   def find
     scope = store.books
     scope = scope.where("books.title LIKE ?", "%#{term}%") if term
-    scope = scope.where('? = ANY (book_format)', format) if format
+    scope = scope.where('? = ANY (book_format)', book_format) if
+book_format
     # ...
     scope
   end
 
   private
-    def format
-      store.supported_format?(format: @format) if @format
+    def book_format
+      store.supported_format?(book_format: @book_format) if @book_format
     end
 end
 ```
@@ -385,7 +386,7 @@ module BookSearcher
   def find(request_object)
     scope = Book.all
     scope = scope.where("books.title LIKE ?", "%#{request_object.term}%") if request_object.term
-    scope = scope.where('? = ANY (book_format)', request_object.format) if request_object.format
+    scope = scope.where('? = ANY (book_format)', request_object.book_format) if request_object.book_format
 
     if publisher = PublisherSearch.find(request_object)
       # ...
