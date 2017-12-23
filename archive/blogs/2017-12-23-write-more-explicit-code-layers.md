@@ -149,7 +149,7 @@ module BookSearcher
 
   def find(params)
     scope = Book.all
-    scope = scope.where("books.title LIKE ?", "%#{params['terms']}%") if params['terms']
+    scope = scope.where("books.title LIKE ?", "%#{params['term']}%") if params['term']
     scope = scope.where('? = ANY (book_format)', params['format']) if params['format']
 
     if params['publisher'] && publisher = PublisherSearch.find(params)
@@ -211,7 +211,7 @@ class BookController < ApplicationController
   def index
     # ...
     @results = BookSearcher.find({
-      term: params[:term].blank?` ? nil : params[:term],
+      term: params[:term].blank? ? nil : params[:term],
       format: params[:format],
       publisher_keyword: params[:publisher]
       # ...
@@ -221,8 +221,14 @@ class BookController < ApplicationController
 end
 ```
 
-Now before we continue to Service solution, tell me by just reading
+Now before we continue to Service solution/Procedure module, tell me by just reading
 this controller code what the `BookSearcher` could be searching for ?
+
+Much easier isn't it ?
+
+I'm passing a `term`, `format`, `publisher_keyword`, I can see which
+arguments comes from `params` and therefore what the FE expects BE to
+respond to.
 
 ```ruby
 # app/services/book_searcher.rb
@@ -257,7 +263,7 @@ end
 It may not seems much but the difference is huge !
 
 You don't pass `params` wildly to rest of your application, you clearly
-define what you will pass to rest of your code.
+define what you will pass to rest of your code layers.
 
 By being more explicit we clearly distinguish
 or controller to be a layer that holds responsibility of forwarding
@@ -266,7 +272,7 @@ well defined values.
 ### Service example
 
 Let say there is a good reason to satisfy `BookSearcher` to be a Service Object.
-One scenario could be that you created platform wher multiple companies
+One scenario could be that you created platform where multiple companies
 can host their online book store.
 
 This way the service object is initialized based on `current_store`
@@ -333,42 +339,43 @@ method/object dealing with this value.
 Some may say that this is silly, all we need to do is to write a test on
 how our service will behave when we pass it `params` in different forms.
 
-Well all this is true.
+Well all this is true, ...sort of.
 
-Ever heard of **Request models**  also called **Request Objects** ?
+Ever heard of **Request models** ?
 
 They are type of objects that are just passed through your Controller
 directly to Service object/s or Procedure module/s and you can test
 different scenarios with them.
 
-The catch is however that they need to be well defined and plain `params` is not it! (it's too dynamic)
-
-> Same is with constructing `OpenStruct.new` objects passed to other
-> services
+The catch is however that they need to be well defined and plain `params`
+or `OpenStruct.new` is not it! (it's too dynamic)
 
 The problem with `params` is that it represents anything passed via
 browser or JSON API. But limit it to only the stuff your app really
 need e.g. `params.require(:book).permit(:title, :author_id, :price)`
-and you got yourself a Request Model !
+and you got yourself sort of a Request Model.
 
-But there is another gotcha you just don't write tests on your Service
-object when passing different Request Models, you also write tests on
-different possibilities of Request Models itself !
+But there is another gotcha to have full Request Model.
+You just don't write tests on your Service
+object when passing different Request Models to it, you also write tests on
+different implementations of Request Models itself !
 
-I've described [Request Objects](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) bit further in [this article](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) on topic of contextual validations in Rails. I'll write entire article on them someday in future therefore I'll
-not go into too much details but just to show you what I mean:
-
+>  I've described [Request Models](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) bit further in [this article](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) on topic of contextual validations in Rails. I'll write entire article on them someday in future therefore I'll
+>  not go into too much details but just to show you what I mean:
+>
+> ...don't crucify me by then :)
 
 ```ruby
 # app/controllers/book_controller.rb
 class BookController < ApplicationController
 
   def index
-    request_object BookSearchRequest.new(params)
+    request_object = BookSearchRequest.new(params)
     @result = BookSearcher.find(request_object)
   end
 end
 ```
+
 
 ```ruby
 # app/services/book_searcher.rb
@@ -411,7 +418,14 @@ class BookSearchRequest
     PublisherRequest.new(params)
   end
 end
+```
 
+
+This way no longer the Controller is the explicit definition of your
+endpoint but Request models are:
+
+
+```ruby
 # app/request_models/book_searcher_request.rb
 class PublisherSearchRequest
   attr_reader :params
@@ -436,15 +450,44 @@ class PublisherSearch
 end
 ```
 
-Plus  you need to write tests on when you pass given request model to
-various Procedure modules and cross-test various request models so that
-they are contract and any change to them is explicit to every aspect of
-application where they are used.
+Example of tests e.g.:
 
-This way no longer the Controller is explicit definition of your
-endpoint but Request model.
+```ruby
+# spec/services/book_searcher_spec.rb
+require 'rails_helper'
+RSpec.describe BookSearcher do
+  let(:result) { BookSearcher.find(request_object) }
+
+  context 'when searching for term' do
+    let(:request_object) { instance_double(BookSearchRequest, term: 'ruby') }
+
+    it do
+      # ....
+    end
+  end
+  # ...
+end
+```
+
+```ruby
+# spec/services/book_searcher_spec.rb
+require 'rails_helper'
+RSpec.describe BookSearchRequest do
+  subject { described_class.new(params) }
+
+  context 'when term search'
+    let(:params) { {'term' => 'ruby'} }
+
+    it { expect(subject.term).to eq 'ruby' }
+  end
+
+  # ...
+end
+```
+
 
 Let me just highlight that Request Models are really rare in my code. I
-need to deal with really complex request (e.g. bulk update) to implement
-them. I rather prefer explicit controller passing of arguments as
+just use them when I 
+need to deal with really complex request (e.g. bulk update). I rather prefer explicit service objects / rocedure modules and controller actions passing  arguments from `params` to them as
 dynamic nature of Request Models comes with price of overcomplication.
+
