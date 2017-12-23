@@ -615,6 +615,8 @@ developer try [Phoenix](http://phoenixframework.org)
 
 ### Other recommended resources & notes
 
+* https://avdi.codes/service-objects/
+
 Christmas is coming so I recommend books for you:
 
 *  [Programming Elixir](https://pragprog.com/book/elixir/programming-elixir)
