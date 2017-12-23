@@ -392,6 +392,9 @@ end
 ```
 
 
+This way no longer the Controller is the explicit definition of your
+endpoint but Request models are:
+
 ```ruby
 # app/services/book_searcher.rb
 module BookSearcher
@@ -436,8 +439,6 @@ end
 ```
 
 
-This way no longer the Controller is the explicit definition of your
-endpoint but Request models are:
 
 
 ```ruby
