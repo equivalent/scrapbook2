@@ -78,10 +78,26 @@ layer, an isolated bubble. There is a brick wall between your BE app
 and something else. You cannot just throw garbage of values wrapped in a plastic bag
 called `params` and push it directly to [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) to save in DB. There needs to be an Explicit Interface defined!**
 
-So, did you spotted a security smell in my code?  And yes the solution for
-this security smell will solve the explicit interface issue: I need to restrict permitted
+> "How about tests?".
+>
+> That's a good point. Your tests should be
+> describing all the scenarios with all the various params received.
+> But, from my experience once you are dealing with more complex test
+> scenarios, tests will get modularized as well => you still need to
+> spend some time to figure out what are the expected values.
+>
+> What I'll try to present here is more straight on communication of
+> intention between developers.
+
+So, did you spotted a security smell in my code by any chance?
+
+I need to restrict permitted
 parameters for this resource otherwise someone may set undesired values
 (E.g. `book['author']['admin']=true`) :
+
+
+And yes the solution for
+this security smell will solve the need for explicit interface:
 
 ```ruby
 # app/controllers/book_controller.rb
@@ -492,3 +508,20 @@ just use them when I
 need to deal with really complex request (e.g. bulk update). I rather prefer explicit service objects / rocedure modules and controller actions passing  arguments from `params` to them as
 dynamic nature of Request Models comes with price of overcomplication.
 
+### Conclusion
+
+If your application is one monolith holding both FE logic and BE logic
+and everyone in your development team knows how to implement both of
+this aspects then maybe you don't need this.
+
+But if you are building application where you are trying to separate FE
+/ BE or building application that consist of microservices or you are
+implementing any form of code layering (e.g.: bounded contexts)
+you need to be more explicit on interfaces.
+
+You are trying to make your application as understandable as possible.
+Help others to understand application communication.
+
+> one of the biggest values of microservices is that their are "independent" of each other. You should be able to work
+> on microservice A without the need of how microservice B is
+> implemented. They just share a common contract of communication.
