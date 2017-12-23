@@ -83,7 +83,7 @@ called `params` and push it directly to [ActiveRecord](http://guides.rubyonrails
 > That's a good point. Your tests should be
 > describing all the scenarios with all the various params received.
 > But, from my experience once you are dealing with more complex test
-> scenarios, tests will get modularized as well => you still need to
+> scenarios, tests will get break down to smaller object tests => you still need to
 > spend some time to figure out what are the expected values.
 >
 > What I'll try to present here is more straight on communication of
@@ -201,7 +201,7 @@ the `params` to `PublisherSearch` which then takes value of
 `params[:publisher]` to do some generic search used is some other place.
 
 
-> Wait a minute, `BookSearcher` is not a service object !
+> "Wait a minute, `BookSearcher` is not a service object !"
 >
 > Recently Avdi Grimm published article [Enough with service objects](https://avdi.codes/service-objects/) where he argues that Object existence needs
 > needs to be justified with receiver of message.
@@ -323,7 +323,7 @@ what the search logic will be from here.
 class BookSearcher
   attr_reader :store
   attr_accessor :term:, :publisher_keyword
-  attr_writter :book_format
+  attr_writer :book_format
 
   def initialize(store)
     @store
@@ -347,7 +347,7 @@ end
 
 ### Request model
 
-At this point you may say what we've lost the agility of the code. If we
+At this point you may say what we have lost the agility of the code. If we
 want to introduce a new search parameter all we needed to do in our
 "pass the `params` to service" example was just to add the logic in the
 service. This way we need to update the Controller and any other
@@ -364,8 +364,8 @@ They are type of objects that are just passed through your Controller
 directly to Service object/s or Procedure module/s and you can test
 different scenarios with them.
 
-The catch is however that they need to be well defined and plain `params`
-or `OpenStruct.new` is not it! (it's too dynamic)
+The catch is however that they need to be well defined and well explicit.  Plain `params`
+or `OpenStruct.new` will not do the trick.
 
 The problem with `params` is that it represents anything passed via
 browser or JSON API. But limit it to only the stuff your app really
@@ -377,10 +377,8 @@ You just don't write tests on your Service
 object when passing different Request Models to it, you also write tests on
 different implementations of Request Models itself !
 
->  I've described [Request Models](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) bit further in [this article](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) on topic of contextual validations in Rails. I'll write entire article on them someday in future therefore I'll
->  not go into too much details but just to show you what I mean:
->
-> ...don't crucify me by then :)
+>  I've described [Request Models](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations) bit further in my article [contextual validations in Rails](http://www.eq8.eu/blogs/22-different-ways-how-to-do-contextual-rails-validations).  I'm not planing to
+> spend too much time explaining them here. But just to show you what I mean:
 
 ```ruby
 # app/controllers/book_controller.rb
@@ -505,7 +503,7 @@ end
 
 Let me just highlight that Request Models are really rare in my code. I
 just use them when I 
-need to deal with really complex request (e.g. bulk update). I rather prefer explicit service objects / rocedure modules and controller actions passing  arguments from `params` to them as
+need to deal with really complex request (e.g. bulk update). I rather prefer explicit service objects / procedure modules and controller actions passing  arguments from `params` to them as
 dynamic nature of Request Models comes with price of overcomplication.
 
 ### Conclusion
@@ -522,6 +520,6 @@ you need to be more explicit on interfaces.
 You are trying to make your application as understandable as possible.
 Help others to understand application communication.
 
-> one of the biggest values of microservices is that their are "independent" of each other. You should be able to work
+> one of the biggest values of microservices is that they are "independent" of each other. You should be able to work
 > on microservice A without the need of how microservice B is
 > implemented. They just share a common contract of communication.
