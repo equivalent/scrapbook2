@@ -523,3 +523,9 @@ Help others to understand application communication.
 > one of the biggest values of microservices is that they are "independent" of each other. You should be able to work
 > on microservice A without the need of how microservice B is
 > implemented. They just share a common contract of communication.
+
+### Other links
+
+Reddit discussion
+
+* https://www.reddit.com/r/ruby/comments/7ls1pt/write_more_explicit_code_layers/
