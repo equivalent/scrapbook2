@@ -505,7 +505,7 @@ end
 Let me just highlight that Request Models are really rare in my code. I
 just use them when I 
 need to deal with really complex request (e.g. bulk update). I rather prefer explicit service objects / procedure modules and controller actions passing  arguments from `params` to them as
-dynamic nature of Request Models comes with price of overcomplication.
+the dynamic nature of Request Models comes with price of overcomplication.
 
 ### Conclusion
 
