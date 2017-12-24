@@ -126,12 +126,11 @@ You can search `term` and apply several filters like:
 * search `term`:  e.g. "ruby" as in "Programming Ruby"
 * `publisher`:  e.g.: The Pragmatic Bookshelf => 'pragprog'
 * `book_format`: `paper`, `hard` or `ebook`
-* `favorite`: `true/false`
 * ...and many more
 
 e.g:
 
-`GET localhost:3000/books?term=ruby&publisher=pragprog&favorite=true&book_format=ebook`
+`GET localhost:3000/books?term=ruby&publisher=pragprog&book_format=ebook`
 
 So you decide to use Service object (or Procedure Module):
 
@@ -150,7 +149,7 @@ end
 
 
 Similar to previous example, tell me from this code what the `BookSearcher`
-is searching for ? You don't know do you ? Why because that
+is searching for ? You don't know do you ? Why ? Because that
 responsibility is passed to Searcher. Let's investigate that.
 
 
@@ -184,7 +183,7 @@ module BookSearcher
 
   def find(params)
     publisher_keyword = params[:publisher]
-    # ...it dosn't really matter what it does with `publisher_keyword`
+    # ...it doesn't really matter what it does with `publisher_keyword`
   end
 end
 ```
@@ -283,9 +282,9 @@ define what you will pass to rest of your code layers.
 
 By being more explicit we clearly distinguish
 our controller to be a layer that holds responsibility of translating
-values from `params`, forwarding values to appropriate place in our Service object / Procedure module
+values from `params` forwarding values to appropriate place in our Service object / Procedure module.
 
-### Service example
+### Service Object example
 
 Let say there is a good reason to satisfy `BookSearcher` to be a Service Object.
 One scenario could be that you created platform where multiple companies
@@ -322,11 +321,11 @@ what the search logic will be from here.
 # app/services/book_searcher.rb
 class BookSearcher
   attr_reader :store
-  attr_accessor :term:, :publisher_keyword
+  attr_accessor :term, :publisher_keyword
   attr_writer :book_format
 
   def initialize(store)
-    @store
+    @store = store
   end
 
   def find
