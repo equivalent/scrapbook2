@@ -22,3 +22,5 @@ Work.__elasticsearch__.search(es_query).results.total
 
 ```
 
+
+> Special thx to my collegue [Charlie](https://github.com/orgs/Pobble/people/charlietarr1) who done the research around this
