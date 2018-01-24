@@ -19,9 +19,11 @@ Now to obtain  this "connection string" you need to use `az` cli.
    and login `az login`
 
 
-Given that your `resource group` is named `my-project`
+```
+Given that your "resource group" is named `my-project`
 And  your cosmos db account has name `my-awesome-cosmos`
 Then run this:
+```
 
 
 ```bash
@@ -29,7 +31,7 @@ az cosmosdb list-connection-strings --resource-group my-project --name
 my-awesome-cosmos
 ```
 
-> if you have no idea what those values are run `az cosmosdb list` and search for `name` (name of cosmos DB) and  `resourceGroup'
+> if you have no idea what those values are run `az cosmosdb list` and search for `name` (name of cosmos DB) and  `resourceGroup`
 
 Now you will have string like this: 
 
@@ -89,5 +91,7 @@ have ruby solution I'll include it in this note
 * https://github.com/devigned/level1/blob/master/api-ruby/config/mongoid.yml
 * https://github.com/devigned/level1/issues/1
 
+Discussion on this Article/Note:
 
-
+* [Ruby Flow Discussion](http://www.rubyflow.com/p/pvwg5q-til-connect-ruby-on-rails-app-to-azure-cosmos-db-with-mongoid-gem)
+* [Reddit Discussion](https://www.reddit.com/r/ruby/comments/7sowe2/til_how_to_connect_rails_app_to_azure_cosmosdb/)
