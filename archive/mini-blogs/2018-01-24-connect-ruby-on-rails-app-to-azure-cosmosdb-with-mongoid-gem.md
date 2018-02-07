@@ -27,8 +27,7 @@ Then run this:
 
 
 ```bash
-az cosmosdb list-connection-strings --resource-group my-project --name
-my-awesome-cosmos
+az cosmosdb list-connection-strings --resource-group my-project --name my-awesome-cosmos
 ```
 
 > if you have no idea what those values are run `az cosmosdb list` and search for `name` (name of cosmos DB) and  `resourceGroup`
