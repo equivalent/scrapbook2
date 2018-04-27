@@ -17,6 +17,14 @@ az group create -n support -l westeurope
 az aks create -g support -n support-app -c 1 # -l westeurope
 az aks list -o table
 az aks get-credentials -n support-app -g support
+
+az aks browse -n support-app -g support  # kubernetes UI
+
+az aks scale -n support-app -g support -c 3  # scale to 3 nodes
+az aks get-versions -n support-app -g support  -o table  # agent version
+
+
+kubectl get pods --all-namespaces
 ```
 
 
