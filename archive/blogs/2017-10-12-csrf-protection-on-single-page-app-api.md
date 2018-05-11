@@ -2,6 +2,11 @@
 
 ![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/csrf-protection-like-hell-it-is.jpg)
 
+
+> **Note !!!** This is an old article. Please find the new article
+> [here](https://blog.eq8.eu/article/csrf-protection-on-single-page-app-api.html): 
+> <https://blog.eq8.eu/article/csrf-protection-on-single-page-app-api.html> 
+
 Let's first define our terms:
 
 We are talking about Single Page apps as applications that will render
