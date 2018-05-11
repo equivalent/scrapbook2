@@ -1,5 +1,9 @@
 # CSRF protection on single page app API
 
+> **Note !!!** This is an old article. Please find the new article
+> [here](https://blog.eq8.eu/article/csrf-protection-on-single-page-app-api.html): 
+> <https://blog.eq8.eu/article/csrf-protection-on-single-page-app-api.html> 
+
 ![](https://raw.githubusercontent.com/equivalent/scrapbook2/master/assets/images/2017/csrf-protection-like-hell-it-is.jpg)
 
 
@@ -131,3 +135,7 @@ requests. So if you by any chance have destructive action like `GET http://www.w
 >  prevention on them is pointless unless you are using Http verbs
 >  incorrectly (Thx [Reddit user horses_arent_friends](https://www.reddit.com/r/elixir/comments/75yqdm/csrf_protection_on_single_page_app_api/doa1gjg/) for remminding me that this would be good idea to explain)
 
+
+> **Note !!!** This is an old article. Please find the new article
+> [here](https://blog.eq8.eu/article/csrf-protection-on-single-page-app-api.html): 
+> <https://blog.eq8.eu/article/csrf-protection-on-single-page-app-api.html> 
