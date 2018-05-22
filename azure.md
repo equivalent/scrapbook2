@@ -1,6 +1,27 @@
 
 `--validate` for dry-run 
 
+
+## webapp (Appservices)
+
+
+```
+az webapp list -o table
+
+
+# add ENV variable
+
+az webapp config appsettings list -g myResourceGroup -n <app_name>  -o table
+az webapp config appsettings set --resource-group myResourceGroup --name <app_name> --settings WEBSITES_PORT=8000
+
+# deploy image
+
+az webapp config container set --name <app_name> --resource-group myResourceGroup --docker-registry-server-user <docker-id> --docker-registry-server-password <password>
+
+az webapp config container set --name <app_name> --resource-group myResourceGroup --docker-custom-image-name <azure-container-registry-name>.azurecr.io/mydockerimage --docker-registry-server-url https://<azure-container-registry-name>.azurecr.io --docker-registry-server-user <registry-username> --docker-registry-server-password <password>
+
+```
+
 ## ACS 
 
 ```
