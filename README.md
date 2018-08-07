@@ -114,6 +114,12 @@ returns `nil` and `"y"`, `"n"` will give you deprication warning
 
 https://gist.github.com/equivalent/3825916
 
+In rails 5.x you need to do 
+
+```ruby
+ActiveModel::Type::Boolean.new.cast('true')
+```
+
 ### Robots.txt examlpe
 
 * http://tindeck.com/robots.txt
