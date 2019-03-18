@@ -489,3 +489,187 @@ services:
       #- accounts_box
       #- accounts_db
       #- accounts_webserver
+```
+
+
+Example 2
+
+```
+---
+version: '2'
+services:
+  db_prod:
+    image: postgres:9.4.5
+    environment:
+      POSTGRES_PASSWORD: candy
+      POSTGRES_USER: candy
+      POSTGRES_DB: development_candy
+    volumes:
+      - ./tmp/postgres/:/tmp/
+      - ./docker/postgres/drop_db_and_restor_dump.sh:/tmp/drop_db_and_restor_dump.sh
+  redis_prod:
+    image: redis:2.8
+  box:
+    image: busybox
+    volumes:
+      - /var/www
+      - /shared/logs
+      - /shared/sockets
+      - /shared/pids
+      - /shared/certs
+      - ./log/:/shared/logs/
+      - ./db/development_certs/:/shared/certs/
+  nginx:
+    image: quay.io/candy/nginx.candy.com:live-20161117_asset_proxy
+    #image: nginx.candy.com:test
+    #build: &webserver_build_vars
+      #context: /home/tomi/git/candy/nginx.candy.com
+      #dockerfile: Dockerfile
+    depends_on:
+      - box
+    volumes_from:
+      - box
+    ports:
+      - "80:80"
+      - "443:443"
+  elasticsearch:
+    image: elasticsearch:2.3.2
+  request_repeater:
+    image: 'equivalent/request_repeater:0.1'
+    links:
+      - nginx:development.candy
+    environment:
+      URLS: '{"urls": [{"url":"https://development.candy/some-endpoint", "sleep":1700},{"url":"https://development.candy/maintenance","sleep":7200}]}'
+  candy_webserver:
+    #image: quay.io/candy/candycom:live-xxxxxxx_xxxx
+    image: candycom_localprod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment: &webserver_enviroment_vars
+      LOCALLY_RUNNED_DOCKER: 'true'
+      RAILS_ENV: production
+      RAILS_LOG_LEVEL: info
+      CONTAINER_ROLE: 'webserver'
+      MAX_THREADS: 2    # watch out so you don't run out of DB connection pool
+      WEB_CONCURRENCY: 1 # should match your CPU
+      SECRET_KEY_BASE: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+      DB_ENV_POSTGRES_PASSWORD: candy
+      DB_ENV_POSTGRES_USERNAME: candy
+      DB_ENV_POSTGRES_DATABASE: development_candy
+      DB_PORT_5432_TCP_ADDR: db_prod
+      DB_PORT_5432_TCP_PORT: 5432
+
+      REDIS_DB_ID: 0 # id of redis db
+      REDIS_CACHE_PORT_6379_TCP_ADDR: redis
+      REDIS_CACHE_PORT_6379_TCP_PORT: 6379
+      REDIS_PORT_6379_TCP_ADDR: redis
+      REDIS_PORT_6379_TCP_PORT: 6379
+      ELASTICSEARCH_PORT_9200_TCP_ADDR: elasticsearch
+
+      #OTHER_MICROSERVICE_API_URL: 'http://other_microservice_webserver:3001/v1/'
+
+    volumes_from:
+      - box
+    links: &webserver_links
+      - db_prod:db
+      - redis_prod:redis
+      #- other_microservice_webserver:other_microservice_webserver
+    depends_on:
+      - box
+      - nginx
+      - db_prod
+      - elasticsearch
+  candy_background_job: &BACKGROUND_JOB_CONF
+    #image: quay.io/candy/candycom:live-xxxxxxx_xxxx
+    image: candycom_localprod
+    environment:
+      <<: *webserver_enviroment_vars
+      CONTAINER_ROLE: 'background_job'
+      MAX_THREADS: 5    # watch out so you don't run out of DB connection pool
+      WEB_CONCURRENCY: 1 # should match your CPU
+      SECRET_KEY_BASE: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    volumes_from:
+      - box
+    links: *webserver_links
+    depends_on:
+      - box
+      - nginx
+      - db_prod
+      - elasticsearch
+      - candy_webserver
+  #candy_background_job_2:
+    #<<: *BACKGROUND_JOB_CONF
+
+
+  #other_microservice_db:
+    #image: postgres:9.4.5
+    #environment:
+      #POSTGRES_PASSWORD: candy
+      #POSTGRES_USER: candy
+      #POSTGRES_DB: candy_other_microservice_development
+  #other_microservice_redis:
+    #image: redis:2.8
+  #other_microservice_box:
+    #image: busybox
+    #volumes:
+      #- /shared/logs
+      #- /shared/sockets
+      #- /shared/pids
+      #- ./log/:/shared/logs/
+  #other_microservice_webserver:
+    #ports:
+      #- "3001:3001"
+    #build: &other_microservice_webserver_build_vars
+      #context: ../candy_other_microservice
+      #dockerfile: ./Dockerfile-development
+    #image: candycom_other_microservice_development
+    #env_file:
+      #- ../candy_other_microservice/.env
+    #environment: &other_microservice_webserver_enviroment_vars
+      #CONTAINER_ROLE: 'webserver'
+      #RAILS_ENV: development
+      #RACK_ENV: development
+      #PORT: 3001
+      #DB_POOL: 8
+      #RAILS_MAX_THREADS: 2    # watch out so you don't run out of DB connection pool
+      #SIDEKIQ_MAX_THREADS: 5
+      #WEB_CONCURRENCY: 1 # should match your CPU
+
+      #DATABASE_PASSWORD: candy
+      #DATABASE_USERNAME: candy
+      #DATABASE_DATABASE: candy_other_microservice_development
+      #DATABASE_HOST: db
+
+      #REDISTOGO_URL: 'redis://redis:6379'
+
+    #volumes_from:
+      #- other_microservice_box
+    #volumes:
+      #- ../candy_other_microservice:/app
+    #links: &other_microservice_webserver_links
+      #- other_microservice_db:db
+      #- other_microservice_redis:redis
+    #depends_on:
+      #- other_microservice_box
+      #- other_microservice_db
+  #other_microservice_background_job:
+    ##build:
+      ##<<: *other_microservice_webserver_build_vars
+    #image: candycom_other_microservice_development
+    #env_file:
+      #- ../candy_other_microservice/.env
+    #environment:
+      #<<: *other_microservice_webserver_enviroment_vars
+      #CONTAINER_ROLE: 'background_job'
+    #volumes_from:
+      #- other_microservice_box
+    #volumes:
+      #- ../candy_other_microservice/:/app
+    #links: *other_microservice_webserver_links
+    #depends_on:
+      #- other_microservice_box
+      #- other_microservice_db
+      #- other_microservice_webserver
+```
