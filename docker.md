@@ -344,6 +344,10 @@ services:
       - "443:443"
   elasticsearch:
     image: elasticsearch:2.3.2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms312m -Xmx312m"
   request_repeater:
     image: 'candy/request_repeater:0.1'
     links:
@@ -533,7 +537,11 @@ services:
       - "80:80"
       - "443:443"
   elasticsearch:
-    image: elasticsearch:2.3.2
+    image: elasticsearch:5.3
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms312m -Xmx312m"
   request_repeater:
     image: 'equivalent/request_repeater:0.1'
     links:
