@@ -1,4 +1,51 @@
 
+### companies controloler
+
+
+```js
+# a/j/c/company_controller.js
+
+import { Controller } from 'stimulus'
+export default class extends Controller {
+  static targets = [ "phoneSubmitBtn", "phoneInput" ]
+
+  initialize() {
+    this.hidePhoneSubmitBtnIfValueSame();
+  }
+
+  phoneSubmit(event) {
+    event.preventDefault();
+    var res = $.ajax({
+      url: this.data.get('update-company-path'),
+      data: { company: {phone: this.phoneInputTarget.value } },
+      type: 'PUT',
+    })
+  }
+
+  phoneBlured(event) {
+    this.phoneInputTarget.value = $.trim(this.phoneInputTarget.value);
+  }
+
+  phoneInputed(event) {
+    this.hidePhoneSubmitBtnIfValueSame();
+  }
+
+  //..........
+
+
+  hidePhoneSubmitBtnIfValueSame(){
+    console.log(this.data.get('original-phone'));
+    if(this.phoneInputTarget.value == this.data.get('original-phone')) {
+      //$(this.phoneSubmitBtnTarget).hide();
+      $(this.phoneSubmitBtnTarget).css("visibility", "hidden");
+    } else {
+      //$(this.phoneSubmitBtnTarget).show();
+      $(this.phoneSubmitBtnTarget).css("visibility", "visible");
+    }
+  }
+}
+```
+
 ### helloz example
 
 https://www.youtube.com/watch?v=GEJWvMYU5_8
