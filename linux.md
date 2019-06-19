@@ -13,6 +13,17 @@ old stuff can be found on
 nohup command &
 ```
 
+### Flush dns
+
+```
+sudo systemd-resolve --flush-caches
+sudo systemd-resolve --statistics
+```
+
+https://vitux.com/how-to-flush-the-dns-cache-on-ubuntu/
+
+
+
 
 ## Espeaker
 
