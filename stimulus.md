@@ -1,3 +1,58 @@
+### phone controller
+
+```
+import { Controller } from 'stimulus'
+export default class extends Controller {
+  static targets = [ "submitBtn", "input" ]
+
+  initialize() {
+    this.hidePhoneSubmitBtnIfValueSame();
+  }
+
+  submited(event) {
+    event.preventDefault();
+
+    var res = $.ajax({
+      url: this.data.get('path'),
+      data: { company: {phone: this.inputTarget.value } },
+      type: 'PUT',
+    })
+  }
+
+  blured(event) {
+    this.inputTarget.value = $.trim(this.inputTarget.value);
+  }
+
+  inputed(event) {
+    this.hidePhoneSubmitBtnIfValueSame();
+  }
+
+  hidePhoneSubmitBtnIfValueSame(){
+    if(this.inputTarget.value == this.data.get('original')) {
+      //$(this.phoneSubmitBtnTarget).hide();
+      $(this.submitBtnTarget).css("visibility", "hidden");
+    } else {
+      //$(this.phoneSubmitBtnTarget).show();
+      $(this.submitBtnTarget).css("visibility", "visible");
+    }
+  }
+}
+```
+
+```slim
+#company_phone data-controller="company-phone" data-company-phone-original="#{company.phone}" data-company-phone-path="#{company_path(company)}"
+  .input-field.inline
+    = label_tag :phone, 'Phone'
+    = text_field_tag :phone, company.phone,
+      data: { target: 'company-phone.input', action: "input->company-phone#inputed blur->company-phone#blured" },
+      placeholder: '+421 908 012 456'
+  a.btn-floating.pulse href="#!" data-action="click->company-phone#submited" data-target="company-phone.submitBtn"
+    i class="material-icons prefix" done
+```
+
+
+
+
 
 ### companies controloler
 
