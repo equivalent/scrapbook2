@@ -1,5 +1,7 @@
 # Rails ActiveRecord Relation (Arel), composition and Query Objects
 
+> More up to date article can be found at https://blog.eq8.eu/article/rails-association-relation-arel-magic.html
+
 Given `User` `has_many :articles` in Ruby on Rails you can write something
 like:
 
