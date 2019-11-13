@@ -1,3 +1,107 @@
+
+
+# raspbery PI photoframe
+
+> this is unfinished article for blog.eq8.eu. It's not completed but still many usefull information
+
+
+Install `feh`
+
+`sudo apt install feh`
+`sudo apt install xscreensaver`
+
+
+### photoframe after boot (autostart)
+
+create file in `/home/pi/.config/lxsession/LXDE-pi/autostart`
+
+with this content:
+
+```bash
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+@xset s off
+@xset -dpms
+@xset s noblank
+@feh -Y -x -q -D 120 -B black -F -Z -z -r /home/pi/Pictures/
+```
+
+
+### photo frame - just a script (manual)
+
+
+```bash
+#!/bin/bash
+xset s off
+xset -dpms
+xset s noblank
+feh -Y -x -q -D 120 -B black -F -Z -z -r /home/pi/Pictures/
+```
+
+created : 2019-11-13
+
+#  raspbery PI motion camera
+
+> this is unfinished article for blog.eq8.eu. It's not completed but still many usefull information
+
+
+You will just need RaspberiPI (or any computer / laptop) and Webcam  and
+power source.
+
+> so CCTV like setup
+
+I'll assume you use Linux as your operating system (no windows in this
+article, sorry) and we will use program `motion` @todo
+
+
+```ruby
+sudo vim /etc/motion/motion.conf
+
+target_dir
+framerate
+process_id_file
+logfile
+daemon on
+
+```
+
+```
+motion
+#  .... Logging to file /home/pi/.motion/motion.log
+```
+
+
+https://www.raspberrypi.org/documentation/remote-access/ssh/
+
+
+
+
+```
+crontab -e
+@reboot motion
+```
+
+
+
+
+crap
+
+```
+if pgrep -x "motion" > /dev/null
+then
+    echo "Running"
+else
+    echo "Stopped"
+    motion
+fi
+```
+
+
+
+https://gist.github.com/equivalent/27792e89df56e15cd0bb3db400893ee8
+
+
+
 # rasberian camera
 
 to enaxle camera `sudo raspi-conig` and enable camera. Finish & reboot
