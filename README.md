@@ -7,6 +7,10 @@ Scrapbook2
 Pure git/github version of my scrapbook on Ruby on Rails, web-development, linux system configuration.
 
 
+![](https://i.stack.imgur.com/gJYJv.gif)
+
+> source https://stackoverflow.com/questions/3087975/make-the-cursor-a-hand-when-a-user-hovers-over-a-list-item
+
     ##########################################################################
     ##                                                                      ##
     ##   Check individual .md files above for more information on topics    ##
