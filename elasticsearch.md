@@ -1,6 +1,18 @@
 * how to install cluster    https://www.elastic.co/blog/running-elasticsearch-on-aws
 * benchmarking   https://www.elastic.co/blog/announcing-rally-benchmarking-for-elasticsearch
 
+
+Total number of items  in ES :
+
+```
+Article.search("cats", search_type: 'count').results.total
+
+Elasticsearch::Model.client.count(index: 'your_index_name_here')['count']
+```
+
+-------------------------
+
+
 ```ruby
 # match all  - return all
 
