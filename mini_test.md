@@ -72,3 +72,35 @@ stolen from: http://mattsears.com/articles/2011/12/10/minitest-quick-reference
     proc {Integer.fizzbuzz}.must_raise(NoMethodError)
    
 source http://cczona.com/blog/2011/10/asserting-exceptions-with-minitest/
+
+
+# Rails minitest
+
+<https://guides.rubyonrails.org/testing.html>
+
+### assert_chages
+
+<https://api.rubyonrails.org/v6.0.1/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_changes>
+
+```ruby
+assert_changes -> { Status.all_good? }, 'Expected the status to be bad' do
+  post :create, params: { status: { incident: true } }
+end
+```
+
+### assert_select
+
+<https://github.com/rails/rails-dom-testing/blob/master/lib/rails/dom/testing/assertions/selector_assertions.rb>
+
+
+```ruby
+assert_select "h1", "Welcome#index"
+
+
+assert_select "ol" do |elements|
+  elements.each do |element|
+    assert_select element, "li", 4
+  end
+end
+
+
