@@ -10,6 +10,8 @@ Article.search("cats", search_type: 'count').results.total
 Elasticsearch::Model.client.count(index: 'your_index_name_here')['count']
 ```
 
+<https://stackoverflow.com/questions/7969739/is-there-a-way-to-count-all-elements-of-an-index-in-elasticsearch-or-tire>
+
 -------------------------
 
 
