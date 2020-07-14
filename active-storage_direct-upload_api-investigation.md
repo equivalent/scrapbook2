@@ -45,7 +45,12 @@ Post /v3/direct_uploadads
 FE -> Rails server (returns presigned url)
 ```
 
-> note `/v3/direct_uploadads` is custom controller described bellow
+
+curl -X POST -H "Content-Type: application/json" -d @./tmp/params.json http://localhost:3000/v3/direct_uploads > /tmp/output
+
+> use irb to get the presigned url `require 'json'; puts JSON.parse(File.read '/tmp/output')['direct_upload']['url']`
+
+> note `/v3/direct_uploads` is custom controller described bellow
 
 * JSON request with params:
   * content type
@@ -57,7 +62,7 @@ FE -> Rails server (returns presigned url)
 example:
 
 ```json
-{ "blob": { "filename": "test.jpg", "byte_size": 618485, "checksum": "UKDEkLYULgzFbaQjXk7M8A==", "content_type": "image/jpg" } }
+{ "blob": { "filename": "jesen.jpg", "byte_size": 618485, "checksum": "UKDEkLYULgzFbaQjXk7M8A==", "content_type": "image/jpg" } }
 ```
  
 * response is JSON containing  pre-signed URL which then FE can use to
@@ -81,8 +86,22 @@ FE -> presigned url to Azure blob
 e.g.:
 
 ```
-curl -XPOST https://tomasapidevelopment.blob.core.windows.net/myproject-api-tomas/xxxxxxx -d @./tmp/jesen.jpg  -H "Content-Type: image/jpg" -H "Content-MD5: UKDEkLYULgzFbaQjXk7M8A==" -H "Content-Length: 618485" -H "x-ms-blob-type: BlockBlob"
+curl -XPUT  --data-binary '@/home/t/git/my-app/my-app-api/tmp/jesen.jpg' -H "x-ms-blob-type: BlockBlob" "https://tomasapidevelopment.blob.core.windows.net/my-app-api-tomas/we3nch48ttnpo8cc66xh775c55wo?sp=rw&sv=2016-05-31&se=2020-07-14T06%3A43%3A22Z&sr=b&sig=gdr66DrU3E%2BhEfE%2BkQ6LLMACt3mcjKd%2FH%2BuT2dYLBgc%3D"
 ```
+
+
+Important `curl` Note: 
+
+curl `-F` will **not work**
+
+`curl -XPUT  -F 'data=@/home/t/git/my-app/my-app-api/tmp/jesen.jpg' -H "x-ms-blob-type: BlockBlob" "https://tomasapidevelopment.blob.core.windows.net/my-app-api-tomas/xxxx" # will not work` 
+
+
+curl `-d` will **not work**
+
+`curl -XPUT -d @/home/t/git/my-app/my-app-api/tmp/jesen.jpg -H "x-ms-blob-type: BlockBlob" "https://tomasapidevelopment.blob.core.windows.net/my-app-api-tomas/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # will not work`
+
+ 
 
 ## custom controlloller
 
@@ -167,7 +186,6 @@ and the JS files are located in
 # Notes without any order
 
 
-curl -X POST -H "Content-Type: application/json" -d @./tmp/params.json http://localhost:3000/v3/direct_uploads
 
 * https://medium.com/@liroy/active-storage-file-upload-behind-the-scenes-59a660c43781
 * https://docs.fineuploader.com/branch/master/features/azure.html
@@ -197,3 +215,6 @@ curl -XPOST https://tomasapidevelopment.blob.core.windows.net/myproject-api-toma
 ```json
 { "blob": { "filename": "jesen.jpg", "content_type": "image/jpg", "byte_size": 618485, "checksum": "UKDEkLYULgzFbaQjXk7M8A==", "metadata": {"foo": "bar"} } }
 ```
+
+
+
