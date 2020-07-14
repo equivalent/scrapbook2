@@ -207,19 +207,24 @@ In JS it
 
 https://github.com/rails/rails/blob/11781d063202b710f8f33f9e823ff22aa2a176ae/activestorage/app/assets/javascripts/activestorage.js#L447
 
+## JS part (e.g. React) 
 
-###  JS articles
+no notes here. I'm not a SPA  developer. If we discover something usefull I'll update
+the docs.
 
-Lot of JS investigation can be find in article 
+Best I can offer is some JS Articles that may point you in right
+direction:
+
 
 * https://medium.com/@liroy/active-storage-file-upload-behind-the-scenes-59a660c43781
 
-and the JS files are located in
+and the native Rails JS files are located in
 
 * https://github.com/rails/rails/blob/11781d063202b710f8f33f9e823ff22aa2a176ae/activestorage/app/assets/javascripts/activestorage.js
 
 
-
+I'm pretty sure React / Angular developers can figure out how to do checksum, bytesize and POST
+and PUT request
 
 ========================================
 
