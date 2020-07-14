@@ -1,20 +1,21 @@
 # ActiveStorage Direct Upload to Azure Blob  - Ruby or Rails JSON API investigation
 
-This document is investigation on how to do direct upload to Ruby on Rails 6 (further referenced as RoR) as JSON API only via
-ActiveStorage when configured on Azure Blob
+This document is an investigation  document on how in  [Ruby on Rails](https://rubyonrails.org/) 6.0.3 as a [JSON API](https://guides.rubyonrails.org/api_app.html) do [ActiveStorage](https://edgeguides.rubyonrails.org/active_storage_overview.html) direct upload via
+when configured to  [Azure storage (Azure Blob)](https://docs.microsoft.com/en-us/rest/api/storageservices/Put-Blob?redirectedfrom=MSDN)
 
 This is just my personal investigation with helpful notes for my scenario, and not an article with an end
-solution.
+solution. If you find it helpful, great ! I'm happy. If you find an error there is no
+comment section so pls PR raise Github issue or email me `equivalent@eq8.eu`
 
-my Scenario  is that:
+By Scenario  is that:
 
-* BE is Ruby on Rails 6.0.3 application that works as JSON API only
+* BE is Ruby on Rails 6.0.3 application that works as JSON API only (`rails new xxx --api`)
 * FE is independent React JS app maintained by separte FE team
 * BE is uploading files via ActiveStorage to Azure Blobs 
-* Sofar we've been uploading images/files via ActiveStorage via standard
+* So far we've been uploading images/files via ActiveStorage via standard
   requests to RoR server and we want to refactor it to Direct cloud Uploads
 
-If this is not your case and you are looking for Active Storage Direct Upload  with native RoR forms
+If this is not your case and you are looking for Active Storage Direct Upload  with native Ruby on Rails forms
 this document will not be helpful for you and I recommend you to check
 the official [documentation for Active Storage Direct
 Uploads](https://edgeguides.rubyonrails.org/active_storage_overview.html#direct-uploads)
@@ -124,6 +125,15 @@ curl `-d` will **not work**
 `curl -XPUT -d @/home/t/git/my-app/my-app-api/tmp/jesen.jpg -H "x-ms-blob-type: BlockBlob" "https://tomasapidevelopment.blob.core.windows.net/my-app-api-tomas/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # will not work`
 
 
+#### step 3 (optional) - test it it works - fetch file
+
+in `rails c`:
+
+```ruby
+app.url_for(ActiveStorage::Blob.last)
+```
+
+Url of the image processed by Active Storage e.g. :`http://localhost:3000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--040a4233cfc8b8698d3224789f48c4997f5879de/jesen.jpg`
 
 ### custom controlloller for /v3/direct_uploads
 
