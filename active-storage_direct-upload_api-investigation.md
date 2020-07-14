@@ -5,7 +5,7 @@ when configured to  [Azure storage (Azure Blob)](https://docs.microsoft.com/en-u
 
 This is just my personal investigation with helpful notes for my scenario, and not an article with an end
 solution. If you find it helpful, great ! I'm happy. If you find an error there is no
-comment section so pls PR raise Github issue or email me `equivalent@eq8.eu`
+comment section so pls PR raise Github issue or email me `equivalent@eq8.eu` or reply to [Reddit post](https://www.reddit.com/r/ruby/comments/hqxsk7/notes_only_activestorage_direct_upload_to_azure/)
 
 By Scenario  is that:
 
@@ -56,7 +56,7 @@ So it can be translated to
 post /v3/direct_uploadads
 ```
 
-> note `/v3/direct_uploads` is custom controller described bellow.
+> note `/v3/direct_uploads` is custom controller [described bellow](https://github.com/equivalent/scrapbook2/blob/master/active-storage_direct-upload_api-investigation.md#custom-controlloller-for-v3direct_uploads).
 
 
 * JSON request with params:
