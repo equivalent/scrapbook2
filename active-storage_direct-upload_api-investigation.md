@@ -232,9 +232,7 @@ provide content lenght header.
 
 
 
-========================================
-
-# Notes without any order
+### other helpfull links
 
 
 
@@ -245,21 +243,4 @@ provide content lenght header.
 * http://www.matrichard.com/post/so-you-want-to-upload-in-azure-storage-from-a-browser-do-you--dont-forget-cors
 * https://stackoverflow.com/questions/28894466/how-can-i-set-cors-in-azure-blob-storage-in-portal/41351674#41351674
 * https://github.com/rails/rails/blob/badba9d2fa90ae96a5d8428b0a739e18b1581607/activestorage/app/models/active_storage/blob.rb#L117
-
-
-```json
-{"id":1,"key":"vpti1ws7d7bom8phb8rudtb2ohtv","filename":"test.jpg","content_type":null,"metadata":{},"byte_size":618485,"checksum":"UKDEkLYULgzFbaQjXk7M8A==","created_at":"2020-07-10T10:25:38.244Z","signed_id":"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10ca83a6ec6ede925d8a6b1829da43d07bcaf071","direct_upload":{"url":"https://tomasapidevelopment.blob.core.windows.net/myproject-api-tomas/vpti1ws7d7bom8phb8rudtb2ohtv?sp=rw\u0026sv=2016-05-31\u0026se=2020-07-10T10%3A30%3A38Z\u0026sr=b\u0026sig=9MoHQZuMl9kLb0s%2BRY64J%2BEIe3GmrjLNhcY6SPakEhE%3D","headers":{"Content-Type":null,"Content-MD5":"UKDEkLYULgzFbaQjXk7M8A==","x-ms-blob-type":"BlockBlob"}}}
-```
-
-
-
-
-```
-curl -XPOST https://tomasapidevelopment.blob.core.windows.net/myproject-api-tomas/vpti1ws7d7bom8phb8rudtb2ohtv?sp=rw\u0026sv=2016-05-31\u0026se=2020-07-10T10%3A30%3A38Z\u0026sr=b\u0026sig=9MoHQZuMl9kLb0s%2BRY64J%2BEIe3GmrjLNhcY6SPakEhE%3D -d @./tmp/jesen.jpg  -H "Content-Type: image/jpg" -H "Content-MD5: UKDEkLYULgzFbaQjXk7M8A==" -H "Content-Length: 618485" -H "x-ms-blob-type: BlockBlob"j
-```
-
-
-
-
-
 
