@@ -224,7 +224,13 @@ and the native Rails JS files are located in
 
 
 I'm pretty sure React / Angular developers can figure out how to do checksum, bytesize and POST
-and PUT request
+and PUT request.
+
+ Let me just highlight one important thing: when you upload file larger
+than certain ammount to Azure Blob you need to split it into chunks and
+provide content lenght header.
+
+
 
 ========================================
 
