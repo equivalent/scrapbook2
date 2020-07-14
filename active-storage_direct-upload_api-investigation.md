@@ -36,21 +36,27 @@ FE -> Rails server -> Azure blob
 * request body is the file
 * resp 200
 
-### Directu upload
+### Direct upload
 
 with direct  upload it is 2 requests
 
+1. request to Rails app to get the presigned url for uploading file
+   (plus it will write a record to DB `ActiveStorage::Blob`)
+2. PUT request to upload file to the cloud (Azure Blob)
+
+So it can be translated to 
+
+1. `FE -> Rails server (returns presigned url)`
+2. `FE -> upload file to presigned url of Azure Blob' (returns empty body)`
+
+#### 1. Request to fetch presigned url
+
 ```
-Post /v3/direct_uploadads 
-FE -> Rails server (returns presigned url)
+post /v3/direct_uploadads
 ```
 
+> note `/v3/direct_uploads` is custom controller described bellow.
 
-curl -X POST -H "Content-Type: application/json" -d @./tmp/params.json http://localhost:3000/v3/direct_uploads > /tmp/output
-
-> use irb to get the presigned url `require 'json'; puts JSON.parse(File.read '/tmp/output')['direct_upload']['url']`
-
-> note `/v3/direct_uploads` is custom controller described bellow
 
 * JSON request with params:
   * content type
@@ -64,7 +70,7 @@ example:
 ```json
 { "blob": { "filename": "jesen.jpg", "byte_size": 618485, "checksum": "UKDEkLYULgzFbaQjXk7M8A==", "content_type": "image/jpg" } }
 ```
- 
+
 * response is JSON containing  pre-signed URL which then FE can use to
   Direct Upload to cloud (azure storage blob)
 
@@ -74,16 +80,32 @@ example:
 {"id":1,"key":"vpti1ws7d7bom8phb8rudtb2ohtv","filename":"test.jpg","content_type":"image/jpg","metadata":{},"byte_size":618485,"checksum":"UKDEkLYULgzFbaQjXk7M8A==","created_at":"2020-07-10T10:25:38.244Z","signed_id":"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--10ca83a6ec6ede925d8a6b1829da43d07bcaf071","direct_upload":{"url":"https://tomasapidevelopment.blob.core.windows.net/myproject-api-tomas/vpti1ws7d7bom8phb8rudtb2ohtv?sp=rw\u0026sv=2016-05-31\u0026se=2020-07-10T10%3A30%3A38Z\u0026sr=b\u0026sig=9MoHQZuMl9kLb0s%2BRY64J%2BEIe3GmrjLNhcY6SPakEhE%3D","headers":{"Content-Type":null,"Content-MD5":"UKDEkLYULgzFbaQjXk7M8A==","x-ms-blob-type":"BlockBlob"}}}
 ```
 
-2nd  request is invoked on Azure blob
+##### curl example
 
 ```
-FE -> presigned url to Azure blob
+curl -X POST -H "Content-Type: application/json" -d @/tmp/params.json http://localhost:3000/v3/direct_uploads > /tmp/output`
 ```
 
 
-* html form multipart PUT request
+`/tmp/params.json` example file:
 
-e.g.:
+
+```json
+{ "blob": { "filename": "jesen.jpg", "content_type": "image/jpg", "byte_size": 618485, "checksum": "UKDEkLYULgzFbaQjXk7M8A==" } }
+```
+
+> NOTE: Response JSON may contain UTF8 characters like `\u0026sr`. I use `irb` to get the presigned url with: `require 'json'; puts JSON.parse(File.read '/tmp/output')['direct_upload']['url']`
+
+
+#### 2. upload file to Azure Blob via direct presigned url
+
+* this is html form multipart PUT request
+* link has an expiry
+* it's a `PUT` not `POST` ([why?](https://blog.eq8.eu/article/put-vs-patch.html))
+* for size limit or restrictions RTFM https://docs.microsoft.com/en-us/rest/api/storageservices/Put-Blob?redirectedfrom=MSDN
+
+
+##### curl example
 
 ```
 curl -XPUT  --data-binary '@/home/t/git/my-app/my-app-api/tmp/jesen.jpg' -H "x-ms-blob-type: BlockBlob" "https://tomasapidevelopment.blob.core.windows.net/my-app-api-tomas/we3nch48ttnpo8cc66xh775c55wo?sp=rw&sv=2016-05-31&se=2020-07-14T06%3A43%3A22Z&sr=b&sig=gdr66DrU3E%2BhEfE%2BkQ6LLMACt3mcjKd%2FH%2BuT2dYLBgc%3D"
@@ -101,17 +123,20 @@ curl `-d` will **not work**
 
 `curl -XPUT -d @/home/t/git/my-app/my-app-api/tmp/jesen.jpg -H "x-ms-blob-type: BlockBlob" "https://tomasapidevelopment.blob.core.windows.net/my-app-api-tomas/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # will not work`
 
- 
 
-## custom controlloller
+
+### custom controlloller for /v3/direct_uploads
 
 Rails comes with built in endpoint `POST /rails/active_storage/direct_uploads` but I find it that it's better for my scenario to introduce custom controller that inherits from this controller.
-Reason is CSRF protection and custom auth
+Reason is CSRF protection issues and custom auth
 
 
 ```ruby
 class V3::DirectUploadsController <  ActiveStorage::DirectUploadsController
-  skip_before_action :verify_authenticity_token #  this is for my scenario only
+  skip_before_action :verify_authenticity_token #  this is for my scenario only,
+                                                # do this only if you really undertand CSRF protection
+                                                # and when it's ok not to have it
+
   # Some other solutions on intertet recommend;
   # `before_action :protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }`
 
@@ -125,6 +150,7 @@ class V3::DirectUploadsController <  ActiveStorage::DirectUploadsController
   private
 
   def verify_user
+    # .. your code
     # raise 401 or 403 if not authenticated or authorized
   end
 end
@@ -144,7 +170,11 @@ end
 
 ### How checksum is being calculated
 
-In ruby it's calculated like:
+Most anoying bit is that in order to get the presigned URL from Rails
+you need to send request with checksum (and bytesize, mime type,... but
+checksum is most anoying)
+
+In Ruby checksum is calculated like:
 
 ```ruby
 io = File.open(Rails.root.join('tmp/jesen.jpg'), 'r')
@@ -170,7 +200,7 @@ https://github.com/rails/rails/blob/11781d063202b710f8f33f9e823ff22aa2a176ae/act
 
 ###  JS articles
 
-Lot of JS analyses can be find in article 
+Lot of JS investigation can be find in article 
 
 * https://medium.com/@liroy/active-storage-file-upload-behind-the-scenes-59a660c43781
 
@@ -209,12 +239,6 @@ curl -XPOST https://tomasapidevelopment.blob.core.windows.net/myproject-api-toma
 
 
 
-### ./tmp/params.json example
-
-
-```json
-{ "blob": { "filename": "jesen.jpg", "content_type": "image/jpg", "byte_size": 618485, "checksum": "UKDEkLYULgzFbaQjXk7M8A==", "metadata": {"foo": "bar"} } }
-```
 
 
 
