@@ -1,3 +1,20 @@
+
+in order to jQuery trigger RJS format.js response do `dataType: 'script'`
+
+```
+$.ajax({
+  url: $("form#new_picture").attr("action"),
+  type: "POST",
+  data: formdata,
+  processData: false,
+  contentType: false,
+  dataType: 'script'
+});
+```
+
+
+
+
 ### check last 5 checkboxes
 
 ```
