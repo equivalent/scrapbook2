@@ -76,4 +76,59 @@ head_image.variant(combine_options: {
 blob.representation(resize: "100x100").processed.service_url
 ```
 
+### active storage direct upload to AWS S3
+
+
+```ruby
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>Authorization</AllowedHeader>
+</CORSRule>
+<CORSRule>
+    <AllowedOrigin>https://www.sajtka.com</AllowedOrigin>
+    <AllowedMethod>PUT</AllowedMethod>
+    <MaxAgeSeconds>3000</MaxAgeSeconds>
+    <AllowedHeader>*</AllowedHeader>
+</CORSRule>
+</CORSConfiguration>
+
+
+```
+
+
+To allow only certain file types
+([source](https://aws.amazon.com/premiumsupport/knowledge-center/s3-allow-certain-file-types/))
+
+```
+   <AllowedOrigin>https://app.pobble.com</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <ExposeHeader>Accept-Ranges</ExposeHeader>
+    <ExposeHeader>Content-Range</ExposeHeader>
+    <ExposeHeader>Content-Encoding</ExposeHeader>
+    <ExposeHeader>Content-Length</ExposeHeader>
+    <ExposeHeader>Access-Control-Allow-Origin</ExposeHeader>
+    <AllowedHeader>*</AllowedHeader
+```
+
+https://github.com/rails/rails/issues/30723
+
+### sources
+
+* <https://edgeguides.rubyonrails.org/active_storage_overview.html>
+* <https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html>
+
+
+* <https://aws.amazon.com/premiumsupport/knowledge-center/s3-allow-certain-file-types/>
+
+* <https://github.com/equivalent/s3_bunny>
+
+Other articles
+
+* <https://mikerogers.io/2018/11/03/configuring-cors-on-s3-for-activestorage.html>
 
