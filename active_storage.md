@@ -132,3 +132,22 @@ Other articles
 
 * <https://mikerogers.io/2018/11/03/configuring-cors-on-s3-for-activestorage.html>
 
+
+
+### custom validations
+
+
+
+```ruby
+class Medium < ApplicationRecord
+  has_one_attached :image
+
+  validate :main_image_format
+
+  def main_image_format
+    return unless image.attached?
+    return if image.blob.content_type.in?(['image/jpeg', 'image/png'])
+    #image.purge_later
+    errors.add(:image, 'needs to be an PNG or JPEG image')
+  end
+```
