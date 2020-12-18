@@ -1,5 +1,7 @@
 # PostgreSQL
 
+ActiveRecord::Base.connection.execute(sql)
+
 
 ```
 $ sudo -u postgres dropdb development_app
