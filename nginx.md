@@ -4,6 +4,33 @@ configurations](https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+behind+an+NG
 http://unicorn.bogomips.org/examples/nginx.conf
 
 
+
+
+
+# proxy SPA's
+
+Given `https://my-auth-spa.vercel.app` && `https://my-auth-spa.vercel.app/js/some.js`
+When I want it under `http://my-proxy.com/auth` && `http://my-proxy.com/auth/js/some.js`
+
+all you need to do is:
+
+```
+        location /auth {
+           proxy_pass https://my-auth-spa.vercel.app;
+         }
+
+         location /auth/ {
+           proxy_pass https://my-auth-spa.sidkh.vercel.app/;
+         }
+
+```
+
+<https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/>
+
+<https://github.com/equivalent/derren/blob/master/lib/derren.rb#L111>
+
+
+
 # use  NginX  just to list items in dir
 
 
