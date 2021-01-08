@@ -56,3 +56,12 @@ source:
 <https://discuss.hotwire.dev/t/triggering-turbo-frame-with-js/1622/24?u=equivalent>
 
 <https://discuss.hotwire.dev/t/triggering-turbo-frame-with-js/1622/23>
+
+
+## Change browser url history
+
+```
+Turbo.navigator.history.replace({ absoluteURL: '/posts/1/edit' })
+```
+
+<https://discuss.hotwire.dev/t/how-to-change-current-url/1846>
