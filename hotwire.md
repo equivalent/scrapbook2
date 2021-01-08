@@ -16,7 +16,7 @@ class EntryController < ApplicationController
       redirect_to entry_path(@entry)
     else
       # for erros it's ok to reder partial, but you munt return 4xx or 5xx erros
-      render :new, status: :unprocessable_entry
+      render :new, status: :unprocessable_entity
     end
   end
 
