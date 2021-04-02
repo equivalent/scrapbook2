@@ -1,5 +1,14 @@
 # Rails Active Record Scrapbook
 
+
+# DB connection config values
+
+```
+ ActiveRecord::Base.connection_config
+```
+
+... good for debuging what variables to use with pg_dump 
+
 # Solve duplicate entries that should be uniq entries
 
 

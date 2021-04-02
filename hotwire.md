@@ -1,5 +1,8 @@
 
 
+` 'data-turbo-frame' => '_top'`
+
+
 
 ## Form Submitions
 
