@@ -1,3 +1,24 @@
+# Docker Amazon Linux 2 Platform
+
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.migration-al.html
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/docker-multicontainer-migration.html
+
+
+notable changes
+
+* EB with Linux 2 prefers `docker-compose.yml` against
+  `Dockerrun.aws.json`
+* Environment properties - EB will not automatically pass the
+  enviroment variables. you need to map `.env` file with your
+docker-compose.yml
+[source](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.container.console.html#docker-env-cfg.env-variables)
+
+
+
+-------------------------------------
+
+# Notes
+
 * elastic search
 * redis is in elastic cache
 * postgre is in RDS
