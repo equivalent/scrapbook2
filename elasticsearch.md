@@ -2,9 +2,14 @@
 * benchmarking   https://www.elastic.co/blog/announcing-rally-benchmarking-for-elasticsearch
 
 
+
 Total number of items  in ES :
 
 ```
+Elasticsearch::Model.client.count(index: Work.__elasticsearch__.index_name)['count']
+
+
+
 Article.search("cats", search_type: 'count').results.total
 
 Elasticsearch::Model.client.count(index: 'your_index_name_here')['count']
