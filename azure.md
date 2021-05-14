@@ -1,6 +1,16 @@
 
 `--validate` for dry-run 
 
+## export DNS zonefiles from Azure with az cli
+
+```
+az network dns zone export --resource-group <name-of-resource-group> --name whatever.com --output table
+```
+
+> name-of-resource-group - can be found in azure portal once you click
+> on hosted zone overview
+
+
 
 ## webapp (Appservices)
 
