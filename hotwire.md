@@ -2,6 +2,14 @@
 
 ` 'data-turbo-frame' => '_top'`
 
+## disabel turbo in form submision
+
+```ruby
+= form_with(model: @login_code, url: whatever_path, method: :post, data: { 'turbo': false }) do |f|
+  = f.submit "Ok", class: "btn btn-primary float-end"
+```
+
+* [source](https://github.com/hotwired/turbo-rails/issues/31)
 
 
 ## Form Submitions
