@@ -2,6 +2,11 @@
 
 ` 'data-turbo-frame' => '_top'`
 
+```
+= link_to 'Pokračovať',  root_path, class: "btn", 'data-turbo-frame' => '_top'
+
+```
+
 ## disabel turbo in form submision
 
 ```ruby
