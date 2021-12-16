@@ -25,6 +25,24 @@ Archive:
 ## Web-development notes unsorted
 
 
+### random notes
+
+```
+# bin/importmap pin local-time
+time_tag post.created_at, 'data-local': 'time-ago'
+
+
+rails g resource comment post:reference content:text
+
+form.text_area :content, size: '20x5'
+
+
+<div id="<%= dom_id @post %>" >
+</div>
+
+```
+
+
 ### Rails find session_id in rails console
 
 ```
