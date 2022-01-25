@@ -1,11 +1,40 @@
 
 
+
 ` 'data-turbo-frame' => '_top'`
 
 ```
 = link_to 'Pokračovať',  root_path, class: "btn", 'data-turbo-frame' => '_top'
 
 ```
+
+## tag
+
+```erb
+<%= turbo_frame_tag "tray", src: tray_path(tray) %>
+# => <turbo-frame id="tray" src="http://example.com/trays/1"></turbo-frame>
+
+<%= turbo_frame_tag tray, src: tray_path(tray) %>
+# => <turbo-frame id="tray_1" src="http://example.com/trays/1"></turbo-frame>
+
+<%= turbo_frame_tag "tray", src: tray_path(tray), target: "_top" %>
+# => <turbo-frame id="tray" target="_top" src="http://example.com/trays/1"></turbo-frame>
+
+<%= turbo_frame_tag "tray", target: "other_tray" %>
+# => <turbo-frame id="tray" target="other_tray"></turbo-frame>
+
+<%= turbo_frame_tag "tray", src: tray_path(tray), loading: "lazy" %>
+# => <turbo-frame id="tray" src="http://example.com/trays/1" loading="lazy"></turbo-frame>
+
+<%= turbo_frame_tag "tray" do %>
+  <div>My tray frame!</div>
+<% end %>
+# => <turbo-frame id="tray"><div>My tray frame!</div></turbo-fram
+```
+
+* https://turbo.hotwired.dev/handbook/frames
+* https://github.com/hotwired/turbo-rails/blob/main/app/helpers/turbo/frames_helper.rb
+* https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading
 
 ## disabel turbo in form submision
 
