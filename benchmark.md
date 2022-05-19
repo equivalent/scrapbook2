@@ -1,3 +1,5 @@
+to debug memory leaks check
+https://github.com/zombocom/derailed_benchmarks#derailed-benchmarks and https://github.com/mperham/sidekiq/wiki/Memory#rss
 
 source: ruby tapas 322 benchmarking
 
