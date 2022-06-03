@@ -1,4 +1,8 @@
 
+**to disable turbo on a form sumbit:**
+```
+= form_with model: post, data: { turbo: false } do |f|
+```
 
 
 ` 'data-turbo-frame' => '_top'`
