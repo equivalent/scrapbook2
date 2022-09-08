@@ -4,6 +4,9 @@
 # DB connection config values
 
 ```
+ActiveRecord::Base.connection_db_config
+
+# old rails
  ActiveRecord::Base.connection_config
 ```
 
