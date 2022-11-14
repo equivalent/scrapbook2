@@ -1,5 +1,9 @@
 # Selenium
 
+```
+gem 'selenium-webdriver'
+```
+
 seleniumn webdriver is really simple. It has only simple operations like:
 
 ```
