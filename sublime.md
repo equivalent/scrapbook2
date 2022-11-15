@@ -13,3 +13,8 @@
 ## select text inside html tag
 
 CMD-shift-a
+
+## dlete from kursor to end of line
+
+cmd+k  then cmd+k
+
