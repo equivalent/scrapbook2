@@ -21,4 +21,6 @@ cmd+k  then cmd+k
 
 ## edit existing snipets
 
+snippet name `whatever.sublime-snippet`
+
 ![](https://i.stack.imgur.com/R6abT.png)
