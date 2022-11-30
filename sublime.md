@@ -18,3 +18,7 @@ CMD-shift-a
 
 cmd+k  then cmd+k
 
+
+## edit existing snipets
+
+![](https://i.stack.imgur.com/R6abT.png)
