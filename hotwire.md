@@ -154,3 +154,5 @@ https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
   <% end %>
 </main>
 ```
+
+A link can target a Turbo Frame it is not directly nested in, thanks to the data-turbo-frame data attribute. In that case, the Turbo Frame with the same id as the data-turbo-frame data attribute on the source page will be replaced by the Turbo Frame of the same id as the data-turbo-frame data attribute on the target page.
