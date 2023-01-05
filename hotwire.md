@@ -208,3 +208,14 @@ class Discount < ApplicationRecord
   end
 end
 ```
+
+### broadcast security 
+
+https://www.hotrails.dev/turbo-rails/turbo-streams-security
+
+```
+<%= turbo_stream_from current_company, "quotes" %>
+
+  broadcasts_to ->(quote) { [quote.company, "quotes"] }, inserts_by: :prepend
+
+```
