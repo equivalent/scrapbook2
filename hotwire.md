@@ -219,3 +219,13 @@ https://www.hotrails.dev/turbo-rails/turbo-streams-security
   broadcasts_to ->(quote) { [quote.company, "quotes"] }, inserts_by: :prepend
 
 ```
+
+### disable turbo
+
+```
+import "./controllers"
+
+// The two following lines disable Turbo on the whole application
+import { Turbo } from "@hotwired/turbo-rails"
+Turbo.session.drive = false
+```
