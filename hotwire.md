@@ -181,3 +181,10 @@ and this does the same
 <%= turbo_stream.update Quote.new, "" %>
 
 ```
+
+
+### stream broadcast callbacks
+
+```
+  after_create_commit -> { broadcast_prepend_to "quotes", partial: "quotes/quote", locals: { quote: self }, target: "quotes" }
+```
