@@ -45,7 +45,10 @@ form.text_area :content, size: '20x5'
 ### Notice message
 
 ```
+  <% if quote.errors.any? %>
+
       <%= @model.errors.full_messages.to_sentence.capitalize %>
+  <% end %>
 ```
 
 ### Rails find session_id in rails console
