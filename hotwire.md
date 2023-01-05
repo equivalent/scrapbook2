@@ -122,6 +122,8 @@ Turbo.navigator.history.replace({ absoluteURL: '/posts/1/edit' })
 https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
 
 ```
+<%# app/views/quotes/index.html.erb %>
+
 <main class="container">
   <%= turbo_frame_tag "first_turbo_frame" do %>
     <div class="header">
@@ -135,6 +137,20 @@ https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
 
   <%= turbo_frame_tag "second_frame" do %>
     <%= render @quotes %>
+  <% end %>
+</main>
+
+<%# app/views/quotes/new.html.erb %>
+
+<main class="container">
+  <%= link_to sanitize("&larr; Back to quotes"), quotes_path %>
+
+  <div class="header">
+    <h1>New quote</h1>
+  </div>
+
+  <%= turbo_frame_tag "second_frame" do %>
+    <%= render "form", quote: @quote %>
   <% end %>
 </main>
 ```
