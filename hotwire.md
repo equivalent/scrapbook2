@@ -188,3 +188,13 @@ and this does the same
 ```
   after_create_commit -> { broadcast_prepend_to "quotes", partial: "quotes/quote", locals: { quote: self }, target: "quotes" }
 ```
+
+```
+class Discount < ApplicationRecord
+  after_update_commit -> { broadcast_replace_to "discounts" }
+
+  def to_partial_path
+    "dashboard/discounts/discount"
+  end
+end
+```
