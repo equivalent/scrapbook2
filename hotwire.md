@@ -114,3 +114,27 @@ Turbo.navigator.history.replace({ absoluteURL: '/posts/1/edit' })
 ```
 
 <https://discuss.hotwire.dev/t/how-to-change-current-url/1846>
+
+
+
+## turbo rame pointing to another frame
+
+https://www.hotrails.dev/turbo-rails/turbo-frames-and-turbo-streams
+
+```
+<main class="container">
+  <%= turbo_frame_tag "first_turbo_frame" do %>
+    <div class="header">
+      <h1>Quotes</h1>
+      <%= link_to "New quote",
+                  new_quote_path,
+                  data: { turbo_frame: "second_frame" },
+                  class: "btn btn--primary" %>
+    </div>
+  <% end %>
+
+  <%= turbo_frame_tag "second_frame" do %>
+    <%= render @quotes %>
+  <% end %>
+</main>
+```
