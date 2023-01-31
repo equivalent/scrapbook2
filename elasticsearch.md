@@ -8,6 +8,10 @@
 
 ![Q6bOY](https://user-images.githubusercontent.com/721990/215467477-cb0407f3-a2a1-4db6-b1cb-dd4a62e45da1.png)
 
+Filters are cached
+
+term must be mapped to `not_analyzed` [why term query dont return any results and how filters are chached](https://www.elastic.co/guide/en/elasticsearch/guide/current/_finding_exact_values.html#_term_filter_with_text)
+
 ## Elasticsearch custom routing ( `_routing` field )
 
 * https://www.elastic.co/blog/customizing-your-document-routing
