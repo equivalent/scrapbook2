@@ -14,6 +14,21 @@
 * https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-routing-field.html#mapping-routing-field
 
 
+## Bulk insert
+
+a.k.a batch insert
+
+     def bulk_insert(articles)
+      Article.__elasticsearch__.client.bulk index: Article.index_name,
+        body:  articles.map { |a| { index: { data: a.as_indexed_json } } },
+        refresh: true
+     end
+     bulk_insert(Article.last(1000))
+     
+        
+* https://github.com/elastic/elasticsearch-rails/blob/d12d812c3f52ac484cf73805ef41986dd95ba5a0/elasticsearch-model/examples/ohm_article.rb#L77  
+* https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html 
+* https://github.com/elastic/elasticsearch-ruby/blob/b20952b38a810a651ea456fad00c45d6f65ecced/elasticsearch-api/spec/elasticsearch/api/actions/bulk_spec.rb
 
 
 ## random notes
