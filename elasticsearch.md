@@ -10,7 +10,8 @@
 
 ## Elasticsearch custom routing 
 
-https://www.elastic.co/blog/customizing-your-document-routing
+* https://www.elastic.co/blog/customizing-your-document-routing
+* https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-routing-field.html#mapping-routing-field
 
 
 
