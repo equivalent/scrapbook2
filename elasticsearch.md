@@ -4,11 +4,18 @@
 
 
 
+## difference between filter must must_not shoud
+
 ![Q6bOY](https://user-images.githubusercontent.com/721990/215467477-cb0407f3-a2a1-4db6-b1cb-dd4a62e45da1.png)
 
+## Elasticsearch custom routing 
+
+https://www.elastic.co/blog/customizing-your-document-routing
 
 
 
+
+## random notes
 
 Total number of items  in ES :
 
