@@ -18,6 +18,47 @@ term must be mapped to `not_analyzed` [why term query dont return any results an
 * https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-routing-field.html#mapping-routing-field
 
 
+## Change mapping of an index
+
+https://www.youtube.com/watch?v=YSd1aV3iVhM&
+https://www.youtube.com/watch?v=PgMtklprDfc
+https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html
+
+Given `articles` is name of the index
+
+to check mapping 
+
+`GET /articles/_mappings`
+
+post new index with desired mapping
+
+```
+PUT articles_v2
+{
+  "mappings": {
+    "properties": {
+      "tags": {
+        "type":  "keyword"
+      }
+    }
+  }
+}
+```
+
+copy index over
+
+```
+POST _reindex
+{
+  "source": {
+    "index": "articles"
+  },
+  "dest": {
+    "index": "articles_v2"
+  }
+}
+```
+
 ## Bulk insert
 
 a.k.a batch insert
