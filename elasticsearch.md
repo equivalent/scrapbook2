@@ -59,6 +59,18 @@ POST _reindex
 }
 ```
 
+the Post request may time out but reindex is in progres. Took like 30 min to copy 13 mil simple indexes.
+
+to check progres chec total num of documents in index 
+
+```
+GET /articles_v2/_search
+
+         {"query":{
+              "match_all": {}
+            },"size":0,"track_total_hits":true}
+```
+
 ## Bulk insert
 
 a.k.a batch insert
