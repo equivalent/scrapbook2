@@ -88,6 +88,11 @@ a.k.a batch insert
 * https://github.com/elastic/elasticsearch-ruby/blob/b20952b38a810a651ea456fad00c45d6f65ecced/elasticsearch-api/spec/elasticsearch/api/actions/bulk_spec.rb
 
 
+## Index documents at scale 
+
+https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud
+
+
 ## random notes
 
 Total number of items  in ES :
