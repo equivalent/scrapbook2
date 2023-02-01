@@ -1,7 +1,13 @@
 * how to install cluster    https://www.elastic.co/blog/running-elasticsearch-on-aws
 * benchmarking   https://www.elastic.co/blog/announcing-rally-benchmarking-for-elasticsearch
 
+## metrics
 
+https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html
+
+get CPU memory
+
+`GET /_nodes/stats/process` 
 
 
 ## difference between filter must must_not shoud
@@ -90,9 +96,9 @@ a.k.a batch insert
 
 ## Index documents at scale 
 
-[How to Reindex One Billion Documents in One Hour at SoundCloud
+* [How to Reindex One Billion Documents in One Hour at SoundCloud
 ](https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud)
-[Tune for indexing speededit elastic.co](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_refresh_and_replicas_for_initial_loads)
+* [Tune for indexing speededit elastic.co](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_refresh_and_replicas_for_initial_loads)
 
 
 ## random notes
