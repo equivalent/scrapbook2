@@ -1,6 +1,41 @@
 * how to install cluster    https://www.elastic.co/blog/running-elasticsearch-on-aws
 * benchmarking   https://www.elastic.co/blog/announcing-rally-benchmarking-for-elasticsearch
 
+
+## total number of indexes
+
+[count endpoint](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html)
+
+```
+GET /my-index-000001/_count?q=user:kimchy
+
+GET /my-index-000001/_count
+{
+  "query" : {
+    "term" : { "user.id" : "kimchy" }
+  }
+}
+```
+
+or search q
+
+```
+GET /my-index/_search
+
+
+```
+        {"query":{"bool":{ "match_all": {} }},"size":0,"track_total_hits":true}
+
+        {"query":{"bool":{
+              "filter":[
+                { "term": { "name": "niki" } }
+              ]
+            }},"size":0,"track_total_hits":true}
+            
+```
+
+note: set the size to 1 if you want sample doc in result 
+
 ## metrics
 
 https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-nodes-stats.html
