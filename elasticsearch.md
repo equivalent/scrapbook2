@@ -90,7 +90,9 @@ a.k.a batch insert
 
 ## Index documents at scale 
 
-https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud
+[How to Reindex One Billion Documents in One Hour at SoundCloud
+](https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud)
+[Tune for indexing speededit elastic.co](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_refresh_and_replicas_for_initial_loads)
 
 
 ## random notes
