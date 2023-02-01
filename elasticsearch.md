@@ -190,6 +190,21 @@ PUT /my-index-000001/_settings
 
 once bulk sync done set index.translog.durability to "request" to ensure that the translog is synced to disk after each request
 
+#### set larger index.translog.flush_threshold_size
+
+```
+PUT /my-index-000001/_settings
+{
+  "index" : {
+    "translog": {
+      "flush_threshold_size": "2gb"
+    }
+  }
+}
+```
+
+The translog stores all operations that are not yet safely persisted in Lucene (i.e., are not part of a Lucene commit point). Although these operations are available for reads, they will need to be replayed if the shard was stopped and had to be recovered. This setting controls the maximum total size of these operations, to prevent recoveries from taking too long. Once the maximum size has been reached a flush will happen, generating a new Lucene commit point. Defaults to `512mb`.
+
 
 =========================================================================================================================================================
 
