@@ -141,7 +141,7 @@ In order to better handle requests you want optimal primary shard number (but th
 Stuff you can do without creating new index (a.k.a Dynamic settings)
 In order to lower CPU & Memmory during bulk isert and therefore speed up data throughput to ES: 
 
-#### unset refresh intervak
+#### unset refresh interval
 
 [source](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_unset_or_increase_the_refresh_interval)
 
