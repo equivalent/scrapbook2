@@ -2,7 +2,7 @@
 * benchmarking   https://www.elastic.co/blog/announcing-rally-benchmarking-for-elasticsearch
 
 
-## total number of indexes
+## total number of docs in index
 
 [count endpoint](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-count.html)
 
