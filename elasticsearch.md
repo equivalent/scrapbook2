@@ -93,6 +93,8 @@ a.k.a batch insert
 * https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html 
 * https://github.com/elastic/elasticsearch-ruby/blob/b20952b38a810a651ea456fad00c45d6f65ecced/elasticsearch-api/spec/elasticsearch/api/actions/bulk_spec.rb
 
+* https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
+
 
 ## Index documents at scale 
 
@@ -100,6 +102,59 @@ a.k.a batch insert
 ](https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud)
 * [Tune for indexing speededit elastic.co](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_refresh_and_replicas_for_initial_loads)
 
+In order to lower CPU & Memmory during bulk isert and therefore speed up data throughput to ES 
+
+#### unset refresh intervak
+
+[source](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_unset_or_increase_the_refresh_interval)
+
+```
+PUT /my-index-000001/_setting
+{
+  "index" : {
+    "refresh_interval" : -1
+  }
+}
+```
+
+when -1 is set, the index is not refreshed automatically
+default value is 1 =  1 second refresh interval
+you can provide a value in seconds, e.g. 30s
+
+#### disable replica for inital indexing
+
+[source](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_replicas_for_initial_loads)
+
+```
+PUT /my-index-000001/_settings
+{
+  "index" : {
+    "number_of_replicas" : 0
+  }
+}
+```
+
+when 0 is set, no data is replicated to replica shards, set to a value > 0 to enable replication
+
+#### set Async index.translog.durability
+
+[source](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-translog.html#_translog_settings)
+
+```
+PUT /my-index-000001/_settings
+{
+  "index" : {
+    "translog": {
+      "durability": "async"
+    }
+  }
+}
+```
+
+once bulk sync done set index.translog.durability to "request" to ensure that the translog is synced to disk after each request
+
+
+=========================================================================================================================================================
 
 ## random notes
 
