@@ -102,7 +102,12 @@ a.k.a batch insert
 ](https://developers.soundcloud.com/blog/how-to-reindex-1-billion-documents-in-1-hour-at-soundcloud)
 * [Tune for indexing speededit elastic.co](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_refresh_and_replicas_for_initial_loads)
 
-In order to lower CPU & Memmory during bulk isert and therefore speed up data throughput to ES 
+you need to [bulk insert](https://github.com/equivalent/scrapbook2/blob/master/elasticsearch.md#bulk-insert) data to ES
+
+In order to better handle requests you want optimal primary shard number (but that's a static setting = once index is created cannot be changed)
+
+Stuff you can do without creating new index (a.k.a Dynamic settings)
+In order to lower CPU & Memmory during bulk isert and therefore speed up data throughput to ES: 
 
 #### unset refresh intervak
 
