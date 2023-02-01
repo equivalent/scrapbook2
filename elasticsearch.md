@@ -155,8 +155,8 @@ PUT /my-index-000001/_setting
 ```
 
 when -1 is set, the index is not refreshed automatically
-default value is 1 =  1 second refresh interval
-you can provide a value in seconds, e.g. 30s
+default value is "1s" =  1 second refresh interval
+you can provide a value in seconds, e.g. "30s"
 
 #### disable replica for inital indexing
 
