@@ -22,16 +22,13 @@ or search q
 ```
 GET /my-index/_search
 
-
-```
         {"query":{"bool":{ "match_all": {} }},"size":0,"track_total_hits":true}
 
         {"query":{"bool":{
               "filter":[
                 { "term": { "name": "niki" } }
               ]
-            }},"size":0,"track_total_hits":true}
-            
+            }},"size":0,"track_total_hits":true}           
 ```
 
 note: set the size to 1 if you want sample doc in result 
