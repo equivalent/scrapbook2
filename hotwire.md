@@ -1,3 +1,10 @@
+```
+<%= button_to "Sign out", logout_path, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
+```
+
+
+
+
 
 **to disable turbo on a form sumbit:**
 ```
