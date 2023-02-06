@@ -1,3 +1,34 @@
+
+
+## sidekiq worker sending broadcast update
+ 
+ 
+```
+
+  class RecaculateWorker
+    include Sidekiq::Worker
+    sidekiq_options queue: :default
+
+    def perform(product_report_id)
+      product_report = ProductReport.find(product_report_id)
+
+      product_report.generate!
+
+      product_report.user.broadcast_update_to(
+        product_report.user,
+        :product_list_items,
+        target: "product_report_#{product_report.id}",
+        partial: "product_reports/product_report",
+        locals: {product_report: product_report}
+      )
+    end
+  end
+ # RecaculateWorker.perform_async(14)
+```
+
+
+## turbo way to JS alert confirm on delete button click
+
 ```
 <%= button_to "Sign out", logout_path, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %>
 ```
@@ -6,11 +37,14 @@
 
 
 
-**to disable turbo on a form sumbit:**
+## to disable turbo on a form sumbit
+
 ```
 = form_with model: post, data: { turbo: false } do |f|
 ```
 
+
+## top frame
 
 ` 'data-turbo-frame' => '_top'`
 
