@@ -1,3 +1,19 @@
+
+##### rspec without active storage check if enqued
+
+```
+          expect { importer.call }.to change(Shopify::ImportWorker.jobs, :size).by(1)
+```
+
+
+
+
+
+
+
+
+
+
 https://github.com/mperham/sidekiq/wiki/API
 
 
