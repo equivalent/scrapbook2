@@ -1,5 +1,15 @@
 # PostgreSQL
 
+
+#### select where string is null or empty ("", "  ")
+
+```
+select * from customers  where (address2 IS NOT NULL AND trim(address2) != '')
+
+```
+
+-------------------
+
 ActiveRecord::Base.connection.execute(sql)
 
 
