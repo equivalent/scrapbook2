@@ -36,7 +36,7 @@ Select postcards.to ->>'address_city' from postcards where postcards.to ->>'addr
 
 
 
-
+-----------------------------------------------------
 
 
 
