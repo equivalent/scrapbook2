@@ -1,6 +1,47 @@
 # PostgreSQL
 
 
+
+### JSONb operations
+
+https://medium.com/hackernoon/how-to-query-jsonb-beginner-sheet-cheat-4da3aa5082a3
+
+
+#### @>
+
+```
+SELECT * FROM users WHERE metadata @> '{"country": "Peru"}'; 
+```
+
+This operator can compare partial JSON strings against a JSONB column. It’s the containment operator. For this case you may need to add a GIN index on metadata column.
+
+#### ->>
+
+```
+SELECT * FROM users WHERE metadata->>'country' = 'Peru';
+```
+
+The ->> operator gets a JSON object field as text. Use it if you want to query a simple field in a JSONB column. You might add a B-tree index on metadata->>'country'.
+
+
+to select just the value of key 
+```
+Select postcards.to ->>'address_city' from postcards  limit 100;
+Select postcards.to ->>'address_city' from postcards where postcards.to ->>'address_city' = 'New York' limit 100;
+
+# New York
+# New York
+```
+
+
+
+
+
+
+
+
+
+
 #### select where string is null or empty ("", "  ")
 
 ```
