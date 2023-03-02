@@ -1,5 +1,16 @@
 
 
+## Turbo data-turbo-submitting-text
+
+since Turbo 7.3  [PR](https://github.com/hotwired/turbo/pull/869)
+
+```
+<form action="/" method="post">
+  <input type="submit" value="Save" data-turbo-submitting-text="Saving...">
+</form>
+```
+
+
 ## sidekiq worker sending broadcast update
  
  
