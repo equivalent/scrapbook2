@@ -11,7 +11,11 @@ cmd + g
 shift + cmd + g 
 
 
+#### switch lines 
 
+opt + shift + up
+
+opt + shift + down
 
 
 
