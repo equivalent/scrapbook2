@@ -1,5 +1,7 @@
 #### edit multiple lines
 
+option + click
+
 Option + Shift + Click & Drag
 
 #### find next
