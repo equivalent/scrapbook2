@@ -4,6 +4,10 @@ option + click
 
 Option + Shift + Click & Drag
 
+#### select next occurence
+
+control + g
+
 #### find next
 
 cmd + g 
