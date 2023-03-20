@@ -1,5 +1,5 @@
-![Gitten](http://gittens.r15.railsrumble.com//badge/koudelka/visualixir)
-[![Open Thanks](https://thawing-falls-79026.herokuapp.com/images/thanks-1.svg)](https://thawing-falls-79026.herokuapp.com/r/ohtbmxnq)
+
+
 
 Scrapbook2
 ==============
@@ -21,6 +21,11 @@ Archive:
 * Blogs are published on [http://www.eq8.eu/blogs](http://www.eq8.eu/blogs)
 * Micro Blogs ar published on [http://ruby-on-rails-eq8.blogspot.com/](http://ruby-on-rails-eq8.blogspot.com/)
 
+
+## tools for developers
+
+* https://tmpfiles.org
+* http://dead-drop.me
 
 ## Web-development notes unsorted
 
