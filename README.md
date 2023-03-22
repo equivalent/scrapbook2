@@ -26,6 +26,17 @@ Archive:
 
 * https://tmpfiles.org
 * http://dead-drop.me
+* https://transfer.sh/
+
+
+```
+# on VM
+curl --upload-file /tmp/export.csv https://transfer.sh/
+# https://transfer.sh/123456/export.csv
+
+# on Laptop
+wget  https://transfer.sh/123456/export.csv
+```
 
 ## Web-development notes unsorted
 
