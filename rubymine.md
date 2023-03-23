@@ -25,7 +25,7 @@ opt + shift + down
 
 
 
-### expands the current selection
+#### expands the current selection
 
 ⌥ + ↑ 
 
