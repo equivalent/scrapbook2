@@ -25,6 +25,11 @@ opt + shift + down
 
 
 
+### expands the current selection
+
+⌥ + ↑ 
+
+(eg how I select string in quotes, or in tag or block tag)
 
 
 
