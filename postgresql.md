@@ -6,7 +6,12 @@ Nice diagram but according to article [Say NO to Venn Diagrams When Explaining J
 ](https://blog.jooq.org/say-no-to-venn-diagrams-when-explaining-joins/) it's not accurate. Whatever the case it provides easier way how to find missing records in joined table 
 
 ```
+# just ids
 select id from customers except (select owner_id from addresses where addresses.owner_type = 'Customer' ) limit 3;
+
+# all the data
+select * from customers where id in (select id from customers except (select owner_id from addresses where addresses.owner_type = 'Customer' ) limit 5000);
+
 ```
 
 ### JSONb operations
