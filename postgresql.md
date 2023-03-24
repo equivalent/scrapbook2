@@ -1,5 +1,6 @@
 # PostgreSQL
 
+<img width="673" alt="Screenshot 2023-03-24 at 12 01 10" src="https://user-images.githubusercontent.com/721990/227504315-a8bed4c4-25dc-4170-b2d4-a927ab1b3285.png">
 
 
 ### JSONb operations
