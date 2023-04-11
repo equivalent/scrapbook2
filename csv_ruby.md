@@ -1,5 +1,19 @@
 # CSV
 
+### Write CSV line by line
+
+```
+require "csv"
+
+def x(row)
+  File.write('/tmp/exp.csv', row.to_csv, mode: 'a+')
+end
+
+Order.all.find_each do |order|
+  x([order.id, order.created_at])
+end
+```
+
 
 ### Export Active Record Relation to CSV
 
