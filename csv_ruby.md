@@ -1,5 +1,27 @@
 # CSV
 
+### write csv
+
+```
+csv = []
+csv << %w[id created_at]
+counter = 0
+
+Order.where(spmething:true).find_each do |order|
+  counter += 1
+  puts "#{counter} - id:#{order.id} "
+  
+  row = []
+  row << order.id
+  row << order.created_at.to_date
+  
+  csv << row
+end
+
+File.write("/tmp/export.csv", csv.map(&:to_csv).join)
+
+```
+
 ### Write CSV line by line
 
 ```
