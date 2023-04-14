@@ -1,5 +1,19 @@
 # Git scrapbook
 
+
+#### how to copy commit from one project to another
+
+I created fork from original, but a different dude created fork of original that has a commit I want. How do I copy commit from unrelated git history?
+
+https://stackoverflow.com/a/64140064/473040
+
+* Clone the source repo to a folder like /c/SrcRepo
+* Clone the destination repo to a folder like /c/DstRepo and switch to the destination branch
+* In the root folder of the destination repo run the command:
+* git pull /c/SrcRepo srcBranch --allow-unrelated-histories
+
+------------------------
+
 ```
 # show  file lists changed been modified between 2 branches
 git diff --name-status DEVELOPMENT...feature/2420_part2
