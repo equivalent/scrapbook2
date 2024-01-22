@@ -141,6 +141,20 @@ if you keep getting error `arguments passed to url_for can't be handled ...` you
 
 ### checkbox, radio input value to boolean
 
+Rails 5, Rails 6, Rails 7
+
+```ruby
+ActiveRecord::Type::Boolean.new.cast "f"
+```
+
+in Rails 4.2 
+
+```ruby
+ActiveRecord::Type::Boolean.new.type_cast_from_database(value)
+```
+
+in Rails 3.2 and down
+
 ```ruby
 ActiveRecord::ConnectionAdapters::Column.value_to_boolean 'f'  # => false
 ActiveRecord::ConnectionAdapters::Column.value_to_boolean 't'  # => true
@@ -149,22 +163,11 @@ ActiveRecord::ConnectionAdapters::Column.value_to_boolean '1'  # => true
 ActiveRecord::ConnectionAdapters::Column.value_to_boolean nil  # => false
 ```
 
-in Rails 4.2 and above this is depricated and replaced with
-
-```ruby
-ActiveRecord::Type::Boolean.new.type_cast_from_database(value)
-```
 
 ...works the same the only difference is that when `nil` is passed it
 returns `nil` and `"y"`, `"n"` will give you deprication warning 
 
 https://gist.github.com/equivalent/3825916
-
-In rails 5.x you need to do 
-
-```ruby
-ActiveModel::Type::Boolean.new.cast('true')
-```
 
 ### Robots.txt examlpe
 
